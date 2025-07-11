@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+
+<html :class="{'dark': darkMode === 'dark' || (darkMode === 'system' &amp;&amp; window.matchMedia('(prefers-color-scheme: dark)').matches)}" class="scroll-smooth" data-content_root="../../" lang="en" x-data="{ darkMode: localStorage.getItem('darkMode') || localStorage.setItem('darkMode', 'system'), activeSection: '' }" x-init="$watch('darkMode', val =&gt; localStorage.setItem('darkMode', val))">
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="white" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="black" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>C# | Beam Eye Tracker SDK</title>
+<meta content="C# | Beam Eye Tracker SDK" property="og:title"/>
+<meta content="C# | Beam Eye Tracker SDK" name="twitter:title"/>
+<link href="../../_static/pygments.css?v=03e43079" rel="stylesheet" type="text/css"/>
+<link href="../../_static/theme.css?v=42baaae4" rel="stylesheet" type="text/css"/>
+<link href="../../_static/sphinx-design.min.css?v=95c83b7e" rel="stylesheet" type="text/css"/>
+<link href="../../_static/css/custom.css?v=5310992a" rel="stylesheet" type="text/css"/>
+<link href="../../_static/awesome-sphinx-design.css?v=15e0fffa" rel="stylesheet" type="text/css"/>
+<link href="../../search.html" rel="search" title="Search"/>
+<link href="../../genindex.html" rel="index" title="Index"/>
+<link href="../../info/info.html" rel="next" title="Versioning &amp; Legal"/>
+<link href="../python/index.html" rel="prev" title="Python"/>
+<script>
+    <!-- Prevent Flash of wrong theme -->
+      const userPreference = localStorage.getItem('darkMode');
+      let mode;
+      if (userPreference === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        mode = 'dark';
+        document.documentElement.classList.add('dark');
+      } else {
+        mode = 'light';
+      }
+      if (!userPreference) {localStorage.setItem('darkMode', mode)}
+    </script>
+</head>
+<body :class="{ 'overflow-hidden': showSidebar }" class="min-h-screen font-sans antialiased bg-background text-foreground" x-data="{ showSidebar: false, showScrollTop: false }">
+<div @click.self="showSidebar = false" class="fixed inset-0 z-50 overflow-hidden bg-background/80 backdrop-blur-sm md:hidden" x-cloak="" x-show="showSidebar"></div><div class="relative flex flex-col min-h-screen" id="page"><a class="absolute top-0 left-0 z-[100] block bg-background p-4 text-xl transition -translate-x-full opacity-0 focus:translate-x-0 focus:opacity-100" href="#content">
+      Skip to content
+    </a><header class="sticky top-0 z-40 w-full border-b shadow-sm border-border supports-backdrop-blur:bg-background/60 bg-background/95 backdrop-blur"><div class="container flex items-center h-14">
+<div class="hidden mr-4 md:flex">
+<a class="flex items-center mr-6" href="../../index.html">
+<img alt="Logo" class="mr-2 hidden dark:block" height="24" src="../../_static/BeamIconDark.svg" width="24"/>
+<img alt="Logo" class="mr-2 dark:hidden" height="24" src="../../_static/BeamIconLight.svg" width="24"/><span class="hidden font-bold sm:inline-block text-clip whitespace-nowrap">Beam Eye Tracker SDK</span>
+</a><nav class="flex items-center space-x-6 text-sm font-medium">
+<a class="transition-colors hover:text-foreground/80 text-foreground/60" href="../../index.html">Documentation</a>
+<a class="transition-colors hover:text-foreground/80 text-foreground/60" href="https://beam.eyeware.tech/" rel="noopener nofollow">Website</a>
+<a class="transition-colors hover:text-foreground/80 text-foreground/60" href="https://discord.gg/dqm2KbFWJd" rel="noopener nofollow">Community</a>
+<a class="transition-colors hover:text-foreground/80 text-foreground/60" href="https://beameyetrackersdk.featurebase.app/" rel="noopener nofollow">Feature Requests</a>
+</nav></div><button @click="showSidebar = true" class="inline-flex items-center justify-center h-10 px-0 py-2 mr-2 text-base font-medium transition-colors rounded-md hover:text-accent-foreground hover:bg-transparent md:hidden" type="button">
+<svg aria-hidden="true" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M152.587 825.087q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440Zm0-203.587q-19.152 0-32.326-13.174T107.087 576q0-19.152 13.174-32.326t32.326-13.174h320q19.152 0 32.326 13.174T518.087 576q0 19.152-13.174 32.326T472.587 621.5h-320Zm0-203.587q-19.152 0-32.326-13.174t-13.174-32.326q0-19.152 13.174-32.326t32.326-13.174h440q19.152 0 32.326 13.174t13.174 32.326q0 19.152-13.174 32.326t-32.326 13.174h-440ZM708.913 576l112.174 112.174q12.674 12.674 12.674 31.826t-12.674 31.826Q808.413 764.5 789.261 764.5t-31.826-12.674l-144-144Q600 594.391 600 576t13.435-31.826l144-144q12.674-12.674 31.826-12.674t31.826 12.674q12.674 12.674 12.674 31.826t-12.674 31.826L708.913 576Z"></path>
+</svg>
+<span class="sr-only">Toggle navigation menu</span>
+</button>
+<div class="flex items-center justify-between flex-1 space-x-2 sm:space-x-4 md:justify-end">
+<div class="flex-1 w-full md:w-auto md:flex-none"><form @keydown.k.window.meta="$refs.search.focus()" action="../../search.html" class="relative flex items-center group" id="searchbox" method="get">
+<input aria-label="Search the docs" class="inline-flex items-center font-medium transition-colors bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background border border-input hover:bg-accent focus:bg-accent hover:text-accent-foreground focus:text-accent-foreground hover:placeholder-accent-foreground py-2 px-4 relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64" id="search-input" name="q" placeholder="Search ..." type="search" x-ref="search"/>
+<kbd class="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none text-muted-foreground items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex group-hover:bg-accent group-hover:text-accent-foreground">
+<span class="text-xs">⌘</span>
+    K
+  </kbd>
+</form>
+</div>
+<nav class="flex items-center space-x-1">
+<a href="https://discord.gg/dqm2KbFWJd" rel="noopener nofollow" title="Visit Discord server">
+<div class="inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md disabled:opacity-50 disabled:pointer-events-none hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<svg fill="currentColor" height="26px" style="margin-top:-2px" version="1.1" viewbox="0 0 45 44" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clippath id="clipPath867-5">
+<rect fill="#fff" height="14" width="14"></rect>
+</clippath>
+</defs>currentColor"/&gt;
+ <path clip-path="url(#clipPath867-5)" d="m11.859 2.8375c-0.92283-0.39823-1.8959-0.67932-2.8884-0.83748-0.22095 0.38392-0.32405 0.89795-0.86921 0.64912-0.90018-0.087567-1.8108-0.067558-2.7062 0.059678-0.16389-0.4583-0.3914-0.89458-0.92847-0.60578-0.79938 0.16661-1.5822 0.41322-2.332 0.73654-1.4787 2.0097-2.3055 4.5211-2.1133 7.0246-0.043179 0.82883 1.0658 0.97913 1.6218 1.3878 0.64192 0.21276 1.474 0.83636 2.0642 0.61062 0.17349-0.37226 1.0329-1.0588 0.26873-1.1622-0.26836-0.1646-1.1475-0.33602-0.51788-0.59849 2.2221 0.99281 4.8605 0.9928 7.0826 0 0.66288 0.32808-0.52789 0.52761-0.82643 0.71839 0.00147 0.28353 0.44882 1.0618 0.80032 1.1451 1.2193-0.35975 2.3822-0.91317 3.4253-1.6404 0.30843-2.6579-0.48843-5.3511-2.0811-7.4875zm-7.185 5.9797c-0.95014 0.025347-1.5708-1.1416-1.1115-1.9455 0.35701-0.80833 1.5813-0.933 2.0917-0.2109 0.65829 0.7909 0.087727 2.1792-0.98017 2.1564zm4.6513 0c-0.9505 0.025815-1.5693-1.1422-1.1104-1.9455 0.35686-0.80745 1.5818-0.93406 2.0911-0.2109 0.65473 0.79144 0.087254 2.179-0.98076 2.1564z" fill="#5865f2" transform="matrix(3.0396 0 0 3.0396 1.2231 .7756)"></path>
+</svg>
+</div>
+</a>
+<button @click="darkMode = darkMode === 'light' ? 'dark' : 'light'" aria-label="Color theme switcher" class="relative inline-flex items-center justify-center px-0 text-sm font-medium transition-colors rounded-md hover:bg-accent hover:text-accent-foreground h-9 w-9" type="button">
+<svg class="absolute transition-all scale-100 rotate-0 dark:-rotate-90 dark:scale-0" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 685q45.456 0 77.228-31.772Q589 621.456 589 576q0-45.456-31.772-77.228Q525.456 467 480 467q-45.456 0-77.228 31.772Q371 530.544 371 576q0 45.456 31.772 77.228Q434.544 685 480 685Zm0 91q-83 0-141.5-58.5T280 576q0-83 58.5-141.5T480 376q83 0 141.5 58.5T680 576q0 83-58.5 141.5T480 776ZM80 621.5q-19.152 0-32.326-13.174T34.5 576q0-19.152 13.174-32.326T80 530.5h80q19.152 0 32.326 13.174T205.5 576q0 19.152-13.174 32.326T160 621.5H80Zm720 0q-19.152 0-32.326-13.174T754.5 576q0-19.152 13.174-32.326T800 530.5h80q19.152 0 32.326 13.174T925.5 576q0 19.152-13.174 32.326T880 621.5h-80Zm-320-320q-19.152 0-32.326-13.174T434.5 256v-80q0-19.152 13.174-32.326T480 130.5q19.152 0 32.326 13.174T525.5 176v80q0 19.152-13.174 32.326T480 301.5Zm0 720q-19.152 0-32.326-13.17Q434.5 995.152 434.5 976v-80q0-19.152 13.174-32.326T480 850.5q19.152 0 32.326 13.174T525.5 896v80q0 19.152-13.174 32.33-13.174 13.17-32.326 13.17ZM222.174 382.065l-43-42Q165.5 327.391 166 308.239t13.174-33.065q13.435-13.674 32.587-13.674t32.065 13.674l42.239 43q12.674 13.435 12.555 31.706-.12 18.272-12.555 31.946-12.674 13.674-31.445 13.413-18.772-.261-32.446-13.174Zm494 494.761-42.239-43q-12.674-13.435-12.674-32.087t12.674-31.565Q686.609 756.5 705.38 757q18.772.5 32.446 13.174l43 41.761Q794.5 824.609 794 843.761t-13.174 33.065Q767.391 890.5 748.239 890.5t-32.065-13.674Zm-42-494.761Q660.5 369.391 661 350.62q.5-18.772 13.174-32.446l41.761-43Q728.609 261.5 747.761 262t33.065 13.174q13.674 13.435 13.674 32.587t-13.674 32.065l-43 42.239q-13.435 12.674-31.706 12.555-18.272-.12-31.946-12.555Zm-495 494.761Q165.5 863.391 165.5 844.239t13.674-32.065l43-42.239q13.435-12.674 32.087-12.674t31.565 12.674Q299.5 782.609 299 801.38q-.5 18.772-13.174 32.446l-41.761 43Q231.391 890.5 212.239 890t-33.065-13.174ZM480 576Z"></path>
+</svg>
+<svg class="absolute transition-all scale-0 rotate-90 dark:rotate-0 dark:scale-100" fill="currentColor" height="24" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 936q-151 0-255.5-104.5T120 576q0-138 90-239.5T440 218q25-3 39 18t-1 44q-17 26-25.5 55t-8.5 61q0 90 63 153t153 63q31 0 61.5-9t54.5-25q21-14 43-1.5t19 39.5q-14 138-117.5 229T480 936Zm0-80q88 0 158-48.5T740 681q-20 5-40 8t-40 3q-123 0-209.5-86.5T364 396q0-20 3-40t8-40q-78 32-126.5 102T200 576q0 116 82 198t198 82Zm-10-270Z"></path>
+</svg>
+</button>
+</nav>
+</div>
+</div>
+</header>
+<div class="flex-1"><div class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10"><aside :aria-hidden="!showSidebar" :class="{ 'translate-x-0': showSidebar }" class="fixed inset-y-0 left-0 md:top-14 z-50 md:z-30 bg-background md:bg-transparent transition-all duration-100 -translate-x-full md:translate-x-0 ml-0 p-6 md:p-0 md:-ml-2 md:h-[calc(100vh-3.5rem)] w-5/6 md:w-full shrink-0 overflow-y-auto border-r border-border md:sticky" id="left-sidebar">
+<a class="!justify-start text-sm md:!hidden bg-background" href="../../index.html">
+<img alt="Logo" class="mr-2 hidden dark:block" height="16" src="../../_static/BeamIconDark.svg" width="16"/>
+<img alt="Logo" class="mr-2 dark:hidden" height="16" src="../../_static/BeamIconLight.svg" width="16"/><span class="font-bold text-clip whitespace-nowrap">Beam Eye Tracker SDK</span>
+</a>
+<div class="relative overflow-hidden md:overflow-auto my-4 md:my-0 h-[calc(100vh-8rem)] md:h-auto">
+<div class="overflow-y-auto h-full w-full relative pr-6"><nav class="flex md:hidden flex-col font-medium mt-4">
+<a href="../../index.html">Documentation</a>
+<a href="https://beam.eyeware.tech/" rel="nofollow noopener">Website</a>
+<a href="https://discord.gg/dqm2KbFWJd" rel="nofollow noopener">Community</a>
+<a href="https://beameyetrackersdk.featurebase.app/" rel="nofollow noopener">Feature Requests</a>
+</nav><nav class="table w-full min-w-full my-6 lg:my-8">
+<ul class="current">
+<li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../basics/index.html">Start with the basics<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="../../basics/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basics/installation.html">Installation &amp; Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basics/general_api_concepts.html">General API concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../basics/reference_frames.html">Reference frames</a></li>
+</ul>
+</li>
+<li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../features/features.html">Core features<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="../../features/user_tracking.html">Real-time tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/sim_game_camera.html">In-game camera control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/game_immersive_hud.html">Dynamic HUDs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../features/foveated_rendering.html">Foveated rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../integration/integration.html">Plugins and samples<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="../../integration/game_engine.html">Game Engine Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration/unity.html">Unity Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../integration/fidelityfx.html">Foveated Rendering using FidelityFX™</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../index.html">API Reference<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul class="current" x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="../cpp/index.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c/index.html">C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/index.html">Python</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C#</a></li>
+</ul>
+</li>
+<li class="toctree-l1" x-data="{ expanded: $el.classList.contains('current') ? true : false }"><a :class="{ 'expanded' : expanded }" @click="expanded = !expanded" class="reference internal expandable" href="../../info/info.html">Versioning &amp; Legal<button @click.prevent.stop="expanded = !expanded" type="button"><span class="sr-only"></span><svg fill="currentColor" height="18px" stroke="none" viewbox="0 0 24 24" width="18px" xmlns="http://www.w3.org/2000/svg"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path></svg></button></a><ul x-show="expanded">
+<li class="toctree-l2"><a class="reference internal" href="../../info/changelog.html">Changelog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info/third-party-licenses.html">Third Party Licenses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../info/license.html">License</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+<button @click="showSidebar = false" class="absolute md:hidden right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100" type="button">
+<svg class="h-4 w-4" fill="currentColor" height="24" stroke="none" viewbox="0 96 960 960" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M480 632 284 828q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536 576l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480 632Z"></path>
+</svg>
+</button>
+</aside>
+<main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+<div class="w-full min-w-0 mx-auto">
+<nav aria-label="breadcrumbs" class="flex items-center mb-4 space-x-1 text-sm text-muted-foreground">
+<a class="overflow-hidden text-ellipsis whitespace-nowrap hover:text-foreground" href="../../index.html">
+<span class="hidden md:inline">Beam Eye Tracker SDK</span>
+<svg aria-label="Home" class="md:hidden" fill="currentColor" height="18" stroke="none" viewbox="0 96 960 960" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M240 856h120V616h240v240h120V496L480 316 240 496v360Zm-80 80V456l320-240 320 240v480H520V696h-80v240H160Zm320-350Z"></path>
+</svg>
+</a>
+<div class="mr-1">/</div><a class="hover:text-foreground overflow-hidden text-ellipsis whitespace-nowrap" href="../index.html">API Reference</a>
+<div class="mr-1">/</div><span aria-current="page" class="font-medium text-foreground overflow-hidden text-ellipsis whitespace-nowrap">C#</span>
+</nav>
+<div id="content" role="main">
+<section id="c">
+<span id="csharp-api-reference"></span><h1>C#<a class="headerlink" href="#c" title="Link to this heading"><span>¶</span></a></h1>
+<p>The C# API provides comprehensive eye tracking functionality through an intuitive object-oriented design, following C# conventions and best practices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All C# types and classes described in this documentation are enclosed within the <code class="docutils literal notranslate"><span class="pre">Eyeware.BeamEyeTracker</span></code> namespace.</p>
+</div>
+<section id="core-classes">
+<h2>Core Classes<a class="headerlink" href="#core-classes" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#core-classes'"><span>¶</span></a></h2>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#api'"><span>¶</span></a></h3>
+<dl class="cs class">
+<dt class="sig sig-object cs" id="class-Eyeware.BeamEyeTracker.API">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i"></span><em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.API</span></span> <span class="pre">:</span> <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.IDisposable" title="type: msdn ~&gt; System.IDisposable"><span class="pre">IDisposable</span></a><a class="headerlink" href="#class-Eyeware.BeamEyeTracker.API" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#class-Eyeware.BeamEyeTracker.API'"><span>¶</span></a></dt>
+<dd><p>Main entry point for the Beam Eye Tracker SDK. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-api-singleton"><span class="std std-ref">The API singleton</span></a> for a high-level explanation of the <code class="docutils literal notranslate"><span class="pre">API</span></code> object.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.API">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1ad3d018fe51ce71456772dc2a9f9fcce6"></span><span class="sig-name descname"><span class="pre">API</span></span> <span class="sig-paren">(</span><span class="pre">string</span> <em><span class="pre">friendlyName</span></em>, <a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.ViewportGeometry" title="struct: Eyeware.BeamEyeTracker.ViewportGeometry"><span class="pre">ViewportGeometry</span></a> <em><span class="pre">initialViewportGeometry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.API" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.API'"><span>¶</span></a></dt>
+<dd><p>Initializes a new instance of the Beam Eye Tracker API. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param friendlyName<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Application identifier displayed in the Beam Eye Tracker UI (UTF-8, max 200 bytes)</p>
+</dd>
+<dt class="field-even">Param initialViewportGeometry<span class="colon">:</span></dt>
+<dd class="field-even"><p>The initial viewport geometry configuration.</p>
+</dd>
+<dt class="field-odd">Throws ArgumentNullException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when friendlyName is null or empty.</p>
+</dd>
+<dt class="field-even">Throws ArgumentException<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when friendlyName exceeds 200 bytes.</p>
+</dd>
+<dt class="field-odd">Throws Exception<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when API creation fails.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.GetVersion">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a76dd657f3dc750ff4aaea75882206ae2"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Version" title="struct: Eyeware.BeamEyeTracker.Version"><span class="pre">Version</span></a> <span class="sig-name descname"><span class="pre">GetVersion</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.GetVersion" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.GetVersion'"><span>¶</span></a></dt>
+<dd><p>Gets the version information of the Beam Eye Tracker SDK. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+<dt class="field-even">Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Version structure containing major, minor, and patch version numbers.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.UpdateViewportGeometry">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a8571c26ccd293b29f52eeae213196667"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">UpdateViewportGeometry</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.ViewportGeometry" title="struct: Eyeware.BeamEyeTracker.ViewportGeometry"><span class="pre">ViewportGeometry</span></a> <em><span class="pre">newViewportGeometry</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.UpdateViewportGeometry" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.UpdateViewportGeometry'"><span>¶</span></a></dt>
+<dd><p>Updates the viewport geometry used for coordinate mapping. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/reference_frames.html#viewport"><span class="std std-ref">Viewport</span></a> for more information about viewport geometry.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Param newViewportGeometry<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new viewport geometry configuration.</p>
+</dd>
+<dt class="field-even">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.AttemptStartingTheBeamEyeTracker">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a070b2c8c00ef7bdf6a195bdb37b29005"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">AttemptStartingTheBeamEyeTracker</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.AttemptStartingTheBeamEyeTracker" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.AttemptStartingTheBeamEyeTracker'"><span>¶</span></a></dt>
+<dd><p>Attempts to automatically start the Beam Eye Tracker application if it’s not already running. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-auto-start-tracking"><span class="std std-ref">Launching the Beam Eye Tracker from your game or application</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.WaitForNewTrackingData">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a4a2cd71602ec041b90fc9081e941da46"></span><span class="pre">bool</span> <span class="sig-name descname"><span class="pre">WaitForNewTrackingData</span></span> <span class="sig-paren">(</span><em class="property"><span class="pre">ref</span></em> <span class="pre">double</span> <em><span class="pre">lastReceivedTimestamp</span></em>, <span class="pre">uint</span> <em><span class="pre">timeoutMs</span></em><em> <span class="pre">=</span> <span class="pre">DefaultTrackingDataTimeoutMs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.WaitForNewTrackingData" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.WaitForNewTrackingData'"><span>¶</span></a></dt>
+<dd><p>Waits for new tracking data to become available. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-synchronous-data-access"><span class="std std-ref">Synchronous data access</span></a> and <a class="reference internal" href="../../basics/general_api_concepts.html#about-polling-data-access"><span class="std std-ref">Polling data access</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Param lastReceivedTimestamp<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The timestamp of the last received data. Will be updated with the new timestamp if new data is available.</p>
+</dd>
+<dt class="field-even">Param timeoutMs<span class="colon">:</span></dt>
+<dd class="field-even"><p>Maximum time to wait in milliseconds. Defaults to DefaultTrackingDataTimeoutMs.</p>
+</dd>
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+<dt class="field-even">Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if new data is available, false if the timeout was reached.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.GetTrackingDataReceptionStatus">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a222e60f816d59dd600f6280fecf84571"></span><a class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus" title="enum: Eyeware.BeamEyeTracker.TrackingDataReceptionStatus"><span class="pre">TrackingDataReceptionStatus</span></a> <span class="sig-name descname"><span class="pre">GetTrackingDataReceptionStatus</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.GetTrackingDataReceptionStatus" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.GetTrackingDataReceptionStatus'"><span>¶</span></a></dt>
+<dd><p>Gets the current status of tracking data reception. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-tracking-data-reception-status"><span class="std std-ref">The TrackingDataReceptionStatus object</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+<dt class="field-even">Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current TrackingDataReceptionStatus.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.GetLatestTrackingStateSet">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a78016ad28bcd3b8bad82391546d6f614"></span><a class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingStateSet" title="class: Eyeware.BeamEyeTracker.TrackingStateSet"><span class="pre">TrackingStateSet</span></a> <span class="sig-name descname"><span class="pre">GetLatestTrackingStateSet</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.GetLatestTrackingStateSet" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.GetLatestTrackingStateSet'"><span>¶</span></a></dt>
+<dd><p>Gets the most recent tracking state set containing user state, camera state, and HUD state. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-tracking-state-set"><span class="std std-ref">The TrackingStateSet object</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+<dt class="field-even">Throws Exception<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when retrieving the tracking state set fails.</p>
+</dd>
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A TrackingStateSet containing the latest tracking data.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.StartReceivingTrackingDataOnListener">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a517b21b4462326d65d5dc7ee4256a4d1"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">StartReceivingTrackingDataOnListener</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingListener" title="class: Eyeware.BeamEyeTracker.TrackingListener"><span class="pre">TrackingListener</span></a> <em><span class="pre">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.StartReceivingTrackingDataOnListener" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.StartReceivingTrackingDataOnListener'"><span>¶</span></a></dt>
+<dd><p>Registers a listener to receive tracking data updates. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a detailed explanation, see <a class="reference internal" href="../../basics/general_api_concepts.html#about-asynchronous-data-access"><span class="std std-ref">Asynchronous data access</span></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Param listener<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The TrackingListener to register.</p>
+</dd>
+<dt class="field-even">Throws ArgumentNullException<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when listener is null.</p>
+</dd>
+<dt class="field-odd">Throws InvalidOperationException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the listener is already registered.</p>
+</dd>
+<dt class="field-even">Throws Exception<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when registering the callbacks fails.</p>
+</dd>
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.StopReceivingTrackingDataOnListener">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1aeaa45ce85e1844068382ad1c3fa31535"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">StopReceivingTrackingDataOnListener</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingListener" title="class: Eyeware.BeamEyeTracker.TrackingListener"><span class="pre">TrackingListener</span></a> <em><span class="pre">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.StopReceivingTrackingDataOnListener" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.StopReceivingTrackingDataOnListener'"><span>¶</span></a></dt>
+<dd><p>Unregisters a previously registered tracking data listener. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param listener<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The TrackingListener to unregister.</p>
+</dd>
+<dt class="field-even">Throws ArgumentNullException<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when listener is null.</p>
+</dd>
+<dt class="field-odd">Throws ArgumentException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the listener is not currently registered.</p>
+</dd>
+<dt class="field-even">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-even"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.StartRecenterSimGameCamera">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a330dddb6b38a32c3ff98b225dc6cb073"></span><span class="pre">bool</span> <span class="sig-name descname"><span class="pre">StartRecenterSimGameCamera</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.StartRecenterSimGameCamera" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.StartRecenterSimGameCamera'"><span>¶</span></a></dt>
+<dd><p>Starts the process of recentering the game camera. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/sim_game_camera.html#about-camera-recentering"><span class="std std-ref">Implement the camera recentering</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+<dt class="field-even">Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if recentering was successfully started, false otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.StopRecenterSimGameCamera">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a2f05ab7784f1032137692379578d1c64"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">StopRecenterSimGameCamera</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.StopRecenterSimGameCamera" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.StopRecenterSimGameCamera'"><span>¶</span></a></dt>
+<dd><p>Stops the process of recentering the game camera. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/sim_game_camera.html#about-camera-recentering"><span class="std std-ref">Implement the camera recentering</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Throws ObjectDisposedException<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Thrown when the API instance has been disposed.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.Dispose">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a2644c78ae37be14f94ec5b0ffdd7e2aa"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">Dispose</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.Dispose" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.Dispose'"><span>¶</span></a></dt>
+<dd><p>Releases all resources used by this API instance. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-properties">Properties</p>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.API.IsDisposed">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1af624efd24358234dfecf6c24884429e3"></span><span class="pre">bool</span> <span class="sig-name descname"><span class="pre">IsDisposed</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.API.IsDisposed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.API.IsDisposed'"><span>¶</span></a></dt>
+<dd><p>Gets whether this API instance has been disposed. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.API.ComputeSimGameCameraTransformParameters">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a7b6a1a8a59f27cc4a867fa74af0f96e6"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D" title="struct: Eyeware.BeamEyeTracker.SimCameraTransform3D"><span class="pre">SimCameraTransform3D</span></a> <span class="sig-name descname"><span class="pre">ComputeSimGameCameraTransformParameters</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimGameCameraState" title="struct: Eyeware.BeamEyeTracker.SimGameCameraState"><span class="pre">SimGameCameraState</span></a> <em><span class="pre">cameraState</span></em>, <span class="pre">float</span> <em><span class="pre">eyeTrackingWeight</span></em><em> <span class="pre">=</span> <span class="pre">1.0f</span></em>, <span class="pre">float</span> <em><span class="pre">headTrackingWeight</span></em><em> <span class="pre">=</span> <span class="pre">1.0f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.API.ComputeSimGameCameraTransformParameters" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.API.ComputeSimGameCameraTransformParameters'"><span>¶</span></a></dt>
+<dd><p>Computes the final camera transform parameters by combining eye and head tracking components. </p>
+<p><p></p>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/sim_game_camera.html#about-sim-game-camera-state"><span class="std std-ref">In-game camera control</span></a> for more information.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Param cameraState<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current camera state containing eye and head tracking components.</p>
+</dd>
+<dt class="field-even">Param eyeTrackingWeight<span class="colon">:</span></dt>
+<dd class="field-even"><p>Weight factor for the eye tracking component (default: 1.0).</p>
+</dd>
+<dt class="field-odd">Param headTrackingWeight<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Weight factor for the head tracking component (default: 1.0).</p>
+</dd>
+<dt class="field-even">Return<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed camera transform parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.API.DefaultTrackingDataTimeoutMs">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_a_p_i_1a0d44d064f908ecafe6074d26515bf227"></span><em class="property"><span class="pre">const</span></em> <span class="pre">uint</span> <span class="sig-name descname"><span class="pre">DefaultTrackingDataTimeoutMs</span></span> <span class="pre">=</span> <span class="pre">1000</span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.API.DefaultTrackingDataTimeoutMs" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.API.DefaultTrackingDataTimeoutMs'"><span>¶</span></a></dt>
+<dd><p>Default timeout in milliseconds for waiting for new tracking data. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="trackingstateset">
+<h3>TrackingStateSet<a class="headerlink" href="#trackingstateset" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#trackingstateset'"><span>¶</span></a></h3>
+<dl class="cs class">
+<dt class="sig sig-object cs" id="class-Eyeware.BeamEyeTracker.TrackingStateSet">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_state_set"></span><em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.TrackingStateSet</span></span><a class="headerlink" href="#class-Eyeware.BeamEyeTracker.TrackingStateSet" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#class-Eyeware.BeamEyeTracker.TrackingStateSet'"><span>¶</span></a></dt>
+<dd><p>Contains the complete set of tracking data for a single frame, including user state, game camera state, and immersive HUD state. </p>
+<p>This class provides access to all tracking data components through properties. The data is read immediately upon construction and remains immutable thereafter. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-properties">Properties</p>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.TrackingStateSet.UserState">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_state_set_1ae1ec5a1a5807023c11ebe1059f2fc4b4"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.UserState" title="struct: Eyeware.BeamEyeTracker.UserState"><span class="pre">UserState</span></a> <span class="sig-name descname"><span class="pre">UserState</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.UserState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.TrackingStateSet.UserState'"><span>¶</span></a></dt>
+<dd><p>Gets the current user state, including head pose and gaze information. </p>
+</dd></dl>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.TrackingStateSet.SimGameCameraState">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_state_set_1a2b39447ab21241511ad8a53872c368f1"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimGameCameraState" title="struct: Eyeware.BeamEyeTracker.SimGameCameraState"><span class="pre">SimGameCameraState</span></a> <span class="sig-name descname"><span class="pre">SimGameCameraState</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.SimGameCameraState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.TrackingStateSet.SimGameCameraState'"><span>¶</span></a></dt>
+<dd><p>Gets the current game camera state, including eye and head tracking components. </p>
+</dd></dl>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.TrackingStateSet.GameImmersiveHUDState">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_state_set_1aaf74144c3138c70621974fbc5ed3ae01"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState" title="struct: Eyeware.BeamEyeTracker.GameImmersiveHUDState"><span class="pre">GameImmersiveHUDState</span></a> <span class="sig-name descname"><span class="pre">GameImmersiveHUDState</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.GameImmersiveHUDState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.TrackingStateSet.GameImmersiveHUDState'"><span>¶</span></a></dt>
+<dd><p>Gets the current immersive HUD state, including viewport region indicators. </p>
+</dd></dl>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.TrackingStateSet.FoveatedRenderingState">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_state_set_1a91325fddfc78c14f0b406ba468e7984a"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState" title="struct: Eyeware.BeamEyeTracker.FoveatedRenderingState"><span class="pre">FoveatedRenderingState</span></a> <span class="sig-name descname"><span class="pre">FoveatedRenderingState</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.FoveatedRenderingState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.TrackingStateSet.FoveatedRenderingState'"><span>¶</span></a></dt>
+<dd><p>Gets the current foveated rendering state, including foveation center and radii. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="trackinglistener">
+<h3>TrackingListener<a class="headerlink" href="#trackinglistener" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#trackinglistener'"><span>¶</span></a></h3>
+<dl class="cs class">
+<dt class="sig sig-object cs" id="class-Eyeware.BeamEyeTracker.TrackingListener">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_listener"></span><em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.TrackingListener</span></span> <span class="pre">:</span> <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.IDisposable" title="type: msdn ~&gt; System.IDisposable"><span class="pre">IDisposable</span></a><a class="headerlink" href="#class-Eyeware.BeamEyeTracker.TrackingListener" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#class-Eyeware.BeamEyeTracker.TrackingListener'"><span>¶</span></a></dt>
+<dd><p>Base class for receiving tracking data updates from the Beam Eye Tracker. Implement this class to receive callbacks when tracking data or status changes occur. </p>
+<p>This class implements IDisposable to ensure proper cleanup of native resources. Users should either call Dispose explicitly or use a using statement. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingDataReceptionStatusChanged">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_listener_1a19c451fa31be82361d065531cb5840db"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">OnTrackingDataReceptionStatusChanged</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus" title="enum: Eyeware.BeamEyeTracker.TrackingDataReceptionStatus"><span class="pre">TrackingDataReceptionStatus</span></a> <em><span class="pre">status</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingDataReceptionStatusChanged" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingDataReceptionStatusChanged'"><span>¶</span></a></dt>
+<dd><p>Called when the tracking data reception status changes. Override this method to handle status changes. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param status<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new tracking data reception status.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingStateSetUpdate">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_listener_1a5fea213eb24f4117861592fd48c4065e"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">OnTrackingStateSetUpdate</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingStateSet" title="class: Eyeware.BeamEyeTracker.TrackingStateSet"><span class="pre">TrackingStateSet</span></a> <em><span class="pre">trackingStateSet</span></em>, <span class="pre">double</span> <em><span class="pre">timestamp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingStateSetUpdate" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingStateSetUpdate'"><span>¶</span></a></dt>
+<dd><p>Called when new tracking data is available. Override this method to handle tracking data updates. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param trackingStateSet<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new tracking state set.</p>
+</dd>
+<dt class="field-even">Param timestamp<span class="colon">:</span></dt>
+<dd class="field-even"><p>The timestamp of the tracking data.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.TrackingListener.Dispose">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_listener_1a7ab622d3873c4a3e8e09cc66708d450e"></span><span class="pre">void</span> <span class="sig-name descname"><span class="pre">Dispose</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.TrackingListener.Dispose" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.TrackingListener.Dispose'"><span>¶</span></a></dt>
+<dd><p>Releases all resources used by this listener instance. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-properties">Properties</p>
+<dl class="cs property">
+<dt class="sig sig-object cs" id="property-Eyeware.BeamEyeTracker.TrackingListener.IsDisposed">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_tracking_listener_1a29d3d215d179cca17b0ec26a4020b8bc"></span><span class="pre">bool</span> <span class="sig-name descname"><span class="pre">IsDisposed</span></span> <span class="pre">{</span> <em class="property"><span class="pre">get;</span> <span class="pre">set;</span></em> <span class="pre">}</span><a class="headerlink" href="#property-Eyeware.BeamEyeTracker.TrackingListener.IsDisposed" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#property-Eyeware.BeamEyeTracker.TrackingListener.IsDisposed'"><span>¶</span></a></dt>
+<dd><p>Gets whether this listener has been disposed. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+</section>
+<section id="enums">
+<h2>Enums<a class="headerlink" href="#enums" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enums'"><span>¶</span></a></h2>
+<section id="trackingdatareceptionstatus">
+<h3>TrackingDataReceptionStatus<a class="headerlink" href="#trackingdatareceptionstatus" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#trackingdatareceptionstatus'"><span>¶</span></a></h3>
+<dl class="cs enum">
+<dt class="sig sig-object cs" id="enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1a76310ae572bc0e2e1136c404eec7800f"></span><em class="property"><span class="pre">enum</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.TrackingDataReceptionStatus</span></span><a class="headerlink" href="#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus'"><span>¶</span></a></dt>
+<dd><p>Represents the status of the tracking data reception. This state indicates whether the client is receiving frame-by-frame tracking data or not, regardless of whether the user is being tracked or not. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-tracking-data-reception-status"><span class="std std-ref">The TrackingDataReceptionStatus object</span></a> for more information.</p>
+</div>
+<p><em>Values:</em></p>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.NotReceivingTrackingData">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1a76310ae572bc0e2e1136c404eec7800fa331805a5498ea7bd766f65b4377287e8"></span><span class="sig-name descname"><span class="pre">NotReceivingTrackingData</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.NotReceivingTrackingData" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.NotReceivingTrackingData'"><span>¶</span></a></dt>
+<dd><p>The client is not currently receiving data from the Beam Eye Tracker. There could be multiple reasons why this is the case but in general it means that the user should manually start the Beam Eye Tracker application (if not yet launched), sign in, and/or successfully activate “Gaming Extensions” (as of Beam Eye Tracker v2.0). </p>
+<p>.. note:: In general, this is when manual user intervention is needed to configure the tracker. Alternatively, see :ref:<code class="docutils literal notranslate"><span class="pre">about_auto_start_tracking</span></code>. </p>
+</dd></dl>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.ReceivingTrackingData">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1a76310ae572bc0e2e1136c404eec7800fac08c5fee9f004a5ac3531e186b0b5883"></span><span class="sig-name descname"><span class="pre">ReceivingTrackingData</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.ReceivingTrackingData" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.ReceivingTrackingData'"><span>¶</span></a></dt>
+<dd><p>It is actively connected to the Beam Eye Tracker and regularly receiving tracking data. Please note this does not imply that the user is being successfully tracked. It merely indicates that the Beam Eye Tracker is active and sending updates, even if the user is not being tracked. </p>
+</dd></dl>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.AttemptingTrackingAutoStart">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1a76310ae572bc0e2e1136c404eec7800fae0949dc0b833a825d1991692b83bf50a"></span><span class="sig-name descname"><span class="pre">AttemptingTrackingAutoStart</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.AttemptingTrackingAutoStart" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.AttemptingTrackingAutoStart'"><span>¶</span></a></dt>
+<dd><p>It is trying to launch the Beam Eye Tracker and/or start its tracking after an explicit request to auto-start tracking. While in this state, there are multiple things that could be happening behind the scenes: </p>
+<p><ul class="simple">
+<li><p>Checking if the Beam Eye Tracker is installed.</p></li>
+<li><p>Checking if the Beam Eye Tracker is running.</p></li>
+<li><p>Launching the Beam Eye Tracker.</p></li>
+<li><p>Requesting the Beam Eye Tracker to activate Gaming Extensions (or other API enabling mode) Thus, depending on the state of the Beam Eye Tracker, this could fail, succeed quickly (~100ms) or succeed taking a while (~10 seconds). </p></li>
+</ul>
+</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="trackingconfidence">
+<h3>TrackingConfidence<a class="headerlink" href="#trackingconfidence" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#trackingconfidence'"><span>¶</span></a></h3>
+<dl class="cs enum">
+<dt class="sig sig-object cs" id="enum-Eyeware.BeamEyeTracker.TrackingConfidence">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1aa524843d2e3435f644412d7c03d55fda"></span><em class="property"><span class="pre">enum</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.TrackingConfidence</span></span><a class="headerlink" href="#enum-Eyeware.BeamEyeTracker.TrackingConfidence" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enum-Eyeware.BeamEyeTracker.TrackingConfidence'"><span>¶</span></a></dt>
+<dd><p>Realibility measure for obtained tracking results. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/user_tracking.html#tracking-confidence"><span class="std std-ref">Tracking Confidence</span></a> for a detailed explanation.</p>
+</div>
+<p><em>Values:</em></p>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.LostTracking">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1aa524843d2e3435f644412d7c03d55fdaa2905b90635c3998b7aa89d4555277922"></span><span class="sig-name descname"><span class="pre">LostTracking</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.LostTracking" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.LostTracking'"><span>¶</span></a></dt>
+<dd><p>The signal/data in question is unavailable and should be discarded. </p>
+</dd></dl>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Low">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1aa524843d2e3435f644412d7c03d55fdaa28d0edd045e05cf5af64e35ae0c4c6ef"></span><span class="sig-name descname"><span class="pre">Low</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Low" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Low'"><span>¶</span></a></dt>
+<dd><p>Tracking is present but highly uncertain. </p>
+</dd></dl>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Medium">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1aa524843d2e3435f644412d7c03d55fdaa87f8a6ab85c9ced3702b4ea641ad4bb5"></span><span class="sig-name descname"><span class="pre">Medium</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Medium" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Medium'"><span>¶</span></a></dt>
+<dd><p>Tracking reliability is fair. </p>
+</dd></dl>
+<dl class="cs enumerator">
+<dt class="sig sig-object cs" id="enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.High">
+<span class="target" id="namespace_eyeware_1_1_beam_eye_tracker_1aa524843d2e3435f644412d7c03d55fdaa655d20c1ca69519ca647684edbb2db35"></span><span class="sig-name descname"><span class="pre">High</span></span><a class="headerlink" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.High" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.High'"><span>¶</span></a></dt>
+<dd><p>Tracking is as reliable as it gets. </p>
+</dd></dl>
+</dd></dl>
+</section>
+</section>
+<section id="data-types">
+<h2>Data Types<a class="headerlink" href="#data-types" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#data-types'"><span>¶</span></a></h2>
+<section id="coordinates">
+<h3>Coordinates<a class="headerlink" href="#coordinates" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#coordinates'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.Point">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.Point</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.Point" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.Point'"><span>¶</span></a></dt>
+<dd><p>2D integer point coordinates. Used primarily for screen coordinates in the unified coordinate system. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.Point.Point">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_1afb769a55efda803227ac05e05f49d561"></span><span class="sig-name descname"><span class="pre">Point</span></span> <span class="sig-paren">(</span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.Int32" title="type: msdn ~&gt; System.Int32"><span class="pre">Int32</span></a> <em><span class="pre">x</span></em>, <a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.Int32" title="type: msdn ~&gt; System.Int32"><span class="pre">Int32</span></a> <em><span class="pre">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.Point.Point" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.Point.Point'"><span>¶</span></a></dt>
+<dd><p>Initializes a new instance of the Point structure. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param x<span class="colon">:</span></dt>
+<dd class="field-odd"><p>X coordinate</p>
+</dd>
+<dt class="field-even">Param y<span class="colon">:</span></dt>
+<dd class="field-even"><p>Y coordinate</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Point.X">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_1afc16923586abc6b0277655b691cee2cd"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.Int32" title="type: msdn ~&gt; System.Int32"><span class="pre">Int32</span></a> <span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Point.X" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Point.X'"><span>¶</span></a></dt>
+<dd><p>X coordinate. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Point.Y">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_1a07f5485d392b3aac92e4b06e487c9a9b"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.Int32" title="type: msdn ~&gt; System.Int32"><span class="pre">Int32</span></a> <span class="sig-name descname"><span class="pre">Y</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Point.Y" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Point.Y'"><span>¶</span></a></dt>
+<dd><p>Y coordinate. </p>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.PointF">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_f"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.PointF</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.PointF" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.PointF'"><span>¶</span></a></dt>
+<dd><p>2D floating point coordinates. Used for normalized viewport coordinates and precise positioning. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.PointF.PointF">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_f_1a500b3adbf55edd27353dc5952961bcba"></span><span class="sig-name descname"><span class="pre">PointF</span></span> <span class="sig-paren">(</span><span class="pre">float</span> <em><span class="pre">x</span></em>, <span class="pre">float</span> <em><span class="pre">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.PointF.PointF" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.PointF.PointF'"><span>¶</span></a></dt>
+<dd><p>Initializes a new instance of the PointF structure. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param x<span class="colon">:</span></dt>
+<dd class="field-odd"><p>X coordinate</p>
+</dd>
+<dt class="field-even">Param y<span class="colon">:</span></dt>
+<dd class="field-even"><p>Y coordinate</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.PointF.X">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_f_1aba87fd566ee682dd992987c84655fe10"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.PointF.X" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.PointF.X'"><span>¶</span></a></dt>
+<dd><p>X coordinate. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.PointF.Y">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_point_f_1acd1751359c0f132108c01fa06edba94b"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">Y</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.PointF.Y" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.PointF.Y'"><span>¶</span></a></dt>
+<dd><p>Y coordinate. </p>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.Vector3D">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_vector3_d"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.Vector3D</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.Vector3D" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.Vector3D'"><span>¶</span></a></dt>
+<dd><p>Representation of a 3D vector or 3D point. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Vector3D.X">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_vector3_d_1a66351550486f0b3e2395014cbec14173"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">X</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Vector3D.X" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Vector3D.X'"><span>¶</span></a></dt>
+<dd><p>X coordinate. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Vector3D.Y">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_vector3_d_1a3d27178f8440f9c8af97ea5b310e02e5"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">Y</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Vector3D.Y" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Vector3D.Y'"><span>¶</span></a></dt>
+<dd><p>Y coordinate. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Vector3D.Z">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_vector3_d_1ab9179c20f3d20372a7da458f6f69eef2"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">Z</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Vector3D.Z" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Vector3D.Z'"><span>¶</span></a></dt>
+<dd><p>Z coordinate. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Vector3D._Padding">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_vector3_d_1ae09d004d6c84f0e81a10815be2fda251"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">_Padding</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Vector3D._Padding" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Vector3D._Padding'"><span>¶</span></a></dt>
+<dd><p>Internal padding for alignment. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="viewport-management">
+<h3>Viewport management<a class="headerlink" href="#viewport-management" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#viewport-management'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.ViewportGeometry">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_geometry"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.ViewportGeometry</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.ViewportGeometry" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.ViewportGeometry'"><span>¶</span></a></dt>
+<dd><p>Viewport geometry definition. It is used to map from unified screen coordinates to the viewport normalized coordinates, ranging [0.0, 1.0] for a point inside the viewport rectangle. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/reference_frames.html#viewport"><span class="std std-ref">Viewport</span></a> for more information.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.ViewportGeometry.ViewportGeometry">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_geometry_1a2b4b41504e45c6ee45053fdf1cfd7601"></span><span class="sig-name descname"><span class="pre">ViewportGeometry</span></span> <span class="sig-paren">(</span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <em><span class="pre">point00</span></em>, <a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <em><span class="pre">point11</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.ViewportGeometry.ViewportGeometry" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.ViewportGeometry.ViewportGeometry'"><span>¶</span></a></dt>
+<dd><p>Initializes a new instance of the ViewportGeometry structure. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param point00<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Point in unified screen coordinates where the (0.0, 0.0) point of the viewport is</p>
+</dd>
+<dt class="field-even">Param point11<span class="colon">:</span></dt>
+<dd class="field-even"><p>Point in unified screen coordinates where the (1.0, 1.0) point of the viewport is</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.ViewportGeometry.Point00">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_geometry_1ac5fed5f0a455181042cdc980000d11f3"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <span class="sig-name descname"><span class="pre">Point00</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point00" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point00'"><span>¶</span></a></dt>
+<dd><p>Point, in unified screen coordinates, where the (0.0, 0.0) point of the viewport is. The point is inclusive, i.e., considered part of the border of the viewport rectangle. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.ViewportGeometry.Point11">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_geometry_1a3f613aa5d03bd78ea04b4482b2dc9949"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <span class="sig-name descname"><span class="pre">Point11</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point11" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point11'"><span>¶</span></a></dt>
+<dd><p>Point, in unified screen coordinates, where the (1.0, 1.0) point of the viewport is. The point is inclusive, i.e., considered part of the border of the viewport rectangle. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="real-time-tracking">
+<h3>Real-time tracking<a class="headerlink" href="#real-time-tracking" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#real-time-tracking'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.UserState">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.UserState</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.UserState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.UserState'"><span>¶</span></a></dt>
+<dd><p>Complete user tracking state. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/user_tracking.html#about-real-time-tracking"><span class="std std-ref">Real-time tracking</span></a> for a detailed explanation.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.StructVersion">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1adfc63f9491b66b9b77d2bab60ffb2c50"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt64" title="type: msdn ~&gt; System.UInt64"><span class="pre">UInt64</span></a> <span class="sig-name descname"><span class="pre">StructVersion</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.StructVersion" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.StructVersion'"><span>¶</span></a></dt>
+<dd><p>Structure version for compatibility. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.TimestampInSeconds">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1a7bb1a9df0d98d3a884532a6b3d2074ce"></span><span class="pre">double</span> <span class="sig-name descname"><span class="pre">TimestampInSeconds</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.TimestampInSeconds" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.TimestampInSeconds'"><span>¶</span></a></dt>
+<dd><p>Data timestamp. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.HeadPose">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1a266733075f3a2d23a82c6d6a044e8720"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.HeadPose" title="struct: Eyeware.BeamEyeTracker.HeadPose"><span class="pre">HeadPose</span></a> <span class="sig-name descname"><span class="pre">HeadPose</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.HeadPose" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.HeadPose'"><span>¶</span></a></dt>
+<dd><p>3D head position and orientation </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.UnifiedScreenGaze">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1a2d9feedb4a025aac70683faed5762b5b"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze" title="struct: Eyeware.BeamEyeTracker.UnifiedScreenGaze"><span class="pre">UnifiedScreenGaze</span></a> <span class="sig-name descname"><span class="pre">UnifiedScreenGaze</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.UnifiedScreenGaze" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.UnifiedScreenGaze'"><span>¶</span></a></dt>
+<dd><p>Gaze in screen coordinates. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.ViewportGaze">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1ab82b66dcddbdac1a64969662fffbda32"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.ViewportGaze" title="struct: Eyeware.BeamEyeTracker.ViewportGaze"><span class="pre">ViewportGaze</span></a> <span class="sig-name descname"><span class="pre">ViewportGaze</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.ViewportGaze" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.ViewportGaze'"><span>¶</span></a></dt>
+<dd><p>Normalized viewport gaze. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UserState.Reserved">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1ac64b7ec15f5b8299e6e174851a9013aa"></span><span class="pre">byte</span><span class="pre">[]</span> <span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UserState.Reserved" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UserState.Reserved'"><span>¶</span></a></dt>
+<dd><p>Reserved for future use. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.UserState.Create">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_user_state_1a1c2a5567fe3248780d02ce1f1d97ae37"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.UserState" title="struct: Eyeware.BeamEyeTracker.UserState"><span class="pre">UserState</span></a> <span class="sig-name descname"><span class="pre">Create</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.UserState.Create" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.UserState.Create'"><span>¶</span></a></dt>
+<dd><p>Creates a new instance of UserState with default values. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new UserState instance with default values.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_unified_screen_gaze"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.UnifiedScreenGaze</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze'"><span>¶</span></a></dt>
+<dd><p>Represents gaze information in screen coordinates. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.Confidence">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_unified_screen_gaze_1a0828844fcc25e084f8f9deb844bf3ea5"></span><a class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingConfidence" title="enum: Eyeware.BeamEyeTracker.TrackingConfidence"><span class="pre">TrackingConfidence</span></a> <span class="sig-name descname"><span class="pre">Confidence</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.Confidence" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.Confidence'"><span>¶</span></a></dt>
+<dd><p>The confidence of the tracking result. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UnifiedScreenGaze._Padding">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_unified_screen_gaze_1a1766f9c76d2ba64034fdfd09743b6b26"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">_Padding</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze._Padding" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze._Padding'"><span>¶</span></a></dt>
+<dd></dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.PointOfRegard">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_unified_screen_gaze_1ae31063f2664c5dafbbd1a97976795add"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <span class="sig-name descname"><span class="pre">PointOfRegard</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.PointOfRegard" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.PointOfRegard'"><span>¶</span></a></dt>
+<dd><p>Point where the user is looking at, kept within bounds of the screen(s) resolution(s). </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.UnboundedPointOfRegard">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_unified_screen_gaze_1a3a824c1a1e61c227e7747441751ae016"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point" title="struct: Eyeware.BeamEyeTracker.Point"><span class="pre">Point</span></a> <span class="sig-name descname"><span class="pre">UnboundedPointOfRegard</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.UnboundedPointOfRegard" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.UnboundedPointOfRegard'"><span>¶</span></a></dt>
+<dd><p>Point where the user is looking at, which may be outside the physical screen space. This alternative to PointOfRegard is important because: </p>
+<p><ul class="simple">
+<li><p>having a continuous signal crossing the screen boundaries is useful for smoother animations, or controlling elements that are not confined to the screen</p></li>
+<li><p>it allows you to implement heuristics to account for eye tracker inaccuracies nearby the screen bounds. </p></li>
+</ul>
+</p>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.ViewportGaze">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_gaze"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.ViewportGaze</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.ViewportGaze" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.ViewportGaze'"><span>¶</span></a></dt>
+<dd><p>Represents gaze information in viewport coordinates. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.ViewportGaze.Confidence">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_gaze_1af654db34772789d54e01e559199960ef"></span><a class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingConfidence" title="enum: Eyeware.BeamEyeTracker.TrackingConfidence"><span class="pre">TrackingConfidence</span></a> <span class="sig-name descname"><span class="pre">Confidence</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.ViewportGaze.Confidence" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.ViewportGaze.Confidence'"><span>¶</span></a></dt>
+<dd><p>The confidence of the tracking result. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.ViewportGaze._Padding">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_gaze_1a48cbd68b6556cbd27a8258c63118bac7"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">_Padding</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.ViewportGaze._Padding" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.ViewportGaze._Padding'"><span>¶</span></a></dt>
+<dd></dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.ViewportGaze.NormalizedPointOfRegard">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_viewport_gaze_1a42697869529824d379496317b883ed5f"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.PointF" title="struct: Eyeware.BeamEyeTracker.PointF"><span class="pre">PointF</span></a> <span class="sig-name descname"><span class="pre">NormalizedPointOfRegard</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.ViewportGaze.NormalizedPointOfRegard" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.ViewportGaze.NormalizedPointOfRegard'"><span>¶</span></a></dt>
+<dd><p>Point where the user is looking at, normalized such that, if the gaze is inside the viewport, then the values are in the range [0, 1]. However, it can be negative or exceed 1, if the gaze is outside the viewport. </p>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.HeadPose">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_head_pose"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.HeadPose</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.HeadPose" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.HeadPose'"><span>¶</span></a></dt>
+<dd><p>Represents information of the head pose for the given time instant. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/user_tracking.html#head-pose"><span class="std std-ref">Head Pose</span></a> for a detailed explanation.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.HeadPose.Confidence">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_head_pose_1ad10726ba0837bf3dab586a7aac840a36"></span><a class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingConfidence" title="enum: Eyeware.BeamEyeTracker.TrackingConfidence"><span class="pre">TrackingConfidence</span></a> <span class="sig-name descname"><span class="pre">Confidence</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.HeadPose.Confidence" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.HeadPose.Confidence'"><span>¶</span></a></dt>
+<dd><p>The confidence of the tracking result. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.HeadPose.RotationFromHcsToWcs">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_head_pose_1a280a17a88a144f3b4d5effa6ef45bab6"></span><span class="pre">float</span><span class="pre">[]</span> <span class="sig-name descname"><span class="pre">RotationFromHcsToWcs</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.HeadPose.RotationFromHcsToWcs" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.HeadPose.RotationFromHcsToWcs'"><span>¶</span></a></dt>
+<dd><p>Rotation matrix, with respect to the World Coordinate System (WCS). </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.HeadPose.TranslationFromHcsToWcs">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_head_pose_1a0defb19127a45296531cf558e1442f69"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Vector3D" title="struct: Eyeware.BeamEyeTracker.Vector3D"><span class="pre">Vector3D</span></a> <span class="sig-name descname"><span class="pre">TranslationFromHcsToWcs</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.HeadPose.TranslationFromHcsToWcs" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.HeadPose.TranslationFromHcsToWcs'"><span>¶</span></a></dt>
+<dd><p>Translation vector, with respect to the World Coordinate System (WCS). </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.HeadPose.TrackSessionUid">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_head_pose_1a1f239ed23e07670543c6da3b472878f6"></span><span class="pre">ulong</span> <span class="sig-name descname"><span class="pre">TrackSessionUid</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.HeadPose.TrackSessionUid" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.HeadPose.TrackSessionUid'"><span>¶</span></a></dt>
+<dd><p>Indicates the ID of the session of uninterrupted consecutive tracking. When a user is being tracked over consecutive frames, the track_session_uid is kept unchanged. However, if the user goes out of frame or turns around such that they can no longer be tracked, then this number is incremented once the user is detected again. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="in-game-camera-control">
+<h3>In-game camera control<a class="headerlink" href="#in-game-camera-control" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#in-game-camera-control'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.SimGameCameraState">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.SimGameCameraState</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.SimGameCameraState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.SimGameCameraState'"><span>¶</span></a></dt>
+<dd><p>Holds the required data to achieve real-time immersive controls of the in-game camera. To consume the parameters, we do not recommend accessing the EyeTrackingPoseComponent and HeadTrackingPoseComponent directly, but instead, use the provided method that applies a weighted combination of the two components. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/sim_game_camera.html#about-sim-game-camera-state"><span class="std std-ref">In-game camera control</span></a> for a detailed explanation.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimGameCameraState.StructVersion">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a808e433ae6972009da9668945f26451a"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt64" title="type: msdn ~&gt; System.UInt64"><span class="pre">UInt64</span></a> <span class="sig-name descname"><span class="pre">StructVersion</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.StructVersion" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimGameCameraState.StructVersion'"><span>¶</span></a></dt>
+<dd><p>Structure version for compatibility. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimGameCameraState.TimestampInSeconds">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a12e81456bc123749de2b0f34a1428159"></span><span class="pre">double</span> <span class="sig-name descname"><span class="pre">TimestampInSeconds</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.TimestampInSeconds" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimGameCameraState.TimestampInSeconds'"><span>¶</span></a></dt>
+<dd><p>The timestamp of this update, in seconds. If it is equal to NullDataTimestamp, then the rest of the data is invalid and should be ignored. This is effectively a counter since the tracking started. Note that given that the user can turn off/on the tracking at will, this counter can’t be assumed to be strictly monotonic. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimGameCameraState.EyeTrackingPoseComponent">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a6c2c72d0462eafdf184b118a6d43430f"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D" title="struct: Eyeware.BeamEyeTracker.SimCameraTransform3D"><span class="pre">SimCameraTransform3D</span></a> <span class="sig-name descname"><span class="pre">EyeTrackingPoseComponent</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.EyeTrackingPoseComponent" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimGameCameraState.EyeTrackingPoseComponent'"><span>¶</span></a></dt>
+<dd><p>The camera transform if based solely on the eye tracking data. See SimCameraTransform3D for interpretation of the parameters. We do not recommend using this signal directly and instead use the ComputeSimGameCameraTransformParameters method to get the final camera transform. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimGameCameraState.HeadTrackingPoseComponent">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a62a8be0a2ba24f045630606c47f5e75d"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D" title="struct: Eyeware.BeamEyeTracker.SimCameraTransform3D"><span class="pre">SimCameraTransform3D</span></a> <span class="sig-name descname"><span class="pre">HeadTrackingPoseComponent</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.HeadTrackingPoseComponent" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimGameCameraState.HeadTrackingPoseComponent'"><span>¶</span></a></dt>
+<dd><p>The camera transform if based solely on the head tracking data. See SimCameraTransform3D for interpretation of the parameters. We do not recommend using this signal directly and instead use the ComputeSimGameCameraTransformParameters method to get the final camera transform. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimGameCameraState.Reserved">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a089b771b790c34ba7cdc01b413bbb719"></span><span class="pre">ulong</span><span class="pre">[]</span> <span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.Reserved" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimGameCameraState.Reserved'"><span>¶</span></a></dt>
+<dd><p>Reserved for future use. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.SimGameCameraState.Create">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_game_camera_state_1a381d132b7692ddc83199bb59166af0c8"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimGameCameraState" title="struct: Eyeware.BeamEyeTracker.SimGameCameraState"><span class="pre">SimGameCameraState</span></a> <span class="sig-name descname"><span class="pre">Create</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.SimGameCameraState.Create" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.SimGameCameraState.Create'"><span>¶</span></a></dt>
+<dd><p>Creates a new instance of SimGameCameraState with default values. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new SimGameCameraState instance with default values.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.SimCameraTransform3D">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.SimCameraTransform3D</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D'"><span>¶</span></a></dt>
+<dd><p>Represents the 3D transform parameters to be applied to the in-game camera. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please see <a class="reference internal" href="../../features/sim_game_camera.html#sim-mapping"><span class="std std-ref">Mapping to the game engine coordinate system</span></a> for explanation on how to interpret the parameters.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.RollInRadians">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1aa51293d890bec2d0a8f39327d13acbcf"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">RollInRadians</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.RollInRadians" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.RollInRadians'"><span>¶</span></a></dt>
+<dd><p>Roll angle in radians. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.PitchInRadians">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1accc0ba2c632cd26f789b8278d8c6645d"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">PitchInRadians</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.PitchInRadians" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.PitchInRadians'"><span>¶</span></a></dt>
+<dd><p>Pitch angle in radians. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YawInRadians">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1aadce6e91362283513137d68da53096c5"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">YawInRadians</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YawInRadians" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YawInRadians'"><span>¶</span></a></dt>
+<dd><p>Yaw angle in radians. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.XInMeters">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1a013995284419818d30b0260c9b8ad357"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">XInMeters</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.XInMeters" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.XInMeters'"><span>¶</span></a></dt>
+<dd><p>X translation in meters. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YInMeters">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1ab53605968bff3dea57838bbbba365d76"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">YInMeters</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YInMeters" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YInMeters'"><span>¶</span></a></dt>
+<dd><p>Y translation in meters. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.SimCameraTransform3D.ZInMeters">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_sim_camera_transform3_d_1af805719ddade8ec16fb21931452e43c8"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">ZInMeters</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.ZInMeters" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.ZInMeters'"><span>¶</span></a></dt>
+<dd><p>Z translation in meters. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="immersive-hud">
+<h3>Immersive HUD<a class="headerlink" href="#immersive-hud" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#immersive-hud'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.GameImmersiveHUDState</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState'"><span>¶</span></a></dt>
+<dd><p>Represents the information you need to implement an immersive HUD in your game. In many games, the HUD is implemented by UI elements on the 4 corners of the screen, but this struct provides values for all non-center 8 regions of the screen (corners and mid-edges). The values are in the range [0, 1], where 0 means the user is not looking at the element, and 1 means the user is looking at the element. In most cases, you can simply map to a boolean value using 0.5 as threshold. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/game_immersive_hud.html#about-game-immersive-hud-ready-to-use-signals"><span class="std std-ref">Ready to use “looking at HUD” signals</span></a> for more information.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.StructVersion">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a36361c50af71af6668c411709a854990"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt64" title="type: msdn ~&gt; System.UInt64"><span class="pre">UInt64</span></a> <span class="sig-name descname"><span class="pre">StructVersion</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.StructVersion" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.StructVersion'"><span>¶</span></a></dt>
+<dd><p>Structure version for compatibility. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.TimestampInSeconds">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a6eb8b49345618eaa3a39c0d20ce7250d"></span><span class="pre">double</span> <span class="sig-name descname"><span class="pre">TimestampInSeconds</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.TimestampInSeconds" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.TimestampInSeconds'"><span>¶</span></a></dt>
+<dd><p>The timestamp of this update, in seconds. If it is equal to NullDataTimestamp, then the rest of the data is invalid and should be ignored. This is effectively a counter since the tracking started. Note that given that the user can turn off/on the tracking at will, this counter can’t be assumed to be strictly monotonic. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopLeft">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a7a2a2d3beca763e7fb0f03c59382d9bb"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportTopLeft</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopLeft" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopLeft'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the top-left region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopMiddle">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a62ae79decd004536a7ad23b84345211b"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportTopMiddle</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopMiddle" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopMiddle'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the top-middle region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopRight">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a73f292cbe2b63076c940e33e551ace9c"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportTopRight</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopRight" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopRight'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the top-right region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterLeft">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1af4dcf437d3dd2a11edf9fdadae95d128"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportCenterLeft</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterLeft" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterLeft'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the center-left region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterRight">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a2de7c8af9b25e7b9b8eccfa012e00dfd"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportCenterRight</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterRight" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterRight'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the center-right region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomLeft">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a2886ba01717fab3dc8f620a0807a6c71"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportBottomLeft</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomLeft" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomLeft'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the bottom-left region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomMiddle">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1a39c348ede909ef9280d9471e095cf337"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportBottomMiddle</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomMiddle" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomMiddle'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the bottom-middle region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomRight">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1ac1b9c670e97d8ba790ce35ff62eba064"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">LookingAtViewportBottomRight</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomRight" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomRight'"><span>¶</span></a></dt>
+<dd><p>Signal of whether the user is looking at the bottom-right region of the screen. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Reserved">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1ae272213df88ba94e9ac8be08d32a04e8"></span><span class="pre">byte</span><span class="pre">[]</span> <span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Reserved" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Reserved'"><span>¶</span></a></dt>
+<dd><p>Reserved for future use. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Create">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_game_immersive_h_u_d_state_1af9a8b24f927619c3f169eb3c8889b598"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState" title="struct: Eyeware.BeamEyeTracker.GameImmersiveHUDState"><span class="pre">GameImmersiveHUDState</span></a> <span class="sig-name descname"><span class="pre">Create</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Create" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Create'"><span>¶</span></a></dt>
+<dd><p>Creates a new instance of GameImmersiveHUDState with default values. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new GameImmersiveHUDState instance with default values.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="foveated-rendering">
+<h3>Foveated rendering<a class="headerlink" href="#foveated-rendering" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#foveated-rendering'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.FoveationRadii">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.FoveationRadii</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.FoveationRadii" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.FoveationRadii'"><span>¶</span></a></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.FoveationRadii.FoveationRadii">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii_1a4c02e2af39472d9e8445c2556111f0f8"></span><span class="sig-name descname"><span class="pre">FoveationRadii</span></span> <span class="sig-paren">(</span><span class="pre">float</span> <em><span class="pre">radiusLevel1</span></em>, <span class="pre">float</span> <em><span class="pre">radiusLevel2</span></em>, <span class="pre">float</span> <em><span class="pre">radiusLevel3</span></em>, <span class="pre">float</span> <em><span class="pre">radiusLevel4</span></em><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.FoveationRadii.FoveationRadii" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.FoveationRadii.FoveationRadii'"><span>¶</span></a></dt>
+<dd><p>Initializes a new instance of the FoveationRadii structure. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Param radiusLevel1<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Inner area should be rendered at highest definition.</p>
+</dd>
+<dt class="field-even">Param radiusLevel2<span class="colon">:</span></dt>
+<dd class="field-even"><p>Second level of definition.</p>
+</dd>
+<dt class="field-odd">Param radiusLevel3<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Third level of definition.</p>
+</dd>
+<dt class="field-even">Param radiusLevel4<span class="colon">:</span></dt>
+<dd class="field-even"><p>Outer area should be rendered at lowest definition.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel1">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii_1aa4960201c4b638a0710d87aa178c3ff8"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">RadiusLevel1</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel1" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel1'"><span>¶</span></a></dt>
+<dd><p>Inner area should be rendered at highest definition. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel2">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii_1acb7528a46c85344581d021608ac85e82"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">RadiusLevel2</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel2" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel2'"><span>¶</span></a></dt>
+<dd><p>Second level of definition. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel3">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii_1a39869336cb0b42a037e7f9b97cf3515f"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">RadiusLevel3</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel3" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel3'"><span>¶</span></a></dt>
+<dd><p>Third level of definition. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel4">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveation_radii_1a17db19c071e486c69f336d086e8fef51"></span><span class="pre">float</span> <span class="sig-name descname"><span class="pre">RadiusLevel4</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel4" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel4'"><span>¶</span></a></dt>
+<dd><p>Outer area should be rendered at lowest definition. </p>
+</dd></dl>
+</div>
+</dd></dl>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.FoveatedRenderingState">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.FoveatedRenderingState</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState'"><span>¶</span></a></dt>
+<dd><p>Represents the information needed to implement foveated rendering. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../features/foveated_rendering.html#about-foveated-rendering"><span class="std std-ref">Foveated rendering</span></a> for more information.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveatedRenderingState.StructVersion">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1a0b823e9cee9f5d66ed5139aca87ddd2f"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt64" title="type: msdn ~&gt; System.UInt64"><span class="pre">UInt64</span></a> <span class="sig-name descname"><span class="pre">StructVersion</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.StructVersion" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.StructVersion'"><span>¶</span></a></dt>
+<dd><p>Structure version for compatibility. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveatedRenderingState.TimestampInSeconds">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1abafa52d318ce45027df8ec572ee886d1"></span><span class="pre">double</span> <span class="sig-name descname"><span class="pre">TimestampInSeconds</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.TimestampInSeconds" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.TimestampInSeconds'"><span>¶</span></a></dt>
+<dd><p>The timestamp of this update, in seconds. If it is equal to NullDataTimestamp, then the rest of the data is invalid and should be ignored. This is effectively a counter since the tracking started. Note that given that the user can turn off/on the tracking at will, this counter can’t be assumed to be strictly monotonic. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationCenter">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1a232247e0be416c3a25b699586a13589b"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.PointF" title="struct: Eyeware.BeamEyeTracker.PointF"><span class="pre">PointF</span></a> <span class="sig-name descname"><span class="pre">NormalizedFoveationCenter</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationCenter" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationCenter'"><span>¶</span></a></dt>
+<dd><p>The center of the foveated rendering region normalized by the viewport width and height. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationRadii">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1a0cddd4f575d3b12c92d4ad5201d3bb76"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.FoveationRadii" title="struct: Eyeware.BeamEyeTracker.FoveationRadii"><span class="pre">FoveationRadii</span></a> <span class="sig-name descname"><span class="pre">NormalizedFoveationRadii</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationRadii" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationRadii'"><span>¶</span></a></dt>
+<dd><p>The radii of the foveated rendering regions normalized by the viewport width. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.FoveatedRenderingState.Reserved">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1a86bf413051d48df7cbe35af59b956b7c"></span><span class="pre">byte</span><span class="pre">[]</span> <span class="sig-name descname"><span class="pre">Reserved</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.Reserved" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.Reserved'"><span>¶</span></a></dt>
+<dd><p>Reserved for future use. </p>
+</dd></dl>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cs function">
+<dt class="sig sig-object cs" id="function-Eyeware.BeamEyeTracker.FoveatedRenderingState.Create">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_foveated_rendering_state_1a962c90f3bb1b672d5512d56b6f711eac"></span><a class="reference internal" href="#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState" title="struct: Eyeware.BeamEyeTracker.FoveatedRenderingState"><span class="pre">FoveatedRenderingState</span></a> <span class="sig-name descname"><span class="pre">Create</span></span> <span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#function-Eyeware.BeamEyeTracker.FoveatedRenderingState.Create" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#function-Eyeware.BeamEyeTracker.FoveatedRenderingState.Create'"><span>¶</span></a></dt>
+<dd><p>Creates a new instance of FoveatedRenderingState with default values. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new FoveatedRenderingState instance with default values.</p>
+</dd>
+</dl>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+<section id="other">
+<h3>Other<a class="headerlink" href="#other" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#other'"><span>¶</span></a></h3>
+<dl class="cs struct">
+<dt class="sig sig-object cs" id="struct-Eyeware.BeamEyeTracker.Version">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_version"></span><em class="property"><span class="pre">struct</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.Version</span></span><a class="headerlink" href="#struct-Eyeware.BeamEyeTracker.Version" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#struct-Eyeware.BeamEyeTracker.Version'"><span>¶</span></a></dt>
+<dd><p>SDK version information. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Version.Major">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_version_1a52d5428c2fd5ffe3099c2322fbf5ff4e"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">Major</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Version.Major" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Version.Major'"><span>¶</span></a></dt>
+<dd><p>Major version number. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Version.Minor">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_version_1aab2be69350ea1868d77b7b86bfab424e"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">Minor</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Version.Minor" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Version.Minor'"><span>¶</span></a></dt>
+<dd><p>Minor version number. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Version.Patch">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_version_1a9e53cc1aa522ab58f82f6f5de99dd877"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">Patch</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Version.Patch" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Version.Patch'"><span>¶</span></a></dt>
+<dd><p>Patch level. </p>
+</dd></dl>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Version.Padding">
+<span class="target" id="struct_eyeware_1_1_beam_eye_tracker_1_1_version_1a5bae9705cc528ebc067796c64ca601a6"></span><a class="reference external" href="https://docs.microsoft.com/en-us/dotnet/api/System.UInt32" title="type: msdn ~&gt; System.UInt32"><span class="pre">UInt32</span></a> <span class="sig-name descname"><span class="pre">Padding</span></span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Version.Padding" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Version.Padding'"><span>¶</span></a></dt>
+<dd><p>Internal padding for alignment. </p>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#constants'"><span>¶</span></a></h2>
+<dl class="cs class">
+<dt class="sig sig-object cs" id="class-Eyeware.BeamEyeTracker.Constants">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_constants"></span><em class="property"><span class="pre">class</span> </em><span class="sig-name descname"><span class="pre">Eyeware.BeamEyeTracker.Constants</span></span><a class="headerlink" href="#class-Eyeware.BeamEyeTracker.Constants" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#class-Eyeware.BeamEyeTracker.Constants'"><span>¶</span></a></dt>
+<dd><p>Global constants for the Beam Eye Tracker SDK. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cs var">
+<dt class="sig sig-object cs" id="var-Eyeware.BeamEyeTracker.Constants.NullDataTimestamp">
+<span class="target" id="class_eyeware_1_1_beam_eye_tracker_1_1_constants_1a9770140cb324fb8c9b6b6d1c4f8c2b73"></span><em class="property"><span class="pre">const</span></em> <span class="pre">double</span> <span class="sig-name descname"><span class="pre">NullDataTimestamp</span></span> <span class="pre">=</span> <span class="pre">-1.0</span><a class="headerlink" href="#var-Eyeware.BeamEyeTracker.Constants.NullDataTimestamp" title="Link to this definition" x-intersect.margin.0%.0%.-70%.0%="activeSection = '#var-Eyeware.BeamEyeTracker.Constants.NullDataTimestamp'"><span>¶</span></a></dt>
+<dd><p>Special value indicating an invalid timestamp. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../basics/general_api_concepts.html#about-timestamps"><span class="std std-ref">Timestamps</span></a> for more information.</p>
+</div>
+</dd></dl>
+</div>
+</dd></dl>
+</section>
+</section>
+</div><div class="flex justify-between items-center pt-6 mt-12 border-t border-border gap-4">
+<div class="mr-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="../python/index.html">
+<svg class="mr-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+        Python
+      </a>
+</div>
+<div class="ml-auto">
+<a class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input hover:bg-accent hover:text-accent-foreground py-2 px-4" href="../../info/info.html">
+        Versioning &amp; Legal
+        <svg class="ml-2 h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</a>
+</div>
+</div></div><aside class="hidden text-sm xl:block" id="right-sidebar">
+<div class="sticky top-16 -mt-10 max-h-[calc(100vh-5rem)] overflow-y-auto pt-6 space-y-2"><p class="font-medium">On this page</p>
+<ul>
+<li><a :data-current="activeSection === '#core-classes'" class="reference internal" href="#core-classes">Core Classes</a><ul>
+<li><a :data-current="activeSection === '#api'" class="reference internal" href="#api">API</a><ul>
+<li><a :data-current="activeSection === '#class-Eyeware.BeamEyeTracker.API'" class="reference internal" href="#class-Eyeware.BeamEyeTracker.API"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::API</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.API'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.API"><code class="docutils literal notranslate"><span class="pre">API()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.GetVersion'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.GetVersion"><code class="docutils literal notranslate"><span class="pre">GetVersion()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.UpdateViewportGeometry'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.UpdateViewportGeometry"><code class="docutils literal notranslate"><span class="pre">UpdateViewportGeometry()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.AttemptStartingTheBeamEyeTracker'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.AttemptStartingTheBeamEyeTracker"><code class="docutils literal notranslate"><span class="pre">AttemptStartingTheBeamEyeTracker()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.WaitForNewTrackingData'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.WaitForNewTrackingData"><code class="docutils literal notranslate"><span class="pre">WaitForNewTrackingData()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.GetTrackingDataReceptionStatus'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.GetTrackingDataReceptionStatus"><code class="docutils literal notranslate"><span class="pre">GetTrackingDataReceptionStatus()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.GetLatestTrackingStateSet'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.GetLatestTrackingStateSet"><code class="docutils literal notranslate"><span class="pre">GetLatestTrackingStateSet()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.StartReceivingTrackingDataOnListener'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.StartReceivingTrackingDataOnListener"><code class="docutils literal notranslate"><span class="pre">StartReceivingTrackingDataOnListener()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.StopReceivingTrackingDataOnListener'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.StopReceivingTrackingDataOnListener"><code class="docutils literal notranslate"><span class="pre">StopReceivingTrackingDataOnListener()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.StartRecenterSimGameCamera'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.StartRecenterSimGameCamera"><code class="docutils literal notranslate"><span class="pre">StartRecenterSimGameCamera()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.StopRecenterSimGameCamera'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.StopRecenterSimGameCamera"><code class="docutils literal notranslate"><span class="pre">StopRecenterSimGameCamera()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.Dispose'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.Dispose"><code class="docutils literal notranslate"><span class="pre">Dispose()</span></code></a></li>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.API.IsDisposed'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.API.IsDisposed"><code class="docutils literal notranslate"><span class="pre">IsDisposed</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.API.ComputeSimGameCameraTransformParameters'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.API.ComputeSimGameCameraTransformParameters"><code class="docutils literal notranslate"><span class="pre">ComputeSimGameCameraTransformParameters()</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.API.DefaultTrackingDataTimeoutMs'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.API.DefaultTrackingDataTimeoutMs"><code class="docutils literal notranslate"><span class="pre">DefaultTrackingDataTimeoutMs</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#trackingstateset'" class="reference internal" href="#trackingstateset">TrackingStateSet</a><ul>
+<li><a :data-current="activeSection === '#class-Eyeware.BeamEyeTracker.TrackingStateSet'" class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingStateSet"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::TrackingStateSet</span></code></a><ul>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.TrackingStateSet.UserState'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.UserState"><code class="docutils literal notranslate"><span class="pre">UserState</span></code></a></li>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.TrackingStateSet.SimGameCameraState'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.SimGameCameraState"><code class="docutils literal notranslate"><span class="pre">SimGameCameraState</span></code></a></li>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.TrackingStateSet.GameImmersiveHUDState'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.GameImmersiveHUDState"><code class="docutils literal notranslate"><span class="pre">GameImmersiveHUDState</span></code></a></li>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.TrackingStateSet.FoveatedRenderingState'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.TrackingStateSet.FoveatedRenderingState"><code class="docutils literal notranslate"><span class="pre">FoveatedRenderingState</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#trackinglistener'" class="reference internal" href="#trackinglistener">TrackingListener</a><ul>
+<li><a :data-current="activeSection === '#class-Eyeware.BeamEyeTracker.TrackingListener'" class="reference internal" href="#class-Eyeware.BeamEyeTracker.TrackingListener"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::TrackingListener</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingDataReceptionStatusChanged'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingDataReceptionStatusChanged"><code class="docutils literal notranslate"><span class="pre">OnTrackingDataReceptionStatusChanged()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingStateSetUpdate'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.TrackingListener.OnTrackingStateSetUpdate"><code class="docutils literal notranslate"><span class="pre">OnTrackingStateSetUpdate()</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.TrackingListener.Dispose'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.TrackingListener.Dispose"><code class="docutils literal notranslate"><span class="pre">Dispose()</span></code></a></li>
+<li><a :data-current="activeSection === '#property-Eyeware.BeamEyeTracker.TrackingListener.IsDisposed'" class="reference internal" href="#property-Eyeware.BeamEyeTracker.TrackingListener.IsDisposed"><code class="docutils literal notranslate"><span class="pre">IsDisposed</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#enums'" class="reference internal" href="#enums">Enums</a><ul>
+<li><a :data-current="activeSection === '#trackingdatareceptionstatus'" class="reference internal" href="#trackingdatareceptionstatus">TrackingDataReceptionStatus</a><ul>
+<li><a :data-current="activeSection === '#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus'" class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus"><code class="docutils literal notranslate"><span class="pre">TrackingDataReceptionStatus</span></code></a><ul>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.NotReceivingTrackingData'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.NotReceivingTrackingData"><code class="docutils literal notranslate"><span class="pre">NotReceivingTrackingData</span></code></a></li>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.ReceivingTrackingData'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.ReceivingTrackingData"><code class="docutils literal notranslate"><span class="pre">ReceivingTrackingData</span></code></a></li>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.AttemptingTrackingAutoStart'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingDataReceptionStatus.AttemptingTrackingAutoStart"><code class="docutils literal notranslate"><span class="pre">AttemptingTrackingAutoStart</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#trackingconfidence'" class="reference internal" href="#trackingconfidence">TrackingConfidence</a><ul>
+<li><a :data-current="activeSection === '#enum-Eyeware.BeamEyeTracker.TrackingConfidence'" class="reference internal" href="#enum-Eyeware.BeamEyeTracker.TrackingConfidence"><code class="docutils literal notranslate"><span class="pre">TrackingConfidence</span></code></a><ul>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.LostTracking'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.LostTracking"><code class="docutils literal notranslate"><span class="pre">LostTracking</span></code></a></li>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Low'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Low"><code class="docutils literal notranslate"><span class="pre">Low</span></code></a></li>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Medium'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.Medium"><code class="docutils literal notranslate"><span class="pre">Medium</span></code></a></li>
+<li><a :data-current="activeSection === '#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.High'" class="reference internal" href="#enumerator-Eyeware.BeamEyeTracker.TrackingConfidence.High"><code class="docutils literal notranslate"><span class="pre">High</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#data-types'" class="reference internal" href="#data-types">Data Types</a><ul>
+<li><a :data-current="activeSection === '#coordinates'" class="reference internal" href="#coordinates">Coordinates</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.Point'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Point"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::Point</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.Point.Point'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.Point.Point"><code class="docutils literal notranslate"><span class="pre">Point()</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Point.X'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Point.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Point.Y'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Point.Y"><code class="docutils literal notranslate"><span class="pre">Y</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.PointF'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.PointF"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::PointF</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.PointF.PointF'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.PointF.PointF"><code class="docutils literal notranslate"><span class="pre">PointF()</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.PointF.X'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.PointF.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.PointF.Y'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.PointF.Y"><code class="docutils literal notranslate"><span class="pre">Y</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.Vector3D'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Vector3D"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::Vector3D</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Vector3D.X'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Vector3D.X"><code class="docutils literal notranslate"><span class="pre">X</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Vector3D.Y'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Vector3D.Y"><code class="docutils literal notranslate"><span class="pre">Y</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Vector3D.Z'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Vector3D.Z"><code class="docutils literal notranslate"><span class="pre">Z</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Vector3D._Padding'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Vector3D._Padding"><code class="docutils literal notranslate"><span class="pre">_Padding</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#viewport-management'" class="reference internal" href="#viewport-management">Viewport management</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.ViewportGeometry'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.ViewportGeometry"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::ViewportGeometry</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.ViewportGeometry.ViewportGeometry'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.ViewportGeometry.ViewportGeometry"><code class="docutils literal notranslate"><span class="pre">ViewportGeometry()</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point00'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point00"><code class="docutils literal notranslate"><span class="pre">Point00</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point11'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.ViewportGeometry.Point11"><code class="docutils literal notranslate"><span class="pre">Point11</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#real-time-tracking'" class="reference internal" href="#real-time-tracking">Real-time tracking</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.UserState'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.UserState"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::UserState</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.StructVersion'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.StructVersion"><code class="docutils literal notranslate"><span class="pre">StructVersion</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.TimestampInSeconds'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.TimestampInSeconds"><code class="docutils literal notranslate"><span class="pre">TimestampInSeconds</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.HeadPose'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.HeadPose"><code class="docutils literal notranslate"><span class="pre">HeadPose</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.UnifiedScreenGaze'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.UnifiedScreenGaze"><code class="docutils literal notranslate"><span class="pre">UnifiedScreenGaze</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.ViewportGaze'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.ViewportGaze"><code class="docutils literal notranslate"><span class="pre">ViewportGaze</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UserState.Reserved'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UserState.Reserved"><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.UserState.Create'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.UserState.Create"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.UnifiedScreenGaze"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::UnifiedScreenGaze</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.Confidence'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.Confidence"><code class="docutils literal notranslate"><span class="pre">Confidence</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze._Padding'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze._Padding"><code class="docutils literal notranslate"><span class="pre">_Padding</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.PointOfRegard'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.PointOfRegard"><code class="docutils literal notranslate"><span class="pre">PointOfRegard</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.UnboundedPointOfRegard'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.UnifiedScreenGaze.UnboundedPointOfRegard"><code class="docutils literal notranslate"><span class="pre">UnboundedPointOfRegard</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.ViewportGaze'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.ViewportGaze"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::ViewportGaze</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.ViewportGaze.Confidence'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.ViewportGaze.Confidence"><code class="docutils literal notranslate"><span class="pre">Confidence</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.ViewportGaze._Padding'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.ViewportGaze._Padding"><code class="docutils literal notranslate"><span class="pre">_Padding</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.ViewportGaze.NormalizedPointOfRegard'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.ViewportGaze.NormalizedPointOfRegard"><code class="docutils literal notranslate"><span class="pre">NormalizedPointOfRegard</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.HeadPose'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.HeadPose"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::HeadPose</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.HeadPose.Confidence'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.HeadPose.Confidence"><code class="docutils literal notranslate"><span class="pre">Confidence</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.HeadPose.RotationFromHcsToWcs'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.HeadPose.RotationFromHcsToWcs"><code class="docutils literal notranslate"><span class="pre">RotationFromHcsToWcs</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.HeadPose.TranslationFromHcsToWcs'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.HeadPose.TranslationFromHcsToWcs"><code class="docutils literal notranslate"><span class="pre">TranslationFromHcsToWcs</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.HeadPose.TrackSessionUid'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.HeadPose.TrackSessionUid"><code class="docutils literal notranslate"><span class="pre">TrackSessionUid</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#in-game-camera-control'" class="reference internal" href="#in-game-camera-control">In-game camera control</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.SimGameCameraState'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimGameCameraState"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::SimGameCameraState</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimGameCameraState.StructVersion'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.StructVersion"><code class="docutils literal notranslate"><span class="pre">StructVersion</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimGameCameraState.TimestampInSeconds'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.TimestampInSeconds"><code class="docutils literal notranslate"><span class="pre">TimestampInSeconds</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimGameCameraState.EyeTrackingPoseComponent'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.EyeTrackingPoseComponent"><code class="docutils literal notranslate"><span class="pre">EyeTrackingPoseComponent</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimGameCameraState.HeadTrackingPoseComponent'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.HeadTrackingPoseComponent"><code class="docutils literal notranslate"><span class="pre">HeadTrackingPoseComponent</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimGameCameraState.Reserved'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimGameCameraState.Reserved"><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.SimGameCameraState.Create'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.SimGameCameraState.Create"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.SimCameraTransform3D"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::SimCameraTransform3D</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.RollInRadians'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.RollInRadians"><code class="docutils literal notranslate"><span class="pre">RollInRadians</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.PitchInRadians'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.PitchInRadians"><code class="docutils literal notranslate"><span class="pre">PitchInRadians</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YawInRadians'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YawInRadians"><code class="docutils literal notranslate"><span class="pre">YawInRadians</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.XInMeters'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.XInMeters"><code class="docutils literal notranslate"><span class="pre">XInMeters</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YInMeters'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.YInMeters"><code class="docutils literal notranslate"><span class="pre">YInMeters</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.ZInMeters'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.SimCameraTransform3D.ZInMeters"><code class="docutils literal notranslate"><span class="pre">ZInMeters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#immersive-hud'" class="reference internal" href="#immersive-hud">Immersive HUD</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.GameImmersiveHUDState"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::GameImmersiveHUDState</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.StructVersion'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.StructVersion"><code class="docutils literal notranslate"><span class="pre">StructVersion</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.TimestampInSeconds'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.TimestampInSeconds"><code class="docutils literal notranslate"><span class="pre">TimestampInSeconds</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopLeft'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopLeft"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportTopLeft</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopMiddle'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopMiddle"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportTopMiddle</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopRight'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportTopRight"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportTopRight</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterLeft'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterLeft"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportCenterLeft</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterRight'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportCenterRight"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportCenterRight</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomLeft'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomLeft"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportBottomLeft</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomMiddle'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomMiddle"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportBottomMiddle</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomRight'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.LookingAtViewportBottomRight"><code class="docutils literal notranslate"><span class="pre">LookingAtViewportBottomRight</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Reserved'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Reserved"><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Create'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.GameImmersiveHUDState.Create"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#foveated-rendering'" class="reference internal" href="#foveated-rendering">Foveated rendering</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.FoveationRadii'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.FoveationRadii"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::FoveationRadii</span></code></a><ul>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.FoveationRadii.FoveationRadii'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.FoveationRadii.FoveationRadii"><code class="docutils literal notranslate"><span class="pre">FoveationRadii()</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel1'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel1"><code class="docutils literal notranslate"><span class="pre">RadiusLevel1</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel2'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel2"><code class="docutils literal notranslate"><span class="pre">RadiusLevel2</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel3'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel3"><code class="docutils literal notranslate"><span class="pre">RadiusLevel3</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel4'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveationRadii.RadiusLevel4"><code class="docutils literal notranslate"><span class="pre">RadiusLevel4</span></code></a></li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.FoveatedRenderingState"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::FoveatedRenderingState</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.StructVersion'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.StructVersion"><code class="docutils literal notranslate"><span class="pre">StructVersion</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.TimestampInSeconds'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.TimestampInSeconds"><code class="docutils literal notranslate"><span class="pre">TimestampInSeconds</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationCenter'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationCenter"><code class="docutils literal notranslate"><span class="pre">NormalizedFoveationCenter</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationRadii'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.NormalizedFoveationRadii"><code class="docutils literal notranslate"><span class="pre">NormalizedFoveationRadii</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.Reserved'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.FoveatedRenderingState.Reserved"><code class="docutils literal notranslate"><span class="pre">Reserved</span></code></a></li>
+<li><a :data-current="activeSection === '#function-Eyeware.BeamEyeTracker.FoveatedRenderingState.Create'" class="reference internal" href="#function-Eyeware.BeamEyeTracker.FoveatedRenderingState.Create"><code class="docutils literal notranslate"><span class="pre">Create()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#other'" class="reference internal" href="#other">Other</a><ul>
+<li><a :data-current="activeSection === '#struct-Eyeware.BeamEyeTracker.Version'" class="reference internal" href="#struct-Eyeware.BeamEyeTracker.Version"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::Version</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Version.Major'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Version.Major"><code class="docutils literal notranslate"><span class="pre">Major</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Version.Minor'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Version.Minor"><code class="docutils literal notranslate"><span class="pre">Minor</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Version.Patch'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Version.Patch"><code class="docutils literal notranslate"><span class="pre">Patch</span></code></a></li>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Version.Padding'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Version.Padding"><code class="docutils literal notranslate"><span class="pre">Padding</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a :data-current="activeSection === '#constants'" class="reference internal" href="#constants">Constants</a><ul>
+<li><a :data-current="activeSection === '#class-Eyeware.BeamEyeTracker.Constants'" class="reference internal" href="#class-Eyeware.BeamEyeTracker.Constants"><code class="docutils literal notranslate"><span class="pre">Eyeware::BeamEyeTracker::Constants</span></code></a><ul>
+<li><a :data-current="activeSection === '#var-Eyeware.BeamEyeTracker.Constants.NullDataTimestamp'" class="reference internal" href="#var-Eyeware.BeamEyeTracker.Constants.NullDataTimestamp"><code class="docutils literal notranslate"><span class="pre">NullDataTimestamp</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</aside>
+</main>
+</div>
+</div><footer class="py-6 border-t border-border md:py-0">
+<div class="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+<div class="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+<p class="text-sm leading-loose text-center text-muted-foreground md:text-left">© 2025, Eyeware Tech SA Built with <a class="font-medium underline underline-offset-4" href="https://www.sphinx-doc.org" rel="noreferrer">Sphinx 8.2.3</a></p>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+<script src="../../_static/doctools.js?v=9bcbadda"></script>
+<script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+<script defer="defer" src="../../_static/theme.js?v=073f68d9"></script>
+<script src="../../_static/design-tabs.js?v=f930bc37"></script>
+</body>
+</html>

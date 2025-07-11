@@ -1,0 +1,38 @@
+.. _integration_samples:
+
+Plugins and samples
+===================
+
+This page gives you higher level plugins and samples so you can easily integrate the Beam Eye Tracker SDK in your project.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   game_engine
+   unity
+   fidelityfx
+
+.. card:: Game Engine Integration
+   :link: game_engine
+   :link-type: doc
+   :img-top:   /media/card_icons/DummyEngine.svg
+   :class-card: left-square-image-card
+   
+   Lets integrate the Beam Eye Tracker SDK in a dummy game engine.
+
+.. card:: Unity Package
+   :link: unity
+   :link-type: doc
+   :img-top:   /media/card_icons/Unity.svg
+   :class-card: left-square-image-card
+   
+   Integrate into a Unity game using our ready to use package.
+
+.. card:: Foveated Rendering using FidelityFX™
+   :link: fidelityfx
+   :link-type: doc
+   :img-top:   /media/card_icons/AMDFidelityFXSDK.svg
+   :class-card: left-square-image-card
+   
+   Use foveated rendering with the AMD's Fidelity FX SDK.

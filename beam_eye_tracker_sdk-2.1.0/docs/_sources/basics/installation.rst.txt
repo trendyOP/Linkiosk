@@ -1,0 +1,92 @@
+.. _getting_started:
+
+Installation & Setup
+--------------------
+
+Requirements
+~~~~~~~~~~~~
+
+To begin using the SDK, you need:
+
+#. Windows 10 or later.
+#. The `Beam Eye Tracker <https://beam.eyeware.tech/>`_ application installed and setup on your system.
+#. The `SDK downloaded <http://beam.eyeware.tech/developers>`_ and unzipped on your system (If using Python, this is optional).
+#. A development environment for your chosen programming language or framework.
+
+.. _beam_sdk_integration_project_configuration:
+
+Project configuration
+~~~~~~~~~~~~~~~~~~~~~
+
+Depending on your specific project and language, you need to follow the steps below to integrate the SDK.
+
+.. tab-set::
+
+    .. tab-item:: C/C++
+        :sync: cpp
+
+        #. Add the ``beam_eye_tracker_sdk-2.x.x\include`` directory to your project's include paths.
+        
+           .. note:: In case of using CMake, you can use the ``target_include_directories`` command.
+
+        #. Add the ``beam_eye_tracker_sdk-2.x.x\lib\win64`` directory to your project's library directories.
+
+           .. note:: In case of using CMake, you can use the ``target_link_directories`` command.
+
+        #. Add the ``beam_eye_tracker_client.lib`` file to your project's linker input dependencies.
+
+           .. note:: In case of using CMake, you can use the ``target_link_libraries`` command.
+
+        #. Copy the ``beam_eye_tracker_client.dll`` from the ``beam_eye_tracker_sdk-2.x.x\bin\win64`` directory to your project's output directory.
+
+        .. note:: We also provide an alternative library build with ``/MT``` (``beam_eye_tracker_client_MT.lib``` and ``beam_eye_tracker_client_MT.dll``) and thus not requiring the Visual C++ Redistributable at the host machine. However, in most cases, it is acceptable and even preferred to use the default library (``/MD`` build).
+
+    .. tab-item:: Python
+        :sync: python
+
+        #. Install the ``beam-eye-tracker`` package:
+
+            .. code-block:: bash
+
+                pip install beam-eye-tracker
+
+            .. note:: Alternatively, you can download the SDK, unzip it and add the ``beam_eye_tracker_sdk-2.x.x\python\package`` directory to your ``PYTHONPATH``.
+        
+        #. Test your installation:
+
+            .. code-block:: python
+
+               # This should not raise an import error:
+               from eyeware.beam_eye_tracker import API
+
+               
+    .. tab-item:: C#
+        :sync: csharp
+
+        This assumes the project platform target is ``x64``:
+
+        #. Copy ``beam_eye_tracker_sdk-2.x.x\csharp\Eyeware\BeamEyeTracker.cs`` into your project directory (e.g., root or a subfolder like ``Eyeware/``).
+
+        #. Include the ``BeamEyeTracker.cs`` file in your project.
+        
+            .. note:: For Visual Studio: Right-click the project in Solution Explorer, select ``Add > Existing Item``, and add ``BeamEyeTracker.cs``.
+
+        #. Copy the ``beam_eye_tracker_client.dll`` from the ``beam_eye_tracker_sdk-2.x.x\bin\win64`` directory to your project's output directory.
+            
+            .. note:: For Visual Studio: Add it to the project (``Add > Existing Item``), then set ``Properties > Copy to Output Directory`` to ``Copy always``.
+
+        #. Add the using directive in your code:
+
+           .. code-block:: csharp
+
+               using Eyeware.BeamEyeTracker;
+
+    .. tab-item:: Unity
+        :sync: unity
+
+        .. note:: A ready to use Unity package is available. See :ref:`unity_installation` for more information.
+
+
+Now that you have the SDK integrated into your project, you can continue to the next
+section to get a general explanation of how the API is structured.
+

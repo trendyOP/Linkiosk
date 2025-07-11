@@ -1,0 +1,49 @@
+.. _key_functionality:
+
+Core features
+=============
+
+In this section, we will cover the main functionality that the SDK provides out of the box.
+We will assume that you have already explored the :ref:`general_api_concepts` and
+:ref:`reference_frames` sections.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   user_tracking
+   sim_game_camera
+   game_immersive_hud
+   foveated_rendering
+
+.. card:: Real-time tracking
+   :link: user_tracking
+   :link-type: doc
+   :img-top:   /media/head_transform_frontal_axes.png
+   :class-card: left-square-image-card
+   
+   Learn about retrieving real-time gaze and head pose tracking data.
+
+.. card:: In-game camera control
+   :link: sim_game_camera
+   :link-type: doc
+   :img-top:   /media/card_icons/Racing.svg
+   :class-card: left-square-image-card
+   
+   Use the SDK to control the in-game camera to boost immersion.
+
+.. card:: Dynamic and immersive HUDs
+   :link: game_immersive_hud
+   :link-type: doc
+   :img-top:   /media/card_icons/HUD.svg
+   :class-card: left-square-image-card
+   
+   Learn how to make your game's HUDs react to the user's gaze.
+
+.. card:: Foveated rendering
+   :link: foveated_rendering
+   :link-type: doc
+   :img-top:   /media/card_icons/FoveatedRendering.svg
+   :class-card: left-square-image-card
+   
+   Learn how to use foveated rendering to improve performance.

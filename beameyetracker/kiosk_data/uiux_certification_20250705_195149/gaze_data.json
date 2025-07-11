@@ -1,0 +1,10 @@
+{
+  "gaze_data": [],
+  "step_gaze_data": {},
+  "metadata": {
+    "screen_width": 2560,
+    "screen_height": 1440,
+    "total_gaze_points": 0,
+    "steps_tracked": []
+  }
+}

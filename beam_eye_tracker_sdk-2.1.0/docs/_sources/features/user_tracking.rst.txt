@@ -1,0 +1,175 @@
+.. _about_real_time_tracking:
+
+Real-time tracking
+==================
+
+Once you are receiving a stream of ``TrackingStateSet`` objects (see :ref:`data_access_methods`), 
+you can access the ``UserState`` sub-structure which contains the user's tracking state.
+
+
+.. tab-set-code::
+
+   .. code-block:: c
+
+      EW_BET_TRACKING_STATE_SET_HANDLE tss_handle; // Assume a valid handle
+      const EW_BET_UserState *user_state = EW_BET_API_GetUserState(tss_handle);
+      if (user_state->timestamp_in_seconds != EW_BET_NULL_DATA_TIMESTAMP) {
+         // Use the data
+      }
+
+   .. code-block:: c++
+
+      // Assume we hold a valid TrackingStateSet instance
+      std::unique_ptr<eyeware::beam_eye_tracker::TrackingStateSet> last_received_tracking_state_set;
+      const eyeware::beam_eye_tracker::UserState &user_state = last_received_tracking_state_set->user_state();
+      if (user_state.timestamp_in_seconds != eyeware::beam_eye_tracker::NULL_DATA_TIMESTAMP) {
+         // Use the data
+      }
+         
+   .. code-block:: python
+      
+      from eyeware import beam_eye_tracker
+      tracking_state_set: beam_eye_tracker.TrackingStateSet  # assume a valid instance
+      user_state = tracking_state_set.user_state()
+      if user_state.timestamp_in_seconds != eyeware.beam_eye_tracker.NULL_DATA_TIMESTAMP:
+         # Use the data
+
+.. _about_user_state:
+
+The ``UserState`` State Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``UserState`` contains:
+
+* :ref:`head_pose`  
+* :ref:`unified_screen_gaze`
+* :ref:`viewport_gaze`
+
+Each of these elements hold their own ``TrackingConfidence`` field, explained in the next section.
+
+
+.. _tracking_confidence:
+
+Tracking Confidence
+~~~~~~~~~~~~~~~~~~~
+
+The ``TrackingConfidence`` is a reliability measure for its respective tracking data package.
+
+It is **not** a direct indicator of how `accurate` the tracking is, but it does indicate whether you should
+discard some data. For example, it would be incorrect to assume that if the ``point_of_regard`` (see :ref:`unified_screen_gaze`) 
+have a ``HIGH`` confidence, then it means that the eye tracking result is highly accurate. Instead
+it only means that the conditions for the relevant tracking algorithms were deemed to be good
+based on some internal heuristics (like measured illumination, eye-tracking on a screen that was
+calibrated, head pose orientation or distance, etc.).
+
+For an explaination of the values it can take, see :ref:`c_api_tracking_confidence`.
+
+.. _head_pose:
+
+Head Pose
+~~~~~~~~~~
+
+The head pose is provided as a rigid transform such that a 3D point in the head coordinate system :math:`p_{hcs}` is
+transformed to the :ref:`world_coordinate_system` by:
+
+.. math::
+   p_{wcs} = R \cdot p_{hcs} + t,
+
+where :math:`p_{hcs}` is a column vector defining the x,y,z coordinates in the head coordinate system, :math:`R` (referred to as ``rotation_from_hcs_to_wcs`` in the C API) is a 3x3 rotation matrix and :math:`t` (referred to as ``translation_from_hcs_to_wcs`` in the C API)
+is a 3x1 vector translation, with units in **meters**.
+
+The head coordinate system (HCS) is defined as follows:
+
+* The origin is at the nose tip.
+* The x-axis points from the nose to the left ear.
+* The y-axis points from the nose to the top of the head.
+* The z-axis points from the nose towards the front.
+
+.. figure:: /media/head_transform_isometric_rt_axes_wcs.png
+  :width: 400
+  :alt: Lateral view of the head transform
+  :align: center
+
+  Here is a lateral view that shows the :math:`{R, t}` transform, as well as the xyz axes of the WCS and of the head frame
+
+
+
+.. figure:: /media/head_transform_frontal_axes.png
+  :width: 300
+  :alt: Frontal view of the head frame
+  :align: center
+
+  Frontal view showing the head axes from the point of view of the person
+
+
+.. figure:: /media/head_transform_top_rt_axes.png
+  :width: 400
+  :alt: Top view of the head transform
+  :align: center
+  
+  Top view showing the transform, the WCS frame at the screen center and the head frame on the nose tip
+
+The head pose also contains a ``track_session_uid`` field, which is kept unchanged as long as the
+person is being tracked without interruption. However, if the person goes out of frame or turns around
+such that they can no longer be tracked for a moment, then this number is incremented once the
+person is detected again.
+
+.. _unified_screen_gaze:
+
+Unified Screen Gaze
+~~~~~~~~~~~~~~~~~~~
+
+The ``UnifiedScreenGaze`` delivers the eye tracking coordinates, i.e., where is the user looking at,
+expressed in relation to the :ref:`unified_screen_coordinate_system`.
+
+.. figure:: /media/UnifiedScreenGaze.svg
+  :width: 600
+  :alt: Unified Screen Gaze
+  :align: center
+  
+  Unified Screen Gaze example, in which the :ref:`unified_screen_coordinate_system` has its origin at the top-left of the right screen.
+
+In some scenarios, the eye tracker may infer that the user is looking
+outside of the Unified Screen area. For that
+reason, the ``UnifiedScreenGaze`` structure also contains an ``unbounded_point_of_regard`` field
+which is able to go beyond the screen boundaries, whereas ``point_of_regard`` would be clipped to screen boundaries.
+
+
+
+.. figure:: /media/UnboundedUnifiedScreenGaze.svg
+  :width: 600
+  :alt: Unbounded Unified Screen Gaze
+  :align: center
+  
+  Unbounded Unified Screen Gaze example. The `point_of_regard` is clipped to be within the screen boundaries,
+  while `unbounded_point_of_regard` is not.
+
+
+Note that the relation between ``unbounded_point_of_regard`` and ``point_of_regard`` should not be used as a mechanism to determine if
+the user is looking outside the screens (like at the keyboard), because the eye tracker itself
+may be subject to inaccuracies near the screen boundaries. You could make such heuristics if you account
+for eye tracking accuracy errors, and for very controlled setups.
+Otherwise, the ``unbounded_point_of_regard`` can be used to implement smoother animations that
+cross the screen boundaries, such as the case of the eye tracking overlay implemented in the Beam Eye Tracker software.
+Similarly, the ``point_of_regard`` comes already clipped so that you do not have to implement such
+clipping logic yourself.
+
+
+
+.. _viewport_gaze:
+
+Viewport Gaze
+~~~~~~~~~~~~~
+
+The ``ViewportGaze`` contains the eye gaze coordinates in relation to the :ref:`viewport`,
+referred to as ``normalized_point_of_regard``.
+The coordinates are normalized such that, if the gaze is inside the viewport, then the values are in the range :math:`[0, 1]`.
+The coordinates are not clipped, so they can be negative or exceed :math:`1.0`, if the gaze is outside the viewport.
+
+.. warning:: If the viewport geometry is not updated into the ``API``, then the ``ViewportGaze`` will be unreliable.
+
+
+
+
+
+

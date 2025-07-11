@@ -1,0 +1,108 @@
+.. _reference_frames:
+
+Reference frames
+================
+
+To implement the :ref:`key_functionality` of the SDK, it is important
+to understand how reference frames, such as the world coordinate system (WCS) and the viewport coordinate system,
+are defined by the Beam Eye Tracker SDK. This section establishes such definitions.
+
+.. _camera_placement_screen:
+
+Camera placement screen
+~~~~~~~~~~~~~~~~~~~~~~~
+
+The "camera placement screen" refers to the display where the user has physically placed their webcam and
+indicated this placement in the Beam Eye Tracker application. When the Beam Eye Tracker shows a visualization
+of all connected displays, users must click a camera icon on the display that matches where they mounted
+their webcam (typically at the top or bottom of the screen). This selected screen is therefore the "camera placement screen".
+
+.. figure:: ../media/camera_placement_screen.png
+  :width: 600
+  :alt: Camera placement screen
+  :align: center
+
+  Settings window captured from the Beam Eye Tracker application. In this two screens example, the camera placement screen is the one on the right.
+
+.. warning:: The camera placement screen does not necessarily need to be the OS primary screen, or the screen where the game renders. However, users are advised to place their camera at the same screen as the game rendering screen to for better user experience.
+
+
+.. _world_coordinate_system:
+
+World Coordinate System (WCS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The world coordinate system (WCS) is the 3D reference frame over which elements such as the head pose are expressed.
+It is defined as a right-handed coordinate system with the origin at the center of the :ref:`camera_placement_screen`
+(xyz axes represented in red-green-blue, respectively).
+
+
+.. image:: ../media/beam_sdk_wcs.png
+  :width: 600
+  :alt: Representation of the World Coordinate System
+  :align: center
+
+.. _unified_screen_coordinate_system:
+
+Unified Screen Coordinate System 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The "unified screen coordinate system" is the 2D logical reference frame, in pixels, defined by the operating system to
+provide a common screen coordinate system for multiple displays. In the case of Windows the unified screen
+corresponds to the `Virtual Screen <https://learn.microsoft.com/en-us/windows/win32/gdi/the-virtual-screen>`_.
+
+.. _viewport:
+
+Viewport
+~~~~~~~~
+
+The "viewport" is the area on screen where the game is rendering. The Beam Eye Tracker requires
+knowledge of its geometry for the correct functioning of features such as
+the :ref:`about_sim_game_camera_state` or :ref:`about_game_immersive_hud_state`.
+For this reason, the viewport geometry is a required argument to create the ``API`` object,
+and must be updated during gameplay with the relevant function calls.
+
+.. tab-set::
+
+   .. tab-item:: C
+      :sync: c
+
+      See
+
+      * :cpp:func:`EW_BET_API_Create`
+      * :cpp:func:`EW_BET_API_UpdateViewportGeometry`
+
+   .. tab-item:: C++
+      :sync: c++
+
+      See
+
+      * :cpp:func:`eyeware::beam_eye_tracker::API::API`
+      * :cpp:func:`eyeware::beam_eye_tracker::API::update_viewport_geometry`
+
+
+The viewport geometry is specified by a pair of points, ``point_00`` and ``point_11``, defined 
+with respect to the :ref:`unified_screen_coordinate_system` and represent the mapping into the
+`normalized` corner coordinates ``(0.0, 0.0)`` and ``(1.0, 1.0)`` of the viewport.
+
+The ``point_00`` and ``point_11`` are not necessarily the top-left and bottom-right coordinates
+respectively. Instead, you can define them arbitrarily as long as they are opposing corners.
+This allows for flexible configurations, such as in Unity,
+whose viewport is defined with the ``(0.0, 0.0)`` coordinates at the bottom-left corner of the rendering area.
+However, in all scenarios, the first coordinate is the horizontal coordinate, and the second is the vertical one.
+
+Of course, non-gaming application can take advantage of defining a viewport, to conveniently
+received gaze data already mapped to viewport normalized coordinates.
+
+.. figure:: ../media/viewport.svg
+  :width: 600
+  :alt: Viewport example
+  :align: center
+
+  Example of a viewport following the Unity convention, with ``point_00`` at the bottom-left corner
+  of the rendering area.
+
+
+.. warning:: Through the ``API``, you should inform of changes on the viewport geometry, for example when the game window is resized or moved.
+
+

@@ -1,0 +1,238 @@
+.. _general_api_concepts:
+
+General API concepts
+====================
+
+.. _about_api_singleton:
+
+The API singleton
+-------------------
+
+Regardless of the language you are using, the Beam Eye Tracker SDK provides a way to
+create an ``API`` instance, which is the main entry point for getting data and communicating with
+the Beam Eye Tracker application. This ``API`` instance is only a wrapper to an underlying singleton
+allocated for your entire application. Logically, it communicates
+with the only instance of the Beam Eye Tracker application running in the user's PC.
+
+The API `singleton` is further designed to be:
+
+#. Light-weight on client code. Every function call should return quickly to the thread of execution, unless
+   explicitly stated otherwise (see :ref:`about_synchronous_data_access`).
+   
+#. Thread-safe: You can call it from multiple threads without having to worry about race conditions.
+
+#. RAII: Allocating the ``API`` initializes communications with the Beam Eye Tracker and destroying all instances
+   should release the singleton resources.
+
+The ``friendly name``, specified to the ``API`` instantiation, is used to inform the user which application
+is connected to the Beam Eye Tracker.
+
+The second term is the ``ViewportGeometry``, which is explained at the :ref:`viewport` section.
+
+.. tab-set-code::
+
+   .. code-block:: c
+
+      #include "eyeware/beam_eye_tracker_c.h"
+      EW_BET_API_HANDLE api = EW_BET_NULL_HANDLE;
+      int32_t result = EW_BET_API_Create("MyImmersiveGame", {1.0f, 1.0f, 1.0f, 1.0f}, &api);
+      // if API creation was successful
+      if (result == 0) {  
+         // ...do something with the API...
+
+         // .. release the API
+         EW_BET_API_Destroy(api);
+      }
+
+   .. code-block:: c++
+
+      #include "eyeware/beam_eye_tracker.h"
+      eyeware::beam_eye_tracker::BeamEyeTrackerAPI api("MyImmersiveGame", {1.0f, 1.0f, 1.0f, 1.0f});
+         
+   .. code-block:: python
+
+      viewport_geometry = beam_eye_tracker.ViewportGeometry()
+      viewport_geometry.point_00 = beam_eye_tracker.Point(0, 0)
+      viewport_geometry.point_11 = beam_eye_tracker.Point(0, 0)
+      bet_api = beam_eye_tracker.API("MyImmersiveGame", viewport_geometry)
+
+
+.. _about_tracking_state_set:
+
+The ``TrackingStateSet`` object
+-------------------------------
+
+The main goal of the ``API`` object is to provide a stream of ``TrackingStateSet`` objects. The
+``TrackingStateSet`` is a container for the sub-structures that provide either the raw tracking user state,
+or preprocessed data to easily implement interactive features in games.
+
+In particular, these sub-structures are:
+
+* ``UserState``, which holds the raw tracking data for the user, including the user's gaze on screen and head pose. See :ref:`about_real_time_tracking`.
+* ``SimGameCameraState``, which holds the parameters to implement the immersive camera controls. See :ref:`about_sim_game_camera_state`.
+* ``GameImmersiveHUDState``, which holds the parameters to implement the immersive HUD. See :ref:`about_game_immersive_hud_state`.
+
+.. _about_timestamps:
+
+Timestamps
+----------
+
+Each ``TrackingStateSet`` is associated to a ``Timestamp`` value. As expected, it indicates the time
+in seconds for when the ``TrackingStateSet`` object was created or updated, whether
+all fields are updated or not. However, it's important to note that if the timestamp contains the ``NULL_DATA_TIMESTAMP``
+value, it means that the data held by the ``TrackingStateSet`` object is invalid for whatever reason, whether
+the tracking is not activated, the user is not being tracked, etc, and thus should be discarded.
+
+The above applies to the full ``TrackingStateSet`` object  you will further notice that each
+sub-structure held by it (e.g. ``UserState``, ``SimGameCameraState``, ``GameImmersiveHUDState``)
+contains its own ``Timestamp`` field. Although in most cases, each sub-structure will have the same timestamp
+value as the one associated to the ``TrackingStateSet`` object, or the other sub-structures, you should not make
+that assumption, as a future-proof integration should assume that each-substructure could have its own frequency of updates.
+Moreover, each individual sub-structure could also hold a ``NULL_DATA_TIMESTAMP`` value, indicating that the given
+data is invalid for whatever reason, for example, the specific feature is disabled.
+
+.. _about_tracking_data_reception_status:
+
+The ``TrackingDataReceptionStatus`` object
+------------------------------------------
+
+Through the ``API`` instance, you can query the current ``TrackingDataReceptionStatus`` to check if frame-by-frame data from the Beam Eye
+Tracker is being received given that bi-directional communication is established.
+
+It is important to note that this status is independent of whether the user is being successfully tracked
+or not - it only indicates if the connection to the Beam Eye Tracker is active and data is flowing. It
+also indicate if the Beam Eye Tracker is being automatically started/activated (see :ref:`about_auto_start_tracking`).
+
+For more details on the different values of the ``TrackingDataReceptionStatus`` object, see :ref:`tracking_data_reception_status`.
+
+.. _data_access_methods:
+
+Data Access Methods
+-------------------
+
+The SDK supports three methods for accessing the stream of ``TrackingStateSet`` objects: synchronous, polling and asynchronous.
+
+.. _about_synchronous_data_access:
+
+Synchronous data access
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Synchronous data access is convenient in case you want to get access to the latest ``TrackingStateSet`` at low
+latency, and it is fine to block the current thread while waiting for data updates. A typical scenario is when your application (or at least the current thread) uses the tracking data updates
+as the key event that triggers further processing/recording/interactions, etc.
+
+The following example demonstrates how to use the synchronous data access method, with the key functionality
+being the use of the ``wait_for_new_tracking_state_set`` method, which uses a ``Timestamp`` object 
+as a synchronization token.
+
+
+.. tab-set-code::
+
+   .. literalinclude:: ../../../cpp/samples/data_access_methods/bet_sync_data_access.cpp
+      :language: c++
+      :linenos:
+      :emphasize-lines: 16-17,39,44
+
+   .. literalinclude:: ../../../python/samples/data_access_methods/bet_sync_data_access.py
+      :language: python
+      :linenos:
+      :emphasize-lines: 36,54,56
+
+.. _about_polling_data_access:
+
+Polling data access
+~~~~~~~~~~~~~~~~~~~
+
+Polling is convenient in case your thread can't be blocked, and it is not critical to read the
+``TrackingStateSet`` as soon as it is available, meaning, you can afford some latency. A typical scenario is when your thread loop is driven by other events and you want to use
+the latest ``TrackingStateSet`` in combination with said events. For example, in a game, where
+there is a logic driven by frames rendering: you don't want to block, but you want to use the
+eye tracking for some interaction in the game.
+
+The mechanism works the same as :ref:`about_synchronous_data_access`, with the key difference being that we 
+use the ``wait_for_new_tracking_state_set`` with a timeout of 0ms so that it returns immediately,
+but indicating whether new data is available or not.
+
+.. tab-set-code::
+
+   .. literalinclude:: ../../../cpp/samples/data_access_methods/bet_polling_data_access.cpp
+      :language: c++
+      :linenos:
+
+   .. literalinclude:: ../../../python/samples/data_access_methods/bet_polling_data_access.py
+      :language: python
+      :linenos:
+
+.. _about_asynchronous_data_access:
+
+Asynchronous data access
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Asynchronous data access is convenient in case you want to get the latest ``TrackingStateSet`` updates at low
+latency, and you do not want to block your thread while waiting for data updates.
+
+It works by providing a callback mechanism to notify the client code when a new ``TrackingStateSet`` is available.
+For OOP languages, like C++ and Python, this is done by inheriting from ``TrackingListener`` class and overriding
+specific methods which behave as your callbacks. In some cases you already have a higher level class managing the API instance and you simply
+inherit ``TrackingListener`` and override the relevant methods. 
+
+In C, the registration of the callbacks is done by calling the :ref:`EW_BET_API_RegisterTrackingCallbacks <c_api_register_tracking_callbacks>` function. This function returns a handle to the callbacks, which must be used to unregister the callbacks by calling the :ref:`EW_BET_API_UnregisterTrackingCallbacks <c_api_unregister_tracking_callbacks>` function.
+
+In OOP languages, the registration of the ``TrackingListener`` is done by calling the ``start_receiving_tracking_data_on_listener`` method which returns a `handle`. This handle must be used to unregister the callbacks by calling the ``stop_receiving_tracking_data_on_listener`` method.
+
+.. tab-set-code::
+
+   .. literalinclude:: ../../../cpp/samples/data_access_methods/bet_async_data_access.cpp
+      :language: c++
+      :linenos:
+
+   .. literalinclude:: ../../../python/samples/data_access_methods/bet_async_data_access.py
+      :language: python
+      :linenos:
+
+.. warning:: Client code must ensure that the callbacks (or ``TrackingListener`` instance, if relevant) alive until the handle is explicitly deregistered.
+
+.. _about_auto_start_tracking:
+
+Launching the Beam Eye Tracker from your game or application
+------------------------------------------------------------
+
+Client code can use the ``API`` object to launch the Beam Eye Tracker application, start the webcam
+and the tracking output directly from your game or application. This is a quality of life feature
+so that your users can focus on your game or application.
+
+Should you want to use option, we advice to:
+
+#. Create an option in your "Settings" user interface allowing the user to opt-in or opt-out (e.g. an "Auto-start
+   Beam Eye Tracker" toggle option);
+
+#. Be mindful of the timing of when you call this method, as it needs to feel natural to the user. Keep in mind
+   that the webcam will be started and you don't want to surprise the user, such as when the game is loading.
+   Instead, a good approach is to call this method once at the beginning of a gameplay loop, so that the Beam Eye
+   Tracker starts to operate exactly when required for gameplay reasons.
+
+If the Beam Eye Tracker can't be found or is not well configured such that it cannot start
+tracking, then this won't have any effect, and it is assumed to be up to the user to
+troubleshoot.
+
+.. note::
+   The user is also expected to have a setting option inside the Beam Eye Tracker application so that they can opt-out 
+   of these requests, and have further control over their setup.
+
+.. tab-set-code::
+
+   .. code-block:: c
+
+      // Assume api is a valid EW_BET_API_HANDLE
+      EW_BET_API_AttemptStartingTheBeamEyeTracker(api);
+
+   .. code-block:: c++
+
+      // Assume api is a valid eyeware::beam_eye_tracker::API instance
+      api.attempt_starting_the_beam_eye_tracker();
+
+   .. code-block:: python
+
+      # Assume api is a valid eyeware.beam_eye_tracker.API instance
+      api.attempt_starting_the_beam_eye_tracker()
+            

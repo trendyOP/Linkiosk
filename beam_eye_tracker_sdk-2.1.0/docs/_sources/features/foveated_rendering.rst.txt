@@ -1,0 +1,179 @@
+
+.. _about_foveated_rendering:
+
+Foveated rendering
+==================
+
+The human eye "resolution" is not uniformly distributed in its field of view. Instead, its profile is such that the highest visual accuity
+occurs in the retinal area known as the fovea, and rapidly decreases towards the periphery. Game developers can take
+advantage of this by rendering at a higher image quality in the center of where the user is looking, while reducing the image quality
+in the periphery. This can **increase framerates** or **reduce power consumption**, at seemingly no cost to the user in terms
+of `perceived` image quality.
+
+To enable foveated rendering, the Beam Eye Tracker SDK provides a stream of ``FoveatedRenderingState`` objects,
+each containing the real-time rendering profile to be applied, meaning, which area (position and radius) to render at the highest quality
+and how that visual fidelity should decrease towards the periphery, already mapped to screen space. This stream,
+in contrast to the :ref:`UserState<about_user_state>`, has been optimized for this task by the Beam Eye Tracker to achieve the best user experience possible.
+
+While foveated rendering is a generic concept and can be applied in multiple ways, one approach we here consider is Variable Rate Shading (VRS), which
+is explained in the next section.
+
+Variable rate shading (VRS)
+---------------------------
+
+Variable rate shading (VRS) allows to bundle pixels into "coarser" tiles to create a single shading call per tile, rather than
+a separate call for each pixel. This can drastically reduce the GPU load and thus increase the framerate. With the introduction
+of Tier 2 VRS, it is now possible to specify a different shading rate per tile on screen space, rather than a single global shading rate.
+This is done by creating a ``Shading Rate Image`` (SRI) that specifies the shading rate pattern across the screen.
+
+
+.. figure:: /media/VRS.svg
+  :width: 800
+  :alt: Variable rate shading patterns
+  :align: center
+
+  Variable rate shading tiles.
+
+This opened the door to many techniques, such as AMD's `FidelityFX Variable Shading <https://gpuopen.com/fidelityfx-variable-shading/>`_,
+or Intel's `Velocity & Luminance Adaptive Rasterization (VALAR) <https://www.intel.com/content/www/us/en/developer/articles/technical/velocity-luminance-adaptive-rasterization.html>`_
+algorithms which are able to create ``SRIs`` that maintains visual quality while reducing the GPU load.
+Given that an eye tracker is essentially indicating where a user is looking on screen, VRS is a natural fit for foveated rendering.
+
+
+Foveated VRS implementation
+---------------------------
+
+To implement foveated rendering with VRS, the process
+is as follows: at each rendering frame you can poll 
+to retrieve the latest ``TrackingStateSet`` (see :ref:`about_polling_data_access`).
+From this ``TrackingStateSet`` you can access the latest ``FoveatedRenderingState`` which
+holds the information necessary to generate the ``SRI`` for the current frame.
+Such generation typically is done by a custom shader. Once the ``SRI`` is generated, it can be assigned to the rendering pipeline.
+In DirectX12, you assign it using  ``ID3D12GraphicsCommandList5::RSSetShadingRateImage``
+and in Vulkan, you assign it by specifying it through ``vkCmdSetFragmentShadingRateKHR``.
+
+
+There is nuance when it comes to details such as shading rate image size, tile size, supported shading rates, etc.
+Thus, for a complete example, please refer to :ref:`fidelity_fx_fvrs`.
+
+.. figure:: /media/FoveatedVRS.svg
+  :width: 800
+  :alt: Foveated VRS
+  :align: center
+
+  Foveated Shading Rate Image.
+
+.. _about_foveated_rendering_state:
+
+The ``FoveatedRenderingState`` object   
+-------------------------------------
+
+:cpp:type:`FoveatedRenderingState<eyeware::beam_eye_tracker::EW_BET_FoveatedRenderingState>`
+contains the information necessary to generate the ``SRI`` for the current frame.
+It holds the :cpp:member:`foveation center <eyeware::beam_eye_tracker::EW_BET_FoveatedRenderingState::normalized_foveation_center>` coordinates
+and the size of the shading rate regions, described by 4 radii held by a :cpp:type:`FoveationRadii<eyeware::beam_eye_tracker::EW_BET_FoveationRadii>`
+type. However, it needs to be taken into account that some hardware supports only a maximum shading rate
+of ``2x2``, instead of ``4x4``. Therefore:
+
+.. tab-set::
+
+    .. tab-item:: 2x2 max shading rate
+
+        * :cpp:member:`radius_level_1<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_1>` describes the distance from the foveation center to the ``1x1`` shading rate boundary.
+        * :cpp:member:`radius_level_2<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_2>` describes the distance from the foveation center to the ``2x1/1x2`` shading rate boundary.
+        * everywhere outside :cpp:member:`radius_level_2<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_2>` the shading rate should be ``2x2``.
+
+    .. tab-item:: 4x4 max shading rate
+
+        * :cpp:member:`radius_level_1<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_1>` describes the distance from the foveation center to the ``1x1`` shading rate boundary.
+        * :cpp:member:`radius_level_2<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_2>` describes the distance from the foveation center to the ``2x1/1x2`` shading rate boundary.
+        * :cpp:member:`radius_level_3<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_3>` describes the distance from the foveation center to the ``2x2`` shading rate boundary.
+        * :cpp:member:`radius_level_4<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_4>` describes the distance from the foveation center to the ``2x4/4x2`` shading rate boundary.
+        * everywhere outside :cpp:member:`radius_level_4<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_4>` the shading rate should be ``4x4``.
+
+For directional tiles regions (``2x1``, ``1x2``, ``2x4``, ``4x2``), we don't have a strong recommendation. Thus you can either
+chose to use the same direction for the given region, or chose a different orientation based on the vector from the given tile to the
+foveation center.
+
+.. warning::
+
+   The ``FoveatedRenderingState`` data is generated from the Beam Eye Tracker application rather than at the client library level, and it is optimized to
+   consider variables such as screen size, multiple displays, eye tracking accuracy, user experience, etc. You can
+   indeed use your own criteria to compute the sizes for each of the regions. However, we strongly recommend that
+   you use at least the :cpp:member:`foveation center <eyeware::beam_eye_tracker::EW_BET_FoveatedRenderingState::normalized_foveation_center>` coordinates
+   and the :cpp:member:`radius_level_1<eyeware::beam_eye_tracker::EW_BET_FoveationRadii::radius_level_1>` parameters as intended,
+   and that the other regions sizes are computed based on such size reference.
+
+
+Foveated VRS compatibility with DLSS, XeSS, FSR...
+-----------------------------------------------------
+
+Foveated VRS can be combined with super resolution techniques, such as
+`FidelityFX Super Resolution <https://gpuopen.com/fidelityfx-super-resolution-3/>`_
+or `DLSS <https://developer.nvidia.com/dlss>`_ as it can be applied to the 
+lower/base resolution prior to the upscaling step delivering **compounded performance gains**. The combination of VALAR with XeSS,
+as described in `this article <https://www.intel.com/content/www/us/en/developer/articles/technical/xess-velocity-and-luminance-adaptive-rasterization.html>`_,
+provides a good real-world example of such combination.
+
+Combining with other VRS techniques
+-------------------------------------
+
+As described previously, other techniques have been proposed to create ``SRIs`` that maintain visual
+quality while reducing the GPU load. Foveated rendering is not replacement, but rather a complement
+to these techniques, as a combined shading rate image can be obtained by using the maximum shading rate
+for each tile between the foveated VRS ``SRI`` and the other ``SRIs``. For performance reasons, this
+can be done in the same shader, as it is the case for the :ref:`fidelity_fx_fvrs` integration.
+
+.. _user_experience_considerations_for_foveated_rendering:
+
+User experience considerations
+------------------------------
+
+To achieve a good user experience, it's critical to consider the following:
+
+- The ``TrackingStateSet`` should be polled as late as possible, just prior to ``SRI`` generation/dispatch, so that it uses the most recent eye tracking data.
+- The  ``SRI`` generation/dispatch should be delayed as much as possible in the rendering pipeline, just before the GPU starts shading pixels/fragments.
+- Webcam frame rates and integration time can have an impact on latency, and thus user experience.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

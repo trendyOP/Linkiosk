@@ -1,0 +1,43 @@
+{
+    "name": "BeamEyeTrackerControls",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "c484b1f0-5033-4dfc-b312-d34f35c83afe",
+            "actions": [
+                {
+                    "name": "Recenter",
+                    "type": "Button",
+                    "id": "7eac4bde-5884-41a4-a582-301af59136cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TogglePause",
+                    "type": "Button",
+                    "id": "4b8bb7c6-c05e-476b-b2eb-771baa815224",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a273987-67a4-4b9a-a493-a69cb569465f",
+                    "path": "<Keyboard>/semicolon",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recenter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

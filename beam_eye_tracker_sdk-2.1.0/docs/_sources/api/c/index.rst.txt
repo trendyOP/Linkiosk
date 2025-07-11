@@ -1,0 +1,232 @@
+C 
+=
+
+The C API provides a complete interface for eye tracking integration, designed for maximum compatibility and ease of use.
+
+Core Objects
+------------
+
+API
+~~~
+
+.. doxygentypedef:: EW_BET_API_HANDLE
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_Create
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_Destroy
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_GetVersion
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_UpdateViewportGeometry
+   :project: BeamEyeTrackerSDK_C_CPP
+   
+.. doxygenfunction:: EW_BET_API_AttemptStartingTheBeamEyeTracker
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. _c_api_register_tracking_callbacks:
+
+.. doxygenfunction:: EW_BET_API_RegisterTrackingCallbacks
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. _c_api_unregister_tracking_callbacks:
+
+.. doxygenfunction:: EW_BET_API_UnregisterTrackingCallbacks
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_WaitForNewTrackingStateSet
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_GetTrackingDataReceptionStatus
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_CreateAndFillLatestTrackingStateSet
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_DestroyTrackingStateSet
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_RecenterSimGameCameraStart
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_RecenterSimGameCameraEnd
+   :project: BeamEyeTrackerSDK_C_CPP
+
+
+
+TrackingStateSet
+~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: EW_BET_TRACKING_STATE_SET_HANDLE
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_GetUserState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_GetSimGameCameraState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenfunction:: EW_BET_API_GetGameImmersiveHUDState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+
+Asynchronous Data Reception
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: EW_BET_CALLBACKS_HANDLE
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: EW_BET_TrackingDataReceptionStatusCallback
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: EW_BET_TrackingDataCallback
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Enums
+------
+
+.. _tracking_data_reception_status:
+
+EW_BET_TrackingDataReceptionStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: EW_BET_TrackingDataReceptionStatus
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_NOT_RECEIVING_TRACKING_DATA
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_RECEIVING_TRACKING_DATA
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_ATTEMPTING_TRACKING_AUTO_START
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. _c_api_tracking_confidence:
+
+EW_BET_TrackingConfidence
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: EW_BET_TrackingConfidence
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_LOST_TRACKING
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_LOW
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_MEDIUM
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_HIGH
+   :project: BeamEyeTrackerSDK_C_CPP
+
+
+Data Types
+----------
+
+Coordinates
+~~~~~~~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_Point
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_PointF
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_Vector3D
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::EW_BET_Matrix3x3
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Viewport management
+~~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_ViewportGeometry
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+Real-time tracking
+~~~~~~~~~~~~~~~~~~
+
+.. _c_api_user_state:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_UserState
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_UnifiedScreenGaze
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_ViewportGaze
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_HeadPose
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+In-game camera control
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_SimCameraTransform3D
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_SimGameCameraState
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+Immersive HUD
+~~~~~~~~~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_GameImmersiveHUDState
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+Foveated rendering
+~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_FoveationRadii
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_FoveatedRenderingState
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+Other
+~~~~~
+
+.. doxygenstruct:: eyeware::beam_eye_tracker::EW_BET_Version
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+
+.. doxygentypedef:: EW_BET_Timestamp
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Utils
+-----
+
+.. doxygenfunction:: EW_BET_API_ComputeSimGameCameraTransformParameters
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygendefine:: EW_BET_NULL_DATA_TIMESTAMP
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Constants
+---------
+
+.. doxygendefine:: EW_BET_NULL_HANDLE
+   :project: BeamEyeTrackerSDK_C_CPP
+
+

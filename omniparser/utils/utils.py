@@ -221,8 +221,9 @@ def get_caption_model_processor(model_name: str = "blip",
         local_weights_path = os.path.join("weights", "icon_caption_blip", "pytorch_model.bin")
         if os.path.exists(local_weights_path):
             print(f"로컬 BLIP 가중치 로드: {local_weights_path}")
-            state_dict = torch.load(local_weights_path)
-            model.load_state_dict(state_dict)
+            state_dict = torch.load(local_weights_path, map_location='cpu')
+            # 호환성 문제 해결을 위한 옵션 추가
+            model.load_state_dict(state_dict, strict=False)
             
         return model, processor
     except Exception as e:

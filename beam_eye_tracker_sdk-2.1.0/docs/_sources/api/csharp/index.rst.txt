@@ -1,0 +1,153 @@
+.. _csharp_api_reference:
+
+C#
+==
+
+The C# API provides comprehensive eye tracking functionality through an intuitive object-oriented design, following C# conventions and best practices.
+
+.. note::
+   All C# types and classes described in this documentation are enclosed within the ``Eyeware.BeamEyeTracker`` namespace.
+
+Core Classes
+------------
+
+API
+~~~
+
+.. doxygenclass:: Eyeware::BeamEyeTracker::API
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+TrackingStateSet
+~~~~~~~~~~~~~~~~
+
+.. doxygenclass:: Eyeware::BeamEyeTracker::TrackingStateSet
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+TrackingListener
+~~~~~~~~~~~~~~~~
+
+.. doxygenclass:: Eyeware::BeamEyeTracker::TrackingListener
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Enums
+-----
+
+TrackingDataReceptionStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygenenum:: Eyeware::BeamEyeTracker::TrackingDataReceptionStatus
+   :project: BeamEyeTrackerSDK_C_SHARP
+
+TrackingConfidence
+~~~~~~~~~~~~~~~~~~~
+
+.. doxygenenum:: Eyeware::BeamEyeTracker::TrackingConfidence
+   :project: BeamEyeTrackerSDK_C_SHARP
+
+Data Types
+----------
+
+Coordinates
+~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::Point
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::PointF
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::Vector3D
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Viewport management
+~~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::ViewportGeometry
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Real-time tracking
+~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::UserState
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::UnifiedScreenGaze
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::ViewportGaze
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::HeadPose
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+In-game camera control
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::SimGameCameraState
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::SimCameraTransform3D
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Immersive HUD
+~~~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::GameImmersiveHUDState
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Foveated rendering
+~~~~~~~~~~~~~~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::FoveationRadii
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:   
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::FoveatedRenderingState
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Other
+~~~~~
+
+.. doxygenstruct:: Eyeware::BeamEyeTracker::Version
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:
+
+Constants
+---------
+
+.. doxygenclass:: Eyeware::BeamEyeTracker::Constants
+   :project: BeamEyeTrackerSDK_C_SHARP
+   :members:
+   :undoc-members:

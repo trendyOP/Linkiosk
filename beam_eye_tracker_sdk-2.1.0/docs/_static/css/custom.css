@@ -1,0 +1,33 @@
+.left-square-image-card {
+    flex-direction: row;        
+    align-items: stretch;       
+    height: 8em;
+    padding: 0;
+    overflow: hidden;           
+    position: relative;
+}
+
+.root {
+    --color-links: #7B61FF ;
+ }
+
+.left-square-image-card .sd-card-img-top {
+    position: absolute;
+    top: -1.5em;
+    width: 8em;               
+    height: 8em;
+    object-fit: fill;
+}
+
+.left-square-image-card .sd-card-body {
+    margin-top: 1em;
+    margin-left: 10em;
+}
+
+.left-square-image-card .sd-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+

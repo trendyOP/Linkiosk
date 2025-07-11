@@ -1,0 +1,133 @@
+.. _fidelity_fx_fvrs:
+
+Foveated Rendering using FidelityFX™
+====================================
+
+AMD FidelityFX™ is a popular SDK which offers a wide range of techniques to improve performance and visual quality in
+video games, including `FidelityFX Super Resolution (FSR) <https://gpuopen.com/fidelityfx-super-resolution-3/>`_. 
+
+Of particular interest, it already offers a VRS tier 2 algorithm/library called
+`FidelityFX Variable Shading <https://gpuopen.com/fidelityfx-variable-shading/>`_ which is accompanied
+by a complete sample built on top of the Cauldron Framework, further demonstrating DirectX 12 and Vulkan support.
+This makes it an excellent target to enhance with foveated rendering support as it already implements
+some of the steps described in :ref:`about_foveated_rendering` such as shading rate image creation,
+and association with the rendering pipeline.
+
+Therefore, we decided to extend the `FidelityFX™ SDK with foveated rendering support <https://github.com/eyeware/FidelityFX-SDK>`_,
+and make it available as a ready-to-use variant of the FidelityFX™ SDK. This page shows to integrate this version
+of the FidelityFX™ SDK to enable foveated rendering in your project, and it also highlights the modifications
+done to the FidelityFX™ SDK to enable this feature. 
+
+.. image:: /media/FidelityFXFoveatedVRSSample.png
+   :alt: FidelityFX Foveated VRS Sample
+   :width: 100%
+
+.. note:: 
+
+   Adding foveated rendering support to your project is compatible with super resolution techniques
+   as well as other VRS techniques, as described in :ref:`about_foveated_rendering`.
+
+.. _how_to_add_foveated_rendering_with_fidelityfx:
+
+How to: add foveated rendering to your project
+----------------------------------------------
+
+To integrate foveated rendering support in your project, you can follow these steps:
+
+#. Integrate our AMD FidelityFX™ SDK fork from `github <https://github.com/eyeware/FidelityFX-SDK>`_ (or cherry-pick this `commit <https://github.com/eyeware/FidelityFX-SDK/commit/651fbd34f17205f3040122a69d8fa5e01f58081b>`_).
+#. Add FidelityFX™ Variable Shading to your rendering pipeline (see `documentation <https://github.com/eyeware/FidelityFX-SDK/blob/main/docs/samples/variable-shading.md#setting-up-variable-shading>`_ ).
+#. Integrate the Beam Eye Tracker, making an instance of the :ref:`API<about_api_singleton>`.
+
+Then, at each frame, you will need to:
+
+- Retrieve the latest :ref:`FoveatedRenderingState<about_foveated_rendering_state>` from the Beam Eye Tracker API.
+- Fill in the ``FfxVrsDispatchDescription`` struct, mapping from the ``FoveatedRenderingState`` data.
+
+.. note:: Please take into account the :ref:`user_experience_considerations_for_foveated_rendering` when integrating foveated rendering.
+
+.. warning:: The prebuilt libraries are not updated with the latest changes, so you will need to build the SDK yourself.
+
+Modifications done to the FidelityFX™ SDK
+------------------------------------------
+
+The modified version of the FidelityFX™ SDK is at `https://github.com/eyeware/FidelityFX-SDK <https://github.com/eyeware/FidelityFX-SDK>`_.
+Please refer to that page and, in particular, the `Variable Shading` sample and the instructions to build the samples which
+are already well documented therein.
+
+What is of interest here is to explain the changes that were made to extend FidelityFX™ SDK with foveated rendering support.
+This was done in a two step process:
+
+.. list-table::
+   :widths: 70 30
+   :header-rows: 1
+
+   * - Description
+     - Commit
+   * - Added foveated rendering support to ``ffx_vrs.h``
+     - `651fbd34f17205f3040122a69d8fa5e01f58081b <https://github.com/eyeware/FidelityFX-SDK/commit/651fbd34f17205f3040122a69d8fa5e01f58081b>`_
+   * - Beam Eye Tracker SDK integration
+     - `56a203e540065eda66ed7a8cbf13417b41c40f3d <https://github.com/eyeware/FidelityFX-SDK/commit/56a203e540065eda66ed7a8cbf13417b41c40f3d>`_
+
+This was done to separate the changes to core library from those specific to the Beam Eye Tracker SDK integration. We will explain these work packages
+in more detail in the following sections.
+
+Foveated rendering support
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To add foveated rendering support we needed to extend the core library ``ffx_vrs.h``, which is the
+API for the FidelityFX™ Variable Shading implementation. After our modifications, the high level process of creating
+the VRS context with ``ffxVrsContextCreate``, setting the dispatch parameters through the ``FfxVrsDispatchDescription`` struct
+and dispatching the call to create the shading rate image (``SRI``) with ``ffxVrsContextDispatch`` is essentially the same.
+
+However, the main change to the ``ffx_vrs.h`` API is that the ``FfxVrsDispatchDescription`` struct was extended with the following parameters:
+
+- ``vrsAlgorithm``: allows to select between either the prior method based on motion vectors and luminance, foveation, or a combination of both using the max operator.
+- ``foveationCenter``: the center of the foveated region, same as :cpp:member:`normalized_foveation_center<eyeware::beam_eye_tracker::EW_BET_FoveatedRenderingState::normalized_foveation_center>` but in pixel coordinates.
+- ``foveationRadiiSquared``: the radii of the foveated regions, same as :cpp:type:`FoveationRadii<eyeware::beam_eye_tracker::EW_BET_FoveationRadii>`, but in pixel coordinates and squared for shader performance reasons.
+
+
+To achieve this, the shader (found in ``ffx_variable_shading.h``) was extended with the following function:
+
+.. code-block:: hlsl
+
+   FfxUInt32 VrsComputeFoveatedShadingRate(FfxUInt32x3 Gid, FfxUInt32x3 Gtid, FfxUInt32 Gidx)
+
+which computes the shading rate for the given thread. Then, the main shader function ``void VrsGenerateVrsImage(FfxUInt32x3 Gid, FfxUInt32x3 Gtid, FfxUInt32 Gidx)`` 
+calls ``VrsComputeFoveatedShadingRate`` and combines its result with the prior method based on motion vectors and luminance using the max operator,
+depending on the ``vrsAlgorithm`` parameter.
+
+Given this modified API, the VRS sample available in the SDK was extended with a UI interface selection of the ``vrsAlgorithm`` parameter,
+as explained in the `UI Elements <https://github.com/eyeware/FidelityFX-SDK/blob/main/docs/samples/variable-shading.md#ui-elements>`_ section.
+Predefined (constant)values for the ``foveationCenter`` and ``foveationRadiiSquared`` parameters were also added.
+
+Beam Eye Tracker SDK integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The integration of the Beam Eye Tracker is mostly relevant to the sample's code, as it does not relate to the core library itself.
+However, as the Beam Eye Tracker API requires knowledge of the :ref:`viewport` geometry, the Cauldron Framework
+was further extended to deliver a callback ``OnMove()`` whenever the window is moved, so that we can call the 
+:cpp:func:`update_viewport_geometry()<eyeware::beam_eye_tracker::API::update_viewport_geometry>` method accordingly.
+
+Finally, the process described in :ref:`how_to_add_foveated_rendering_with_fidelityfx` is applied at each frame,
+and the ``FfxVrsDispatchDescription`` struct is filled in with the latest :ref:`FoveatedRenderingState<about_foveated_rendering_state>`
+from the Beam Eye Tracker API, after mapping from the normalized coordinates to pixel coordinates and squaring the radii.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

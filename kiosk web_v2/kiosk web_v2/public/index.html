@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta
+    name="description"
+    content="Web site created using create-react-app"
+  />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>React App</title>
+
+  <style>
+    #root > div[style*="position:fixed"] {
+      display: none !important;
+    }
+    div[style*="background: lime"] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body style="margin:0;overflow:hidden;">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  
+  <!-- QWebChannel 라이브러리 추가 -->
+  <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+  <script>
+    // PyQt5와의 통신을 위한 브리지 객체
+    window.pyqtBridge = {
+      // 장바구니 상태 변경 시 호출
+      notifyCartChange: function(cartState) {
+        if (window.qt && window.qt.webChannelTransport) {
+          window.qt.webChannelTransport.send(JSON.stringify({
+            type: 'cartChange',
+            data: cartState
+          }));
+        }
+      },
+      
+      // 클릭 이벤트 시 호출
+      notifyClick: function(elementInfo) {
+        if (window.qt && window.qt.webChannelTransport) {
+          window.qt.webChannelTransport.send(JSON.stringify({
+            type: 'click',
+            data: elementInfo
+          }));
+        }
+      }
+    };
+    
+    // 페이지 로드 완료 시 PyQt5에 알림
+    window.addEventListener('load', function() {
+      if (window.qt && window.qt.webChannelTransport) {
+        window.qt.webChannelTransport.send(JSON.stringify({
+          type: 'pageLoaded',
+          data: { url: window.location.href }
+        }));
+      }
+    });
+  </script>
+</body>
+</html>

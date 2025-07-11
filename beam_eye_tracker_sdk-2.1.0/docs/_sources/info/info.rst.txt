@@ -1,0 +1,9 @@
+Versioning & Legal
+===================
+
+.. toctree::
+   :maxdepth: 1
+
+   changelog
+   third-party-licenses
+   license

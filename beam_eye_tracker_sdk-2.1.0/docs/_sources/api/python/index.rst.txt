@@ -1,0 +1,148 @@
+Python
+======
+
+The Python API is provided through the ``eyeware.beam_eye_tracker`` module, which is a wrapper around the C++ API.
+It provides the same functionality with a Pythonic interface. All methods and types correspond directly to their
+C++ counterparts, but follow Python naming conventions.
+
+Core Classes
+------------
+
+API
+~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.API
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+TrackingStateSet
+~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.TrackingStateSet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+TrackingListener
+~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.TrackingListener
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Enums
+-----
+
+TrackingDataReceptionStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.TrackingDataReceptionStatus
+   :members:
+   :undoc-members:
+
+TrackingConfidence
+~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.TrackingConfidence
+   :members:
+   :undoc-members:
+
+Data Types
+----------
+
+The Python types directly correspond to their C++ counterparts, providing a Pythonic interface
+while maintaining the same functionality.
+
+Coordinates
+~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.Point
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.PointF
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.Vector3D
+   :members:
+   :undoc-members:
+
+Viewport Management
+~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.ViewportGeometry
+   :members:
+   :undoc-members:
+
+Real-time Tracking
+~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.UserState
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.UnifiedScreenGaze
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.ViewportGaze
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.HeadPose
+   :members:
+   :undoc-members:
+
+In-game Camera Control
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.SimGameCameraState
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.SimCameraTransform3D
+   :members:
+   :undoc-members:
+
+Immersive HUD
+~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.GameImmersiveHUDState
+   :members:
+   :undoc-members:
+
+Foveated rendering
+~~~~~~~~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.FoveationRadii
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.FoveatedRenderingState
+   :members:
+   :undoc-members:
+
+Other Types
+~~~~~~~~~~~
+
+.. autoclass:: eyeware.beam_eye_tracker.Version
+   :members:
+   :undoc-members:
+
+.. autoclass:: eyeware.beam_eye_tracker.Timestamp
+   :members:
+   :undoc-members:
+
+Utils
+-----
+
+.. autofunction:: eyeware.beam_eye_tracker.NULL_DATA_TIMESTAMP
+
+Constants
+---------
+
+.. autoattribute:: eyeware.beam_eye_tracker.DEFAULT_TRACKING_DATA_TIMEOUT_MS
+   

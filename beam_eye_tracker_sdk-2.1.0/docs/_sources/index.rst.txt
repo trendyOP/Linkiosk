@@ -1,0 +1,56 @@
+Documentation
+==============================
+
+.. rst-class:: lead
+
+   Increase immersion and framerates in games with the Beam Eye Tracker SDK |version|
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   basics/index
+   features/features
+   integration/integration
+   api/index
+   info/info
+
+.. card:: Start with the basics
+   :link: basics/index
+   :link-type: doc
+   :img-top:   /media/card_icons/Basics.svg
+   :class-card: left-square-image-card
+   
+   Get started with the Beam Eye Tracker SDK.
+
+.. card:: Core features
+   :link: features/features
+   :link-type: doc
+   :img-top:   /media/card_icons/Racing.svg
+   :class-card: left-square-image-card
+   
+   Explore in detail what you can do with the Beam Eye Tracker SDK.
+
+.. card:: Ready to use plugins and samples
+   :link: integration/integration
+   :link-type: doc
+   :img-top:   /media/card_icons/Integrations.svg
+   :class-card: left-square-image-card
+   
+   Press the skip button and go to the samples and plugins.
+
+.. card:: API Reference
+   :link: api/index
+   :link-type: doc
+   :img-top:   /media/card_icons/Programming.svg
+   :class-card: left-square-image-card
+   
+   Reference for the main supported programming languages .
+
+.. card:: Versioning & Legal
+   :link: info/info
+   :link-type: doc
+   :img-top:   /media/card_icons/Information.svg
+   :class-card: left-square-image-card
+   
+   Details about version history, licensing and third-party components.

@@ -1,0 +1,45 @@
+Start with the basics
+========================
+
+.. toctree::
+   :hidden:
+   :maxdepth: 3
+
+   overview
+   installation
+   general_api_concepts
+   reference_frames
+
+.. card:: Overview
+   :link: overview
+   :link-type: doc
+   :img-top:   /media/card_icons/Basics.svg
+   :class-card: left-square-image-card
+   
+   Get a brief explanation about what this is all about.
+
+.. card:: Installation and setup
+   :link: installation
+   :link-type: doc
+   :img-top:   /media/card_icons/GettingStarted.svg
+   :class-card: left-square-image-card
+   
+   Set up your development environment and integrate the SDK.
+
+.. card:: General API concepts
+   :link: general_api_concepts
+   :link-type: doc
+   :img-top:   /media/card_icons/APIConcepts.svg
+   :class-card: left-square-image-card
+   
+   Learn about the general concepts of the API.
+.. card:: Reference frames
+   :link: reference_frames
+   :link-type: doc
+   :img-top:   /media/beam_sdk_wcs.png
+   :class-card: left-square-image-card
+   
+   Get acquainted with the coordinate systems needed to implement immersive experiences.
+
+
+

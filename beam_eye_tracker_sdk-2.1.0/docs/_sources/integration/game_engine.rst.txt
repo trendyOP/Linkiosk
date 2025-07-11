@@ -1,0 +1,130 @@
+.. _game_engine_integration:
+
+Game Engine Integration
+=======================
+
+The Game Engine Integration Sample demonstrates how to integrate the Beam Eye Tracker SDK into a game engine architecture. 
+To avoid dealing with the many complexities of a real game-engine, this sample uses a dummy game engine architecture.
+However, the coding patterns are compatible with major game engines like Unity and Unreal Engine 5. It demonstrates:
+
+* Wrapping the ``API`` as a custom game engine input device;
+* Implementation of :ref:`about_sim_game_camera_state`;
+* Implementation of an Immersive HUD as in :ref:`about_game_immersive_hud_state`;
+* Holding game settings parameters and mapping them to input device parameters;
+* Viewport geometry management;
+* Camera recentering functionality, and;
+* Auto-start capability for seamless user experience.
+
+
+.. note:: 
+   
+   **Requirements**: Windows 10 or higher, CMake, C++ compiler, Beam Eye Tracker application (v2.4 or higher).
+
+   **Language**: ``C++``.
+
+Compiling and running the sample
+--------------------------------
+
+As part of the `C++` samples, you can find the ``game_engine_integration`` sample in the ``cpp\samples`` folder.
+
+Prebuilt binaries are available for Windows in the ``cpp\samples\bin`` folder. But you can also compile the sample yourself.
+To do so, run the ``build_samples.bat`` script in the ``cpp\samples`` folder.
+The script assumes you have CMake installed and that CMake can find a suitable
+C++ compiler/generator on your system. The ``CMakeLists.txt`` integrates the Beam Eye Tracker SDK as explained in :ref:`beam_sdk_integration_project_configuration`.
+
+The program runs for 30 seconds. The console displays:
+
+* Real-time camera position and rotation (only z translation and yaw are shown for simplicity);
+* Current HUD opacity values which change whether you are looking at the top-left corner of the viewport, and;
+* Recentering status updates (when pressing SPACE).
+
+Moreover, you can observe that the camera's z translation continuously increases
+to simulate the ``reference`` camera pose changes through the 3D world scene,
+while the immersive camera pose changes are `additive` to this base pose.
+
+
+.. warning:: The current **viewport** geometry is hardcoded in ``get_rendering_area_viewport_geometry_from_engine`` and thus you won't
+  experience realistic behavior out of the box when running the sample. It 
+  assumes the game is rendering on the middle screen of three 1920x1080 monitors, with the left-most screen being the Windows `main display`.
+  
+  If you want realistic behavior, for example, that the opacitiy output changes when you indeed look at the top-left corner
+  of YOUR display, you need to modify the ``get_rendering_area_viewport_geometry_from_engine`` function to return
+  a rectangle geometry that matches your setup (e.g. a given screen or window that you want to pretend is game-rendering area),
+  but do respect the Unity-like viewport definition (bottom-left corner at ``(0, 0)``) which is assumed for this specific sample.
+
+
+
+
+Sample explained
+----------------
+
+The source code is distributed into three files:
+
+my_game_engine.h
+~~~~~~~~~~~~~~~~
+
+This file implements dummy classes that emulate a typical game engine object-oriented pattern:
+
+* Base interfaces with common functions like ``BeginPlay``, ``Tick``, ``Update``
+* Simplified game engine architecture similar to Unity/Unreal
+* Meant to be replaced by your engine's actual functionality
+
+.. literalinclude:: ../../../cpp/samples/game_engine_integration/my_game_engine.h
+   :language: c++
+   :linenos:
+   :caption: my_game_engine.h
+
+bet_game_engine_device.h
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Implements the ``MyGameEngineBeamEyeTrackerDevice`` which is the key class that you would typically implement
+for your specific game engine. You will see that it:
+
+* manages the :ref:`API<about_api_singleton>` instance;
+* uses :ref:`asynchronous data access<about_asynchronous_data_access>` using itself as the :cpp:type:`eyeware::beam_eye_tracker::TrackingListener`;
+* shows how to :ref:`launch the Beam Eye Tracker<about_auto_start_tracking>` at ``BeginPlay``;
+* computes HUD opacity values based on :ref:`whether the user is looking at the HUD element or not<about_game_immersive_hud_ready_to_use_signals>`, making
+  said opacities part of the device output parameters;
+* processes the camera pose parameters, :ref:`mapping them to the game engine coordinates<sim_mapping>`, 
+  and setting the mapped ``MyGameEngineTransform`` (yaw, pitch, roll, x, y, z) as a device output parameter;
+* processes how game settings affect the device behavior and output.
+
+.. note:: The sample uses asynchronous data access, but if you can't guarantee that the ``TrackerListener``
+   will be alive until the handle is explicitly deregistered, you can use :ref:`polling data access<about_polling_data_access>`
+   instead, which also does not block the main thread.
+
+
+.. literalinclude:: ../../../cpp/samples/game_engine_integration/bet_game_engine_device.h
+   :language: c++
+   :linenos:
+   :caption: bet_game_engine_device.h
+
+main.cpp
+~~~~~~~~
+
+This is the main function that manages the scene objects, the ``MyGameEngineBeamEyeTrackerDevice`` instance, and the game loop,
+in particular, it:
+
+* Creates a HUD ``MyGameEngineImmersiveHUD`` consisting of a ``MyGameEngineHUDElement`` instance on each of the 4 corners of the viewport;
+* Creates a scene in which a camera ``MyGameEngineImmersiveCamera`` is positioned as a child of a character head ``MyGameEngineCharacterHead``,
+  which provides a reference pose (see :ref:`about_sim_game_camera_controlling_the_in_game_camera`);
+* Both the ``MyGameEngineImmersiveCamera`` and ``MyGameEngineCharacterHead`` instances hold pointers of the ``MyGameEngineBeamEyeTrackerDevice``
+  instance so that they react to eye and head tracking data at the ``Tick`` function;
+* Implements a ``MyGameEngineHotkeysMapper`` which monitors if the user presses the SPACE key to recenter the camera,
+  following :ref:`about_camera_recentering`;
+
+
+.. literalinclude:: ../../../cpp/samples/game_engine_integration/main.cpp
+   :language: c++
+   :linenos:
+   :caption: main.cpp
+
+
+Other highlights
+----------------
+
+* The sample assumes that the game engine is using a Unity-like coordinate system for the camera pose (yaw, pitch, roll, x, y, z definitions)
+  and viewport geometry (origin ``(0, 0)`` at bottom-left corner of the rendering area).
+* The demonstrated game settings are head tracking sensitivity, eye tracking sensitivity and auto-start behavior toggle,
+  which would typically be exposed in the game's UI.
+* Note how the opacity fade in and fade out is `animated` to make a smoother experience, but fade in is much faster than fade out.

@@ -1,0 +1,184 @@
+
+
+
+
+
+.. _about_game_immersive_hud_state:
+
+Dynamic HUDs
+============
+
+With the Beam Eye Tracker ``API`` you can get, out-of-the-box, an estimate in real-time of whether the user is looking at
+`static` HUD elements in the `screen-space`, such as a minimap, speedometer, etc. This opens the door to enhance
+gaming experiences. Examples of use cases are:
+
+* **Immersive HUDs**, which automatically fade out when the user is not looking at them, but immediately
+  reappear when the user glances at them.
+
+* **Reactive HUDs**, which are then zoomed-in, popped up, focused, make a sound, etc. based on whether the user is looking at them.
+
+
+.. figure:: ../media/ImmersiveHUD.svg
+  :width: 600
+  :alt: ImmersiveHUD
+  :align: center
+
+  An example of an Immersive HUD. The minimap is only visible when the user is looking at it, letting
+  the user focus on the game scene, boosting the overall immersive experience.
+
+This page explains how to implement such functionalities leveraging convenient ``API`` functionality.
+
+.. _about_game_immersive_hud_integration_process:
+
+
+The integration process consists of these steps:
+
+#. :ref:`about_game_immersive_hud_keep_viewport_geometry_updated`;
+#. :ref:`about_game_immersive_hud_determine_user_looking_at_hud_elements`;
+#. :ref:`about_game_immersive_hud_make_hud_elements_react`;
+#. Optionally, :ref:`about_game_immersive_hud_in_game_settings`
+
+We will now describe each of these steps in detail.
+
+
+.. _about_game_immersive_hud_keep_viewport_geometry_updated:
+
+Keep the viewport geometry updated
+----------------------------------
+
+Make sure that the viewport geometry is correctly set at ``API`` initialization and updated during gameplay.
+This is explained in the :ref:`viewport` section. Once this is achieved, the gaze coordinates
+mapped to the viewport coordinate system will be readily available as part of the ``UserState``
+data structure, as explained in the :ref:`about_real_time_tracking` section.
+
+.. _about_game_immersive_hud_determine_user_looking_at_hud_elements:
+
+Estimate if the user is looking at a HUD element
+------------------------------------------------
+
+The Beam Eye Tracker ``API`` provides ready-to-use signals that indicate
+whether the user is looking at pre-defined HUD regions, but you can also
+implement this manually. Both approaches are here explained.
+
+.. _about_game_immersive_hud_ready_to_use_signals:
+
+Ready to use "looking at HUD" signals
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ready to use signals are based on pre-defined HUD regions as seen in the image below
+
+.. figure:: ../media/HUDRegions.svg
+  :width: 600
+  :alt: HUDRegions
+  :align: center
+
+
+To access the respective signals you have to first retrieve the :cpp:type:`GameImmersiveHUDState<eyeware::beam_eye_tracker::EW_BET_GameImmersiveHUDState>`
+data structure from  the stream of ``TrackingStateSet`` objects (see :ref:`data_access_methods`).
+Then, the :cpp:type:`GameImmersiveHUDState<eyeware::beam_eye_tracker::EW_BET_GameImmersiveHUDState>`
+contains a float value per point/region
+(for example :cpp:member:`looking_at_viewport_top_left<eyeware::beam_eye_tracker::EW_BET_GameImmersiveHUDState::looking_at_viewport_top_left>` )
+that should be interpreted as the likelihood (value between 0 and 1) of the user
+looking at that region. Typically you can use a threshold of ``0.5`` to decide
+whether the user is looking at a region or not as a boolean value.
+
+Note that more than one point/region can be looked by the user at the same time,
+based on the current implementation.
+
+.. note:: The current mechanism that the Beam Eye Tracker uses to determine if the user is looking at a region is based on the
+          normalized distance between the gaze coordinates and the point/region, whereas each point is at distance of
+          ``0.1`` from the viewport border (i.e. ``10%`` of the width or height of the viewport). If the distance
+          is below ``0.3`` then we say that the user is looking at that region. Note that this is rather large margin.
+
+          However, this algorithm **is subject to change in future releases** that could account for improvements
+          in the eye tracking technology and is a further reason why we recommend to use the provided signals
+          instead of a manual implementation.
+
+          A priori, our implementation philosophy is to prefer false positives
+          over false negatives, as it is more annoying to have a HUD element not react when the user is looking directly at it
+          than to have a HUD element react when the user is looking nearby but not directly at it, specially if the
+          interaction is for the HUD element to disappear.
+
+
+.. _about_game_immersive_hud_manual_implementation:
+
+Manual implementation of "looking at HUD" signals
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The manual implementation is based on the :cpp:type:`UserState<eyeware::beam_eye_tracker::EW_BET_UserState>`
+data structure, which contains the gaze coordinates in the viewport coordinate
+system :cpp:member:`UserState::viewport_gaze<eyeware::beam_eye_tracker::EW_BET_UserState::viewport_gaze>`.
+
+Then, in your game engine, you can define screen-space objects in the position of
+HUD elements that you want to detect and add a simple **collision detection algorithm**
+to return a boolean value indicating if the gaze coordinates
+are within the bounds of said object.
+
+.. important:: It is critical to consider that webcam eye tracking can be innacurate for some setups,
+            which gets even worse in complex scenarios such as gaming in multiple monitors.
+            Thus, when creating the collision objects please either make them much **larger** than the HUD elements
+            or use **generous margins** to account for such innacuracies.
+
+            We argue that having false positives is preferrable to having false negatives, 
+            in use cases such as immersive HUDs (which disappear when the user is not looking at them),
+            as it could be frustrating to the user if the HUD element is not reappearing despite
+            the user looking at it.
+
+            Alternatively, you can simply rely on the :ref:`about_game_immersive_hud_ready_to_use_signals` whose behavior
+            is intended to evolve and improve as the Beam Eye Tracker itself evolves.
+
+
+.. _about_game_immersive_hud_make_hud_elements_react:
+
+Make the HUD element(s) react
+------------------------------
+
+Now that you have a signal indicating if the user is looking at a HUD element or not,
+you can implement the logic to make the HUD element react. Clearly, this is specific to the
+use case you are implementing.
+
+Assuming your current goal is to implement an **Immersive HUD**, in which HUD elements are only rendered
+when the user is looking at them, you can implement  an algorithm in which:
+
+* If the user is looking at the HUD element, you make it fully visible quickly by setting the opacity to 100% (e.g. over 50ms);
+* If the user is not looking at the HUD element, you slowly fade it out by slowly decreasing the opacity to a minimum value such as 30% (e.g. over 1 second).
+
+An example implementation is detailed in the :ref:`game_engine_integration` sample.
+
+.. _about_game_immersive_hud_in_game_settings:
+
+Add in-game settings
+----------------------
+
+In is not necessary to expose any in-game settings to the user. However, if you want to,
+you can expose the following settings
+
+Device selection
+~~~~~~~~~~~~~~~~
+
+Same  :ref:`about_sim_game_camera_device_selection` as for the :ref:`about_sim_game_camera_state` feature.
+
+
+ON/OFF Toggle  
+~~~~~~~~~~~~~
+
+You can let the user activate or deactivate the feature. 
+
+.. _about_game_immersive_hud_sensitivity_range_sliders:
+
+Sensitivity/Range Sliders
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To account for complex setups, including multiple monitors or a variety of webcams,
+you can customize the margins used to determine if the user is looking at a HUD element or not
+if you used a :ref:`about_game_immersive_hud_manual_implementation` impleemntation.
+
+Non-static HUD elements
+-----------------------
+
+This page focused on eye-tracking interactions with `static` HUD elements in the `screen-space`, such as a
+minimap, speedometer, etc. The same principles apply to dynamic objects
+(which change position or size during gameplay) following the
+:ref:`about_game_immersive_hud_manual_implementation` mechanics, but you need to 
+carefully take into account the recommendations explained in that section including
+those related to innacuracies of webcam eye tracking.

@@ -1,0 +1,135 @@
+C++
+===
+
+The C++ API is the primary interface of the Beam SDK. It provides comprehensive eye tracking functionality through an intuitive object-oriented design.
+
+.. note::
+   All C++ types and classes described in this documentation are enclosed within the ``eyeware::beam_eye_tracker`` namespace.
+
+Core Classes
+------------
+
+API
+~~~
+
+.. doxygenclass:: eyeware::beam_eye_tracker::API
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+   :undoc-members:
+
+TrackingStateSet
+~~~~~~~~~~~~~~~~
+
+.. doxygenclass:: eyeware::beam_eye_tracker::TrackingStateSet
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+   :undoc-members:
+
+TrackingListener
+~~~~~~~~~~~~~~~~
+
+.. doxygenclass:: eyeware::beam_eye_tracker::TrackingListener
+   :project: BeamEyeTrackerSDK_C_CPP
+   :members:
+   :undoc-members:
+
+Enums
+-----
+
+TrackingDataReceptionStatus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygenenum:: eyeware::beam_eye_tracker::TrackingDataReceptionStatus
+   :project: BeamEyeTrackerSDK_C_CPP
+
+TrackingConfidence
+~~~~~~~~~~~~~~~~~~~
+
+.. doxygenenum:: eyeware::beam_eye_tracker::TrackingConfidence
+   :project: BeamEyeTrackerSDK_C_CPP
+
+
+Data Types
+----------
+
+The C++ types are aliases for the types defined in the C API, but following C++
+naming and namespace conventions.
+
+Coordinates
+~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::Point
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::PointF
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::Vector3D
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::Matrix3x3
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Viewport management
+~~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::ViewportGeometry
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Real-time tracking
+~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::UserState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::UnifiedScreenGaze
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::ViewportGaze
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::HeadPose
+   :project: BeamEyeTrackerSDK_C_CPP
+
+In-game camera control
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::SimGameCameraState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::SimCameraTransform3D
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Immersive HUD
+~~~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::GameImmersiveHUDState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Foveated rendering
+~~~~~~~~~~~~~~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::FoveationRadii
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::FoveatedRenderingState
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Other
+~~~~~
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::Version
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygentypedef:: eyeware::beam_eye_tracker::Timestamp
+   :project: BeamEyeTrackerSDK_C_CPP
+
+Constants
+---------
+
+.. doxygenvariable:: eyeware::beam_eye_tracker::DEFAULT_TRACKING_DATA_TIMEOUT_MS
+   :project: BeamEyeTrackerSDK_C_CPP
+
+.. doxygenvariable:: eyeware::beam_eye_tracker::NULL_DATA_TIMESTAMP
+   :project: BeamEyeTrackerSDK_C_CPP
+

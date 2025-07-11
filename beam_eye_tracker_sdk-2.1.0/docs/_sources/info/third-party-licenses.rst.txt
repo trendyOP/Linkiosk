@@ -1,0 +1,30 @@
+Third Party Licenses
+--------------------
+
+Runtime
+~~~~~~~
+
+.. include:: ../../../THIRD_PARTY_LICENSES.md
+   :parser: myst_parser.sphinx_
+
+Documentation
+~~~~~~~~~~~~~
+
+This documentation was created thanks to the following third-party software and libraries:
+
+- `Sphinx <https://www.sphinx-doc.org/>`_ (License: BSD 2-Clause License)
+
+- `Doxygen <https://www.doxygen.nl/>`_ (License: GNU General Public License v2.0)
+
+- `sphinxawesome_theme <https://sphinxawesome.xyz/>`_ (License: MIT License)
+
+- `Breathe <https://github.com/breathe-doc/breathe>`_ (License: BSD 2-Clause License)
+
+- `sphinx_tabs.tabs <https://github.com/executablebooks/sphinx-tabs>`_ (License: BSD 2-Clause License)
+
+- `sphinx_design <https://github.com/executablebooks/sphinx-design>`_ (License: BSD 2-Clause License)
+
+- `sphinx_csharp <https://github.com/djungelorm/sphinx-csharp>`_ (License: BSD 2-Clause License)
+
+- `myst_parser <https://github.com/executablebooks/MyST-Parser>`_ (License: BSD 2-Clause License)
+

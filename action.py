@@ -27,7 +27,7 @@ options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
 driver = webdriver.Chrome(service=service, options=options)
 
-html_path = os.path.abspath("R2.html")
+html_path = os.path.abspath(os.path.join("omniparser-origin", "R2.html"))
 driver.get(f"file:///{html_path}")
 time.sleep(2)
 
@@ -40,7 +40,8 @@ with open(screenshot_path, "wb") as f:
 img = cv2.imread(screenshot_path)
 
 # 4. YOLO 모델 로드 및 추론
-model = YOLO("weights/icon_detect/model.pt")
+model_path = os.path.join("omniparser", "weights", "icon_detect", "model.pt")
+model = YOLO(model_path)
 results = model(img)
 boxes = results[0].boxes.xyxy.cpu().numpy()  # shape [N,4]
 
@@ -72,7 +73,7 @@ for x1, y1, x2, y2 in boxes_int:
     })
 
 # ④ JSON으로 저장
-json_path = r"C:\Users\chcho\Downloads\OmniParser-master\boxes2.json"
+json_path = r"C:\Linkiosk-main\boxes2.json"
 with open(json_path, "w", encoding="utf-8") as jf:
     json.dump(data, jf, ensure_ascii=False, indent=4)
 print(f"✅ {len(data)}개 박스+텍스트 저장 → {json_path}")

@@ -1,0 +1,32 @@
+Overview
+========
+
+The Beam Eye Tracker SDK is a development kit that leverages the  `Beam Eye Tracker <https://beam.eyeware.tech/>`_'s head and eye tracking output
+to boost the **immersion** and **performance** of video games.
+
+Furthermore, given that it exposes real-time tracking data, such as head pose and eye gaze on screen,
+the API can be used to develop a **wide range of applications**,
+from accessibility solutions to intuitive interfaces and UX research tools.
+
+In essence, the SDK provides you with a dynamic library that you can link and distribute with your application.
+Once the library is linked, a `client-server` architecture is established where the
+Beam Eye Tracker acts as the server, and your
+game or application acts as the client. 
+
+Clients can then leverage the :ref:`about_api` to receive a stream of :ref:`TrackingStateSet<about_tracking_state_set>` data objects
+in real-time, which contain the raw and preprocessed tracking data that you need to implement the features
+such as foveated rendering, immersive camera controls, or dynamic HUDs with minimal effort.
+Ready to use plugins are available for popular tools and SDKs such as :ref:`Unity <about_unity_game_engine>`
+and :ref:`AMD FidelityFX™ <fidelity_fx_fvrs>`, to simplify the integration process.
+
+For more information about what you can achieve with the SDK, see the :ref:`key_functionality` section, or continue to :ref:`getting_started`.
+
+
+
+
+
+
+
+
+
+
