@@ -1,0 +1,48 @@
+{
+  "session_data": {
+    "session_id": "20250713_012515",
+    "start_time": 1752337515.4345794,
+    "gaze_data": [],
+    "confusion_patterns": [],
+    "help_events": [],
+    "memory_states": [],
+    "performance_metrics": []
+  },
+  "agent_session": {
+    "session_log": {
+      "start_time": 1752337515.4217892,
+      "gaze_points": [],
+      "actions": [],
+      "confusion_patterns": [],
+      "help_provided": [],
+      "conversation": []
+    },
+    "conversation_history": [],
+    "summary": {
+      "duration": 10.117405891418457,
+      "gaze_points_count": 0,
+      "actions_count": 0,
+      "confusion_patterns_count": 0,
+      "help_provided_count": 0,
+      "conversation_turns": 0,
+      "memory_state": {
+        "items": [],
+        "count": 0,
+        "step_count": 0
+      },
+      "current_gaze_state": "normal",
+      "confusion_level": 0.0
+    }
+  },
+  "elderly_behavior_report": {},
+  "scenario_info": {
+    "name": "키오스크 주문 테스트",
+    "steps": [
+      "아메리카노 선택",
+      "수량 선택",
+      "장바구니에 담기",
+      "결제하기"
+    ],
+    "current_step": 0
+  }
+}

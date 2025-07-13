@@ -1,0 +1,468 @@
+{
+  "timestamp": "20250713_031445",
+  "session_start_time": 1752344092.2870712,
+  "session_duration": 47.854822635650635,
+  "scenario_steps": [
+    "아메리카노",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [
+      0,
+      1
+    ],
+    "failed_steps": [],
+    "skipped_steps": [],
+    "retry_count": {}
+  },
+  "cart_history": [
+    {
+      "timestamp": 1752344107.8575106,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752344121.2673876,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752344132.909783,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752344132.9210973,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752344134.4346266,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      }
+    },
+    {
+      "timestamp": 1752344135.6339457,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      }
+    },
+    {
+      "timestamp": 1752344136.4738185,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "less_sugar",
+                  "name": "덜 달게",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 1,
+    "totalItems": 1,
+    "totalPrice": 3300,
+    "items": [
+      {
+        "name": "아메리카노",
+        "qty": 1,
+        "price": 3300,
+        "options": {
+          "size": [
+            {
+              "id": "regular",
+              "name": "기본사이즈",
+              "price": 0
+            }
+          ],
+          "temp": [
+            {
+              "id": "hot",
+              "name": "HOT",
+              "price": 0
+            }
+          ],
+          "coffee_opts": [
+            {
+              "id": "less_sugar",
+              "name": "덜 달게",
+              "price": 0
+            }
+          ]
+        }
+      }
+    ],
+    "step": 8
+  },
+  "total_gaze_points": 1359,
+  "total_clicks": 5,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 614.2198650697272,
+      "maximum": 19719.271692484454,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.008339262008666993,
+      "minimum": 0.002995014190673828,
+      "maximum": 0.01579594612121582,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 237.53478881107145,
+      "maximum": 286.4716390849188,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 1.4377978483835856,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 1359,
+    "total_clicks": 5,
+    "session_duration": 47.853821992874146
+  }
+}

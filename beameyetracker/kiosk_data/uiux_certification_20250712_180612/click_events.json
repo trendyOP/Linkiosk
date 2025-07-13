@@ -1,0 +1,77 @@
+[
+  {
+    "timestamp": 1752311192.7985373,
+    "x": -1156,
+    "y": 641,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250712_180612\\screenshot_initial.png",
+    "gaze_count": 407
+  },
+  {
+    "timestamp": 1752311198.7336397,
+    "x": -1346,
+    "y": 291,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250712_180612\\screenshot_click_1.png",
+    "gaze_count": 162
+  },
+  {
+    "timestamp": 1752311202.1360514,
+    "x": -1220,
+    "y": 467,
+    "step": 1,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "option-thumb-img",
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250712_180612\\screenshot_click_2.png",
+    "gaze_count": 75
+  },
+  {
+    "timestamp": 1752311205.9702919,
+    "x": -800,
+    "y": 692,
+    "step": 1,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "option-thumb-img",
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250712_180612\\screenshot_click_3.png",
+    "gaze_count": 98
+  },
+  {
+    "timestamp": 1752311210.3773208,
+    "x": -855,
+    "y": 1037,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250712_180612\\screenshot_click_4.png",
+    "gaze_count": 117
+  }
+]

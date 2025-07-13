@@ -1,0 +1,577 @@
+{
+  "timestamp": "20250712_180612",
+  "session_start_time": 1752311179.176809,
+  "session_duration": 47.404900789260864,
+  "scenario_steps": [
+    "아메리카노",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [
+      0,
+      1
+    ],
+    "failed_steps": [],
+    "skipped_steps": [],
+    "retry_count": {}
+  },
+  "cart_history": [
+    {
+      "timestamp": 1752311193.3664007,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752311199.668537,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752311210.777832,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752311210.804409,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752311212.717624,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      }
+    },
+    {
+      "timestamp": 1752311214.776971,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      }
+    },
+    {
+      "timestamp": 1752311216.011399,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      }
+    },
+    {
+      "timestamp": 1752311219.050622,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 9
+      }
+    },
+    {
+      "timestamp": 1752311223.0586228,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 9
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 9
+      }
+    },
+    {
+      "timestamp": 1752311223.0751479,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 9
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 2
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 0,
+    "totalItems": 0,
+    "totalPrice": 0,
+    "items": [],
+    "step": 2
+  },
+  "total_gaze_points": 1414,
+  "total_clicks": 5,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 924.2803977465245,
+      "maximum": 47121.097834963206,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.003760623931884766,
+      "minimum": 0.0020008087158203125,
+      "maximum": 0.005507230758666992,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 99.0668081421125,
+      "maximum": 181.8378398463862,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.7415456155250812,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 1413,
+    "total_clicks": 5,
+    "session_duration": 47.403903007507324
+  }
+}

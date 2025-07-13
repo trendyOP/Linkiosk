@@ -1,0 +1,77 @@
+[
+  {
+    "timestamp": 1752344107.1574,
+    "x": -1169,
+    "y": 640,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250713_031445\\screenshot_initial.png",
+    "gaze_count": 378
+  },
+  {
+    "timestamp": 1752344120.395293,
+    "x": -1338,
+    "y": 299,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250713_031445\\screenshot_click_1.png",
+    "gaze_count": 377
+  },
+  {
+    "timestamp": 1752344123.3096578,
+    "x": -1260,
+    "y": 435,
+    "step": 1,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "option-thumb-img",
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250713_031445\\screenshot_click_2.png",
+    "gaze_count": 62
+  },
+  {
+    "timestamp": 1752344129.6656485,
+    "x": -930,
+    "y": 697,
+    "step": 1,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "덜 달게",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250713_031445\\screenshot_click_3.png",
+    "gaze_count": 175
+  },
+  {
+    "timestamp": 1752344132.5074701,
+    "x": -893,
+    "y": 1042,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250713_031445\\screenshot_click_4.png",
+    "gaze_count": 69
+  }
+]

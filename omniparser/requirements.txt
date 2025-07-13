@@ -35,3 +35,4 @@ requests
 mss
 PyQt5
 PyQtWebEngine
+pyttsx3
