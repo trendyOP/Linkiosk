@@ -1,0 +1,206 @@
+[
+  {
+    "timestamp": "2025-06-14T00:39:23.804367",
+    "stamp_position": [
+      1279,
+      31
+    ],
+    "vision_state": {
+      "buttons_in_vision": [],
+      "buttons_centered": [],
+      "total_buttons": 18
+    },
+    "detected_buttons": [
+      {
+        "name": "button_0",
+        "bbox": [
+          1279,
+          318,
+          1577,
+          480
+        ],
+        "confidence": 0.9426724910736084
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1281,
+          485,
+          1577,
+          646
+        ],
+        "confidence": 0.9408341646194458
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1279,
+          148,
+          1578,
+          312
+        ],
+        "confidence": 0.9401214718818665
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          978,
+          485,
+          1274,
+          645
+        ],
+        "confidence": 0.9392808079719543
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          978,
+          318,
+          1275,
+          479
+        ],
+        "confidence": 0.9365434050559998
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          975,
+          149,
+          1274,
+          312
+        ],
+        "confidence": 0.9356379508972168
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1281,
+          654,
+          1577,
+          815
+        ],
+        "confidence": 0.9251013398170471
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          978,
+          654,
+          1275,
+          815
+        ],
+        "confidence": 0.9246914982795715
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1412,
+          1055,
+          1585,
+          1160
+        ],
+        "confidence": 0.822324812412262
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1243,
+          1075,
+          1318,
+          1141
+        ],
+        "confidence": 0.6748926639556885
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          962,
+          1071,
+          1021,
+          1145
+        ],
+        "confidence": 0.6708362698554993
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1081,
+          1076,
+          1137,
+          1141
+        ],
+        "confidence": 0.6682479381561279
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1145,
+          1076,
+          1196,
+          1140
+        ],
+        "confidence": 0.6655210256576538
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1027,
+          1074,
+          1079,
+          1142
+        ],
+        "confidence": 0.6500215530395508
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1334,
+          1080,
+          1390,
+          1136
+        ],
+        "confidence": 0.6380285620689392
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          1199,
+          1076,
+          1242,
+          1140
+        ],
+        "confidence": 0.6005215644836426
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          951,
+          62,
+          1284,
+          125
+        ],
+        "confidence": 0.5551498532295227
+      },
+      {
+        "name": "button_0",
+        "bbox": [
+          956,
+          835,
+          1599,
+          1052
+        ],
+        "confidence": 0.4615417420864105
+      }
+    ],
+    "selected_action": "click",
+    "reward": 1.0,
+    "q_values": {
+      "click": 0.8,
+      "move": 0.2
+    },
+    "policy_probs": {
+      "click": 0.9,
+      "move": 0.1
+    }
+  }
+]

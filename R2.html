@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>31 키오스크</title>
+  <meta name="viewport" content="width=900, initial-scale=1.0" />
+  <style>
+    body { margin:0; background:#f2f2f2; font-family:'Noto Sans KR',sans-serif; }
+    .kiosk-wrap { width:900px; min-height:1200px; margin:30px auto; background:#fff; border-radius:24px; box-shadow:0 0 30px rgba(0,0,0,0.12); display:flex; flex-direction:column; overflow-y:auto;}
+    .top-logo { width:100%; text-align:center; font-size:4.5em; font-weight:900; color:#3b1e6d; margin-top:60px; letter-spacing:10px; }
+    .progressbar { display:flex; justify-content:center; align-items:center; background:#f8f8ff; padding:18px 0 10px 0; margin-bottom:10px;}
+    .progress-step { font-size:1.1em; color:#aaa; font-weight:bold; margin:0 22px; position:relative; text-align:center;}
+    .progress-step.active { color:#3b1e6d; }
+    .progress-step.done { color:#3b1e6d; }
+    .progress-step:not(:last-child)::after { content:'>'; color:#bbb; margin-left:22px;}
+    .main-content { display:flex; flex-direction:row; padding:34px 36px 0 36px; min-height:600px; box-sizing:border-box; }
+    .sidebar { width:190px; background:#f7f7f7; border-radius:14px; border:2px solid #eee; display:flex; flex-direction:column; align-items:center; padding-top:40px; }
+    .sidecat { display:flex; flex-direction:column; align-items:center; width:100%; }
+    .sidecat-btn { width:150px; margin-bottom:10px; padding:20px 0; text-align:center; background:none; border:none; font-size:1.13em; color:#444; font-weight:bold; cursor:pointer; border-left:5px solid transparent; transition:background 0.2s, border 0.2s; border-radius:12px;}
+    .sidecat-btn.active { background:#fff; border-left:5px solid #3b1e6d; color:#3b1e6d;}
+    .menu-panel { flex:1; max-width:650px; display:flex; flex-direction:column; align-items:center; }
+    .main-title { font-size:1.28em; color:#3b1e6d; font-weight:bold; margin-bottom:22px; text-align:center; width:100%;}
+    .product-grid { display: grid; grid-template-columns: repeat(3, 189px); gap: 22px; justify-content: center; width: 100%;}
+    .product-card {
+      width: 189px; height: 207px;
+      background: #f8f8ff;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: box-shadow 0.2s, border 0.2s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 8px 6px 8px;
+      box-sizing: border-box;
+      overflow: hidden;
+      justify-content: flex-start;
+    }
+    .product-card.selected, .product-card:active { border:2.5px solid #3b1e6d; box-shadow:0 4px 16px rgba(59,30,109,0.11);}
+    .product-img-placeholder {
+      width: 110px; height: 110px;
+      background: #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 7px;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+    .product-name {
+      font-size: 1.02em;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 4px;
+      white-space: normal;
+      line-height: 1.2;
+      width: 100%;
+      text-align: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      flex-shrink: 0;
+      min-height: 2.4em;
+      max-height: 3.6em;
+      overflow: hidden;
+    }
+    .product-price {
+      color: #e53935;
+      font-size: 1.05em;
+      font-weight: bold;
+      margin-bottom: 2px;
+      width: 100%;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .order-section-wrap { width:100%; margin-top:30px; display:flex; justify-content:center;}
+    .order-section { width:calc(100% - 72px); background:#f7f7f7; border-radius:14px; border:2px solid #eee; padding:20px 24px 32px 24px; box-sizing:border-box; }
+    .order-title { font-weight:bold; font-size:1.2em; color:#3b1e6d; margin-bottom:12px; text-align:center; }
+    .order-list-bar { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; max-height:200px; overflow-y:auto; padding-right:8px;}
+    .order-item-bar { background:#fff; border-radius:8px; padding:8px 12px; display:flex; align-items:center; gap:8px; font-size:1.08em; box-shadow:0 1px 4px rgba(0,0,0,0.04); min-width:180px;}
+    .order-name-bar { min-width:90px; white-space:normal; line-height:1.2; text-align:center; font-weight:600;}
+    .order-qty-bar { width:28px; text-align:center; font-weight:bold;}
+    .order-price-bar { width:70px; text-align:right; color:#e53935; font-weight:bold;}
+    .order-remove-bar { background:none; border:none; color:#aaa; font-size:1.3em; cursor:pointer; margin-left:4px; transition:color 0.2s;}
+    .order-remove-bar:hover { color:#e53935;}
+    .order-sum-bar { font-size:1.13em; font-weight:bold; color:#3b1e6d; margin-top:14px; text-align:center;}
+    .order-bottom-btns { display:flex; justify-content:center; gap:30px; margin-top:24px; }
+    .order-bottom-btns button { padding:16px 40px; font-size:1.1em; border:none; border-radius:12px; font-weight:bold; cursor:pointer; background:#3b1e6d; color:#fff; transition:background 0.2s;}
+    .order-bottom-btns button:first-child { background:#aaa; color:#fff; }
+    .order-bottom-btns button:active { background:#a084ca;}
+    .centered-msg { text-align:center; color:#aaa; margin:30px 0;}
+    /* 맛 선택 모달 */
+    .modal-bg { position:fixed; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.23); z-index:100; display:none; align-items:center; justify-content:center;}
+    .modal {
+      background:#fff;
+      border-radius:18px;
+      padding:30px 30px 24px 30px;
+      text-align:center;
+      box-shadow:0 8px 32px rgba(0,0,0,0.13);
+      width: 430px;
+      max-width: 95vw;
+    }
+    .flavor-modal-title { font-size:1.2em; color:#3b1e6d; font-weight:bold; margin-bottom:18px;}
+    .flavor-scroll-wrap {
+      height: 400px;
+      overflow-y: auto;
+      margin-bottom: 12px;
+    }
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 0 0 0 0;
+    }
+    .flavor-card {
+      background: #f8f8ff;
+      border: 2px solid #eee;
+      border-radius: 10px;
+      font-size: 1.08em;
+      color: #3b1e6d;
+      padding: 10px 6px 6px 6px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .flavor-img-placeholder {
+      width: 70px;
+      height: 70px;
+      background: #e0e0e0;
+      border-radius: 7px;
+      margin-bottom: 8px;
+    }
+    .flavor-card.selected {
+      border: 2.5px solid #3b1e6d;
+      background: #e2dbfa;
+    }
+    .flavor-selected-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 14px 0 0 0;
+    }
+    .flavor-selected-item {
+      background: #e2dbfa;
+      color: #3b1e6d;
+      border-radius: 7px;
+      padding: 6px 13px;
+      font-size: 1em;
+      cursor:pointer;
+    }
+    .modal-bottom-btns {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .modal-bottom-btns button {
+      padding: 14px 32px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #3b1e6d;
+      color: #fff;
+    }
+    .modal-bottom-btns button:active {
+      background: #a084ca;
+    }
+    /* 주문확인/할인/결제 화면 */
+    .step-panel { width:100%; max-width:700px; margin:0 auto 40px auto; background:#f8f8ff; border-radius:18px; box-shadow:0 2px 8px rgba(0,0,0,0.07); padding:34px 32px 32px 32px; }
+    .step-title { font-size:1.4em; color:#3b1e6d; font-weight:bold; margin-bottom:28px; text-align:center; }
+    .order-check-line { background:#fff; border-radius:12px; padding:18px 10px;margin-bottom:18px;font-size:1.15em; box-shadow:0 1px 4px rgba(0,0,0,0.04);}
+    .step-btns { display:flex; justify-content:center; gap:24px; margin-top:22px;}
+    .step-btns button { padding:14px 36px; font-size:1.1em; border-radius:10px; border:none; background:#3b1e6d; color:#fff; font-weight:bold; cursor:pointer;}
+    .step-btns button.secondary { background:#aaa; }
+    .step-btns button:active { background:#a084ca;}
+    .step-sum { margin-top:22px; text-align:center; font-size:1.15em;}
+    .step-sum b { color:#e53935;}
+    .step-sum-row { display:flex; justify-content:space-between; margin:10px 0 0 0;}
+    .step-sum-row b { color:#e53935;}
+    /* 할인/적립, 카드결제 수단 그리드 버튼 */
+    .big-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 227px);
+      grid-gap: 32px 36px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .big-btn {
+      width: 227px;
+      height: 227px;
+      background: #e2dbfa;
+      border: 3px solid #b8a4e8;
+      border-radius: 18px;
+      font-size: 2.1em;
+      font-weight: bold;
+      color: #3b1e6d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border 0.15s;
+      box-shadow: 0 2px 8px rgba(59,30,109,0.07);
+      user-select: none;
+      line-height: 1.2;
+      word-break: keep-all;
+    }
+    .big-btn:active {
+      background: #d1c1ef;
+      border-color: #a084ca;
+    }
+    /* 카드 결제/영수증 모달 60% + 세로 두배 */
+    .modal-bg.big { background:rgba(0,0,0,0.28);}
+    .modal.big {
+      width:60vw; min-width:340px; max-width:700px;
+      height:60vw; min-height:400px; max-height:90vh;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+    }
+    .modal.big .step-title {
+      font-size: 2.5em; /* 기존 1.3em에서 대폭 확대 */
+      font-weight: bold;
+      color: #3b1e6d;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .kiosk-wrap { width:100vw; }
+      .order-section { width:96vw; }
+      .modal { width:96vw; }
+      .modal.big { width:96vw; min-width:0; height:90vw; min-height:200px;}
+      .big-btn-grid { grid-template-columns: 1fr 1fr; }
+      .big-btn { width: 44vw; height: 44vw; min-width:120px; min-height:120px; font-size:1.2em;}
+    }
+  </style>
+</head>
+<body>
+  <div class="kiosk-wrap">
+    <div class="top-logo">31</div>
+    <!-- 상단 단계 진행 표시 -->
+    <div class="progressbar">
+      <span class="progress-step active" id="prog-menu">메뉴 선택</span>
+      <span class="progress-step" id="prog-order">주문 확인</span>
+      <span class="progress-step" id="prog-discount">할인/적립</span>
+      <span class="progress-step" id="prog-pay">결제</span>
+    </div>
+    <div id="step-content"></div>
+    <!-- 맛 선택 모달 -->
+    <div class="modal-bg" id="flavor-modal-bg">
+      <div class="modal" id="flavor-modal">
+        <div class="flavor-modal-title">맛을 선택해 주세요</div>
+        <div class="flavor-scroll-wrap">
+          <div class="flavor-grid" id="flavor-grid"></div>
+        </div>
+        <div style="margin:12px 0 0 0; color:#888;" id="flavor-count"></div>
+        <div class="flavor-selected-list" id="flavor-selected-list"></div>
+        <div class="modal-bottom-btns">
+          <button id="flavor-cancel-btn">취소</button>
+          <button id="flavor-ok-btn">선택 완료</button>
+        </div>
+      </div>
+    </div>
+    <!-- 컵/콘 선택 모달 -->
+    <div class="modal-bg" id="cupcone-modal-bg" style="display:none;">
+      <div class="modal" id="cupcone-modal">
+        <div class="flavor-modal-title">컵 또는 콘을 선택해 주세요</div>
+        <div style="display:flex; justify-content:center; gap:32px; margin:30px 0 20px 0;">
+          <button class="cupcone-btn-modal" data-type="cup" style="padding:24px 40px;font-size:1.2em;">컵</button>
+          <button class="cupcone-btn-modal" data-type="cone" style="padding:24px 40px;font-size:1.2em;">콘</button>
+        </div>
+        <div class="modal-bottom-btns">
+          <button id="cupcone-cancel-btn">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- 카드 결제/영수증 모달 -->
+    <div class="modal-bg big" id="cardproc-modal-bg" style="display:none;">
+      <div class="modal big" style="text-align:center;">
+        <div id="cardproc-message" class="step-title"></div>
+        <div id="cardproc-extra"></div>
+        <div class="step-btns" id="cardproc-btns"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 메뉴 데이터 (예시)
+    const menuData = {
+      cake: [
+        {id:1, name:"네모 블록 미키 마우스", price:32000},
+        {id:2, name:"뽀로로와 즐거운 피크닉 타임", price:30000},
+        {id:3, name:"미피와 신나는 애니멀 파크", price:30000},
+        {id:4, name:"더 듬뿍 딸기 케이크", price:32000},
+        {id:5, name:"더 듬뿍 망고 케이크", price:32000},
+        {id:6, name:"진정한 초콜릿 아이스크림 케이크", price:30000},
+        {id:7, name:"진정한 치즈 아이스크림 케이크", price:30000},
+        {id:8, name:"진정한 티라미수 아이스크림 케이크", price:30000},
+        {id:9, name:"진정한 고구마 아이스크림 케이크", price:30000},
+        {id:10, name:"골라먹는 27큐브", price:29000},
+        {id:11, name:"리얼 초코 27큐브", price:29000},
+        {id:12, name:"스노우 볼 와츄원", price:29000},
+        {id:13, name:"해피 버스데이", price:27000},
+        {id:14, name:"우주에서 온 엄마는 외계인", price:28000},
+        {id:15, name:"나눠먹는 와츄원", price:33000},
+        {id:16, name:"나눠먹는 큐브 와츄원", price:34000},
+        {id:17, name:"네모 블록 헬로키티", price:32000},
+        {id:18, name:"1979 쿠앤크 떠먹는 큐브", price:25000}
+      ],
+      ice: [
+        {id:101, name:"싱글레귤러 115g", price:3900, flavors:1, cupcone:true},
+        {id:102, name:"싱글킹 145g", price:4700, flavors:1, cupcone:true},
+        {id:103, name:"더블주니어 150g", price:5100, flavors:2, cupcone:true},
+        {id:104, name:"더블레귤러 230g", price:7300, flavors:2, cupcone:true},
+        {id:105, name:"파인트 320g", price:9800, flavors:3},
+        {id:106, name:"쿼터 620g", price:18500, flavors:4},
+        {id:107, name:"패밀리 960g", price:26000, flavors:5},
+        {id:108, name:"하프갤런 1200g", price:31500, flavors:6},
+        {id:109, name:"버라이어티팩 싱글레귤러 6개", price:23400},
+        {id:110, name:"옹기종기팩 싱글레귤러 8개", price:31200},
+        {id:111, name:"핸드팩 세트 파인트 4개", price:39200}
+      ],
+      pack: [
+        {id:201, name:"애플망고 초코나무숲 레디팩", price:10800},
+        {id:202, name:"팥있는말차당 레디팩", price:10800},
+        {id:203, name:"초콜릿 레디팩", price:10800},
+        {id:204, name:"소금우유 레디팩", price:10800},
+        {id:205, name:"엄마는 외계인 레디팩", price:10800},
+        {id:206, name:"레인보우 샤베트 레디팩", price:10800},
+        {id:207, name:"31요거트 레디팩", price:10800},
+        {id:208, name:"오레오쿠키앤크림 레디팩", price:10800},
+        {id:209, name:"베리베리 스트로베리 레디팩", price:10800},
+        {id:210, name:"민트 초콜릿 칩 레디팩", price:10800},
+        {id:211, name:"체리 쥬빌레 레디팩", price:10800},
+        {id:212, name:"아몬드 봉봉 레디팩", price:10800},
+        {id:213, name:"블록팩 (초콜릿)", price:4000},
+        {id:214, name:"블록팩 (이상한 나라의 솜사탕)", price:4000},
+        {id:215, name:"블록팩 (바람과 함께 사라지다)", price:4000},
+        {id:216, name:"블록팩 (엄마는 외계인)", price:4000},
+        {id:217, name:"블록팩 (민트초코봉봉)", price:4000},
+        {id:218, name:"블록팩 (슈팅스타)", price:4000},
+        {id:219, name:"블록팩 (뉴욕치즈케이크)", price:4000},
+        {id:220, name:"블록팩 (쿠키앤크림)", price:4000},
+        {id:221, name:"블록팩 (체리쥬빌레)", price:4000},
+        {id:222, name:"블록팩 (아몬드봉봉)", price:4000}
+      ],
+      dessert: [
+        {id:301, name:"버터 쿠키 샌드 바닐라 카라멜", price:4800},
+        {id:302, name:"버터 쿠키 샌드 애플 시나몬", price:4800},
+        {id:303, name:"그린티 킷캣 초콜릿 스틱바", price:3700},
+        {id:304, name:"그린티 킷캣 선데", price:4000},
+        {id:305, name:"아이스 청크쿠키 샌드 밀크", price:5000},
+        {id:306, name:"아이스 초코 도쿄바나나 쿠키샌드", price:5000},
+        {id:307, name:"(4개입) 아이스 초코 도쿄바나나 쿠키샌드 세트", price:18500},
+        {id:308, name:"아이스 쿠키 샌드 바닐라", price:4300},
+        {id:309, name:"아이스 모찌 밤 티라미수", price:3800},
+        {id:310, name:"아이스 후레쉬베리", price:4300},
+        {id:311, name:"우석이도 외계인 선데", price:4000},
+        {id:312, name:"쿠로미 스틱바 블랙소르베 제로", price:3100},
+        {id:313, name:"마이멜로디 스틱바 딸기 요거트", price:3100},
+        {id:314, name:"아이스 모찌 아몬드봉봉", price:3800},
+        {id:315, name:"맥시 스틱바 슈프림골드", price:1900},
+        {id:316, name:"아이스 모나카 쫀떡 인절미", price:4300},
+        {id:317, name:"미니 아이스 스틱바 바닐라 (3개입)", price:5300},
+        {id:318, name:"아이스 모나카 우유", price:4300},
+        {id:319, name:"초콜릿 무스 아이스 마카롱", price:4300},
+        {id:320, name:"맥심모카골드마일드 스틱바", price:1900},
+        {id:321, name:"소금우유 아이스 모찌", price:3800},
+        {id:322, name:"크림치즈 아이스 모찌", price:3800},
+        {id:323, name:"체리쥬빌레 아이스 마카롱", price:4300},
+        {id:324, name:"초코바닐라 아이스모찌", price:3800},
+        {id:325, name:"스트로베리 아이스모찌", price:3800},
+        {id:326, name:"그린티 아이스모찌", price:3800},
+        {id:327, name:"쿠키앤크림 아이스마카롱", price:4300}
+      ],
+      coffee: [
+        {id:401, name:"콜드브루 아메리카노", price:4300},
+        {id:402, name:"디카페인 콜드브루 아메리카노", price:4300},
+        {id:403, name:"디카페인 콜드브루 라떼", price:4800},
+        {id:404, name:"콜드브루 라떼", price:4800},
+        {id:405, name:"917 아메리카노(ICED)", price:4200},
+        {id:406, name:"디카페인 917 아메리카노(ICED)", price:4200},
+        {id:407, name:"(ICED)카페모카엄마는외계인", price:4300},
+        {id:408, name:"(HOT)디카페인 아메리카노", price:3200},
+        {id:409, name:"(ICED)디카페인 아메리카노", price:3200},
+        {id:410, name:"(ICED)디카페인 카페라떼", price:3800},
+        {id:411, name:"(ICED)디카페인 마끼아또", price:4300},
+        {id:412, name:"(ICED)디카페인 바닐라빈라떼", price:4300},
+        {id:413, name:"(ICED)디카페인 연유라떼", price:4300},
+        {id:414, name:"아메리카노 (ICED)", price:3200},
+        {id:415, name:"카페라떼 (ICED)", price:3800},
+        {id:416, name:"카라멜 마끼아또 (ICED)", price:4300},
+        {id:417, name:"바닐라빈 라떼 (ICED)", price:4300},
+        {id:418, name:"아메리카노 (HOT)", price:3200},
+        {id:419, name:"연유라떼 (ICED)", price:4300}
+      ],
+      drink: [
+        {id:501, name:"저당 자몽티", price:4000},
+        {id:502, name:"917 납작복숭아 아이스티", price:3200},
+        {id:503, name:"납작복숭아 아이스티", price:2500},
+        {id:504, name:"칸탈로프 멜론 블라스트", price:5800},
+        {id:505, name:"망고 요구르트 블라스트", price:5300},
+        {id:506, name:"수박 블라스트", price:5800},
+        {id:507, name:"초코 도쿄바나나 블라스트", price:4500},
+        {id:508, name:"스트로베리 요거트 블라스트", price:5300},
+        {id:509, name:"와츄원 쉐이크", price:6300},
+        {id:510, name:"우주 라이크 봉봉 블라스트", price:6300},
+        {id:511, name:"밀크쉐이크(Regular)", price:6300},
+        {id:512, name:"오레오 쉐이크 (Regular)", price:6300},
+        {id:513, name:"엄마는 외계인 블라스트 (Regular)", price:6300},
+        {id:514, name:"아몬드 봉봉 블라스트 (Regular)", price:6300},
+        {id:515, name:"카푸치노블라스트 오리지널 (Regular)", price:6300},
+        {id:516, name:"카푸치노블라스트 모카 (Regular)", price:5800},
+        {id:517, name:"설향딸기 블라스트", price:5000},
+        {id:518, name:"오레오 딸기 쉐이크 (Regular)", price:6300}
+      ],
+      goods: [
+        {id:601, name:"풍선세트 / 6개입", price:2500},
+        {id:602, name:"파티 머리띠 핑크", price:4800},
+        {id:603, name:"HBD 머리띠", price:3000},
+        {id:604, name:"0번 숫자초", price:800},
+        {id:605, name:"1번 숫자초", price:800},
+        {id:606, name:"2번 숫자초", price:800},
+        {id:607, name:"3번 숫자초", price:800},
+        {id:608, name:"4번 숫자초", price:800},
+        {id:609, name:"5번 숫자초", price:800},
+        {id:610, name:"6번 숫자초", price:800},
+        {id:611, name:"7번 숫자초", price:800},
+        {id:612, name:"8번 숫자초", price:800},
+        {id:613, name:"9번 숫자초", price:800},
+        {id:614, name:"파티고깔모자 화이트", price:900},
+        {id:615, name:"파티고깔모자 / 핑크", price:1500},
+        {id:616, name:"파티고깔모자 / 블루", price:1500},
+        {id:617, name:"10cm 물결초 5개입", price:1200},
+        {id:618, name:"15cm 물결초 5개입", price:1500},
+        {id:619, name:"#HBD초", price:2000},
+        {id:620, name:"아이러브유 초", price:2000},
+        {id:621, name:"LOVE토퍼 / 실버", price:1200},
+        {id:622, name:"LOVE토퍼 / 블루", price:1200},
+        {id:623, name:"HBD 가랜드", price:3000},
+        {id:624, name:"꽃안경 / 블루", price:1500},
+        {id:625, name:"꽃안경 / 핑크", price:1500},
+        {id:626, name:"MyDay안경 / 블루", price:1500},
+        {id:627, name:"MyDay안경 / 핑크", price:1500}
+      ]
+    };
+    const flavorList = [
+      "봄날의 곰을 좋아하세요?", "아이 원-츄!", "아이스 칸탈로프 멜론", "아이스 메론빵", "청포도 샤베트",
+      "블랙소르베", "블루베리 요거트", "피치 요거트", "망고 탱고", "블루베리 파나코타", "소금우유 아이스크림",
+      "허니 크런치", "자모카 아몬드 훠지", "이상한 나라의 솜사탕", "애플 민트", "슈팅스타", "초콜릿", "피스타치오 아몬드",
+      "레인보우 샤베트", "초콜릿 무스", "민트 초콜릿칩", "아몬드 봉봉", "그린티", "31 요거트", "베리베리 스트로베리",
+      "바닐라", "바람과 함께 사라지다", "엄마는 외계인", "뉴욕치즈케이크", "체리쥬빌레", "오레오 쿠키앤크림"
+    ];
+    let currentCat = "cake";
+    let cart = [];
+    let currentStep = 0;
+    let paymentType = null;
+    let discount = 0;
+
+    function setStep(n) {
+      currentStep = n;
+      ['menu','order','discount','pay'].forEach((id,i)=>{
+        let el = document.getElementById('prog-'+id);
+        el.classList.toggle('active',i===n);
+        el.classList.toggle('done',i<n);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      document.querySelectorAll('.sidecat-btn').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.sidecat-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCat = btn.dataset.cat;
+          renderMenu();
+        };
+      });
+      renderMenu();
+      renderCartBar();
+    });
+
+    function renderMenu() {
+      setStep(0);
+      document.getElementById('step-content').innerHTML = `
+        <div class="main-content">
+          <nav class="sidebar">
+            <div class="sidecat">
+              <button class="sidecat-btn${currentCat==="cake"?" active":""}" data-cat="cake">아이스크림<br>케이크</button>
+              <button class="sidecat-btn${currentCat==="ice"?" active":""}" data-cat="ice">아이스크림</button>
+              <button class="sidecat-btn${currentCat==="pack"?" active":""}" data-cat="pack">레디팩<br>블록팩</button>
+              <button class="sidecat-btn${currentCat==="dessert"?" active":""}" data-cat="dessert">디저트</button>
+              <button class="sidecat-btn${currentCat==="coffee"?" active":""}" data-cat="coffee">커피</button>
+              <button class="sidecat-btn${currentCat==="drink"?" active":""}" data-cat="drink">음료<br>블라스트</button>
+              <button class="sidecat-btn${currentCat==="goods"?" active":""}" data-cat="goods">상품<br>파티용품</button>
+            </div>
+          </nav>
+          <div class="menu-panel">
+            <div class="main-title">어떤 상품을 주문하시겠어요?</div>
+            <div class="product-grid" id="product-grid"></div>
+          </div>
+        </div>
+        <div class="order-section-wrap">
+          <section class="order-section" id="order-section">
+            <div class="order-title">주문 내역</div>
+            <div class="order-list-bar" id="order-list-bar"></div>
+            <div class="order-sum-bar" id="order-sum-bar">합계: 0원</div>
+            <div class="order-bottom-btns">
+              <button id="order-reset-btn">처음으로</button>
+              <button id="order-next-btn-bar">선택 완료</button>
+            </div>
+          </section>
+        </div>
+      `;
+      document.querySelectorAll('.sidecat-btn').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.sidecat-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCat = btn.dataset.cat;
+          renderMenu();
+        };
+      });
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = menuData[currentCat].map(item => `
+        <div class="product-card" data-id="${item.id}">
+          <div class="product-img-placeholder"></div>
+          <div class="product-name">${item.name}</div>
+          <div class="product-price">${item.price.toLocaleString()}원</div>
+        </div>
+      `).join('');
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.onclick = (e) => {
+          const id = Number(card.dataset.id);
+          const item = menuData[currentCat].find(x => x.id === id);
+          if(currentCat==="ice" && item.cupcone){
+            showCupConeModal(item);
+          }else if(currentCat==="ice" && item.flavors){
+            showFlavorModal(item, 1, "cup");
+          }else{
+            addToCart(item);
+          }
+        };
+      });
+      renderCartBar();
+      document.getElementById('order-reset-btn').onclick = () => {
+        if(confirm('주문을 처음부터 다시 하시겠습니까?')) {
+          cart = [];
+          renderCartBar();
+          setStep(0);
+          renderMenu();
+        }
+      };
+      document.getElementById('order-next-btn-bar').onclick = () => {
+        if(cart.length===0) { alert('상품을 선택해 주세요!'); return; }
+        renderOrderCheck();
+      };
+    }
+
+    // 주문 확인 화면
+    function renderOrderCheck() {
+      setStep(1);
+      document.getElementById('step-content').innerHTML = `
+        <div class="step-panel">
+          <div class="step-title">주문 내역 확인</div>
+          <div id="order-check-list">
+            ${cart.map(item=>
+              `<div class="order-check-line">
+                <b>${item.name}</b>
+                ${item.cupType?`<span style='font-size:0.98em;color:#888;'> (${item.cupType==="cup"?"컵":"콘"})</span>`:""}
+                ${item.flavorsSelected?`<br><span style='font-size:1em;color:#3b1e6d;'>${item.flavorsSelected.join(", ")}</span>`:""}
+                <br>수량: ${item.qty||1} / <b>${(item.price*(item.qty||1)).toLocaleString()}원</b>
+              </div>`
+            ).join('')}
+          </div>
+          <div class="step-btns">
+            <button class="secondary" id="order-check-add-btn">메뉴 더 담기</button>
+            <button id="order-check-cash-btn">현금결제</button>
+            <button id="order-check-card-btn">카드결제/일반결제</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('order-check-add-btn').onclick = () => {
+        renderMenu();
+      };
+      document.getElementById('order-check-cash-btn').onclick = () => { showDiscountPanel('cash'); };
+      document.getElementById('order-check-card-btn').onclick = () => { showDiscountPanel('card'); };
+    }
+
+    // 할인/적립 화면 (6cm 버튼 2개씩)
+    function showDiscountPanel(type) {
+      paymentType = type;
+      setStep(2);
+      let sum = cart.reduce((a,b)=>a+b.price*(b.qty||1),0);
+      discount = 0;
+      document.getElementById('step-content').innerHTML = `
+        <div class="step-panel">
+          <div class="step-title">할인/적립 선택</div>
+          <div class="big-btn-grid">
+            <button class="big-btn" data-type="happy">해피포인트</button>
+            <button class="big-btn" data-type="kia">기아멤버스</button>
+            <button class="big-btn" data-type="blue">블루멤버스</button>
+            <button class="big-btn" data-type="none">할인/적립<br>안함</button>
+          </div>
+          <div class="step-sum">
+            주문 금액: <b id="discount-order-sum">${sum.toLocaleString()}</b>원<br>
+            할인 금액: <b id="discount-discount">${discount.toLocaleString()}</b>원
+          </div>
+          <div class="step-sum-row">
+            <span></span>
+            <span>총 결제 금액: <b id="discount-final">${(sum-discount).toLocaleString()}</b>원</span>
+          </div>
+          <div class="step-btns" style="margin-top:30px;">
+            <button class="secondary" id="discount-prev-btn">이전화면</button>
+            <button id="discount-ok-btn">선택완료</button>
+          </div>
+        </div>
+      `;
+      document.querySelectorAll('.big-btn').forEach(btn=>{
+        btn.onclick = ()=>{
+          if(btn.dataset.type==="happy") discount = 1000;
+          else if(btn.dataset.type==="kia"||btn.dataset.type==="blue") discount = 2000;
+          else discount = 0;
+          document.getElementById('discount-discount').textContent = discount.toLocaleString();
+          document.getElementById('discount-final').textContent = (sum-discount).toLocaleString();
+          if(paymentType==="card") renderCardPayPanel();
+          else showOrderFinishPanel();
+        };
+      });
+      document.getElementById('discount-prev-btn').onclick = ()=>{
+        renderOrderCheck();
+      };
+      document.getElementById('discount-ok-btn').onclick = ()=>{
+        if(paymentType==="card") renderCardPayPanel();
+        else showOrderFinishPanel();
+      };
+    }
+
+    // 카드 결제 수단 선택 화면 (6cm 버튼 2개씩)
+    function renderCardPayPanel() {
+      setStep(3);
+      let sum = cart.reduce((a,b)=>a+b.price*(b.qty||1),0);
+      document.getElementById('step-content').innerHTML = `
+        <div class="step-panel">
+          <div class="step-title">카드 결제 수단 선택</div>
+          <div class="big-btn-grid">
+            <button class="big-btn">신용카드<br>/ 삼성페이</button>
+            <button class="big-btn">모바일 교환권 쿠폰<br>바코드 QR</button>
+            <button class="big-btn">애플페이 교통카드<br>SPC 사원증</button>
+            <button class="big-btn">카드사 포인트</button>
+          </div>
+          <div class="step-sum">
+            주문 금액: <b id="cardpay-order-sum">${sum.toLocaleString()}</b>원<br>
+            할인 금액: <b id="cardpay-discount">${discount.toLocaleString()}</b>원
+          </div>
+          <div class="step-sum-row">
+            <span></span>
+            <span>총 결제 금액: <b id="cardpay-final">${(sum-discount).toLocaleString()}</b>원</span>
+          </div>
+          <div class="step-btns" style="margin-top:30px;">
+            <button class="secondary" id="cardpay-prev-btn">이전화면</button>
+            <button id="cardpay-cancel-btn">결제취소</button>
+          </div>
+        </div>
+      `;
+      document.querySelectorAll('.big-btn').forEach(btn=>{
+        btn.onclick = ()=>{
+          showCardProcessModal();
+        };
+      });
+      document.getElementById('cardpay-prev-btn').onclick = ()=>{
+        showDiscountPanel('card');
+      };
+      document.getElementById('cardpay-cancel-btn').onclick = ()=>{
+        setStep(0);
+        cart = [];
+        renderCartBar();
+        renderMenu();
+      };
+    }
+
+    // 카드 결제/영수증/주문완료 모달
+    function showCardProcessModal() {
+      document.getElementById('cardproc-modal-bg').style.display = "flex";
+      document.getElementById('cardproc-message').textContent = "신용카드 / 삼성페이를 인식해주세요";
+      document.getElementById('cardproc-extra').innerHTML = "";
+      document.getElementById('cardproc-btns').innerHTML = "";
+      setTimeout(()=>{
+        document.getElementById('cardproc-message').textContent = "영수증을 받으시겠어요?";
+        document.getElementById('cardproc-extra').innerHTML = "";
+        document.getElementById('cardproc-btns').innerHTML = `
+          <button id="cardproc-print-btn" style="padding:18px 38px;font-size:1.15em;border-radius:10px;border:none;background:#3b1e6d;color:#fff;font-weight:bold;cursor:pointer;">주문번호만 인쇄</button>
+          <button id="cardproc-receipt-btn" style="padding:18px 38px;font-size:1.15em;border-radius:10px;border:none;background:#3b1e6d;color:#fff;font-weight:bold;cursor:pointer;">네</button>
+        `;
+        document.getElementById('cardproc-print-btn').onclick = showOrderFinishModal;
+        document.getElementById('cardproc-receipt-btn').onclick = showOrderFinishModal;
+      }, 5000);
+    }
+
+    // 주문 완료 화면(카드/현금 공통)
+    function showOrderFinishPanel() {
+      let orderNo = Math.floor(Math.random()*100)+1;
+      document.getElementById('step-content').innerHTML = `
+        <div class="step-panel" style="text-align:center;">
+          <div class="step-title">주문이 완료되었어요</div>
+          <div style="margin:18px 0 12px 0;font-size:1.7em;color:#3b1e6d;font-weight:bold;">주문번호<br>${orderNo}</div>
+          <div class="step-btns" style="margin-top:40px;">
+            <button id="order-finish-btn">확인했어요</button>
+          </div>
+        </div>
+      `;
+      document.getElementById('order-finish-btn').onclick = ()=>{
+        setStep(0);
+        cart = [];
+        renderCartBar();
+        renderMenu();
+      };
+    }
+    function showOrderFinishModal() {
+      document.getElementById('cardproc-modal-bg').style.display = "none";
+      showOrderFinishPanel();
+    }
+
+    // 맛 선택 모달
+    function showFlavorModal(item, qty, cupType) {
+      qty = qty || 1;
+      const modalBg = document.getElementById('flavor-modal-bg');
+      modalBg.style.display = "flex";
+      let selected = [];
+      function renderFlavors() {
+        document.getElementById('flavor-grid').innerHTML = flavorList.map(f =>
+          `<div class="flavor-card${selected.filter(x=>x===f).length?' selected':''}" data-name="${f}">
+            <div class="flavor-img-placeholder"></div>
+            <div>${f}</div>
+          </div>`
+        ).join('');
+        document.getElementById('flavor-count').innerHTML =
+          `선택: <b style="color:#3b1e6d;">${selected.length}</b>/${item.flavors?item.flavors*qty:qty}`;
+        document.getElementById('flavor-selected-list').innerHTML =
+          selected.map((f,i)=>`<div class="flavor-selected-item" data-idx="${i}">${f}</div>`).join('');
+        document.querySelectorAll('.flavor-card').forEach(btn=>{
+          btn.onclick = ()=>{
+            let limit = item.flavors?item.flavors*qty:qty;
+            if(selected.length<limit) selected.push(btn.dataset.name);
+            renderFlavors();
+          };
+        });
+        document.querySelectorAll('.flavor-selected-item').forEach(sel=>{
+          sel.onclick = ()=>{
+            selected.splice(Number(sel.dataset.idx),1);
+            renderFlavors();
+          }
+        });
+      }
+      renderFlavors();
+      document.getElementById('flavor-ok-btn').onclick = ()=>{
+        let limit = item.flavors?item.flavors*qty:qty;
+        if(selected.length!==limit){
+          alert(`맛을 ${limit}개 선택해 주세요!`);
+          return;
+        }
+        if(item.cupcone){
+          addToCart({...item, qty, cupType, flavorsSelected: selected.slice()});
+        }else{
+          addToCart({...item, qty:1, flavorsSelected: selected.slice()});
+        }
+        modalBg.style.display = "none";
+        renderMenu();
+      };
+      document.getElementById('flavor-cancel-btn').onclick = ()=>{
+        modalBg.style.display = "none";
+      };
+    }
+
+    // 컵/콘 선택 모달
+    function showCupConeModal(item) {
+      const modalBg = document.getElementById('cupcone-modal-bg');
+      modalBg.style.display = "flex";
+      let selectedType = null;
+      document.querySelectorAll('.cupcone-btn-modal').forEach(btn=>{
+        btn.classList.remove('active');
+        btn.onclick = ()=>{
+          document.querySelectorAll('.cupcone-btn-modal').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          selectedType = btn.dataset.type;
+          modalBg.style.display = "none";
+          showFlavorModal(item, 1, selectedType);
+        };
+      });
+      document.getElementById('cupcone-cancel-btn').onclick = ()=>{
+        modalBg.style.display = "none";
+      };
+    }
+
+    function addToCart(item) {
+      let key = item.id;
+      if(item.cupType) key += "|" + item.cupType;
+      if(item.flavorsSelected) key += "|" + item.flavorsSelected.join(",");
+      let found = cart.find(x => {
+        if(x.id!==item.id) return false;
+        if(item.cupType && x.cupType!==item.cupType) return false;
+        if(item.flavorsSelected) return JSON.stringify(x.flavorsSelected)===JSON.stringify(item.flavorsSelected);
+        return true;
+      });
+      if(found) found.qty+=item.qty||1;
+      else cart.push({ ...item });
+      renderCartBar();
+    }
+
+    function renderCartBar() {
+      const list = document.getElementById('order-list-bar');
+      if (!list) return;
+      if (cart.length === 0) {
+        list.innerHTML = `<div class="centered-msg">주문 내역이 없습니다.</div>`;
+      } else {
+        list.innerHTML = cart.map(item => `
+          <div class="order-item-bar">
+            <span class="order-name-bar">${item.name}${item.cupType?`<br><span style='font-size:0.95em;color:#888;'>${item.cupType==="cup"?"컵":"콘"}</span>`:""}${item.flavorsSelected ? "<br><span style='font-size:0.93em;color:#888;'>"+item.flavorsSelected.join(", ")+"</span>" : ""}</span>
+            <span class="order-qty-bar">${item.qty||1}</span>
+            <span class="order-price-bar">${((item.price) * (item.qty||1)).toLocaleString()}원</span>
+            <button class="order-remove-bar" data-id="${item.id}" data-cup="${item.cupType||""}" data-flavors="${item.flavorsSelected?item.flavorsSelected.join(","):""}" title="삭제">&#128465;</button>
+          </div>
+        `).join('');
+      }
+      document.querySelectorAll('.order-remove-bar').forEach(btn => {
+        btn.onclick = () => {
+          const id = Number(btn.dataset.id);
+          const cupType = btn.dataset.cup;
+          const flavors = btn.dataset.flavors;
+          cart = cart.filter(x => {
+            if(x.id!==id) return true;
+            if(x.cupType && x.cupType!==cupType) return true;
+            if(x.flavorsSelected) return x.flavorsSelected.join(",")!==flavors;
+            return false;
+          });
+          renderCartBar();
+        };
+      });
+      const sumBar = document.getElementById('order-sum-bar');
+      if(sumBar) sumBar.textContent = `합계: ${cart.reduce((a,b)=>a+b.price*(b.qty||1),0).toLocaleString()}원`;
+    }
+  </script>
+</body>
+</html>

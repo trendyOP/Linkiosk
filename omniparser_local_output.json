@@ -1,0 +1,242 @@
+[
+    {
+        "type": "icon",
+        "bbox": [
+            0.5005262494087219,
+            0.2578233778476715,
+            0.6158119440078735,
+            0.3879690170288086
+        ],
+        "interactivity": true,
+        "content": "7,000! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.3823345899581909,
+            0.12085293233394623,
+            0.49804848432540894,
+            0.2521921992301941
+        ],
+        "interactivity": true,
+        "content": "7,000! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.3825841248035431,
+            0.2579619288444519,
+            0.4979988932609558,
+            0.38736671209335327
+        ],
+        "interactivity": true,
+        "content": "6,500 ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.5002115368843079,
+            0.12109442055225372,
+            0.6162664294242859,
+            0.2527216374874115
+        ],
+        "interactivity": true,
+        "content": "7,000! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.382460355758667,
+            0.3929194509983063,
+            0.49817290902137756,
+            0.5236828923225403
+        ],
+        "interactivity": true,
+        "content": "7,000! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.49982157349586487,
+            0.5296462178230286,
+            0.6160061359405518,
+            0.6602231860160828
+        ],
+        "interactivity": true,
+        "content": "2,500! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.382790744304657,
+            0.5282799005508423,
+            0.4981466233730316,
+            0.6590431928634644
+        ],
+        "interactivity": true,
+        "content": "3,000! ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.44755855202674866,
+            0.8760343790054321,
+            0.4672259986400604,
+            0.9280156493186951
+        ],
+        "interactivity": true,
+        "content": "0 ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.4012618362903595,
+            0.8741005659103394,
+            0.4218899607658386,
+            0.9298248887062073
+        ],
+        "interactivity": true,
+        "content": "0 ",
+        "source": "box_yolo_content_ocr"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.500470757484436,
+            0.39310628175735474,
+            0.6157546639442444,
+            0.5231443643569946
+        ],
+        "interactivity": true,
+        "content": "the image shows the text, ` ` ', and `, in the middle of the screen",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.37256190180778503,
+            0.050244856625795364,
+            0.5010141134262085,
+            0.10353808104991913
+        ],
+        "interactivity": true,
+        "content": "the image shows a red and white flag with a white cross",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.42269614338874817,
+            0.8756107091903687,
+            0.4438762962818146,
+            0.9289709329605103
+        ],
+        "interactivity": true,
+        "content": "the image shows the letters of the alphabet",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.48615559935569763,
+            0.8746965527534485,
+            0.5148723125457764,
+            0.9292788505554199
+        ],
+        "interactivity": true,
+        "content": "the image shows the letters in different colors",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.3772156238555908,
+            0.8739435076713562,
+            0.39915233850479126,
+            0.9312323331832886
+        ],
+        "interactivity": true,
+        "content": "the image shows the letters of the alphabet",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.46852073073387146,
+            0.8754194378852844,
+            0.4858883023262024,
+            0.9281761050224304
+        ],
+        "interactivity": true,
+        "content": "the image shows a white background with a blue and orange logo",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.5216598510742188,
+            0.8787970542907715,
+            0.5429785251617432,
+            0.9279114007949829
+        ],
+        "interactivity": true,
+        "content": "the image shows a red circle with a white background",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.4994472563266754,
+            0.05001989006996155,
+            0.627484142780304,
+            0.1025850921869278
+        ],
+        "interactivity": true,
+        "content": "the image shows the logo for the company",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.3706510365009308,
+            0.0,
+            0.6275439858436584,
+            0.04963768646121025
+        ],
+        "interactivity": true,
+        "content": "the image shows a red background with a white and yellow logo",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.37574025988578796,
+            0.6735948920249939,
+            0.6235714554786682,
+            0.8539952635765076
+        ],
+        "interactivity": true,
+        "content": "the image shows the location of the site",
+        "source": "box_yolo_content_yolo"
+    },
+    {
+        "type": "icon",
+        "bbox": [
+            0.543158233165741,
+            0.8787002563476562,
+            0.5615137815475464,
+            0.9219266176223755
+        ],
+        "interactivity": true,
+        "content": "the image shows a red and white background with a white and blue logo",
+        "source": "box_yolo_content_yolo"
+    }
+]

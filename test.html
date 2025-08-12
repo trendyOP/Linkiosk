@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>홍익대학교 강좌 전체보기</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', Arial, sans-serif;
+      background: #f6f8fa;
+      color: #222;
+    }
+    header {
+      background: #19386b;
+      color: white;
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 40px;
+      margin-right: 20px;
+    }
+    .profile {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .sidebar {
+      width: 200px;
+      background: #23272d;
+      color: #fff;
+      position: fixed;
+      top: 60px;
+      bottom: 0;
+      left: 0;
+      padding: 40px 0 0 0;
+      z-index: 1;
+    }
+    .sidebar nav a {
+      display: block;
+      color: #ccc;
+      padding: 16px 32px;
+      text-decoration: none;
+      font-size: 1.05em;
+      border-left: 3px solid transparent;
+    }
+    .sidebar nav a.active, .sidebar nav a:hover {
+      background: #1b2024;
+      color: #e1e6ef;
+      border-left: 3px solid #0057b7;
+    }
+    .main {
+      margin-left: 200px;
+      padding: 30px 40px 40px 40px;
+      min-height: 100vh;
+    }
+    .lecture-list {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px #0001;
+      margin-bottom: 30px;
+      padding: 0;
+    }
+    .lecture-list h2 {
+      font-size: 1.2em;
+      margin: 0;
+      padding: 20px 28px 0 28px;
+      font-weight: bold;
+      color: #19386b;
+    }
+    .lecture-items {
+      padding: 10px 28px 15px 28px;
+    }
+    .lecture-item {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f0f1f4;
+      padding: 18px 0;
+    }
+    .lecture-item:last-child { border-bottom: none; }
+    .lecture-type {
+      font-size: 0.95em;
+      font-weight: bold;
+      margin-right: 14px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      background: #4cc56a;
+      color: #fff;
+    }
+    .lecture-type.sub {
+      background: #5b8dff;
+    }
+    .lecture-type.main {
+      background: #31a8e4;
+    }
+    .lecture-type.new {
+      background: #b22222;
+    }
+    .lecture-title {
+      font-size: 1.08em;
+      flex: 1;
+    }
+    .lecture-prof {
+      color: #888;
+      font-size: 0.95em;
+      margin-left: 18px;
+    }
+    .lecture-badge {
+      font-size: 0.92em;
+      margin-left: 10px;
+      color: #c00;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .rightbar {
+      width: 350px;
+      background: #f7f9fb;
+      border-left: 1px solid #e2e4ea;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      bottom: 0;
+      padding: 35px 25px 20px 25px;
+      font-size: 0.99em;
+      color: #19386b;
+      z-index: 2;
+      overflow-y: auto;
+    }
+    .rightbar h3 {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      margin-top: 0;
+      color: #19386b;
+    }
+    .notice-list, .schedule-list {
+      margin-bottom: 28px;
+      padding-left: 0;
+      list-style: none;
+    }
+    .notice-list li, .schedule-list li {
+      padding: 7px 0;
+      border-bottom: 1px solid #e8ebf1;
+      font-size: 0.98em;
+    }
+    .notice-list li:last-child, .schedule-list li:last-child { border-bottom: none; }
+    .notice-date {
+      font-size: 0.9em;
+      color: #888;
+      margin-left: 7px;
+    }
+    .schedule-date {
+      font-size: 0.88em;
+      color: #888;
+      margin-left: 6px;
+    }
+    .btn-more {
+      display: inline-block;
+      background: #e7eaf4;
+      color: #325391;
+      font-size: 0.95em;
+      padding: 3px 14px;
+      border-radius: 9px;
+      text-decoration: none;
+      margin-top: 6px;
+      cursor: pointer;
+    }
+    .main-bottom {
+      margin-left: 200px;
+      margin-right: 350px;
+      padding: 0 42px;
+    }
+    .tabbar {
+      border-bottom: 1px solid #e3e5ea;
+      margin-bottom: 15px;
+      margin-top: 28px;
+      padding-left: 6px;
+    }
+    .tabbar span {
+      font-size: 1.07em;
+      color: #888;
+      margin-right: 25px;
+      padding-bottom: 6px;
+      cursor: pointer;
+    }
+    .tabbar .active {
+      color: #19386b;
+      font-weight: bold;
+      border-bottom: 2.5px solid #2958aa;
+    }
+    .notice-bullets {
+      color: #b22222;
+      margin-right: 6px;
+      font-size: 1em;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+    .empty-alerts {
+      color: #888;
+      font-size: 0.97em;
+      margin: 20px 0 0 8px;
+    }
+    .logout-btn {
+      background: #2377d7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 18px;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- 상단 헤더 -->
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Hongik_University_Logo.png" alt="홍익대학교 로고">
+    <div style="font-size:1.23em; font-weight: bold;">홍익대학교 강의관리 시스템</div>
+    <div class="profile">
+      <span>강현서</span>
+      <span style="font-size:1.3em; margin-left:8px;">👤</span>
+      <button class="logout-btn">로그아웃</button>
+    </div>
+  </header>
+
+  <!-- 왼쪽 사이드바 -->
+  <aside class="sidebar">
+    <nav>
+      <a class="active" href="#">My Page</a>
+      <a href="#">나의 강좌</a>
+      <a href="#">자율강좌</a>
+      <a href="#">쪽지</a>
+      <a href="#">이용안내</a>
+    </nav>
+  </aside>
+
+  <!-- 메인 컨텐츠 -->
+  <main class="main">
+    <div class="lecture-list">
+      <h2>강좌 전체보기</h2>
+      <div class="lecture-items">
+        <div class="lecture-item">
+          <span class="lecture-type">비교과</span>
+          <span class="lecture-title">자기 주도학습동아리(세종)</span>
+          <span class="lecture-prof">송주연</span>
+        </div>
+        <div class="lecture-item">
+          <span class="lecture-type sub">교과(이론)</span>
+          <span class="lecture-title">결혼학개론 [1]</span>
+          <span class="lecture-prof">박수진</span>
+        </div>
+        <div class="lecture-item">
+          <span class="lecture-type sub">교과(변)</span>
+          <span class="lecture-title">인문학 초청강연 [501]</span>
+          <span class="lecture-prof">강선진</span>
+        </div>
+        <div class="lecture-item">
+          <span class="lecture-type main">교과(변)</span>
+          <span class="lecture-title">종합설계 (1) [504]</span>
+          <span class="lecture-prof">유동현</span>
+        </div>
+        <div class="lecture-item">
+          <span class="lecture-type sub">교과(변)</span>
+          <span class="lecture-title">디자인테프트프로그래밍및실습 [501]
+            <span class="lecture-badge">NEW</span>
+          </span>
+          <span class="lecture-prof">문소영</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 우측 공지/일정/알림 -->
+  <aside class="rightbar">
+    <h3>중요공지</h3>
+    <ul class="notice-list">
+      <li>
+        <span>★필독★ 클래스룸 사용 관련 안내</span>
+        <span class="notice-date">2025년 3월 22일</span>
+      </li>
+      <li>
+        <span>★필독★ 사이버강좌 시청 시 주의사항</span>
+        <span class="notice-date">2025년 3월 22일</span>
+      </li>
+      <li>
+        <a class="btn-more">더보기</a>
+      </li>
+    </ul>
+
+    <h3>예정된 발행 <span style="color:#6c7ab7; font-size:0.92em;">(6월4일~6월18일)</span></h3>
+    <ul class="schedule-list">
+      <li>결혼학개론 1-2 <span class="schedule-date">2025년 6월 4일 ~ 6월 14일</span></li>
+      <li>결혼학개론 1-3 <span class="schedule-date">2025년 6월 4일 ~ 6월 14일</span></li>
+      <li>결혼학개론 1-1 <span class="schedule-date">2025년 6월 4일 ~ 6월 14일</span></li>
+      <li>결혼학개론 2-1 <span class="schedule-date">2025년 6월 4일 ~ 6월 14일</span></li>
+      <li>결혼학개론 2-2 <span class="schedule-date">2025년 6월 4일 ~ 6월 14일</span></li>
+      <li style="color:#4d77c2; text-align:right;">42건 일정 더 보기</li>
+    </ul>
+
+    <h3>전체 알림</h3>
+    <div class="empty-alerts">신규 알림 내용이 없습니다.</div>
+  </aside>
+
+  <!-- 공지사항 영역 -->
+  <section class="main-bottom">
+    <div class="tabbar">
+      <span class="active">공지사항</span>
+      <span>진행 강좌 공지</span>
+      <span>설문</span>
+    </div>
+    <ul class="notice-list" style="color:#b22222; margin-bottom:25px;">
+      <li><span class="notice-bullets">•</span>★필독★ 사이버강좌 시범 운영 안내</li>
+      <li><span class="notice-bullets">•</span>★필독★ 사이버강좌 시청 시 주의사항</li>
+      <li><span class="notice-bullets">•</span>★필독★ 클래스룸 사용 관련 문의 안내</li>
+    </ul>
+  </section>
+</body>
+</html>

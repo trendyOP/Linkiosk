@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>부대통령 키오스크</title>
+  <meta name="viewport" content="width=650, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+    }
+    body {
+      width: 650px;
+      height: 1470px;
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: 0 0 30px rgba(0,0,0,0.12);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      display: flex;
+      height: 64px;
+      background: #e53935;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    .tabbar {
+      display: flex;
+      background: #f7f7f7;
+      border-bottom: 2px solid #eee;
+      height: 60px;
+    }
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      border-bottom: 4px solid transparent;
+      transition: border 0.2s;
+    }
+    .tab-btn.active {
+      color: #e53935;
+      border-bottom: 4px solid #e53935;
+      background: #fff;
+    }
+    .menu-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      padding: 28px 28px 16px 28px;
+      flex: 1 1 auto;
+      min-height: 580px;
+      max-height: 670px;
+      overflow-y: auto;
+      background: #fff;
+    }
+    .menu-item {
+      background: #fafafa;
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 18px 10px 18px 10px;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid transparent;
+      position: relative;
+      transition: box-shadow 0.2s, border 0.2s;
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .menu-item:active, .menu-item.selected {
+      border: 2.5px solid #e53935;
+      box-shadow: 0 4px 16px rgba(229,57,53,0.13);
+    }
+    .menu-name {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 8px;
+    }
+    .menu-price {
+      color: #e53935;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+    .order-panel {
+      background: #f7f7f7;
+      border-top: 2px solid #eee;
+      padding: 18px 24px 8px 24px;
+      min-height: 170px;
+      max-height: 210px;
+      overflow-y: auto;
+    }
+    .order-list {
+      min-height: 38px;
+      margin-bottom: 6px;
+    }
+    .order-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      font-size: 1.08em;
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .order-name {
+      flex: 1.5;
+      text-align: left;
+      font-weight: 500;
+    }
+    .order-qty {
+      width: 38px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .order-price {
+      width: 70px;
+      text-align: right;
+      color: #e53935;
+      font-weight: bold;
+    }
+    .order-remove {
+      background: none;
+      border: none;
+      color: #aaa;
+      font-size: 1.3em;
+      cursor: pointer;
+      margin-left: 8px;
+      transition: color 0.2s;
+    }
+    .order-remove:hover { color: #e53935; }
+    .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fff;
+      border-top: 2px solid #eee;
+      padding: 18px 24px;
+      font-size: 1.2em;
+      min-height: 70px;
+    }
+    .bottom-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 1.1em;
+    }
+    .bottom-info span {
+      margin-right: 7px;
+      font-weight: bold;
+      color: #444;
+    }
+    .bottom-info .value {
+      color: #e53935;
+      font-weight: bold;
+      font-size: 1.12em;
+      margin-right: 14px;
+    }
+    .pay-btn {
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.18em;
+      font-weight: bold;
+      padding: 17px 38px;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(229,57,53,0.07);
+    }
+    .pay-btn:active { background: #c62828; }
+    /* 모달 스타일 */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.33);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 18px;
+      min-width: 420px;
+      max-width: 520px;
+      padding: 38px 32px 32px 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+      text-align: center;
+      position: relative;
+    }
+    .modal-title {
+      font-size: 1.45em;
+      font-weight: bold;
+      margin-bottom: 18px;
+      color: #e53935;
+    }
+    .modal-msg {
+      font-size: 1.13em;
+      margin-bottom: 28px;
+      color: #222;
+    }
+    .modal-btns {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 12px;
+    }
+    .modal-btn {
+      min-width: 110px;
+      font-size: 1.09em;
+      padding: 13px 0;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      background: #e53935;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .modal-btn.secondary {
+      background: #eee;
+      color: #333;
+    }
+    .modal-btn:active { background: #c62828; }
+    .modal-btn.secondary:active { background: #bbb; }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 1.3em;
+      color: #bbb;
+      cursor: pointer;
+    }
+    /* 스크롤바 */
+    ::-webkit-scrollbar { width: 8px; background: #eee; }
+    ::-webkit-scrollbar-thumb { background: #e53935; border-radius: 8px; }
+    /* 반응형 */
+    @media (max-width: 700px) {
+      body, .kiosk-wrap { width: 100vw; min-width: 320px; }
+      .modal-box { min-width: 80vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">부대통령</div>
+  <div class="tabbar">
+    <button class="tab-btn active" data-cat="menu">메뉴</button>
+    <button class="tab-btn" data-cat="side">사이드</button>
+  </div>
+  <div class="menu-list"></div>
+  <div class="order-panel">
+    <div class="order-list"></div>
+  </div>
+  <div class="bottom-bar">
+    <div class="bottom-info">
+      <span>수량:</span> <span class="value" id="sum-qty">0</span>
+      <span>할인:</span> <span class="value" id="discount">0</span>원
+      <span>결제금액:</span> <span class="value" id="sum-price">0</span>원
+    </div>
+    <button class="pay-btn" id="pay-btn">결제하기</button>
+  </div>
+  <!-- 모달: 식사유형/결제수단/완료 -->
+  <div class="modal-bg" id="modal-bg">
+    <div class="modal-box" id="modal-box">
+      <!-- 동적 컨텐츠 -->
+    </div>
+  </div>
+  <script>
+    // 메뉴 데이터
+    const menus = [
+      { id:1, name:"부대찌개", price:7000 },
+      { id:2, name:"제육볶음", price:7000 },
+      { id:3, name:"순두부찌개", price:6500 },
+      { id:4, name:"닭갈비", price:7000 },
+      { id:5, name:"안동찜닭", price:7000 },
+      { id:6, name:"돈까스 (포장x)", price:7000 },
+      { id:7, name:"미니돈까스10개", price:3000 },
+      { id:8, name:"미니김치전3개", price:2500 },
+      { id:9, name:"미니만두튀김10개", price:2000 },
+      { id:10, name:"미니매콤김말이3개", price:2000 },
+      { id:11, name:"팝콘치킨", price:2500 },
+      { id:12, name:"음료수", price:1500 }
+    ];
+    const sides = [
+      { id:21, name:"오징어튀김2개", price:2000 },
+      { id:22, name:"새우튀김2개", price:2000 },
+      { id:23, name:"소떡소떡", price:3000 },
+      { id:24, name:"한입감자전3개", price:2500 },
+      { id:25, name:"고구마튀김2개", price:2500 },
+      { id:26, name:"게다리튀김2개", price:2000 },
+      { id:27, name:"치즈스틱3개", price:2000 },
+      { id:28, name:"우유튀김8개", price:2500 },
+      { id:29, name:"라면사리추가(부대찌개)", price:500 },
+      { id:30, name:"치즈추가(부대찌개)", price:500 },
+      { id:31, name:"공기밥추가(포장)", price:1000 },
+      { id:32, name:"소주", price:4000 },
+      { id:33, name:"맥주", price:4000 }
+    ];
+
+    let currentTab = "menu";
+    let cart = [];
+
+    // 메뉴 렌더링
+    function renderMenu() {
+      const list = document.querySelector('.menu-list');
+      list.innerHTML = '';
+      const items = currentTab === "menu" ? menus : sides;
+      items.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'menu-item';
+        el.innerHTML = `
+          <div class="menu-name">${item.name}</div>
+          <div class="menu-price">${item.price.toLocaleString()}원</div>
+        `;
+        el.onclick = () => {
+          addToCart(item);
+          el.classList.add('selected');
+          setTimeout(()=>el.classList.remove('selected'), 300);
+        };
+        list.appendChild(el);
+      });
+    }
+
+    // 카트에 담기
+    function addToCart(menu) {
+      const found = cart.find(c => c.id === menu.id);
+      if (found) found.qty++;
+      else cart.push({ ...menu, qty: 1 });
+      renderCart();
+    }
+
+    // 카트 렌더링
+    function renderCart() {
+      const list = document.querySelector('.order-list');
+      if (cart.length === 0) {
+        list.innerHTML = `<div style="color:#aaa;">주문 내역이 없습니다.</div>`;
+      } else {
+        list.innerHTML = cart.map(item => `
+          <div class="order-item">
+            <span class="order-name">${item.name}</span>
+            <span class="order-qty">${item.qty}</span>
+            <span class="order-price">${(item.price * item.qty).toLocaleString()}원</span>
+            <button class="order-remove" data-id="${item.id}" title="삭제">&#128465;</button>
+          </div>
+        `).join('');
+      }
+      // 삭제 이벤트
+      document.querySelectorAll('.order-remove').forEach(btn => {
+        btn.onclick = () => {
+          cart = cart.filter(item => item.id != btn.dataset.id);
+          renderCart();
+        }
+      });
+      updateBottomBar();
+    }
+
+    // 하단바 업데이트
+    function updateBottomBar() {
+      const sumQty = cart.reduce((a, b) => a + b.qty, 0);
+      const sumPrice = cart.reduce((a, b) => a + b.qty * b.price, 0);
+      const discount = 0; // 할인 정책이 있으면 적용
+      document.getElementById('sum-qty').textContent = sumQty;
+      document.getElementById('sum-price').textContent = sumPrice.toLocaleString();
+      document.getElementById('discount').textContent = discount.toLocaleString();
+    }
+
+    // 탭 이벤트
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTab = btn.dataset.cat;
+        renderMenu();
+      }
+    });
+
+    // 결제 플로우
+    document.getElementById('pay-btn').onclick = () => {
+      if (cart.length === 0) {
+        alert('주문 내역이 없습니다.');
+        return;
+      }
+      showModalType();
+    };
+
+    // 1. 식사유형 선택
+    function showModalType() {
+      showModal(`
+        <div class="modal-title">식사 유형 선택</div>
+        <div class="modal-msg">매장에서 식사와 포장 중 선택해주세요!</div>
+        <div class="modal-btns">
+          <button class="modal-btn" id="btn-dinein">매장</button>
+          <button class="modal-btn" id="btn-takeout">포장</button>
+        </div>
+      `);
+      document.getElementById('btn-dinein').onclick = () => showModalPay('매장');
+      document.getElementById('btn-takeout').onclick = () => showModalPay('포장');
+    }
+
+    // 2. 결제수단 선택
+    function showModalPay(type) {
+      const sumQty = cart.reduce((a, b) => a + b.qty, 0);
+      const sumPrice = cart.reduce((a, b) => a + b.qty * b.price, 0);
+      const discount = 0;
+      showModal(`
+        <div class="modal-title">결제</div>
+        <div class="modal-msg">주문내역을 확인 후 결제수단을 선택해주세요!</div>
+        <div style="max-height:180px;overflow-y:auto;margin-bottom:14px;">
+          ${cart.map(item=>`
+            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+              <span>${item.name} x ${item.qty}</span>
+              <span style="color:#e53935;font-weight:bold;">${(item.price*item.qty).toLocaleString()}원</span>
+            </div>
+          `).join('')}
+        </div>
+        <div style="text-align:right;font-size:1.08em;margin-bottom:16px;">
+          총수량: <b>${sumQty}</b> &nbsp; 결제금액: <b style="color:#e53935;">${sumPrice.toLocaleString()}원</b> &nbsp; 할인금액: <b>${discount.toLocaleString()}원</b>
+        </div>
+        <div class="modal-btns">
+          <button class="modal-btn" id="btn-card">신용카드</button>
+          <button class="modal-btn" id="btn-cash">현금</button>
+        </div>
+        <button class="modal-btn secondary" id="btn-cancelpay" style="margin-top:10px;">결제 취소</button>
+      `);
+      document.getElementById('btn-card').onclick = () => showModalDone(type, '신용카드');
+      document.getElementById('btn-cash').onclick = () => showModalDone(type, '현금');
+      document.getElementById('btn-cancelpay').onclick = () => closeModal();
+    }
+
+    // 3. 결제 완료
+    function showModalDone(type, paytype) {
+      showModal(`
+        <div class="modal-title">주문 완료</div>
+        <div class="modal-msg">주문이 정상적으로 접수되었습니다.<br><br>
+        [${type}] [${paytype}]<br>
+        감사합니다!</div>
+        <div class="modal-btns">
+          <button class="modal-btn" id="btn-close">닫기</button>
+        </div>
+      `);
+      document.getElementById('btn-close').onclick = () => {
+        closeModal();
+        cart = [];
+        renderCart();
+      };
+    }
+
+    // 모달 표시
+    function showModal(html) {
+      document.getElementById('modal-box').innerHTML = html;
+      document.getElementById('modal-bg').classList.add('active');
+    }
+    function closeModal() {
+      document.getElementById('modal-bg').classList.remove('active');
+    }
+    // 바깥 클릭시 닫기
+    document.getElementById('modal-bg').onclick = e => {
+      if (e.target === document.getElementById('modal-bg')) closeModal();
+    };
+
+    // 초기 렌더
+    renderMenu();
+    renderCart();
+  </script>
+</body>
+</html>
