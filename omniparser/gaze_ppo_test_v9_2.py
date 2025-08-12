@@ -13,6 +13,8 @@ from collections import defaultdict, OrderedDict
 from PIL import Image
 from text_normalizer import normalize_token
 from typing import List
+import math
+import random
 
 # Windows DPI 스케일 문제 해결
 try:
@@ -22,7 +24,6 @@ try:
 except Exception as e:
     print("[DPI] Failed to set DPI aware:", e)
 
-import random
 pyautogui.FAILSAFE = True  # Failsafe 비활성화
 
 SEED = 42
@@ -678,7 +679,20 @@ def biased_sample(net, obs_vec, env, alpha=2.0):
                     if (dx == np.sign(mem_dx) and dy == np.sign(mem_dy)):
                         memory_bonus = 0.3
         
-        total_hint = base_hint + exploration_bonus + memory_bonus
+        # Dwell 보너스 (고령자 전용)
+        dwell_bonus = 0.0
+        if hasattr(globals(), "DWELL_MANAGER") and DWELL_MANAGER.state in ("warn", "help"):
+            dwell_bonus = 0.2 if DWELL_MANAGER.state == "warn" else 0.4
+        
+        # Warn 단계에서 탐색 강화
+        if hasattr(globals(), "DWELL_MANAGER") and DWELL_MANAGER.state == "warn":
+            # 미방문 영역에 더 큰 보너스
+            if visit_count == 0:
+                exploration_bonus = 1.0  # 0.5 -> 1.0으로 증가
+            elif visit_count < 3:
+                exploration_bonus = 0.5  # 0.2 -> 0.5로 증가
+        
+        total_hint = base_hint + exploration_bonus + memory_bonus + dwell_bonus
         hint_bias.append(total_hint)
     
     hint_bias = torch.tensor(hint_bias, dtype=torch.float32, device=device)
@@ -954,32 +968,36 @@ class DebugWindow:
         self.clicks_label = tk.Label(self.frame, text="Clicks: 0", **label_style)
         self.clicks_label.grid(row=5, column=0, sticky=tk.W, pady=3)
         
+        # Dwell 상태 라벨 추가
+        self.dwell_label = tk.Label(self.frame, text="Dwell: Normal", **label_style)
+        self.dwell_label.grid(row=6, column=0, sticky=tk.W, pady=3)
+        
         # 상태 표시 (다크 테마)
         self.status_label = tk.Label(self.frame, text="Status: Ready", 
                                    bg='#2b2b2b', fg='#00ff00', font=('Arial', 12, 'bold'))
-        self.status_label.grid(row=6, column=0, sticky=tk.W, pady=12)
+        self.status_label.grid(row=7, column=0, sticky=tk.W, pady=12)
         
         # 로그 텍스트 영역 (다크 테마)
         self.log_text = tk.Text(self.frame, height=10, width=60, 
                                font=('Consolas', 9), bg='#1e1e1e', fg='#ffffff',
                                insertbackground='#ffffff', selectbackground='#404040')
-        self.log_text.grid(row=7, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5)
+        self.log_text.grid(row=8, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=5)
         
         # 스크롤바 (다크 테마)
         scrollbar = tk.Scrollbar(self.frame, orient=tk.VERTICAL, command=self.log_text.yview,
                                bg='#404040', troughcolor='#2b2b2b')
-        scrollbar.grid(row=7, column=1, sticky=(tk.N, tk.S))
+        scrollbar.grid(row=8, column=1, sticky=(tk.N, tk.S))
         self.log_text.configure(yscrollcommand=scrollbar.set)
         
         # 종료 버튼 (다크 테마)
         self.close_button = tk.Button(self.frame, text="Close", command=self.root.destroy,
                                     bg='#404040', fg='#ffffff', font=('Arial', 10),
                                     relief='flat', padx=20, pady=5)
-        self.close_button.grid(row=8, column=0, pady=8)
+        self.close_button.grid(row=9, column=0, pady=8)
         
         self.root.protocol("WM_DELETE_WINDOW", self.root.destroy)
         
-    def update_info(self, step, goal_tok, completed_goals, total_goals, env, mem_target, start_time, total_clicks):
+    def update_info(self, step, goal_tok, completed_goals, total_goals, env, mem_target, start_time, total_clicks, dwell_state="normal"):
         if not SHOW_DEBUG_WINDOW or not hasattr(self, 'root'):
             return
             
@@ -993,6 +1011,16 @@ class DebugWindow:
             
             # 클릭 수 정보 업데이트
             self.clicks_label.config(text=f"Clicks: {total_clicks}")
+            
+            # Dwell 상태 업데이트
+            dwell_colors = {
+                "normal": "#ffffff",  # 흰색
+                "warn": "#ffaa00",    # 주황
+                "help": "#ff6600",    # 진한 주황
+                "back": "#ff0000"     # 빨강
+            }
+            dwell_color = dwell_colors.get(dwell_state, "#ffffff")
+            self.dwell_label.config(text=f"Dwell: {dwell_state.title()}", fg=dwell_color)
             
             # 상태 업데이트 (다크 테마)
             if mem_target:
@@ -1025,7 +1053,7 @@ class DebugWindow:
 # 전역 디버그 창 인스턴스
 debug_window = None
 
-def create_debug_window(img, env, goal_tok, mem_target, step, completed_goals, total_goals, start_time, total_clicks):
+def create_debug_window(img, env, goal_tok, mem_target, step, completed_goals, total_goals, start_time, total_clicks, dwell_state="normal"):
     """디버그 창 생성 및 업데이트"""
     global debug_window
     
@@ -1037,7 +1065,7 @@ def create_debug_window(img, env, goal_tok, mem_target, step, completed_goals, t
         debug_window = DebugWindow()
     
     # 정보 업데이트
-    debug_window.update_info(step, goal_tok, completed_goals, total_goals, env, mem_target, start_time, total_clicks)
+    debug_window.update_info(step, goal_tok, completed_goals, total_goals, env, mem_target, start_time, total_clicks, dwell_state)
 
 # ==========================
 # Main
@@ -1048,6 +1076,13 @@ import math
 def main():
     # 전체 수행시간 측정 시작
     total_start_time = time.time()
+    
+    # 사용자 행동 프로파일 로드
+    user_behavior = get_user_behavior(CONFIG['user_type'])
+    print(f"[BEHAVIOR] User type: {CONFIG['user_type']}")
+    print(f"[BEHAVIOR] Curved movement: {user_behavior['enable_curved_movement']}")
+    print(f"[BEHAVIOR] Complex click: {user_behavior['enable_complex_click']}")
+    print(f"[BEHAVIOR] Dwell manager: {user_behavior['enable_dwell_manager']}")
     
     # 파일 존재 확인 및 예외 처리
     if not os.path.exists(SCREEN_PATH):
@@ -1130,6 +1165,13 @@ def main():
     completed_goals = 0
     total_steps = 0
     total_clicks = 0  # 클릭 수 추적
+    
+    # 고령자 행동 통계 변수
+    overshoot_count = 0
+    double_clicks = 0
+    long_presses = 0
+    fatfinger_clicks = 0
+    dwell_events = 0
 
     for tid, seq in enumerate(TEST_TASKS, 1):
         print(f"\n== TASK {tid}: {seq}")
@@ -1185,8 +1227,113 @@ def main():
             # mem_target 미리 정의 (디버그 창에서 사용하기 위해)
             mem_target = env.memory_manager.best(goal_tok) if goal_tok else None
             
+            # Dwell Manager 업데이트 (고령자만)
+            dwell_s, dwell_state = 0.0, "normal"
+            if user_behavior['enable_dwell_manager'] and step % 5 == 0:
+                dwell_s, dwell_state = DWELL_MANAGER.update(scr)
+                if DEBUG:
+                    print(f"[DWELL] {dwell_s:.1f}s, state={dwell_state}")
+                
+                # Help 단계에서 20초 추가 대기 후 프로그램 종료
+                if dwell_state == "help" and DWELL_MANAGER.help_start_time is not None:
+                    help_duration = time.time() - DWELL_MANAGER.help_start_time
+                    if help_duration > 20:  # Help 단계에서 20초 더 지나면
+                        print(f"\n[DWELL GIVEUP] Help 단계에서 {help_duration:.1f}초 대기 후 프로그램 종료")
+                        print(f"[DWELL GIVEUP] 총 {total_goals}개 목표 중 {completed_goals}개 완료")
+                        print(f"[DWELL GIVEUP] 성공률: {(completed_goals/total_goals*100):.1f}%")
+                        
+                        # 디버그 창 정리
+                        if SHOW_DEBUG_WINDOW and debug_window:
+                            debug_window.destroy()
+                        
+                        # 프로그램 종료
+                        return
+                
+                # Dwell 정책 적용
+                policy = apply_dwell_policy(env, dwell_state)
+                if "force_target" in policy:
+                    tgx, tgy = policy["force_target"]
+                    if DEBUG:
+                        print(f"[DWELL FORCE] 강제 이동: ({tgx}, {tgy})")
+                        # 해당 위치의 텍스트 확인
+                        if 0 <= tgy < env.N and 0 <= tgx < env.N:
+                            cell_center_x = (tgx + 0.5) * env.cell_w
+                            cell_center_y = (tgy + 0.5) * env.cell_h
+                            cell_texts = []
+                            for txt, bb in zip(env.ocr_txt, env.ocr_bb):
+                                if is_inside(bb, (cell_center_x - env.cell_w/2, cell_center_y - env.cell_h/2, 
+                                                 cell_center_x + env.cell_w/2, cell_center_y + env.cell_h/2)):
+                                    cell_texts.append(txt)
+                            print(f"[DWELL FORCE] 해당 위치 텍스트: {cell_texts}")
+                        else:
+                            print(f"[DWELL FORCE] 좌표 범위 초과: ({tgx}, {tgy})")
+                    
+                    # 좌표가 유효한 범위인지 확인
+                    if 0 <= tgy < env.N and 0 <= tgx < env.N:
+                        act = plan_move((env.gx, env.gy), (tgx, tgy))
+                        obs, _, done, info = env.step(act)
+                        print(f"[DWELL FORCE] 이동 완료: ({env.gx}, {env.gy}) -> ({tgx}, {tgy})")
+                        
+                        # 강제 클릭 실행
+                        if dwell_state in ["help", "back"]:
+                            # 해당 위치에서 실제 텍스트 찾기
+                            cell_center_x = (tgx + 0.5) * env.cell_w
+                            cell_center_y = (tgy + 0.5) * env.cell_h
+                            
+                            # 해당 셀에 있는 텍스트들 찾기
+                            target_text = None
+                            target_bb = None
+                            for txt, bb in zip(env.ocr_txt, env.ocr_bb):
+                                if is_inside(bb, (cell_center_x - env.cell_w/2, cell_center_y - env.cell_h/2, 
+                                                 cell_center_x + env.cell_w/2, cell_center_y + env.cell_h/2)):
+                                    # HELP_TOKENS 또는 뒤로/홈 버튼인지 확인
+                                    if dwell_state == "help" and any(h in txt for h in HELP_TOKENS):
+                                        target_text = txt
+                                        target_bb = bb
+                                        break
+                                    elif dwell_state == "back" and any(pref in txt for pref in ["뒤로", "처음으로", "홈", "취소"]):
+                                        target_text = txt
+                                        target_bb = bb
+                                        break
+                            
+                            if target_text and target_bb:
+                                # 실제 텍스트의 중심부 좌표 계산
+                                cx_raw, cy_raw = _bbox_center(target_bb)
+                                click_x, click_y = to_screen_xy(cx_raw, cy_raw)
+                                
+                                print(f"[DWELL FORCE] '{target_text}' 텍스트 중심부 클릭: ({click_x}, {click_y})")
+                                
+                                # 사용자 타입에 따른 클릭
+                                if user_behavior['enable_complex_click']:
+                                    elder_click(click_x, click_y, user_behavior, target_bb)
+                                else:
+                                    pyautogui.click(click_x, click_y)
+                                
+                                if click_snd:
+                                    click_snd.play()
+                                
+                                total_clicks += 1
+                                print(f"[DWELL FORCE] 클릭 완료! '{target_text}' (Total clicks: {total_clicks})")
+                                
+                                # 클릭 후 잠시 대기
+                                time.sleep(UI_TRANSITION_DELAY)
+                                
+                                # Dwell 상태 리셋 (한 번만 클릭하도록)
+                                DWELL_MANAGER.last_change_t = time.time()
+                                DWELL_MANAGER.state = "normal"
+                                # 화면 해시도 업데이트하여 새로운 화면으로 인식
+                                DWELL_MANAGER.last_hash = stable_ahash(scr)
+                                print(f"[DWELL FORCE] 상태 리셋 완료 - 다음 dwell까지 대기")
+                            else:
+                                print(f"[DWELL FORCE] 해당 위치에서 클릭할 텍스트를 찾을 수 없음")
+                        else:
+                            print(f"[DWELL FORCE] warn 상태에서는 클릭하지 않음")
+                    else:
+                        print(f"[DWELL FORCE] 유효하지 않은 좌표: ({tgx}, {tgy})")
+                    continue  # 즉시 다음 루프로
+            
             # 디버그 창 업데이트
-            create_debug_window(scr, env, goal_tok, mem_target, step, completed_goals, total_goals, task_start_time, total_clicks)
+            create_debug_window(scr, env, goal_tok, mem_target, step, completed_goals, total_goals, task_start_time, total_clicks, dwell_state)
 
             # [추가] 메모리 좌표가 현재 화면에서 유효한지 검증
             if mem_target:
@@ -1258,7 +1405,12 @@ def main():
                 x, y = to_screen_xy(cx_raw, cy_raw)
                 x = max(PADDING, min(x, pyautogui.size()[0] - 1 - PADDING))
                 y = max(PADDING, min(y, pyautogui.size()[1] - 1 - PADDING))
-                pyautogui.moveTo(x, y, duration=0.1)
+                
+                # 사용자 타입에 따른 마우스 이동
+                if user_behavior['enable_curved_movement']:
+                    move_mouse_curved(x, y, user_behavior)  # 고령자: 곡선 이동
+                else:
+                    pyautogui.moveTo(x, y, duration=0.1)    # 젊은이: 직선 이동
 
             # 시야 박스 좌표 디버그 출력
             vbox = env._vbox()
@@ -1325,19 +1477,41 @@ def main():
                 completed_goals += 1
                 total_clicks += 1  # goal 클릭 수 증가
                 time.sleep(CLICK_DELAY)
+                
+                # 클릭 후보 선택
                 cand = _pick_click_candidate(env._last_candidates, normalize_token(goal_tok))
                 if cand:
                     _, bb = cand
                     cx_raw, cy_raw = _bbox_center(bb)
+                    print(f"[CLICK] 목표 텍스트 위치: ({cx_raw:.1f}, {cy_raw:.1f})")
                 else:
+                    # 후보가 없으면 시야 박스 중심
                     cx_raw, cy_raw = _bbox_center(env._vbox())
+                    print(f"[CLICK] 시야 박스 중심: ({cx_raw:.1f}, {cy_raw:.1f})")
 
                 # DPI 스케일 보정 적용
                 click_x, click_y = to_screen_xy(cx_raw, cy_raw)
                 
                 print(f"[CLICK DEBUG] 원본 좌표: ({cx_raw:.1f}, {cy_raw:.1f}) -> 변환 좌표: ({click_x}, {click_y})")
-                pyautogui.moveTo(click_x, click_y, duration=0.15)
-                pyautogui.click()
+                
+                # 목표 위치로 먼저 이동
+                if user_behavior['enable_curved_movement']:
+                    move_mouse_curved(click_x, click_y, user_behavior)  # 고령자: 곡선 이동
+                else:
+                    pyautogui.moveTo(click_x, click_y, duration=0.15)    # 젊은이: 직선 이동
+                
+                # 잠시 대기 후 클릭
+                time.sleep(0.1)
+                
+                # 사용자 타입에 따른 클릭 행동
+                if user_behavior['enable_complex_click']:
+                    # 고령자: 복잡한 클릭 (호버 + 팻핑거 + 더블클릭/롱프레스)
+                    target_bb = bb if cand else None
+                    elder_click(click_x, click_y, user_behavior, target_bb)
+                else:
+                    # 젊은이: 단순 클릭
+                    pyautogui.click()
+                
                 if click_snd:
                     click_snd.play()
                 print(f"Clicked at {(click_x, click_y)} for token '{goal_tok}' (Total clicks: {total_clicks})")
@@ -1350,7 +1524,7 @@ def main():
                 
                 # 클릭 후 디버그 창 업데이트 (10스텝마다만)
                 if step % 10 == 0:
-                    create_debug_window(scr, env, goal_tok, mem_target, step, completed_goals, total_goals, task_start_time, total_clicks)
+                    create_debug_window(scr, env, goal_tok, mem_target, step, completed_goals, total_goals, task_start_time, total_clicks, dwell_state)
                 continue
 
             if step % MEMORY_PRUNING_INTERVAL == 0:
@@ -1381,12 +1555,282 @@ def main():
     print(f"⚡ Average Time per Goal: {total_duration/total_goals:.2f}s")
     print(f"🚀 Average Steps per Goal: {total_steps/total_goals:.1f}")
     print(f"🎯 Average Clicks per Goal: {total_clicks/total_goals:.1f}")
+    
+    # 고령자 행동 통계 (고령자인 경우만)
+    if CONFIG['user_type'] == 'elder':
+        print("\n" + "👴 ELDER BEHAVIOR STATISTICS")
+        print("="*40)
+        print(f"🎯 Overshoot Count: {overshoot_count}")
+        print(f"🖱️  Double Clicks: {double_clicks}")
+        print(f"⏱️  Long Presses: {long_presses}")
+        print(f"👆 Fat Finger Clicks: {fatfinger_clicks}")
+        print(f"⏳ Dwell Events: {dwell_events}")
+        print(f"📊 Dwell Rate: {(dwell_events/total_steps*100):.1f}%")
+    
     print("="*60)
     print("✔ 모든 TASK 종료")
     
     # 디버그 창 정리
     if SHOW_DEBUG_WINDOW and debug_window:
         debug_window.destroy()
+
+# ==========================
+# Elder/Young Behavior Profiles
+# ==========================
+from dataclasses import dataclass
+import math
+
+@dataclass
+class ElderProfile:
+    # 시야/스캔 (지각)
+    fixation_mean_s: float = 0.35  # 0.55 -> 0.35로 감소
+    fixation_sigma: float = 0.20   # 0.35 -> 0.20으로 감소
+    saccade_latency_mean_s: float = 0.20  # 0.32 -> 0.20으로 감소
+    saccade_latency_sigma: float = 0.15   # 0.30 -> 0.15로 감소
+    micro_saccade_px: float = 1.0   # 2.0 -> 1.0으로 감소
+    
+    # 마우스 움직임 (운동)
+    mouse_speed_px_s: float = 2100  # 1800 -> 2100으로 300 증가
+    path_curvature: float = 0.08   # 0.18 -> 0.08로 감소
+    tremor_std_px: float = 2.0     # 1.2 -> 2.0으로 증가 (떨림 증가)
+    overshoot_prob: float = 0.15   # 0.35 -> 0.15로 감소
+    overshoot_ratio: float = 0.03  # 0.06 -> 0.03으로 감소
+    
+    # 클릭 행동
+    hover_mean_s: float = 0.25  # 0.65 -> 0.25로 감소
+    hover_sigma: float = 0.15   # 0.35 -> 0.15로 감소
+    fatfinger_std_px: float = 3.0  # 6.0 -> 3.0으로 감소
+    double_click_prob: float = 0.05  # 0.12 -> 0.05로 감소
+    long_press_prob: float = 0.03   # 0.10 -> 0.03으로 감소
+    long_press_ms: tuple = (200, 400)  # (300,700) -> (200,400)으로 감소
+
+@dataclass
+class YoungProfile:
+    # 시야/스캔 (지각)
+    fixation_mean_s: float = 0.25
+    fixation_sigma: float = 0.15
+    saccade_latency_mean_s: float = 0.15
+    saccade_latency_sigma: float = 0.10
+    micro_saccade_px: float = 0.5
+    
+    # 마우스 움직임 (운동)
+    mouse_speed_px_s: float = 3000  # 2700 -> 3000으로 300 증가
+    path_curvature: float = 0.05
+    tremor_std_px: float = 0.5
+    overshoot_prob: float = 0.05
+    overshoot_ratio: float = 0.02
+    
+    # 클릭 행동
+    hover_mean_s: float = 0.15
+    hover_sigma: float = 0.10
+    fatfinger_std_px: float = 1.0
+    double_click_prob: float = 0.02
+    long_press_prob: float = 0.02
+    long_press_ms: tuple = (100, 200)
+
+# 전역 프로파일 인스턴스
+ELDER_PROFILE = ElderProfile()
+YOUNG_PROFILE = YoungProfile()
+
+def _lognorm(mean, sigma):
+    """로그정규분포 샘플링"""
+    return float(np.random.lognormal(mean=np.log(max(mean, 1e-3)), sigma=sigma))
+
+def get_user_behavior(user_type: str):
+    """사용자 타입에 따른 행동 모델 반환"""
+    if user_type == 'elder':
+        profile = ELDER_PROFILE
+        return {
+            'fixation_mean_s': profile.fixation_mean_s,
+            'fixation_sigma': profile.fixation_sigma,
+            'mouse_speed_px_s': profile.mouse_speed_px_s,
+            'path_curvature': profile.path_curvature,
+            'tremor_std_px': profile.tremor_std_px,
+            'overshoot_prob': profile.overshoot_prob,
+            'overshoot_ratio': profile.overshoot_ratio,
+            'hover_mean_s': profile.hover_mean_s,
+            'hover_sigma': profile.hover_sigma,
+            'fatfinger_std_px': profile.fatfinger_std_px,
+            'double_click_prob': profile.double_click_prob,
+            'long_press_prob': profile.long_press_prob,
+            'long_press_ms': profile.long_press_ms,
+            'enable_dwell_manager': True,
+            'enable_micro_saccade': True,
+            'enable_curved_movement': True,
+            'enable_complex_click': True
+        }
+    else:  # young
+        profile = YOUNG_PROFILE
+        return {
+            'fixation_mean_s': profile.fixation_mean_s,
+            'fixation_sigma': profile.fixation_sigma,
+            'mouse_speed_px_s': profile.mouse_speed_px_s,
+            'path_curvature': profile.path_curvature,
+            'tremor_std_px': profile.tremor_std_px,
+            'overshoot_prob': profile.overshoot_prob,
+            'overshoot_ratio': profile.overshoot_ratio,
+            'hover_mean_s': profile.hover_mean_s,
+            'hover_sigma': profile.hover_sigma,
+            'fatfinger_std_px': profile.fatfinger_std_px,
+            'double_click_prob': profile.double_click_prob,
+            'long_press_prob': profile.long_press_prob,
+            'long_press_ms': profile.long_press_ms,
+            'enable_dwell_manager': False,
+            'enable_micro_saccade': False,
+            'enable_curved_movement': False,
+            'enable_complex_click': False
+        }
+
+# ==========================
+# Mouse Movement Functions
+# ==========================
+def move_mouse_curved(x, y, behavior):
+    """곡선 경로로 마우스 이동 (고령자용)"""
+    sx, sy = pyautogui.position()
+    dist = math.hypot(x - sx, y - sy)
+    duration = dist / max(80, behavior['mouse_speed_px_s'])
+
+    # 중간 제어점(베지어) - 경로를 살짝 휘게
+    midx = (sx + x) / 2
+    midy = (sy + y) / 2
+    nx, ny = x - sx, y - sy
+    
+    if dist > 0:
+        px, py = -ny/dist, nx/dist  # 수직 방향
+        ctrlx = midx + px * behavior['path_curvature'] * dist
+        ctrly = midy + py * behavior['path_curvature'] * dist
+    else:
+        ctrlx, ctrly = midx, midy
+
+    steps = max(12, int(duration * 60))
+    for i in range(1, steps + 1):
+        t = i / steps
+        bx = (1-t)**2 * sx + 2*(1-t)*t*ctrlx + t**2 * x
+        by = (1-t)**2 * sy + 2*(1-t)*t*ctrly + t**2 * y
+        bx += np.random.normal(0, behavior['tremor_std_px'])
+        by += np.random.normal(0, behavior['tremor_std_px'])
+        pyautogui.moveTo(int(bx), int(by))
+        time.sleep(duration/steps)
+
+    # 오버슈트 연출
+    if random.random() < behavior['overshoot_prob'] and dist > 80:
+        ox = x + int((x - sx) * behavior['overshoot_ratio'])
+        oy = y + int((y - sy) * behavior['overshoot_ratio'])
+        pyautogui.moveTo(ox, oy, duration=0.08)
+        pyautogui.moveTo(x, y, duration=0.10)
+
+# ==========================
+# Click Functions
+# ==========================
+def fitts_delay(distance_px, target_w_px):
+    """Fitts's Law 기반 클릭 지연 계산"""
+    a, b = 0.10, 0.12
+    W = max(8.0, target_w_px)
+    return a + b * math.log2(distance_px / W + 1.0)
+
+def elder_click(x, y, behavior, target_bb=None):
+    """고령자용 복잡한 클릭 행동 (이미 이동된 상태에서 클릭만)"""
+    # 호버(주저)
+    time.sleep(_lognorm(behavior['hover_mean_s'], behavior['hover_sigma']))
+
+    # 팻핑거 (이미 이동된 위치에서 미세 조정)
+    x += int(np.random.normal(0, behavior['fatfinger_std_px']))
+    y += int(np.random.normal(0, behavior['fatfinger_std_px']))
+    
+    # 팻핑거로 인한 위치 조정
+    pyautogui.moveTo(x, y, duration=0.05)
+
+    # 목표 크기/거리 기반 추가 지연
+    sx, sy = pyautogui.position()
+    d = math.hypot(x - sx, y - sy)
+    tw = 60
+    if target_bb is not None:
+        w, h, _ = _bbox_wh(target_bb)
+        tw = max(w, h)
+    time.sleep(fitts_delay(d, tw))
+
+    # 더블클릭/롱프레스
+    r = random.random()
+    if r < behavior['double_click_prob']:
+        pyautogui.click(clicks=2, interval=_lognorm(0.28, 0.25))
+    else:
+        pyautogui.mouseDown()
+        if random.random() < behavior['long_press_prob']:
+            time.sleep(random.uniform(*[v/1000 for v in behavior['long_press_ms']]))
+        time.sleep(_lognorm(0.08, 0.20))
+        pyautogui.mouseUp()
+
+# ==========================
+# Dwell Manager (고령자 전용)
+# ==========================
+HELP_TOKENS = ["도움말", "직원 호출", "뒤로", "취소", "처음으로", "홈"]
+
+class DwellManager:
+    def __init__(self, warn_s=15, help_s=25, back_s=35):  # 각 단계별 5초씩 증가
+        self.warn_s, self.help_s, self.back_s = warn_s, help_s, back_s
+        self.last_hash = None
+        self.last_change_t = time.time()
+        self.state = "normal"
+        self.help_start_time = None  # Help 단계 시작 시간
+
+    def update(self, frame_bgr):
+        h = stable_ahash(frame_bgr)
+        if self.last_hash is None:
+            self.last_hash, self.last_change_t = h, time.time()
+            return 0.0, "normal"
+
+        # 화면 변화 판단
+        if OcrCache.hamming(self.last_hash, h) > 20:
+            self.last_hash, self.last_change_t = h, time.time()
+            self.state = "normal"
+            return 0.0, self.state
+
+        dwell = time.time() - self.last_change_t
+        if dwell > self.back_s:   self.state = "back"
+        elif dwell > self.help_s: 
+            self.state = "help"
+            # Help 단계 시작 시간 기록
+            if self.help_start_time is None:
+                self.help_start_time = time.time()
+        elif dwell > self.warn_s: self.state = "warn"
+        else:                     
+            self.state = "normal"
+            self.help_start_time = None  # Normal로 돌아가면 리셋
+        return dwell, self.state
+
+def apply_dwell_policy(env, state):
+    """Dwell 상태에 따른 정책 적용"""
+    if state == "warn":
+        return {"explore_bonus": 0.3}
+    if state == "help":
+        # HELP_TOKENS가 보이면 즉시 그쪽으로 메모리 타깃 취급
+        for tok, bb in zip(env.ocr_txt, env.ocr_bb):
+            if any(h in tok for h in HELP_TOKENS):
+                cx, cy = _bbox_center(bb)
+                gx = min(int(cx / env.cell_w), env.N-1)
+                gy = min(int(cy / env.cell_h), env.N-1)
+                if DEBUG:
+                    print(f"[DWELL HELP] '{tok}' 발견: ({gx}, {gy})")
+                return {"force_target": (gx, gy)}
+        if DEBUG:
+            print(f"[DWELL HELP] 도움말 버튼을 찾을 수 없음")
+    if state == "back":
+        # 뒤로/처음으로 시도
+        for pref in ["뒤로", "처음으로", "홈", "취소"]:
+            for tok, bb in zip(env.ocr_txt, env.ocr_bb):
+                if pref in tok:
+                    cx, cy = _bbox_center(bb)
+                    gx = min(int(cx / env.cell_w), env.N-1)
+                    gy = min(int(cy / env.cell_h), env.N-1)
+                    if DEBUG:
+                        print(f"[DWELL BACK] '{tok}' 발견: ({gx}, {gy})")
+                    return {"force_target": (gx, gy)}
+        if DEBUG:
+            print(f"[DWELL BACK] 뒤로/홈 버튼을 찾을 수 없음")
+    return {}
+
+# 전역 DwellManager 인스턴스
+DWELL_MANAGER = DwellManager()
 
 if __name__ == "__main__":
     main()
