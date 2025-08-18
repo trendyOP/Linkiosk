@@ -23,7 +23,7 @@ try:
 except Exception as e:
     print("[DPI] Failed to set DPI aware:", e)
 
-pyautogui.FAILSAFE = True  # Failsafe 비활성화
+pyautogui.FAILSAFE = True  # Failsafe 활성화
 
 SEED = 42
 random.seed(SEED); np.random.seed(SEED)
@@ -913,9 +913,8 @@ def _refresh_screen_cached(self: GazeKioskEnv, bgr_img: np.ndarray, cache: OcrCa
 # ==========================
 # Debug Window Functions (Tkinter 기반)
 # ==========================
-import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk
+# (imports consolidated; ttk 미사용)
+from PIL import ImageTk
 
 class DebugWindow:
     def __init__(self):
@@ -1074,7 +1073,6 @@ def create_debug_window(img, env, goal_tok, mem_target, step, completed_goals, t
 # Main
 # ==========================
 import os
-import math
 
 def main():
     # 전체 수행시간 측정 시작
@@ -1574,8 +1572,6 @@ def main():
 # ==========================
 # Elder/Young Behavior Profiles
 # ==========================
-from dataclasses import dataclass
-import math
 
 @dataclass
 class ElderProfile:
