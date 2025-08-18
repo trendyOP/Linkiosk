@@ -112,15 +112,15 @@ def get_paddle_ocr():
         from paddleocr import PaddleOCR
         _paddle_ocr = PaddleOCR(
             lang='korean',               # 한국어로 변경 (매장식사 인식 향상)
-            use_angle_cls=False,         # 각도 분류 비활성화 (옛날 설정)
+            use_angle_cls=False,         # 각도 분류 비활성화 
             show_log=False,
             det_limit_side_len=1920,     # 화면 캡처에 맞춤
             drop_score=0.35,             # 임계값을 0.35로 낮춤 (한국어 텍스트 구제)
-            use_gpu=False,               # GPU 비활성화 (옛날 설정)
-            use_dilation=True,           # 정확도 향상 (옛날 설정)
-            det_db_score_mode='slow',    # 정확도 향상 (옛날 설정)
-            max_batch_size=1024,         # 배치 크기 (옛날 설정)
-            rec_batch_num=1024           # 배치 크기 (옛날 설정)
+            use_gpu=False,               # GPU 비활성화 
+            use_dilation=True,           # 정확도 향상 
+            det_db_score_mode='slow',    # 정확도 향상 
+            max_batch_size=1024,         # 배치 크기 
+            rec_batch_num=1024           # 배치 크기 
         )
     return _paddle_ocr
 
