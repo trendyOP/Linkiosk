@@ -7,7 +7,6 @@ import mss
 import types
 import difflib
 import tkinter as tk
-from tkinter import ttk
 from dataclasses import dataclass
 from collections import defaultdict, OrderedDict
 from PIL import Image
@@ -28,6 +27,28 @@ pyautogui.FAILSAFE = True  # Failsafe 비활성화
 
 SEED = 42
 random.seed(SEED); np.random.seed(SEED)
+
+# ==========================
+# Constants & Config
+# ==========================
+# 파일 경로 상수
+SCREEN_PATH = "screen5.png"
+MODEL_PATH = "omniparser/gaze_ppo_v9.pt"
+CLICK_SOUND_PATH = "click.wav"
+
+# 매직 넘버들을 상수로 정의
+DEFAULT_VISION_GRID_N = 32
+OCR_CACHE_MAX_SIZE = 32
+OCR_CACHE_HAMMING_THRESHOLD = 8
+MOUSE_MOVE_INTERVAL = 5
+CLICK_DELAY = 1.143
+UI_TRANSITION_DELAY = 0.05
+MEMORY_PRUNING_INTERVAL = 5
+MAX_MEMORY_SIZE = 2000
+MEMORY_CAP_PER_TOKEN = 200
+MEMORY_TTL = 5000
+MAX_EP_STEPS = 2000
+ALLOW_EXTRA = 2
 
 # PaddleOCR을 가장 먼저 초기화 (torch 로드 전)
 from utils.utils import get_paddle_ocr
@@ -67,7 +88,7 @@ except Exception as e:
     # 기본값 설정
     GazeKioskEnv = None
     GazeActorCritic = None
-    VISION_GRID_N = 32
+    VISION_GRID_N = DEFAULT_VISION_GRID_N
     build_vocab_index = None
     is_inside = None
     device = None
@@ -158,19 +179,6 @@ def load_config():
 # 설정 로드
 CONFIG = load_config()
 
-# 파일 경로 (환경변수나 설정 파일로 이동 권장)
-SCREEN_PATH = "screen5.png"
-MODEL_PATH  = "omniparser/gaze_ppo_v9.pt"
-CLICK_SOUND_PATH = "click.wav"
-
-# 테스트 설정 - config에서 읽어온 queue 사용
-if CONFIG['menu_queue']:
-    TEST_TASKS = [CONFIG['menu_queue']]
-else:
-    TEST_TASKS = [["매장식사","아메리카노","주문담기","더담기","스무디","수박 주스", "주문담기", "더담기","베이커리","햄&치즈 샌드위치","주문담기", "결제하기", "확인","신용카드","대기","예"]]
-MAX_EP_STEPS = 2000
-ALLOW_EXTRA = 2
-
 # 화면 설정 (자동 감지)
 def get_screen_monitor():
     """화면 해상도를 자동으로 감지"""
@@ -191,16 +199,11 @@ def get_screen_monitor():
 SCREEN_MONITOR = get_screen_monitor()
 HASH_ROI = (0.10, 0.90, 0.10, 0.90)  # ROI 비율을 더 넓게 조정하여 화면 변화 감지 개선
 
-# 동작 설정
-MOUSE_MOVE_INTERVAL = 5  # 마우스 이동 간격
-CLICK_DELAY = 1.143  # 클릭 후 대기 시간, 평균 노인의 인지시간 + 반응시간
-UI_TRANSITION_DELAY = 0.05  # UI 전환 대기 시간
-MEMORY_PRUNING_INTERVAL = 5  # 메모리 정리 간격
-
-# 메모리 설정
-MAX_MEMORY_SIZE = 2000  # 메모리 최대 크기 제한 (증가)
-MEMORY_CAP_PER_TOKEN = 200  # 토큰당 최대 메모리 항목 수
-MEMORY_TTL = 5000  # 메모리 항목 생명주기 (step) - 증가
+# 테스트 설정 - config에서 읽어온 queue 사용
+if CONFIG['menu_queue']:
+    TEST_TASKS = [CONFIG['menu_queue']]
+else:
+    TEST_TASKS = [["매장식사","아메리카노","주문담기","더담기","스무디","수박 주스", "주문담기", "더담기","베이커리","햄&치즈 샌드위치","주문담기", "결제하기", "확인","신용카드","대기","예"]]
 
 # ==========================
 # Stable aHash (ROI + Blur)
@@ -1111,7 +1114,7 @@ def main():
         print(f"[ERROR] 환경 초기화 실패: {e}")
         return
 
-    cache = OcrCache(max_size=32, hamming_thr=8)  # 해시가 16×16 비트에 ROI가 넓게 잡혀 있으므로, 작은 UI 변화로도 해시가 흔들림
+    cache = OcrCache(max_size=OCR_CACHE_MAX_SIZE, hamming_thr=OCR_CACHE_HAMMING_THRESHOLD)  # 해시가 16×16 비트에 ROI가 넓게 잡혀 있으므로, 작은 UI 변화로도 해시가 흔들림
     env.cache = cache  # env에 cache 속성 추가
     env._refresh_screen_cached = types.MethodType(_refresh_screen_cached, env)
     env.set_goal_sequence = types.MethodType(_set_goal_sequence, env)
@@ -1157,8 +1160,7 @@ def main():
     else:
         print(f"[DPI INFO] 좌표계 일치 - DPI 스케일 보정 불필요")
 
-    seek_mode = False
-    PRUNE_EVERY = MEMORY_PRUNING_INTERVAL
+    # seek_mode 변수는 실제로 사용되지 않으므로 제거
 
     # 전체 통계 변수
     total_goals = 0
@@ -1348,7 +1350,6 @@ def main():
                     print(f"[MEMORY INVALID] No text at ({target_gx},{target_gy}) on current screen")
                     print(f"  - 화면이 변경되어 메모리 위치가 무효화됨")
                     mem_target = None
-                    seek_mode = False
                 else:
                     # 추가 검증: 해당 위치에 실제로 goal과 매칭되는 텍스트가 있는지 확인
                     vx1, vy1, vx2, vy2 = env._vbox()
@@ -1378,14 +1379,11 @@ def main():
                         print(f"[MEMORY MISMATCH] 셀에 '{goal_tok}'와 매칭되는 텍스트 없음")
                         print(f"  - 셀 텍스트: {cell_texts}")
                         mem_target = None
-                        seek_mode = False
                     else:
                         print(f"[MEMORY VALID] '{goal_tok}' 메모리 위치 유효함")
-                        seek_mode = True
             else:
                 if DEBUG:
                     print(f"[MEMORY MISS] '{goal_tok}'에 대한 메모리 없음")
-                seek_mode = False
 
             if mem_target:
                 act = plan_move((env.gx, env.gy), (mem_target.gx, mem_target.gy))
@@ -1520,7 +1518,6 @@ def main():
                 scr = np.array(sct.grab(SCREEN_MONITOR))[:, :, :3]
                 obs = env._refresh_screen_cached(scr, cache)  # force 없이!
                 need_refresh = False
-                seek_mode = False
                 
                 # 클릭 후 디버그 창 업데이트 (10스텝마다만)
                 if step % 10 == 0:

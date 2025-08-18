@@ -15,7 +15,26 @@ from PIL import Image
 from torch.utils.tensorboard import SummaryWriter
 
 from utils.utils import check_ocr_box           # 사용자 util
-from text_normalizer import normalize_token     # 선택적 전처리
+
+# ───────────────────────────────────────────────────────────────
+# Constants & Config
+# ───────────────────────────────────────────────────────────────
+CONFIG_PATH = "omniparser/config.ini"
+DEFAULT_IMAGE_PATH = "screen5.png"
+LOG_DIR = "runs/gaze_scan_v2"
+MODEL_SAVE_PATH = "omniparser/gaze_ppo_v9.pt"
+LOGS_DIR = "omniparser/gaze_logs_v9"
+
+# 매직 넘버들을 상수로 정의
+SALIENCY_WEIGHT = 0.1
+APPRAISAL_PENALTY_WEIGHT = 0.01
+LINE_COVERAGE_BONUS = 0.3
+COL_COVERAGE_BONUS = 0.3
+MOVE_DISTANCE_PENALTY = 0.05
+DIRECTION_CONTINUITY_BONUS = 0.02
+REVISIT_PENALTY_LIGHT = 0.01
+REVISIT_PENALTY_HEAVY = 0.02
+COVERAGE_RESET_GRACE_PERIOD = 100
 
 # ───────────────────────────────────────────────────────────────
 # [APPRAISAL-ADD] Elderly Appraisal 모듈 정의
@@ -88,9 +107,17 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 # ───────────────────────────────────────────────────────────────
 # Config / Hyper-parameters
 # ───────────────────────────────────────────────────────────────
-cfg = configparser.ConfigParser()
-cfg.read("omniparser/config.ini", encoding="utf-8")
-VISION_GRID_N: int = int(cfg["User"].get("vision_grid", 9))  # 기본 9×9 = 81
+def load_config():
+    cfg = configparser.ConfigParser()
+    try:
+        cfg.read(CONFIG_PATH, encoding="utf-8")
+        vision_grid = int(cfg["User"].get("vision_grid", 9))
+    except (FileNotFoundError, KeyError, ValueError) as e:
+        print(f"Warning: Config file error ({e}), using default vision_grid=9")
+        vision_grid = 9
+    return vision_grid
+
+VISION_GRID_N: int = load_config()
 
 MOVE_OPTIONS: Tuple[Tuple[int,int], ...] = (
     (0,-1), (1,-1), (1,0), (1,1), (0,1), (-1,1), (-1,0), (-1,-1)
@@ -111,7 +138,7 @@ class RewardConfig:
     step_cov_bonus  : float = +0.10   # 새 셀마다
 
     # 에피소드
-    max_steps       : int   = 2000
+    max_steps       : int   = 300
     coverage_bonus  : float = +2.0    # 모든 셀 방문 성공
 
     hint_weight: float = 0.3
@@ -172,7 +199,11 @@ def compute_saliency_map(img:Image.Image, N:int=9):
 # ───────────────────────────────────────────────────────────────
 class GazeKioskEnv:
     def __init__(self, img_path:str, *, reward_cfg:RewardConfig=RC, verbose=True):
-        self.image = Image.open(img_path).convert("RGB")
+        try:
+            self.image = Image.open(img_path).convert("RGB")
+        except Exception as e:
+            raise ValueError(f"Failed to load image from {img_path}: {e}")
+            
         self.W,self.H = self.image.size
         self.N = VISION_GRID_N
         self.cell_w, self.cell_h = self.W/self.N, self.H/self.N
@@ -185,14 +216,18 @@ class GazeKioskEnv:
         self.prev_dir = None  # [추가] 이전 이동 방향
         self.line_visited = set()  # [추가] 라인 커버리지 보상용
         self.col_visited = set()   # [추가] 열 커버리지 보상용
-        self.stuck_counter = 0  # [추가] 한 곳에 머무는 시간 카운터
         self.last_coverage_reset = 0  # [추가] 마지막 커버리지 리셋 스텝
 
         # OCR
         if verbose: print("[Env] OCR…")
-        self.ocr_txt, self.ocr_bb = check_ocr_box(
-            self.image, display_img=False, output_bb_format="xyxy", use_paddleocr=True
-        )
+        try:
+            self.ocr_txt, self.ocr_bb = check_ocr_box(
+                self.image, display_img=False, output_bb_format="xyxy", use_paddleocr=True
+            )
+        except Exception as e:
+            print(f"Warning: OCR failed ({e}), using empty results")
+            self.ocr_txt, self.ocr_bb = [], []
+            
         if verbose: print(f"[Env] {len(self.ocr_txt)} boxes")
 
         # 텍스트 셀 마스크
@@ -210,9 +245,19 @@ class GazeKioskEnv:
 
         # [APPRAISAL-ADD] ---- Elderly Appraisal 모듈 및 파라미터 ----
         self.appraisal_mod = AppraisalModuleElderlyV2(self)
-        self.appraisal_age = int(os.environ.get("APPRAISAL_AGE", "70"))               # 기본 70세
-        self.proprio_endpt_err_cm = float(os.environ.get("APPRAISAL_PROPRIO_ERR_CM", "4.0"))
-        self.appraisal_mode = os.environ.get("APPRAISAL_MODE", "RSv1")                 # "off" | "RSv1"
+        try:
+            self.appraisal_age = int(os.environ.get("APPRAISAL_AGE", "70"))
+        except ValueError:
+            print("Warning: Invalid APPRAISAL_AGE, using default 70")
+            self.appraisal_age = 70
+            
+        try:
+            self.proprio_endpt_err_cm = float(os.environ.get("APPRAISAL_PROPRIO_ERR_CM", "4.0"))
+        except ValueError:
+            print("Warning: Invalid APPRAISAL_PROPRIO_ERR_CM, using default 4.0")
+            self.proprio_endpt_err_cm = 4.0
+            
+        self.appraisal_mode = os.environ.get("APPRAISAL_MODE", "RSv1")
         # [APPRAISAL-ADD] -----------------------------------------------
 
         self.reset()
@@ -238,6 +283,18 @@ class GazeKioskEnv:
     def _grid_cov(self):                 # 전체 커버리지
         return (self.visited>0).sum()/self.total_cells
 
+    def _compute_appraisal(self):
+        """Appraisal 계산"""
+        in_view_tokens = self._in_view_tokens()
+        app_vec = self.appraisal_mod.compute(
+            (self.gx, self.gy),
+            in_view_tokens,
+            self._grid_cov(),
+            self.appraisal_age,
+            self.proprio_endpt_err_cm,
+        )
+        return app_vec
+
     # reset / step
     def reset(self):
         self.gx,self.gy = np.random.randint(0,self.N,size=2)
@@ -248,7 +305,6 @@ class GazeKioskEnv:
         self.prev_dir = None  # [추가]
         self.line_visited = set()  # [추가]
         self.col_visited = set()   # [추가]
-        self.stuck_counter = 0  # [추가]
         self.last_coverage_reset = 0  # [추가]
         
         return self._obs()
@@ -283,7 +339,7 @@ class GazeKioskEnv:
         r = rc.first_cell if vcnt==1 else rc.revisit_cell
         if is_token and vcnt==1:
             r += rc.first_token_bonus
-        r += rc.hint_weight * float(self.hint_map[self.gy, self.gx])  # 새 항목
+        r += rc.hint_weight * float(self.hint_map[self.gy, self.gx])  
         # 거리 shaping (가장 가까운 미방문 텍스트)
         unvis_tok = self.token_cells & (self.visited==0)
         if unvis_tok.any():
@@ -291,43 +347,36 @@ class GazeKioskEnv:
             dist = abs(tgt_gx-self.gx)+abs(tgt_gy-self.gy)
             r += rc.dist_shaping/(1+dist)
         # saliency
-        r += 0.1*self.saliency_map[self.gy,self.gx]
+        r += SALIENCY_WEIGHT * self.saliency_map[self.gy,self.gx]
         # 새 셀 커버리지 shaping
         new_cov = self._grid_cov()
         if new_cov>self.prev_cov:
             r += rc.step_cov_bonus
         self.prev_cov = new_cov
         # [APPRAISAL-ADD] Elderly Appraisal 계산 및 선택적 보상 셰이핑
-        in_view_tokens = self._in_view_tokens()
-        app_vec = self.appraisal_mod.compute(
-            (self.gx, self.gy),
-            in_view_tokens,
-            new_cov,
-            self.appraisal_age,
-            self.proprio_endpt_err_cm,
-        )
+        app_vec = self._compute_appraisal()  # 한 번만 계산
         if self.appraisal_mode == "RSv1":
-            r -= 0.01 * (1.0 - float(app_vec[0]))
+            r -= APPRAISAL_PENALTY_WEIGHT * (1.0 - float(app_vec[0]))
         # [추가1] 라인(행/열) 전체 방문 시 보상
         if (self.gy not in self.line_visited) and (self.visited[self.gy,:]>0).all():
-            r += 0.3  # 라인 커버리지 보상(값 완화)
+            r += LINE_COVERAGE_BONUS  # 라인 커버리지 보상(값 완화)
             self.line_visited.add(self.gy)
         if (self.gx not in self.col_visited) and (self.visited[:,self.gx]>0).all():
-            r += 0.3  # 열 커버리지 보상(값 완화)
+            r += COL_COVERAGE_BONUS  # 열 커버리지 보상(값 완화)
             self.col_visited.add(self.gx)
         # [추가2] 이동 거리 패널티(멀리 점프할수록 패널티)
         if move_dist > 1:
-            r -= 0.05 * (move_dist-1)  # 1칸 초과 이동마다 -0.05로 완화
+            r -= MOVE_DISTANCE_PENALTY * (move_dist-1)  # 1칸 초과 이동마다 -0.05로 완화
         # [추가3] 중복 방문 패널티 강화 (커버리지 리셋 후에는 완화)
         if vcnt > 1:
             # 커버리지 리셋 후 100 스텝 동안은 패널티 완화
-            if self.steps - self.last_coverage_reset < 100:
-                r -= 0.01 * (vcnt-1)  # 패널티 완화
+            if self.steps - self.last_coverage_reset < COVERAGE_RESET_GRACE_PERIOD:
+                r -= REVISIT_PENALTY_LIGHT * (vcnt-1)  # 패널티 완화
             else:
-                r -= 0.02 * (vcnt-1)  # 기존 패널티
+                r -= REVISIT_PENALTY_HEAVY * (vcnt-1)  # 기존 패널티
         # [추가4] 이동 방향 연속성 보상(이전 이동 방향과 같으면 보상)
         if prev_dir is not None and move_dir == prev_dir and move_dir != (0,0):
-            r += 0.02  # 같은 방향 연속 이동 보상(값 완화)
+            r += DIRECTION_CONTINUITY_BONUS  # 같은 방향 연속 이동 보상(값 완화)
         
         # [추가5] 커버리지 100% 도달 시 초기화 및 재탐색
         done = False
@@ -338,7 +387,6 @@ class GazeKioskEnv:
             self.prev_cov = 0.0
             self.line_visited.clear()
             self.col_visited.clear()
-            self.stuck_counter = 0
             self.last_coverage_reset = self.steps
             # 새로운 시작점으로 랜덤 이동
             self.gx, self.gy = np.random.randint(0, self.N, size=2)
@@ -349,14 +397,14 @@ class GazeKioskEnv:
         
         elif self.steps >= rc.max_steps:
             r -= 1.0; done = True
-        return self._obs(), float(r), done, {
+        return self._obs(app_vec), float(r), done, {  # 계산된 appraisal 전달
             "grid_cov": new_cov,
             "steps": self.steps,
             "appraisal": app_vec,   # [APPRAISAL-ADD] info에 벡터 포함
         }
 
     # ── 관측 ──────────────────────────────────────────
-    def _obs(self):
+    def _obs(self, app_vec=None):
         # [CHANGED] in_view 토큰 수집을 헬퍼로 통일
         in_view = self._in_view_tokens()
         bow = tokens_to_bow(in_view,self.vdx)
@@ -372,13 +420,9 @@ class GazeKioskEnv:
         hint_flat = self.hint_map.astype(np.float32).flatten()  # 추가
 
         # [APPRAISAL-ADD] Elderly Appraisal 6D (mot_rel, certainty, novelty, goal_cong, coping, anticipation)
-        app_vec = self.appraisal_mod.compute(
-            (self.gx, self.gy),
-            in_view,
-            self._grid_cov(),
-            self.appraisal_age,
-            self.proprio_endpt_err_cm,
-        ).astype(np.float32)
+        if app_vec is None:
+            app_vec = self._compute_appraisal()  # 전달받지 못한 경우에만 계산
+        app_vec = app_vec.astype(np.float32)
 
         vec = np.concatenate([
             self.pos,                   # 2
@@ -423,14 +467,14 @@ def compute_gae(rew,val,gamma,lam):
 # Training loop
 # ───────────────────────────────────────────────────────────────
 def train():
-    writer = SummaryWriter("runs/gaze_scan_v2")
-    env = GazeKioskEnv(img_path="screen5.png", verbose=False)
+    writer = SummaryWriter(LOG_DIR)
+    env = GazeKioskEnv(img_path=DEFAULT_IMAGE_PATH, verbose=False)
     obs_dim = env.reset().shape[0]
     agent = GazeActorCritic(obs_dim).to(device)
     opt = optim.Adam(agent.parameters(), HP.lr)
 
     ep_ret,ep_len = [],[]
-    os.makedirs("omniparser/gaze_logs_v9",exist_ok=True)
+    os.makedirs(LOGS_DIR, exist_ok=True)
 
     for ep in range(HP.total_episodes):
         obs = env.reset(); buf=[]; ret_ep=0.0
@@ -478,7 +522,7 @@ def train():
         if (ep+1)%50==0:
             print(f"[EP {ep+1}] avgR={np.mean(ep_ret[-50:]):.2f} avgLen={np.mean(ep_len[-50:]):.1f}")
 
-    torch.save(agent.state_dict(),"omniparser/gaze_ppo_v9.pt")
+    torch.save(agent.state_dict(), MODEL_SAVE_PATH)
     writer.close()
     print("Training done.")
 

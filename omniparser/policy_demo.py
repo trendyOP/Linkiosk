@@ -7,6 +7,8 @@ import pygame
 import torch
 import torch.nn.functional as F
 from PIL import Image, ImageFont, ImageDraw
+import os
+import platform
 
 # local imports from refactored agent
 from run_omniparser_with_ppo_v9 import (
@@ -27,8 +29,20 @@ MODEL_PATH   = "omniparser/gaze_ppo_v9.pt"       # trained agent weights
 
 MAX_EP_STEPS = RC.max_steps
 MAX_VISIT    = 10    # heat‑map intensity cap
-FONT_PATH    = r"C:\Windows\Fonts\malgun.ttf"    # Korean font for overlay
 FONT_SIZE    = 28
+OBS_DIM      = 214   # 모델 입력 차원을 상수로 정의
+
+# 크로스 플랫폼 폰트 경로
+def get_font_path():
+    system = platform.system()
+    if system == "Windows":
+        return r"C:\Windows\Fonts\malgun.ttf"
+    elif system == "Darwin":  # macOS
+        return "/System/Library/Fonts/Arial.ttf"
+    else:  # Linux
+        return "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+
+FONT_PATH = get_font_path()
 
 ACTION_LABELS = {
     0: "↑", 1: "↗", 2: "→", 3: "↘", 4: "↓", 5: "↙", 6: "←", 7: "↖", 8: "■"
@@ -39,7 +53,11 @@ ACTION_LABELS = {
 # ────────────────────────────────
 
 def _font():
-    return ImageFont.truetype(FONT_PATH, FONT_SIZE)
+    try:
+        return ImageFont.truetype(FONT_PATH, FONT_SIZE)
+    except OSError:
+        # 폰트 로드 실패 시 기본 폰트 사용
+        return ImageFont.load_default()
 
 
 def draw_banner(img_bgr: np.ndarray, lines: list[str]) -> np.ndarray:
@@ -130,15 +148,46 @@ def render_frame(base: np.ndarray, visited: np.ndarray, vbox: tuple[int, int, in
 # ────────────────────────────────
 
 def main():
+    # 파일 존재 확인
+    if not os.path.exists(SCREEN_PATH):
+        print(f"Error: Screen image not found at {SCREEN_PATH}")
+        return
+    
+    if not os.path.exists(MODEL_PATH):
+        print(f"Error: Model file not found at {MODEL_PATH}")
+        return
+
     env = GazeKioskEnv(img_path=SCREEN_PATH, verbose=True)
     env.max_steps = MAX_EP_STEPS  # just to be explicit
 
-    obs_dim = env.reset().shape[0]
-    agent = GazeActorCritic(obs_dim).to(device)
-    agent.load_state_dict(torch.load(MODEL_PATH, map_location=device))
-    agent.eval()
+    # 모델 로드
+    try:
+        agent = GazeActorCritic(OBS_DIM).to(device)
+        agent.load_state_dict(torch.load(MODEL_PATH, map_location=device))
+        agent.eval()
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        return
+    
+    # 관찰 벡터를 모델 차원에 맞게 조정하는 함수
+    def adjust_obs_dim(obs, target_dim=OBS_DIM):
+        current_dim = obs.shape[0]
+        if current_dim == target_dim:
+            return obs
+        elif current_dim > target_dim:
+            # 차원이 크면 앞쪽부터 자르기
+            return obs[:target_dim]
+        else:
+            # 차원이 작으면 0으로 패딩
+            padded = np.zeros(target_dim, dtype=obs.dtype)
+            padded[:current_dim] = obs
+            return padded
 
     base_img = cv2.imread(SCREEN_PATH)
+    if base_img is None:
+        print(f"Error: Could not load image from {SCREEN_PATH}")
+        return
+        
     visited = np.zeros((VISION_GRID_N, VISION_GRID_N), np.uint8)
 
     cv2.namedWindow("ScanTest", cv2.WINDOW_NORMAL | cv2.WINDOW_GUI_EXPANDED)
@@ -154,8 +203,10 @@ def main():
 
         while True:
             step += 1
+            # 관찰 벡터를 모델 차원에 맞게 조정
+            adjusted_obs = adjust_obs_dim(obs)
             with torch.no_grad():
-                logits, _ = agent(torch.tensor(obs, dtype=torch.float32, device=device).unsqueeze(0))
+                logits, _ = agent(torch.tensor(adjusted_obs, dtype=torch.float32, device=device).unsqueeze(0))
             probs = F.softmax(logits.squeeze(), dim=0).cpu().numpy()
             act = torch.distributions.Categorical(logits=logits).sample().item()
 

@@ -104,13 +104,113 @@ def get_stamp_position(image: np.ndarray) -> Tuple[int, int]:
         _stamp_detector = StampDetector()
     return _stamp_detector.detect(image)
 
+def create_paddle_ocr(lang='korean', use_angle_cls=False, show_log=False, **kwargs):
+    """
+    GPU 사용 가능 여부를 체크하여 자동으로 GPU/CPU를 선택하는 PaddleOCR 팩토리 함수
+    
+    Args:
+        lang: 언어 설정 (기본값: 'korean')
+        use_angle_cls: 각도 분류 사용 여부 (기본값: False)
+        show_log: 로그 표시 여부 (기본값: False)
+        **kwargs: 추가 PaddleOCR 설정
+        
+    Returns:
+        PaddleOCR 인스턴스
+    """
+    from paddleocr import PaddleOCR
+    
+    # GPU 사용 가능 여부 체크
+    gpu_available = False
+    try:
+        import paddle
+        gpu_available = paddle.device.is_compiled_with_cuda()
+        print(f"[PaddleOCR] CUDA 컴파일 여부: {gpu_available}")
+    except Exception as e:
+        print(f"[PaddleOCR] GPU 체크 실패: {e}")
+        gpu_available = False
+    
+    # GPU 사용 가능하면 GPU로, 아니면 CPU로 초기화
+    try:
+        if gpu_available:
+            print("[PaddleOCR] GPU 모드로 초기화 중...")
+            # PaddleOCR 2.x 스타일 시도
+            try:
+                ocr = PaddleOCR(
+                    lang=lang,
+                    use_angle_cls=use_angle_cls,
+                    show_log=show_log,
+                    use_gpu=True,
+                    **kwargs
+                )
+                print("[PaddleOCR] GPU 모드 초기화 성공 (2.x 스타일)")
+                return ocr
+            except TypeError:
+                # PaddleOCR 3.x 스타일 시도
+                ocr = PaddleOCR(
+                    lang=lang,
+                    use_angle_cls=use_angle_cls,
+                    show_log=show_log,
+                    device='gpu',
+                    gpu_id=0,
+                    **kwargs
+                )
+                print("[PaddleOCR] GPU 모드 초기화 성공 (3.x 스타일)")
+                return ocr
+        else:
+            print("[PaddleOCR] CPU 모드로 초기화 중...")
+            # CPU 모드 (2.x 스타일)
+            try:
+                ocr = PaddleOCR(
+                    lang=lang,
+                    use_angle_cls=use_angle_cls,
+                    show_log=show_log,
+                    use_gpu=False,
+                    **kwargs
+                )
+                print("[PaddleOCR] CPU 모드 초기화 성공 (2.x 스타일)")
+                return ocr
+            except TypeError:
+                # CPU 모드 (3.x 스타일)
+                ocr = PaddleOCR(
+                    lang=lang,
+                    use_angle_cls=use_angle_cls,
+                    show_log=show_log,
+                    device='cpu',
+                    **kwargs
+                )
+                print("[PaddleOCR] CPU 모드 초기화 성공 (3.x 스타일)")
+                return ocr
+                
+    except Exception as e:
+        print(f"[PaddleOCR] 초기화 실패, CPU로 폴백: {e}")
+        # 최종 CPU 폴백
+        try:
+            ocr = PaddleOCR(
+                lang=lang,
+                use_angle_cls=use_angle_cls,
+                show_log=show_log,
+                use_gpu=False,
+                **kwargs
+            )
+            print("[PaddleOCR] CPU 폴백 초기화 성공")
+            return ocr
+        except TypeError:
+            ocr = PaddleOCR(
+                lang=lang,
+                use_angle_cls=use_angle_cls,
+                show_log=show_log,
+                device='cpu',
+                **kwargs
+            )
+            print("[PaddleOCR] CPU 폴백 초기화 성공 (3.x 스타일)")
+            return ocr
+
 def get_paddle_ocr():
     """PaddleOCR 싱글톤 인스턴스 반환 (가장 먼저 초기화)"""
     global _paddle_ocr
     if _paddle_ocr is None:
         # torch가 로드되기 전에 PaddleOCR 초기화
-        from paddleocr import PaddleOCR
-        _paddle_ocr = PaddleOCR(
+        _paddle_ocr = create_paddle_ocr(
             lang='korean',               # 한국어로 변경 (매장식사 인식 향상)
             use_angle_cls=False,         # 각도 분류 비활성화 
             show_log=False,
@@ -120,7 +220,7 @@ def get_paddle_ocr():
             use_dilation=True,           # 정확도 향상 
             det_db_score_mode='slow',    # 정확도 향상 
             max_batch_size=1024,         # 배치 크기 
-            rec_batch_num=1024           # 배치 크기 
+            rec_batch_num=1024           # 배치 크기
         )
     return _paddle_ocr
 
