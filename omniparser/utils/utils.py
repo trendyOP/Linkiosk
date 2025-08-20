@@ -386,7 +386,7 @@ def check_ocr_box(
         texts1, boxes1 = check_ocr_box_tesseract(img, display_img, output_bb_format, goal_filtering)
         
         # EasyOCR GPU 사용 (CUDA 12.6 호환) - 성능 최적화
-        reader = easyocr.Reader(['ko', 'en'], gpu=True, model_storage_directory='./easyocr_models')
+        reader = _get_easyocr_reader(langs=('ko','en'), gpu=True, models_dir='./easyocr_models')
         
         # OCR 인수 최적화
         if easyocr_args is None:
@@ -551,9 +551,18 @@ def check_ocr_box(
             ocr_engine = 'easyocr'
     
     # EasyOCR 실행(폴백 포함)
+    result = []  # 기본값 설정
     if ocr_engine == 'easyocr':
         print("[OCR DEBUG] EasyOCR 사용")
         reader = _get_easyocr_reader(langs=('ko','en'), gpu=True, models_dir='./easyocr_models')
+        
+        # img_np 재정의 (PaddleOCR try-except 밖에서 사용하기 위해)
+        if hasattr(img, 'shape'):
+            img_np = img.copy()
+        else:
+            img_np = np.array(img)
+            if img_np.ndim == 3 and img_np.shape[2] == 3:
+                img_np = cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR)
         
         # Paddle과 동일하게 ROI 적용해서 좌표 일치 보장
         roi_img, (offx, offy), (W, H) = _crop_roi(img_np, roi)
