@@ -7,6 +7,11 @@ import mss
 import types
 import difflib
 import tkinter as tk
+import os
+import glob
+import json
+import sys
+from datetime import datetime
 from dataclasses import dataclass
 from collections import defaultdict, OrderedDict
 from PIL import Image
@@ -14,14 +19,25 @@ from text_normalizer import normalize_token
 from typing import List
 import math
 import random
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from scipy.ndimage import gaussian_filter
 
-# Windows DPI 스케일 문제 해결
+# Windows DPI 스케일 문제 해결 및 인코딩 설정
 try:
     import ctypes
     ctypes.windll.user32.SetProcessDPIAware()
     print("[DPI] SetProcessDPIAware enabled - pyautogui가 물리 픽셀 좌표 사용")
 except Exception as e:
     print("[DPI] Failed to set DPI aware:", e)
+
+# Windows 인코딩 문제 해결
+import sys
+import io
+if sys.platform == "win32":
+    # Windows에서 UTF-8 출력 강제
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 pyautogui.FAILSAFE = True  # Failsafe 활성화
 
@@ -33,7 +49,7 @@ random.seed(SEED); np.random.seed(SEED)
 # ==========================
 # 파일 경로 상수
 SCREEN_PATH = "screen5.png"
-MODEL_PATH = "omniparser/gaze_ppo_v9.pt"
+MODEL_PATH = "gaze_ppo_v9.pt"
 CLICK_SOUND_PATH = "click.wav"
 
 # 매직 넘버들을 상수로 정의
@@ -933,15 +949,361 @@ def create_debug_window(env, goal_tok, step, start_time, total_clicks):
     debug_window.update_info(step, goal_tok, env, start_time, total_clicks)
 
 # ==========================
+# Task Selection Functions
+# ==========================
+
+def calculate_text_priority(ocr_txt, ocr_bb, image_width, image_height):
+    """텍스트의 우선순위를 계산 (테두리 쪽이 높은 우선순위)"""
+    priorities = []
+    
+    for i, (text, bbox) in enumerate(zip(ocr_txt, ocr_bb)):
+        if not text or len(text.strip()) < 2:  # 너무 짧은 텍스트 제외
+            priorities.append(0)
+            continue
+            
+        # bbox 중심점 계산
+        x1, y1, x2, y2 = to_xyxy(bbox)
+        center_x = (x1 + x2) / 2
+        center_y = (y1 + y2) / 2
+        
+        # 화면 중앙에서의 거리 계산
+        screen_center_x = image_width / 2
+        screen_center_y = image_height / 2
+        distance_from_center = math.sqrt((center_x - screen_center_x)**2 + (center_y - screen_center_y)**2)
+        
+        # 화면 대각선 길이의 절반을 기준으로 정규화 (0~1)
+        max_distance = math.sqrt(image_width**2 + image_height**2) / 2
+        normalized_distance = min(distance_from_center / max_distance, 1.0)
+        
+        # 테두리 쪽일수록 높은 점수 (0~100)
+        edge_priority = normalized_distance * 100
+        
+        # 텍스트 길이 보너스 (적당한 길이의 텍스트 선호)
+        text_length = len(text.strip())
+        if 3 <= text_length <= 10:
+            length_bonus = 10
+        elif text_length > 10:
+            length_bonus = 5
+        else:
+            length_bonus = 0
+            
+        # 특수문자나 숫자가 적을수록 보너스
+        special_chars = sum(1 for c in text if not (c.isalnum() or '\u3131' <= c <= '\u318E'))
+        digit_chars = sum(1 for c in text if c.isdigit())
+        quality_bonus = max(0, 10 - (special_chars + digit_chars))
+        
+        # 최종 우선순위 점수
+        total_priority = edge_priority + length_bonus + quality_bonus
+        priorities.append(total_priority)
+    
+    return priorities
+
+def select_random_tasks(ocr_txt, ocr_bb, image_width, image_height, num_tasks=5):
+    """OCR 텍스트에서 테두리 우선으로 랜덤 5개 task 선택"""
+    if len(ocr_txt) == 0:
+        print("[WARNING] OCR 텍스트가 없습니다.")
+        return []
+    
+    # 우선순위 계산
+    priorities = calculate_text_priority(ocr_txt, ocr_bb, image_width, image_height)
+    
+    # 텍스트와 우선순위를 함께 정렬
+    text_priority_pairs = list(zip(ocr_txt, ocr_bb, priorities))
+    text_priority_pairs.sort(key=lambda x: x[2], reverse=True)  # 우선순위 높은 순으로 정렬
+    
+    # 상위 70%에서 랜덤 선택 (테두리 우선이지만 완전히 랜덤도 허용)
+    top_count = max(1, int(len(text_priority_pairs) * 0.7))
+    top_candidates = text_priority_pairs[:top_count]
+    
+    # 실제 선택할 개수 (전체 텍스트 수와 요청 개수 중 작은 값)
+    actual_num_tasks = min(num_tasks, len(top_candidates))
+    
+    # 랜덤 선택
+    selected_tasks = random.sample(top_candidates, actual_num_tasks)
+    
+    # 결과 정리
+    selected_texts = []
+    for text, bbox, priority in selected_tasks:
+        selected_texts.append({
+            'text': text.strip(),
+            'bbox': bbox,
+            'priority': priority
+        })
+    
+    print(f"[TASK SELECTION] {len(ocr_txt)}개 텍스트 중 {len(selected_texts)}개 task 선택:")
+    for i, task in enumerate(selected_texts, 1):
+        print(f"  {i}. '{task['text']}' (우선순위: {task['priority']:.1f})")
+    
+    return selected_texts
+
+def calculate_task_averages(task_results):
+    """5개 task 결과의 평균을 계산"""
+    if not task_results:
+        return None
+    
+    valid_results = [r for r in task_results if r is not None]
+    if not valid_results:
+        return None
+    
+    # 평균 계산
+    avg_result = {
+        'total_tasks': len(task_results),
+        'successful_tasks': sum(1 for r in valid_results if r.get('success', False)),
+        'success_rate': sum(1 for r in valid_results if r.get('success', False)) / len(valid_results) * 100,
+        'avg_steps': sum(r.get('steps', 0) for r in valid_results) / len(valid_results),
+        'avg_clicks': sum(r.get('clicks', 0) for r in valid_results) / len(valid_results),
+        'avg_duration': sum(r.get('duration', 0.0) for r in valid_results) / len(valid_results),
+        'total_duration': sum(r.get('duration', 0.0) for r in valid_results),
+        'individual_results': task_results
+    }
+    
+    return avg_result
+
+# ==========================
+# Gaze Heatmap Functions
+# ==========================
+
+def create_gaze_heatmap(mouse_history, image_size, output_path, title="Gaze Heatmap"):
+    """시선 집중도 heatmap 생성"""
+    try:
+        if not mouse_history:
+            print("[HEATMAP] 마우스 히스토리가 없습니다.")
+            return None
+            
+        # 이미지 크기
+        img_width, img_height = image_size
+        
+        # 히스토그램 생성 (시선 집중도)
+        heatmap = np.zeros((img_height, img_width), dtype=np.float32)
+        
+        # 각 마우스 위치에 가중치 추가
+        for x, y, duration, event_type in mouse_history:
+            # 좌표가 이미지 범위 내에 있는지 확인
+            if 0 <= x < img_width and 0 <= y < img_height:
+                # 이벤트 타입별 가중치
+                if event_type == 'click':
+                    weight = 3.0  # 클릭은 높은 가중치
+                elif event_type == 'hover':
+                    weight = duration * 2.0  # 호버 시간에 비례
+                else:
+                    weight = 1.0  # 일반 이동
+                
+                # 가우시안 분포로 주변 픽셀에도 영향
+                sigma = 20  # 분산 크기
+                y_coords, x_coords = np.ogrid[:img_height, :img_width]
+                
+                # 거리 계산
+                dist_sq = (x_coords - x)**2 + (y_coords - y)**2
+                
+                # 가우시안 가중치 적용
+                gaussian_weight = np.exp(-dist_sq / (2 * sigma**2))
+                heatmap += gaussian_weight * weight
+        
+        # 정규화 (0-1 범위)
+        if heatmap.max() > 0:
+            heatmap = heatmap / heatmap.max()
+        
+        # 가우시안 필터로 부드럽게
+        heatmap = gaussian_filter(heatmap, sigma=5)
+        
+        # 시각화
+        plt.figure(figsize=(12, 8))
+        # extent를 사용해서 좌표계를 명시적으로 설정 (좌우반전 방지)
+        plt.imshow(heatmap, cmap='hot', alpha=0.7, interpolation='bilinear', 
+                   extent=[0, img_width, img_height, 0], origin='upper')
+        plt.colorbar(label='Gaze Intensity')
+        plt.title(f'{title}\n(Red=High, Blue=Low)')
+        plt.axis('off')
+        
+        # 클릭 위치를 빨간 점으로 표시 (좌표 검증용)
+        click_positions = [(x, y) for x, y, duration, event_type in mouse_history if event_type == 'click']
+        for x, y in click_positions:
+            plt.plot(x, y, 'ro', markersize=8, markeredgecolor='white', markeredgewidth=2)
+        
+        # 통계 정보 추가
+        total_points = len(mouse_history)
+        clicks = len([h for h in mouse_history if h[3] == 'click'])
+        avg_intensity = np.mean(heatmap)
+        max_intensity = np.max(heatmap)
+        
+        stats_text = f'Total Points: {total_points}\nClicks: {clicks}\nAvg Intensity: {avg_intensity:.3f}\nMax Intensity: {max_intensity:.3f}'
+        plt.text(10, 30, stats_text, fontsize=10, bbox=dict(boxstyle="round,pad=0.3", facecolor="white", alpha=0.8))
+        
+        # 저장
+        plt.tight_layout()
+        plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
+        plt.close()
+        
+        print(f"[HEATMAP] 저장 완료: {output_path}")
+        print(f"[HEATMAP] 통계 - 총 포인트: {total_points}, 클릭: {clicks}, 평균 강도: {avg_intensity:.3f}")
+        
+        return {
+            'total_points': total_points,
+            'clicks': clicks,
+            'avg_intensity': float(avg_intensity),
+            'max_intensity': float(max_intensity),
+            'heatmap_shape': heatmap.shape
+        }
+        
+    except Exception as e:
+        print(f"[HEATMAP ERROR] {e}")
+        return None
+
+# ==========================
+# Batch Processing Functions
+# ==========================
+
+def get_input_images(input_dir="omniparser/input"):
+    """input 폴더에서 모든 이미지 파일을 찾아서 반환"""
+    if not os.path.exists(input_dir):
+        print(f"[WARNING] Input 디렉토리가 존재하지 않습니다: {input_dir}")
+        return []
+    
+    # 지원하는 이미지 확장자
+    image_extensions = ['*.png', '*.jpg', '*.jpeg', '*.bmp', '*.tiff', '*.gif']
+    image_files = []
+    
+    for ext in image_extensions:
+        pattern = os.path.join(input_dir, ext)
+        image_files.extend(glob.glob(pattern))
+        # 대문자 확장자도 확인
+        pattern_upper = os.path.join(input_dir, ext.upper())
+        image_files.extend(glob.glob(pattern_upper))
+    
+    # 중복 제거 및 정렬
+    image_files = sorted(list(set(image_files)))
+    
+    print(f"[BATCH] Input 폴더에서 {len(image_files)}개의 이미지 파일을 찾았습니다:")
+    for i, img_path in enumerate(image_files, 1):
+        print(f"  {i}. {os.path.basename(img_path)}")
+    
+    return image_files
+
+def save_simulation_result(output_dir, image_name, result, target_texts=None):
+    """시뮬레이션 결과를 output 폴더에 저장 (다중 task 지원)"""
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        print(f"[BATCH] Output 디렉토리를 생성했습니다: {output_dir}")
+    
+    # 결과 데이터 구성 (다중 task 지원)
+    result_data = {
+        'timestamp': datetime.now().isoformat(),
+        'image_name': image_name,
+        'user_type': CONFIG['user_type'],
+        'total_duration': result.get('total_duration', 0.0),
+        'image_path': result.get('image_path', ''),
+        
+        # 평균 통계
+        'summary': {
+            'total_tasks': result.get('total_tasks', 0),
+            'successful_tasks': result.get('successful_tasks', 0),
+            'success_rate': result.get('success_rate', 0.0),
+            'avg_steps': result.get('avg_steps', 0.0),
+            'avg_clicks': result.get('avg_clicks', 0.0),
+            'avg_duration': result.get('avg_duration', 0.0)
+        },
+        
+        # 개별 task 결과
+        'individual_tasks': result.get('individual_tasks', [])
+    }
+    
+    # JSON 파일로 저장
+    base_name = os.path.splitext(image_name)[0]
+    output_file = os.path.join(output_dir, f"{base_name}_result.json")
+    
+    try:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(result_data, f, ensure_ascii=False, indent=2)
+        print(f"[BATCH] 결과 저장 완료: {output_file}")
+        print(f"  - 총 {result_data['summary']['total_tasks']}개 task, 성공률: {result_data['summary']['success_rate']:.1f}%")
+        return True
+    except Exception as e:
+        print(f"[ERROR] 결과 저장 실패: {e}")
+        return False
+
+def print_batch_summary(results):
+    """배치 처리 결과 요약 출력 (다중 task 지원)"""
+    if not results:
+        print("[BATCH] 처리된 결과가 없습니다.")
+        return
+    
+    total_images = len(results)
+    valid_results = [r for r in results if r is not None]
+    
+    # 전체 통계 계산
+    total_tasks = sum(r.get('summary', {}).get('total_tasks', 0) for r in valid_results)
+    total_successful_tasks = sum(r.get('summary', {}).get('successful_tasks', 0) for r in valid_results)
+    total_steps = sum(r.get('summary', {}).get('avg_steps', 0) * r.get('summary', {}).get('total_tasks', 0) for r in valid_results)
+    total_clicks = sum(r.get('summary', {}).get('avg_clicks', 0) * r.get('summary', {}).get('total_tasks', 0) for r in valid_results)
+    total_duration = sum(r.get('total_duration', 0.0) for r in valid_results)
+    
+    overall_success_rate = (total_successful_tasks / total_tasks * 100) if total_tasks > 0 else 0
+    
+    print("\n" + "="*80)
+    print("📊 BATCH SIMULATION SUMMARY (MULTI-TASK)")
+    print("="*80)
+    print(f"🖼️  Total Images Processed: {total_images}")
+    print(f"🎯 Total Tasks Executed: {total_tasks}")
+    print(f"✅ Successful Tasks: {total_successful_tasks}")
+    print(f"❌ Failed Tasks: {total_tasks - total_successful_tasks}")
+    print(f"📈 Overall Success Rate: {overall_success_rate:.1f}%")
+    print(f"🔄 Total Steps: {total_steps:.0f}")
+    print(f"🖱️  Total Clicks: {total_clicks:.0f}")
+    print(f"⏱️  Total Duration: {total_duration:.2f} seconds")
+    print(f"⚡ Average Time per Image: {total_duration/total_images:.2f}s")
+    if total_tasks > 0:
+        print(f"🎯 Average Tasks per Image: {total_tasks/total_images:.1f}")
+        print(f"🔄 Average Steps per Task: {total_steps/total_tasks:.1f}")
+        print(f"🖱️  Average Clicks per Task: {total_clicks/total_tasks:.1f}")
+    else:
+        print(f"🎯 Average Tasks per Image: 0.0")
+        print(f"🔄 Average Steps per Task: 0.0")
+        print(f"🖱️  Average Clicks per Task: 0.0")
+    
+    # 개별 이미지 결과 상세
+    print("\n📋 INDIVIDUAL IMAGE RESULTS:")
+    print("-" * 80)
+    for i, result in enumerate(results, 1):
+        if result:
+            summary = result.get('summary', {})
+            success_rate = summary.get('success_rate', 0.0)
+            total_tasks_img = summary.get('total_tasks', 0)
+            successful_tasks_img = summary.get('successful_tasks', 0)
+            avg_steps = summary.get('avg_steps', 0.0)
+            avg_clicks = summary.get('avg_clicks', 0.0)
+            duration = result.get('total_duration', 0.0)
+            
+            print(f"{i:2d}. {result.get('image_path', 'Unknown'):30s} | "
+                  f"Tasks: {successful_tasks_img}/{total_tasks_img} ({success_rate:5.1f}%) | "
+                  f"Avg Steps: {avg_steps:5.1f} | Avg Clicks: {avg_clicks:4.1f} | "
+                  f"Time: {duration:6.2f}s")
+        else:
+            print(f"{i:2d}. {'ERROR':30s} | Tasks: N/A | Avg Steps: N/A | Avg Clicks: N/A | Time: N/A")
+    
+    print("="*80)
+
+# ==========================
 # Main
 # ==========================
-import os
 
-def main(image_path=None, target_text=None):
-    """단일 이미지에서 단일 task 수행"""
+def run_single_simulation(image_path, target_texts=None):
+    """단일 이미지에서 다중 task 수행 (5개 task의 평균 결과 반환)"""
     try:
         # 전체 수행시간 측정 시작
         total_start_time = time.time()
+        
+        # 마우스 히스토리 수집용
+        mouse_history = []
+        
+        def record_mouse_move(x, y, duration=0, event_type='move'):
+            """마우스 이동을 기록하고 실행"""
+            mouse_history.append((x, y, duration, event_type))
+            return x, y
+        
+        def record_mouse_click(x, y, event_type='click'):
+            """마우스 클릭을 기록하고 실행"""
+            mouse_history.append((x, y, 0, event_type))
+            return x, y
     
         # 사용자 행동 프로파일 로드
         user_behavior = get_user_behavior(CONFIG['user_type'])
@@ -956,11 +1318,11 @@ def main(image_path=None, target_text=None):
         # 파일 존재 확인 및 예외 처리
         if not os.path.exists(image_path):
             print(f"[ERROR] 이미지 파일을 찾을 수 없습니다: {image_path}")
-            return
+            return None
         
         if not os.path.exists(MODEL_PATH):
             print(f"[ERROR] 모델 파일을 찾을 수 없습니다: {MODEL_PATH}")
-            return
+            return None
     
         if not os.path.exists(CLICK_SOUND_PATH):
             print(f"[WARNING] 클릭 사운드 파일을 찾을 수 없습니다: {CLICK_SOUND_PATH}")
@@ -979,7 +1341,7 @@ def main(image_path=None, target_text=None):
         except Exception as e:
             print(f"[ERROR] 환경 초기화 실패: {e}")
             _close_image_display()
-            return
+            return None
 
         # 이미지 OCR 처리 함수 연결
         env._process_image_ocr = types.MethodType(_process_image_ocr, env)
@@ -1022,145 +1384,189 @@ def main(image_path=None, target_text=None):
         else:
             print(f"[DPI INFO] 좌표계 일치 - DPI 스케일 보정 불필요")
 
-        # 단일 task 설정
-        if target_text is None:
-            target_text = "아메리카노"  # 기본값
+        # OCR 텍스트에서 랜덤 5개 task 선택
+        if target_texts is None:
+            selected_tasks = select_random_tasks(env.ocr_txt, env.ocr_bb, env.W, env.H, num_tasks=5)
+            if not selected_tasks:
+                print("[ERROR] 선택된 task가 없습니다.")
+                return None
+        else:
+            # 외부에서 제공된 target_texts 사용
+            selected_tasks = [{'text': text, 'bbox': None, 'priority': 0} for text in target_texts]
         
-        task_sequence = [target_text]
-        print(f"\n== TASK: {task_sequence}")
+        print(f"\n🎯 SELECTED TASKS: {len(selected_tasks)}개")
+        for i, task in enumerate(selected_tasks, 1):
+            print(f"  {i}. '{task['text']}'")
         
-        # 통계 변수
-        total_clicks = 0
-        step = 0
-
-        # 단일 task 실행
-        task_start_time = time.time()
-        env.set_goal_sequence(task_sequence)
+        # 5개 task 순차 실행
+        task_results = []
         
-        while True:
-            step += 1
-            print("step : ", step)
-
-            # 현재 목표
-            goal_tok = task_sequence[env.goal_idx] if env.goal_idx < len(task_sequence) else None
+        for task_idx, task in enumerate(selected_tasks, 1):
+            target_text = task['text']
+            print(f"\n{'='*60}")
+            print(f"🎯 TASK {task_idx}/{len(selected_tasks)}: '{target_text}'")
+            print(f"{'='*60}")
             
-            # 디버그 창 업데이트
-            create_debug_window(env, goal_tok, step, task_start_time, total_clicks)
-
-            # 행동 선택 (단순화된 biased_sample 사용)
-            act = biased_sample(net, obs, env, alpha=2.0)
-            obs, _, done, info = env.step(act)
-
-            # viewport 마우스 이동
-            PADDING = 5
-            vx1, vy1, vx2, vy2 = env._vbox()
-            cx_raw = (vx1 + vx2) / 2
-            cy_raw = (vy1 + vy2) / 2
-
-            if (step % MOUSE_MOVE_INTERVAL == 0):
-                # DPI 스케일 보정 적용
-                x, y = to_screen_xy(cx_raw, cy_raw)
-                x = max(PADDING, min(x, pyautogui.size()[0] - 1 - PADDING))
-                y = max(PADDING, min(y, pyautogui.size()[1] - 1 - PADDING))
-                
-                # 사용자 타입에 따른 마우스 이동
-                if user_behavior['enable_curved_movement']:
-                    move_mouse_curved(x, y, user_behavior)  # 고령자: 곡선 이동
-                else:
-                    pyautogui.moveTo(x, y, duration=0.1)    # 젊은이: 직선 이동
-
-            # 시야 박스 좌표 디버그 출력
-            vbox = env._vbox()
-            if DEBUG and step % 5 == 0:  # 5스텝마다 출력
-                print(f"[VIEWPORT] 시야 박스: {vbox}")
-                print(f"[VIEWPORT] 현재 위치: ({env.gx}, {env.gy}) -> ({env.pos[0]:.3f}, {env.pos[1]:.3f})")
-                # 목표 텍스트 좌표 확인
-                for i, (txt, bb) in enumerate(zip(env.ocr_txt, env.ocr_bb)):
-                    if goal_tok and goal_tok in txt:
-                        print(f"[VIEWPORT] '{goal_tok}' 좌표: {bb} -> 시야 박스 내: {is_inside(bb, vbox)}")
+            # 환경 초기화 (각 task마다)
+            env.reset()
+            obs = env._obs()
             
-            # 목표 찾기
-            in_view = [t for t, b in zip(env.ocr_txt, env.ocr_bb) if is_inside(b, env._vbox())]
-            found = env._goal_step_postprocess(in_view)
+            # 단일 task 실행
+            task_sequence = [target_text]
+            env.set_goal_sequence(task_sequence)
             
-            if DEBUG and in_view:
-                print(f"[IN_VIEW] 위치({env.gx},{env.gy})에서 {len(in_view)}개 텍스트 발견:")
-                for txt in in_view:
-                    print(f"  - '{txt}'")
+            # 통계 변수
+            total_clicks = 0
+            step = 0
+            task_start_time = time.time()
+            
+            while True:
+                step += 1
+                if DEBUG and step % 50 == 0:  # 50스텝마다 출력
+                    print(f"  Step {step}...")
 
-            # 목표 찾으면 클릭
-            if found:
-                total_clicks += 1
-                time.sleep(CLICK_DELAY)
+                # 현재 목표
+                goal_tok = task_sequence[env.goal_idx] if env.goal_idx < len(task_sequence) else None
                 
-                # 클릭 후보 선택
-                cand = _pick_click_candidate(env._last_candidates, normalize_token(goal_tok))
-                if cand:
-                    _, bb = cand
-                    cx_raw, cy_raw = _bbox_center(bb)
-                    print(f"[CLICK] 목표 텍스트 위치: ({cx_raw:.1f}, {cy_raw:.1f})")
-                else:
-                    # 후보가 없으면 시야 박스 중심
-                    cx_raw, cy_raw = _bbox_center(env._vbox())
-                    print(f"[CLICK] 시야 박스 중심: ({cx_raw:.1f}, {cy_raw:.1f})")
+                # 디버그 창 업데이트
+                create_debug_window(env, goal_tok, step, task_start_time, total_clicks)
 
-                # DPI 스케일 보정 적용
-                click_x, click_y = to_screen_xy(cx_raw, cy_raw)
-                
-                print(f"[CLICK DEBUG] 원본 좌표: ({cx_raw:.1f}, {cy_raw:.1f}) -> 변환 좌표: ({click_x}, {click_y})")
-                
-                # 목표 위치로 먼저 이동
-                if user_behavior['enable_curved_movement']:
-                    move_mouse_curved(click_x, click_y, user_behavior)  # 고령자: 곡선 이동
-                else:
-                    pyautogui.moveTo(click_x, click_y, duration=0.15)    # 젊은이: 직선 이동
-                
-                # 잠시 대기 후 클릭
-                time.sleep(0.1)
-                
-                # 사용자 타입에 따른 클릭 행동
-                if user_behavior['enable_complex_click']:
-                    # 고령자: 복잡한 클릭 (호버 + 팻핑거 + 더블클릭/롱프레스)
-                    target_bb = bb if cand else None
-                    elder_click(click_x, click_y, user_behavior, target_bb)
-                else:
-                    # 젊은이: 단순 클릭
-                    pyautogui.click()
-                
-                if click_snd:
-                    click_snd.play()
-                print(f"Clicked at {(click_x, click_y)} for token '{goal_tok}' (Total clicks: {total_clicks})")
-                
-                # 클릭 완료 후 종료
-                break
+                # 행동 선택
+                act = biased_sample(net, obs, env, alpha=2.0)
+                obs, _, done, info = env.step(act)
 
-            if step >= MAX_EP_STEPS:
-                print(f"[TIMEOUT] 최대 스텝 수({MAX_EP_STEPS})에 도달하여 종료")
-                break
+                # viewport 마우스 이동
+                PADDING = 5
+                vx1, vy1, vx2, vy2 = env._vbox()
+                cx_raw = (vx1 + vx2) / 2
+                cy_raw = (vy1 + vy2) / 2
 
-        # 전체 수행시간 측정 및 통계 출력
+                if (step % MOUSE_MOVE_INTERVAL == 0):
+                    # DPI 스케일 보정 적용
+                    x, y = to_screen_xy(cx_raw, cy_raw)
+                    x = max(PADDING, min(x, pyautogui.size()[0] - 1 - PADDING))
+                    y = max(PADDING, min(y, pyautogui.size()[1] - 1 - PADDING))
+                    
+                    # 사용자 타입에 따른 마우스 이동
+                    if user_behavior['enable_curved_movement']:
+                        move_mouse_curved(x, y, user_behavior)  # 고령자: 곡선 이동
+                    else:
+                        # 젊은이: 직선 이동 (속도 적용)
+                        sx, sy = pyautogui.position()
+                        dist = math.hypot(x - sx, y - sy)
+                        # 최소 duration 0.05초, 최대 duration 0.5초 보장
+                        duration = max(0.05, min(0.5, dist / user_behavior['mouse_speed_px_s']))
+                        if DEBUG and step % 10 == 0:  # 10스텝마다 디버그 출력
+                            print(f"[MOUSE SPEED] Young: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
+                        record_mouse_move(x, y, duration, 'move')
+                        pyautogui.moveTo(x, y, duration=duration)
+
+                # 목표 찾기
+                in_view = [t for t, b in zip(env.ocr_txt, env.ocr_bb) if is_inside(b, env._vbox())]
+                found = env._goal_step_postprocess(in_view)
+
+                # 목표 찾으면 클릭
+                if found:
+                    total_clicks += 1
+                    time.sleep(CLICK_DELAY)
+                    
+                    # 클릭 후보 선택
+                    cand = _pick_click_candidate(env._last_candidates, normalize_token(goal_tok))
+                    if cand:
+                        _, bb = cand
+                        cx_raw, cy_raw = _bbox_center(bb)
+                    else:
+                        # 후보가 없으면 시야 박스 중심
+                        cx_raw, cy_raw = _bbox_center(env._vbox())
+
+                    # DPI 스케일 보정 적용
+                    click_x, click_y = to_screen_xy(cx_raw, cy_raw)
+                    
+                    # 목표 위치로 먼저 이동
+                    if user_behavior['enable_curved_movement']:
+                        move_mouse_curved(click_x, click_y, user_behavior)  # 고령자: 곡선 이동
+                    else:
+                        # 젊은이: 직선 이동 (속도 적용)
+                        sx, sy = pyautogui.position()
+                        dist = math.hypot(click_x - sx, click_y - sy)
+                        # 최소 duration 0.05초, 최대 duration 0.5초 보장
+                        duration = max(0.05, min(0.5, dist / user_behavior['mouse_speed_px_s']))
+                        if DEBUG:
+                            print(f"[CLICK SPEED] Young: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
+                        record_mouse_move(click_x, click_y, duration, 'move')
+                        pyautogui.moveTo(click_x, click_y, duration=duration)
+                    
+                    # 잠시 대기 후 클릭
+                    time.sleep(0.1)
+                    
+                    # 사용자 타입에 따른 클릭 행동
+                    if user_behavior['enable_complex_click']:
+                        # 고령자: 복잡한 클릭 (호버 + 팻핑거 + 더블클릭/롱프레스)
+                        target_bb = bb if cand else None
+                        elder_click(click_x, click_y, user_behavior, target_bb)
+                    else:
+                        # 젊은이: 단순 클릭
+                        record_mouse_click(click_x, click_y, 'click')
+                        pyautogui.click()
+                    
+                    if click_snd:
+                        click_snd.play()
+                    
+                    print(f"  ✅ Task {task_idx} 완료: '{target_text}' (Steps: {step}, Clicks: {total_clicks})")
+                    break
+
+                if step >= MAX_EP_STEPS:
+                    print(f"  ❌ Task {task_idx} 타임아웃: '{target_text}' (Steps: {step})")
+                    break
+            
+            # task 결과 저장
+            task_end_time = time.time()
+            task_duration = task_end_time - task_start_time
+            
+            task_result = {
+                'success': found,
+                'steps': step,
+                'clicks': total_clicks,
+                'duration': task_duration,
+                'target': target_text,
+                'task_index': task_idx
+            }
+            
+            task_results.append(task_result)
+            
+            # task 간 잠시 대기
+            if task_idx < len(selected_tasks):
+                print(f"  [WAIT] 다음 task까지 1초 대기...")
+                time.sleep(1.0)
+
+        # 전체 수행시간 측정
         total_end_time = time.time()
         total_duration = total_end_time - total_start_time
         
-        print("\n" + "="*60)
-        print("📊 FINAL PERFORMANCE REPORT")
-        print("="*60)
+        # 평균 결과 계산
+        avg_result = calculate_task_averages(task_results)
+        
+        print(f"\n{'='*60}")
+        print("📊 MULTI-TASK PERFORMANCE REPORT")
+        print(f"{'='*60}")
         print(f"⏱️  Total Execution Time: {total_duration:.2f} seconds")
-        print(f"🎯 Target: {target_text}")
-        print(f"✅ Task Completed: {found}")
-        print(f"🔄 Total Steps: {step}")
-        print(f"🖱️  Total Clicks: {total_clicks}")
-        print(f"⚡ Time per Step: {total_duration/step:.2f}s")
+        print(f"🎯 Total Tasks: {len(selected_tasks)}")
+        print(f"✅ Successful Tasks: {avg_result['successful_tasks']}")
+        print(f"📈 Success Rate: {avg_result['success_rate']:.1f}%")
+        print(f"🔄 Average Steps: {avg_result['avg_steps']:.1f}")
+        print(f"🖱️  Average Clicks: {avg_result['avg_clicks']:.1f}")
+        print(f"⚡ Average Time per Task: {avg_result['avg_duration']:.2f}s")
         
-        # 고령자 행동 통계 (고령자인 경우만)
-        if CONFIG['user_type'] == 'elder':
-            print("\n" + "👴 ELDER BEHAVIOR STATISTICS")
-            print("="*40)
-            print(f"🎯 Curved Movement: {user_behavior['enable_curved_movement']}")
-            print(f"🖱️  Complex Click: {user_behavior['enable_complex_click']}")
+        # 개별 task 결과
+        print(f"\n📋 INDIVIDUAL TASK RESULTS:")
+        for i, result in enumerate(task_results, 1):
+            status = "✅ SUCCESS" if result['success'] else "❌ FAILED"
+            print(f"  {i}. '{result['target']:15s}' | {status:10s} | "
+                  f"Steps: {result['steps']:3d} | Clicks: {result['clicks']:2d} | "
+                  f"Time: {result['duration']:6.2f}s")
         
         print("="*60)
-        print("✔ TASK 완료")
+        print("✔ MULTI-TASK 완료")
         
         # 디버그 창 정리
         if SHOW_DEBUG_WINDOW and debug_window:
@@ -1169,13 +1575,41 @@ def main(image_path=None, target_text=None):
         # 이미지 표시 창 닫기
         _close_image_display()
         
-        return {
-            'success': found,
-            'steps': step,
-            'clicks': total_clicks,
-            'duration': total_duration,
-            'target': target_text
-        }
+        # Heatmap 생성
+        heatmap_stats = None
+        if mouse_history:
+            try:
+                # 캡쳐된 화면 크기 사용 (마우스 좌표와 일치)
+                captured_size = pyautogui.size()  # 실제 화면 크기
+                
+                # Heatmap 파일 경로
+                image_name = os.path.splitext(os.path.basename(image_path))[0]
+                heatmap_path = os.path.join("output", f"{image_name}_heatmap.png")
+                
+                # Heatmap 생성 (캡쳐된 화면 크기 기준)
+                heatmap_stats = create_gaze_heatmap(
+                    mouse_history, 
+                    captured_size, 
+                    heatmap_path, 
+                    title=f"Gaze Heatmap - {image_name} (Captured Screen)"
+                )
+                
+                if heatmap_stats:
+                    print(f"[HEATMAP] 생성 완료: {heatmap_path}")
+                else:
+                    print(f"[HEATMAP] 생성 실패")
+                    
+            except Exception as e:
+                print(f"[HEATMAP ERROR] {e}")
+        
+        # 평균 결과에 개별 결과도 포함해서 반환
+        avg_result['individual_tasks'] = task_results
+        avg_result['total_duration'] = total_duration
+        avg_result['image_path'] = image_path
+        avg_result['heatmap_stats'] = heatmap_stats
+        avg_result['mouse_history_count'] = len(mouse_history)
+        
+        return avg_result
     
     except KeyboardInterrupt:
         print("\n[INTERRUPT] 사용자에 의해 중단됨")
@@ -1185,6 +1619,140 @@ def main(image_path=None, target_text=None):
         print(f"[ERROR] 예상치 못한 오류 발생: {e}")
         _close_image_display()
         return None
+
+def main(input_dir="omniparser/input", output_dir="omniparser/output", target_texts=None):
+    """배치 처리: input 폴더의 모든 이미지에 대해 다중 task 시뮬레이션 실행"""
+    print("="*80)
+    print("🚀 OMNIPARSER BATCH SIMULATION START (MULTI-TASK)")
+    print("="*80)
+    print(f"📁 Input Directory: {input_dir}")
+    print(f"📁 Output Directory: {output_dir}")
+    if target_texts:
+        print(f"🎯 Target Texts: {target_texts}")
+    else:
+        print(f"🎯 Target Selection: Random 5 tasks from OCR (edge priority)")
+    print(f"👤 User Type: {CONFIG['user_type']}")
+    print("="*80)
+    
+    # input 폴더에서 이미지 파일들 찾기
+    image_files = get_input_images(input_dir)
+    
+    if not image_files:
+        print("[ERROR] 처리할 이미지 파일이 없습니다.")
+        return
+    
+    # 배치 처리 시작
+    batch_start_time = time.time()
+    results = []
+    
+    for i, image_path in enumerate(image_files, 1):
+        image_name = os.path.basename(image_path)
+        print(f"\n{'='*60}")
+        print(f"🖼️  Processing Image {i}/{len(image_files)}: {image_name}")
+        print(f"{'='*60}")
+        
+        try:
+            # subprocess로 별도 프로세스 실행 (완전한 메모리 격리)
+            import subprocess
+            import sys
+            
+            print(f"[PROCESS] {image_name}을 별도 프로세스로 실행...")
+            
+            # 이미지 경로를 상대 경로로 변환 (omniparser/input -> input)
+            relative_image_path = image_path
+            if image_path.startswith("omniparser/"):
+                relative_image_path = image_path[11:]  # "omniparser/" 제거
+            
+            # 현재 스크립트를 subprocess로 실행
+            cmd = [
+                sys.executable, 
+                __file__,  # 현재 스크립트 파일
+                relative_image_path,  # 상대 이미지 경로
+                output_dir,  # 출력 디렉토리
+                "--standalone"  # 독립 실행 모드
+            ]
+            
+            # subprocess 실행 시 작업 디렉토리를 스크립트 파일의 디렉토리로 설정
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, encoding='utf-8', errors='ignore', cwd=script_dir)  # 5분 타임아웃
+            
+            if result.returncode == 0:
+                print(f"[SUCCESS] {image_name} 처리 완료")
+                # 결과 파일에서 결과 로드
+                result_file = os.path.join(output_dir, f"{os.path.splitext(image_name)[0]}_result.json")
+                if os.path.exists(result_file):
+                    with open(result_file, 'r', encoding='utf-8') as f:
+                        result_data = json.load(f)
+                    results.append(result_data)
+                    
+                    # 진행 상황 출력
+                    success_rate = result_data.get('success_rate', 0.0)
+                    total_tasks = result_data.get('total_tasks', 0)
+                    successful_tasks = result_data.get('successful_tasks', 0)
+                    avg_steps = result_data.get('avg_steps', 0.0)
+                    avg_clicks = result_data.get('avg_clicks', 0.0)
+                    total_duration = result_data.get('total_duration', 0.0)
+                    
+                    print(f"[PROGRESS] {i+1}/{len(image_files)} 완료 - {successful_tasks}/{total_tasks} tasks 성공 ({success_rate:.1f}%)")
+                    print(f"  Avg Steps: {avg_steps:.1f}, Avg Clicks: {avg_clicks:.1f}, Time: {total_duration:.2f}s")
+                else:
+                    print(f"[WARNING] 결과 파일을 찾을 수 없습니다: {result_file}")
+                    results.append(None)
+            else:
+                print(f"[ERROR] {image_name} 처리 실패 (exit code: {result.returncode})")
+                if result.stderr:
+                    print(f"[PROCESS ERROR] {result.stderr}")
+                if result.stdout:
+                    print(f"[PROCESS OUTPUT] {result.stdout}")
+                results.append(None)
+                
+        except subprocess.TimeoutExpired:
+            print(f"[ERROR] {image_name} 처리 시간 초과 (5분)")
+            results.append(None)
+                
+        except Exception as e:
+            print(f"[ERROR] {image_name} 처리 중 예외 발생: {e}")
+            results.append(None)
+        
+        # 다음 이미지 처리 전 잠시 대기
+        if i < len(image_files):
+            print(f"[WAIT] 다음 이미지 처리 전 2초 대기...")
+            time.sleep(2.0)
+    
+    # 배치 처리 완료
+    batch_end_time = time.time()
+    batch_duration = batch_end_time - batch_start_time
+    
+    print(f"\n{'='*80}")
+    print("🏁 BATCH SIMULATION COMPLETED")
+    print(f"{'='*80}")
+    print(f"⏱️  Total Batch Time: {batch_duration:.2f} seconds")
+    
+    # 결과 요약 출력
+    print_batch_summary(results)
+    
+    # 전체 결과를 하나의 JSON 파일로도 저장
+    try:
+        summary_file = os.path.join(output_dir, "batch_summary.json")
+        summary_data = {
+            'batch_timestamp': datetime.now().isoformat(),
+            'input_directory': input_dir,
+            'output_directory': output_dir,
+            'target_text': target_texts[0] if target_texts else 'Unknown',
+            'user_type': CONFIG['user_type'],
+            'total_images': len(image_files),
+            'batch_duration': batch_duration,
+            'results': results
+        }
+        
+        with open(summary_file, 'w', encoding='utf-8') as f:
+            json.dump(summary_data, f, ensure_ascii=False, indent=2)
+        print(f"\n📄 전체 요약이 저장되었습니다: {summary_file}")
+        
+    except Exception as e:
+        print(f"[WARNING] 요약 파일 저장 실패: {e}")
+    
+    return results
 
 # ==========================
 # Elder/Young Behavior Profiles
@@ -1200,7 +1768,7 @@ class ElderProfile:
     micro_saccade_px: float = 1.0   # 2.0 -> 1.0으로 감소
     
     # 마우스 움직임 (운동)
-    mouse_speed_px_s: float = 34000  
+    mouse_speed_px_s: float = 70000  # 고령자: 느린 속도  
     path_curvature: float = 0.08   # 0.18 -> 0.08로 감소
     tremor_std_px: float = 2.0     # 1.2 -> 2.0으로 증가 (떨림 증가)
     overshoot_prob: float = 0.15   # 0.35 -> 0.15로 감소
@@ -1224,7 +1792,7 @@ class YoungProfile:
     micro_saccade_px: float = 0.5
     
     # 마우스 움직임 (운동)
-    mouse_speed_px_s: float = 48500 
+    mouse_speed_px_s: float = 7000  # 젊은이: 매우 빠른 속도 
     path_curvature: float = 0.05
     tremor_std_px: float = 0.5
     overshoot_prob: float = 0.05
@@ -1299,6 +1867,9 @@ def move_mouse_curved(x, y, behavior):
     sx, sy = pyautogui.position()
     dist = math.hypot(x - sx, y - sy)
     duration = dist / max(80, behavior['mouse_speed_px_s'])
+    
+    if DEBUG:
+        print(f"[MOUSE SPEED] Elder: {behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
 
     # 중간 제어점(베지어) - 경로를 살짝 휘게
     midx = (sx + x) / 2
@@ -1375,4 +1946,58 @@ def elder_click(x, y, behavior, target_bb=None):
 # ==========================
 
 if __name__ == "__main__":
-    main()
+    # 독립 실행 모드 확인
+    if len(sys.argv) > 3 and sys.argv[3] == "--standalone":
+        # 독립 실행 모드: 단일 이미지 처리
+        image_path = sys.argv[1]
+        output_dir = sys.argv[2]
+        
+        print(f"[STANDALONE] 독립 실행 모드: {os.path.basename(image_path)}")
+        
+        try:
+            # 단일 이미지 시뮬레이션 실행
+            result = run_single_simulation(image_path, target_texts=None)
+            
+            if result:
+                # 결과 저장
+                save_simulation_result(output_dir, os.path.basename(image_path), result)
+                print(f"[STANDALONE] 완료 - 성공률: {result.get('success_rate', 0.0):.1f}%")
+                sys.exit(0)  # 성공
+            else:
+                print(f"[STANDALONE] 실패")
+                sys.exit(1)  # 실패
+                
+        except Exception as e:
+            import traceback
+            print(f"[STANDALONE ERROR] {e}")
+            print(f"[STANDALONE TRACEBACK] {traceback.format_exc()}")
+            sys.exit(1)  # 실패
+    
+    else:
+        # 배치 처리 실행
+        # 사용법: python gaze_ppo_test_v9_3.py [input_dir] [output_dir] [target_text1,target_text2,...]
+        
+        # 명령행 인수 처리
+        input_dir = sys.argv[1] if len(sys.argv) > 1 else "omniparser/input"
+        output_dir = sys.argv[2] if len(sys.argv) > 2 else "omniparser/output"
+        target_texts_str = sys.argv[3] if len(sys.argv) > 3 else None
+        
+        # target_texts 파싱
+        target_texts = None
+        if target_texts_str:
+            target_texts = [text.strip() for text in target_texts_str.split(',')]
+            print(f"[INFO] 사용자 지정 target texts: {target_texts}")
+        else:
+            print(f"[INFO] OCR 기반 랜덤 5개 task 선택 모드")
+        
+        print(f"[INFO] 배치 처리 시작")
+        print(f"[INFO] Input Directory: {input_dir}")
+        print(f"[INFO] Output Directory: {output_dir}")
+        
+        # 배치 시뮬레이션 실행
+        results = main(input_dir, output_dir, target_texts)
+        
+        if results:
+            print(f"\n🎉 배치 처리가 완료되었습니다! {len(results)}개의 이미지를 처리했습니다.")
+        else:
+            print(f"\n❌ 배치 처리 중 오류가 발생했습니다.")
