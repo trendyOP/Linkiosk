@@ -49,8 +49,8 @@ random.seed(SEED); np.random.seed(SEED)
 # ==========================
 # 파일 경로 상수
 SCREEN_PATH = "screen5.png"
-MODEL_PATH = "gaze_ppo_v9.pt"
-CLICK_SOUND_PATH = "click.wav"
+MODEL_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gaze_ppo_v9.pt")
+CLICK_SOUND_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "click.wav")
 
 # 매직 넘버들을 상수로 정의
 DEFAULT_VISION_GRID_N = 32
@@ -58,6 +58,7 @@ MOUSE_MOVE_INTERVAL = 5
 CLICK_DELAY = 1.143
 UI_TRANSITION_DELAY = 0.05
 MAX_EP_STEPS = 2000
+TASK_TIMEOUT_SECONDS = 35.0  # task 타임아웃 (35초)
 ALLOW_EXTRA = 2
 
 # PaddleOCR을 가장 먼저 초기화 (torch 로드 전)
@@ -193,7 +194,26 @@ def load_config():
     try:
         import configparser
         parser = configparser.ConfigParser()
-        parser.read('omniparser/config.ini', encoding='utf-8')
+        
+        # config.ini 파일 경로를 동적으로 찾기
+        config_paths = [
+            'omniparser/config.ini',  # 기본 경로
+            'config.ini',            # 현재 디렉토리
+            os.path.join(os.path.dirname(__file__), 'config.ini'),  # 스크립트와 같은 디렉토리
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config.ini')  # 절대 경로
+        ]
+        
+        config_found = False
+        for config_path in config_paths:
+            if os.path.exists(config_path):
+                parser.read(config_path, encoding='utf-8')
+                config_found = True
+                print(f"[CONFIG] 설정 파일 로드: {config_path}")
+                break
+        
+        if not config_found:
+            print(f"[WARNING] config.ini 파일을 찾을 수 없습니다. 기본값을 사용합니다.")
+            print(f"[WARNING] 시도한 경로들: {config_paths}")
         
         if 'User' in parser:
             config['user_type'] = parser.get('User', 'type', fallback='young')
@@ -999,16 +1019,37 @@ def calculate_text_priority(ocr_txt, ocr_bb, image_width, image_height):
     return priorities
 
 def select_random_tasks(ocr_txt, ocr_bb, image_width, image_height, num_tasks=5):
-    """OCR 텍스트에서 테두리 우선으로 랜덤 5개 task 선택"""
+    """OCR 텍스트에서 테두리 우선으로 랜덤 5개 task 선택 (숫자 포함 텍스트 제외)"""
     if len(ocr_txt) == 0:
         print("[WARNING] OCR 텍스트가 없습니다.")
         return []
     
-    # 우선순위 계산
-    priorities = calculate_text_priority(ocr_txt, ocr_bb, image_width, image_height)
+    # 숫자가 포함된 텍스트 필터링
+    def has_numbers(text):
+        """텍스트에 숫자가 포함되어 있는지 확인"""
+        return any(c.isdigit() for c in text)
+    
+    # 숫자가 포함되지 않은 텍스트만 필터링
+    filtered_pairs = []
+    for i, (text, bbox) in enumerate(zip(ocr_txt, ocr_bb)):
+        if not has_numbers(text.strip()):
+            filtered_pairs.append((text, bbox, i))
+        else:
+            print(f"[TASK FILTER] 숫자 포함으로 제외: '{text}'")
+    
+    if len(filtered_pairs) == 0:
+        print("[WARNING] 숫자가 포함되지 않은 텍스트가 없습니다.")
+        return []
+    
+    print(f"[TASK FILTER] {len(ocr_txt)}개 텍스트 중 {len(filtered_pairs)}개가 숫자 미포함")
+    
+    # 필터링된 텍스트에 대해 우선순위 계산
+    filtered_texts = [pair[0] for pair in filtered_pairs]
+    filtered_bboxes = [pair[1] for pair in filtered_pairs]
+    priorities = calculate_text_priority(filtered_texts, filtered_bboxes, image_width, image_height)
     
     # 텍스트와 우선순위를 함께 정렬
-    text_priority_pairs = list(zip(ocr_txt, ocr_bb, priorities))
+    text_priority_pairs = list(zip(filtered_texts, filtered_bboxes, priorities))
     text_priority_pairs.sort(key=lambda x: x[2], reverse=True)  # 우선순위 높은 순으로 정렬
     
     # 상위 70%에서 랜덤 선택 (테두리 우선이지만 완전히 랜덤도 허용)
@@ -1030,7 +1071,7 @@ def select_random_tasks(ocr_txt, ocr_bb, image_width, image_height, num_tasks=5)
             'priority': priority
         })
     
-    print(f"[TASK SELECTION] {len(ocr_txt)}개 텍스트 중 {len(selected_texts)}개 task 선택:")
+    print(f"[TASK SELECTION] {len(filtered_pairs)}개 숫자 미포함 텍스트 중 {len(selected_texts)}개 task 선택:")
     for i, task in enumerate(selected_texts, 1):
         print(f"  {i}. '{task['text']}' (우선순위: {task['priority']:.1f})")
     
@@ -1286,7 +1327,7 @@ def print_batch_summary(results):
 # Main
 # ==========================
 
-def run_single_simulation(image_path, target_texts=None):
+def run_single_simulation(image_path, target_texts=None, output_dir="omniparser/output"):
     """단일 이미지에서 다중 task 수행 (5개 task의 평균 결과 반환)"""
     try:
         # 전체 수행시간 측정 시작
@@ -1422,8 +1463,17 @@ def run_single_simulation(image_path, target_texts=None):
             
             while True:
                 step += 1
+                
+                # 35초 타임아웃 체크
+                current_time = time.time()
+                elapsed_time = current_time - task_start_time
+                if elapsed_time > TASK_TIMEOUT_SECONDS:
+                    print(f"  ⏰ Task {task_idx} 시간 초과 ({TASK_TIMEOUT_SECONDS}초): '{target_text}' (Steps: {step}, Time: {elapsed_time:.1f}s)")
+                    found = False  # 실패로 처리
+                    break
+                
                 if DEBUG and step % 50 == 0:  # 50스텝마다 출력
-                    print(f"  Step {step}...")
+                    print(f"  Step {step}... (Time: {elapsed_time:.1f}s)")
 
                 # 현재 목표
                 goal_tok = task_sequence[env.goal_idx] if env.goal_idx < len(task_sequence) else None
@@ -1449,7 +1499,7 @@ def run_single_simulation(image_path, target_texts=None):
                     
                     # 사용자 타입에 따른 마우스 이동
                     if user_behavior['enable_curved_movement']:
-                        move_mouse_curved(x, y, user_behavior)  # 고령자: 곡선 이동
+                        move_mouse_curved(x, y, user_behavior, record_mouse_move)  # 고령자: 곡선 이동
                     else:
                         # 젊은이: 직선 이동 (속도 적용)
                         sx, sy = pyautogui.position()
@@ -1457,7 +1507,7 @@ def run_single_simulation(image_path, target_texts=None):
                         # 최소 duration 0.05초, 최대 duration 0.5초 보장
                         duration = max(0.05, min(0.5, dist / user_behavior['mouse_speed_px_s']))
                         if DEBUG and step % 10 == 0:  # 10스텝마다 디버그 출력
-                            print(f"[MOUSE SPEED] Young: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
+                            print(f"[MOUSE SPEED] {CONFIG['user_type'].title()}: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
                         record_mouse_move(x, y, duration, 'move')
                         pyautogui.moveTo(x, y, duration=duration)
 
@@ -1484,7 +1534,7 @@ def run_single_simulation(image_path, target_texts=None):
                     
                     # 목표 위치로 먼저 이동
                     if user_behavior['enable_curved_movement']:
-                        move_mouse_curved(click_x, click_y, user_behavior)  # 고령자: 곡선 이동
+                        move_mouse_curved(click_x, click_y, user_behavior, record_mouse_move)  # 고령자: 곡선 이동
                     else:
                         # 젊은이: 직선 이동 (속도 적용)
                         sx, sy = pyautogui.position()
@@ -1492,7 +1542,7 @@ def run_single_simulation(image_path, target_texts=None):
                         # 최소 duration 0.05초, 최대 duration 0.5초 보장
                         duration = max(0.05, min(0.5, dist / user_behavior['mouse_speed_px_s']))
                         if DEBUG:
-                            print(f"[CLICK SPEED] Young: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
+                            print(f"[CLICK SPEED] {CONFIG['user_type'].title()}: {user_behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
                         record_mouse_move(click_x, click_y, duration, 'move')
                         pyautogui.moveTo(click_x, click_y, duration=duration)
                     
@@ -1516,7 +1566,8 @@ def run_single_simulation(image_path, target_texts=None):
                     break
 
                 if step >= MAX_EP_STEPS:
-                    print(f"  ❌ Task {task_idx} 타임아웃: '{target_text}' (Steps: {step})")
+                    print(f"  ❌ Task {task_idx} 스텝 타임아웃: '{target_text}' (Steps: {step}, Time: {elapsed_time:.1f}s)")
+                    found = False  # 실패로 처리
                     break
             
             # task 결과 저장
@@ -1560,7 +1611,13 @@ def run_single_simulation(image_path, target_texts=None):
         # 개별 task 결과
         print(f"\n📋 INDIVIDUAL TASK RESULTS:")
         for i, result in enumerate(task_results, 1):
-            status = "✅ SUCCESS" if result['success'] else "❌ FAILED"
+            if result['success']:
+                status = "✅ SUCCESS"
+            else:
+                if result['duration'] > TASK_TIMEOUT_SECONDS:
+                    status = "⏰ TIMEOUT"
+                else:
+                    status = "❌ FAILED"
             print(f"  {i}. '{result['target']:15s}' | {status:10s} | "
                   f"Steps: {result['steps']:3d} | Clicks: {result['clicks']:2d} | "
                   f"Time: {result['duration']:6.2f}s")
@@ -1575,16 +1632,26 @@ def run_single_simulation(image_path, target_texts=None):
         # 이미지 표시 창 닫기
         _close_image_display()
         
+        # 메모리 정리
+        import gc
+        gc.collect()
+        
         # Heatmap 생성
         heatmap_stats = None
+        print(f"[HEATMAP DEBUG] mouse_history 개수: {len(mouse_history)}")
         if mouse_history:
             try:
                 # 캡쳐된 화면 크기 사용 (마우스 좌표와 일치)
                 captured_size = pyautogui.size()  # 실제 화면 크기
+                print(f"[HEATMAP DEBUG] 화면 크기: {captured_size}")
                 
                 # Heatmap 파일 경로
                 image_name = os.path.splitext(os.path.basename(image_path))[0]
-                heatmap_path = os.path.join("output", f"{image_name}_heatmap.png")
+                # output 디렉토리가 존재하는지 확인하고 생성
+                if not os.path.exists(output_dir):
+                    os.makedirs(output_dir)
+                heatmap_path = os.path.join(output_dir, f"{image_name}_heatmap.png")
+                print(f"[HEATMAP DEBUG] 저장 경로: {heatmap_path}")
                 
                 # Heatmap 생성 (캡쳐된 화면 크기 기준)
                 heatmap_stats = create_gaze_heatmap(
@@ -1601,6 +1668,10 @@ def run_single_simulation(image_path, target_texts=None):
                     
             except Exception as e:
                 print(f"[HEATMAP ERROR] {e}")
+                import traceback
+                print(f"[HEATMAP TRACEBACK] {traceback.format_exc()}")
+        else:
+            print(f"[HEATMAP DEBUG] mouse_history가 비어있어서 히트맵을 생성하지 않습니다.")
         
         # 평균 결과에 개별 결과도 포함해서 반환
         avg_result['individual_tasks'] = task_results
@@ -1652,7 +1723,7 @@ def main(input_dir="omniparser/input", output_dir="omniparser/output", target_te
         print(f"{'='*60}")
         
         try:
-            # subprocess로 별도 프로세스 실행 (완전한 메모리 격리)
+            # subprocess로 별도 프로세스 실행 (Segmentation fault 격리)
             import subprocess
             import sys
             
@@ -1663,12 +1734,17 @@ def main(input_dir="omniparser/input", output_dir="omniparser/output", target_te
             if image_path.startswith("omniparser/"):
                 relative_image_path = image_path[11:]  # "omniparser/" 제거
             
+            # output 디렉토리를 상대 경로로 변환 (omniparser/output -> output)
+            relative_output_dir = output_dir
+            if output_dir.startswith("omniparser/"):
+                relative_output_dir = output_dir[11:]  # "omniparser/" 제거
+            
             # 현재 스크립트를 subprocess로 실행
             cmd = [
                 sys.executable, 
                 __file__,  # 현재 스크립트 파일
                 relative_image_path,  # 상대 이미지 경로
-                output_dir,  # 출력 디렉토리
+                relative_output_dir,  # 상대 출력 디렉토리
                 "--standalone"  # 독립 실행 모드
             ]
             
@@ -1678,26 +1754,39 @@ def main(input_dir="omniparser/input", output_dir="omniparser/output", target_te
             
             if result.returncode == 0:
                 print(f"[SUCCESS] {image_name} 처리 완료")
-                # 결과 파일에서 결과 로드
-                result_file = os.path.join(output_dir, f"{os.path.splitext(image_name)[0]}_result.json")
+                # 결과 파일에서 결과 로드 (스크립트 디렉토리 기준)
+                result_file = os.path.join(script_dir, relative_output_dir, f"{os.path.splitext(image_name)[0]}_result.json")
+                print(f"[DEBUG] 결과 파일 찾는 경로: {result_file}")
                 if os.path.exists(result_file):
                     with open(result_file, 'r', encoding='utf-8') as f:
                         result_data = json.load(f)
                     results.append(result_data)
                     
                     # 진행 상황 출력
-                    success_rate = result_data.get('success_rate', 0.0)
-                    total_tasks = result_data.get('total_tasks', 0)
-                    successful_tasks = result_data.get('successful_tasks', 0)
-                    avg_steps = result_data.get('avg_steps', 0.0)
-                    avg_clicks = result_data.get('avg_clicks', 0.0)
+                    success_rate = result_data.get('summary', {}).get('success_rate', 0.0)
+                    total_tasks = result_data.get('summary', {}).get('total_tasks', 0)
+                    successful_tasks = result_data.get('summary', {}).get('successful_tasks', 0)
+                    avg_steps = result_data.get('summary', {}).get('avg_steps', 0.0)
+                    avg_clicks = result_data.get('summary', {}).get('avg_clicks', 0.0)
                     total_duration = result_data.get('total_duration', 0.0)
                     
                     print(f"[PROGRESS] {i+1}/{len(image_files)} 완료 - {successful_tasks}/{total_tasks} tasks 성공 ({success_rate:.1f}%)")
                     print(f"  Avg Steps: {avg_steps:.1f}, Avg Clicks: {avg_clicks:.1f}, Time: {total_duration:.2f}s")
                 else:
                     print(f"[WARNING] 결과 파일을 찾을 수 없습니다: {result_file}")
-                    results.append(None)
+                    print(f"[DEBUG] 현재 작업 디렉토리: {os.getcwd()}")
+                    print(f"[DEBUG] output_dir: {output_dir}")
+                    print(f"[DEBUG] relative_output_dir: {relative_output_dir}")
+                    # 절대 경로로 다시 시도
+                    abs_result_file = os.path.abspath(result_file)
+                    print(f"[DEBUG] 절대 경로로 시도: {abs_result_file}")
+                    if os.path.exists(abs_result_file):
+                        print(f"[DEBUG] 절대 경로에서 파일 발견!")
+                        with open(abs_result_file, 'r', encoding='utf-8') as f:
+                            result_data = json.load(f)
+                        results.append(result_data)
+                    else:
+                        results.append(None)
             else:
                 print(f"[ERROR] {image_name} 처리 실패 (exit code: {result.returncode})")
                 if result.stderr:
@@ -1768,7 +1857,7 @@ class ElderProfile:
     micro_saccade_px: float = 1.0   # 2.0 -> 1.0으로 감소
     
     # 마우스 움직임 (운동)
-    mouse_speed_px_s: float = 70000  # 고령자: 느린 속도  
+    mouse_speed_px_s: float = 8000   # 고령자: 느린 속도 (800 px/s)
     path_curvature: float = 0.08   # 0.18 -> 0.08로 감소
     tremor_std_px: float = 2.0     # 1.2 -> 2.0으로 증가 (떨림 증가)
     overshoot_prob: float = 0.15   # 0.35 -> 0.15로 감소
@@ -1792,7 +1881,7 @@ class YoungProfile:
     micro_saccade_px: float = 0.5
     
     # 마우스 움직임 (운동)
-    mouse_speed_px_s: float = 7000  # 젊은이: 매우 빠른 속도 
+    mouse_speed_px_s: float = 3000  # 젊은이: 빠른 속도 (3000 px/s)
     path_curvature: float = 0.05
     tremor_std_px: float = 0.5
     overshoot_prob: float = 0.05
@@ -1862,14 +1951,14 @@ def get_user_behavior(user_type: str):
 # ==========================
 # Mouse Movement Functions
 # ==========================
-def move_mouse_curved(x, y, behavior):
+def move_mouse_curved(x, y, behavior, record_func=None):
     """곡선 경로로 마우스 이동 (고령자용)"""
     sx, sy = pyautogui.position()
     dist = math.hypot(x - sx, y - sy)
     duration = dist / max(80, behavior['mouse_speed_px_s'])
     
     if DEBUG:
-        print(f"[MOUSE SPEED] Elder: {behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
+        print(f"[MOUSE SPEED] Elder (Curved): {behavior['mouse_speed_px_s']} px/s, dist: {dist:.1f}px, duration: {duration:.3f}s")
 
     # 중간 제어점(베지어) - 경로를 살짝 휘게
     midx = (sx + x) / 2
@@ -1899,6 +1988,10 @@ def move_mouse_curved(x, y, behavior):
         oy = y + int((y - sy) * behavior['overshoot_ratio'])
         pyautogui.moveTo(ox, oy, duration=0.08)
         pyautogui.moveTo(x, y, duration=0.10)
+    
+    # 마우스 이동 기록
+    if record_func:
+        record_func(x, y, duration, 'move')
 
 # ==========================
 # Click Functions
@@ -1956,7 +2049,7 @@ if __name__ == "__main__":
         
         try:
             # 단일 이미지 시뮬레이션 실행
-            result = run_single_simulation(image_path, target_texts=None)
+            result = run_single_simulation(image_path, target_texts=None, output_dir=output_dir)
             
             if result:
                 # 결과 저장

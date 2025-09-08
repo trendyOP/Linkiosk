@@ -1,56 +1,56 @@
 {
-  "timestamp": "2025-09-07T16:58:39.390762",
+  "timestamp": "2025-09-08T22:55:20.434021",
   "image_name": "screen5.png",
-  "user_type": "young",
-  "total_duration": 57.78924918174744,
+  "user_type": "elder",
+  "total_duration": 148.45666432380676,
   "image_path": "input\\screen5.png",
   "summary": {
     "total_tasks": 5,
-    "successful_tasks": 5,
-    "success_rate": 100.0,
-    "avg_steps": 173.8,
-    "avg_clicks": 1.0,
-    "avg_duration": 5.675690412521362
+    "successful_tasks": 3,
+    "success_rate": 60.0,
+    "avg_steps": 87.0,
+    "avg_clicks": 0.6,
+    "avg_duration": 24.29537887573242
   },
   "individual_tasks": [
     {
-      "success": true,
-      "steps": 4,
-      "clicks": 1,
-      "duration": 1.582071304321289,
-      "target": "콜드브루",
+      "success": false,
+      "steps": 141,
+      "clicks": 0,
+      "duration": 36.079761266708374,
+      "target": "흑당콜드브루",
       "task_index": 1
     },
     {
       "success": true,
-      "steps": 547,
+      "steps": 95,
       "clicks": 1,
-      "duration": 14.664595127105713,
-      "target": "총0개",
+      "duration": 28.095337629318237,
+      "target": "에이드",
       "task_index": 2
     },
     {
       "success": true,
-      "steps": 63,
+      "steps": 2,
       "clicks": 1,
-      "duration": 3.184333562850952,
-      "target": "스무디주스",
+      "duration": 3.4540622234344482,
+      "target": "카페",
       "task_index": 3
     },
     {
       "success": true,
-      "steps": 7,
+      "steps": 56,
       "clicks": 1,
-      "duration": 1.5640614032745361,
-      "target": "베이커리",
+      "duration": 17.467407941818237,
+      "target": "커피",
       "task_index": 4
     },
     {
-      "success": true,
-      "steps": 248,
-      "clicks": 1,
-      "duration": 7.383390665054321,
-      "target": "논커피",
+      "success": false,
+      "steps": 141,
+      "clicks": 0,
+      "duration": 36.38032531738281,
+      "target": "스무디주스",
       "task_index": 5
     }
   ]
