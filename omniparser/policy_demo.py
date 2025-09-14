@@ -160,9 +160,15 @@ def main():
     env = GazeKioskEnv(img_path=SCREEN_PATH, verbose=True)
     env.max_steps = MAX_EP_STEPS  # just to be explicit
 
+    # 관찰 차원 확인
+    obs = env.reset()
+    actual_obs_dim = obs.shape[0]
+    print(f"[DEBUG] 실제 관찰 차원: {actual_obs_dim}")
+    print(f"[DEBUG] 설정된 OBS_DIM: {OBS_DIM}")
+    
     # 모델 로드
     try:
-        agent = GazeActorCritic(OBS_DIM).to(device)
+        agent = GazeActorCritic(actual_obs_dim).to(device)  # 실제 차원 사용
         agent.load_state_dict(torch.load(MODEL_PATH, map_location=device))
         agent.eval()
     except Exception as e:
@@ -170,7 +176,7 @@ def main():
         return
     
     # 관찰 벡터를 모델 차원에 맞게 조정하는 함수
-    def adjust_obs_dim(obs, target_dim=OBS_DIM):
+    def adjust_obs_dim(obs, target_dim=actual_obs_dim):
         current_dim = obs.shape[0]
         if current_dim == target_dim:
             return obs
@@ -203,8 +209,8 @@ def main():
 
         while True:
             step += 1
-            # 관찰 벡터를 모델 차원에 맞게 조정
-            adjusted_obs = adjust_obs_dim(obs)
+            # 관찰 벡터는 이미 올바른 차원이므로 조정 불필요
+            adjusted_obs = obs
             with torch.no_grad():
                 logits, _ = agent(torch.tensor(adjusted_obs, dtype=torch.float32, device=device).unsqueeze(0))
             probs = F.softmax(logits.squeeze(), dim=0).cpu().numpy()

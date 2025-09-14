@@ -26,15 +26,19 @@ MODEL_SAVE_PATH = "omniparser/gaze_ppo_v9.pt"
 LOGS_DIR = "omniparser/gaze_logs_v9"
 
 # 매직 넘버들을 상수로 정의
-SALIENCY_WEIGHT = 0.1
+SALIENCY_WEIGHT = 0.15                    # 시각적 주목도 가중치 증가
 APPRAISAL_PENALTY_WEIGHT = 0.01
-LINE_COVERAGE_BONUS = 0.3
-COL_COVERAGE_BONUS = 0.3
-MOVE_DISTANCE_PENALTY = 0.05
-DIRECTION_CONTINUITY_BONUS = 0.02
-REVISIT_PENALTY_LIGHT = 0.01
-REVISIT_PENALTY_HEAVY = 0.02
-COVERAGE_RESET_GRACE_PERIOD = 100
+LINE_COVERAGE_BONUS = 0.4                 # 라인 커버리지 보너스 증가
+COL_COVERAGE_BONUS = 0.4                  # 열 커버리지 보너스 증가
+MOVE_DISTANCE_PENALTY = 0.03              # 이동 거리 패널티 완화
+DIRECTION_CONTINUITY_BONUS = 0.03         # 방향 연속성 보너스 증가
+REVISIT_PENALTY_LIGHT = 0.005             # 중복 방문 경량 패널티 완화
+REVISIT_PENALTY_HEAVY = 0.015             # 중복 방문 중량 패널티 완화
+COVERAGE_RESET_GRACE_PERIOD = 150         # 유예 기간 연장
+
+# 새로운 커버리지 보상 상수
+COVERAGE_PROGRESS_BONUS = 0.05            # 커버리지 진행도 보너스
+EDGE_EXPLORATION_BONUS = 0.1              # 가장자리 탐색 보너스
 
 # ───────────────────────────────────────────────────────────────
 # [APPRAISAL-ADD] Elderly Appraisal 모듈 정의
@@ -127,32 +131,32 @@ TOTAL_ACTIONS = len(MOVE_OPTIONS)
 @dataclass
 class RewardConfig:
     # 셀 방문
-    first_cell      : float = +0.25   # 빈칸이라도 첫 방문
-    revisit_cell    : float = -0.10
+    first_cell      : float = +0.35   # 빈칸이라도 첫 방문 (증가)
+    revisit_cell    : float = -0.08   # 중복 방문 패널티 완화
 
     # 텍스트 특별 가중
-    first_token_bonus: float = +0.20
-    dist_shaping     : float = +0.30  # 0.30/(1+d)
+    first_token_bonus: float = +0.30  # 텍스트 셀 보너스 증가
+    dist_shaping     : float = +0.40  # 거리 셰이핑 강화
 
     # 연속 커버리지 shaping
-    step_cov_bonus  : float = +0.10   # 새 셀마다
+    step_cov_bonus  : float = +0.15   # 새 셀마다 보너스 증가
 
     # 에피소드
-    max_steps       : int   = 300
-    coverage_bonus  : float = +2.0    # 모든 셀 방문 성공
+    max_steps       : int   = 400     # 최대 스텝 증가
+    coverage_bonus  : float = +3.0    # 완전 커버리지 보너스 증가
 
-    hint_weight: float = 0.3
+    hint_weight: float = 0.4          # 힌트 가중치 증가
 RC = RewardConfig()
 
 @dataclass
 class HP:
-    lr               : float = 2.5e-4
+    lr               : float = 3.0e-4    # 학습률 약간 증가
     batch_size       : int = 512
-    epochs_per_update: int = 4
+    epochs_per_update: int = 6           # 업데이트 에포크 증가
     gamma            : float = 0.99
     lam              : float = 0.95
-    total_episodes   : int = 2500
-    ent_coef         : float = 0.08
+    total_episodes   : int = 4000        # 총 에피소드 수 증가
+    ent_coef         : float = 0.10      # 엔트로피 계수 증가 (탐험 강화)
 
 # ───────────────────────────────────────────────────────────────
 # Utility helpers
@@ -377,6 +381,15 @@ class GazeKioskEnv:
         # [추가4] 이동 방향 연속성 보상(이전 이동 방향과 같으면 보상)
         if prev_dir is not None and move_dir == prev_dir and move_dir != (0,0):
             r += DIRECTION_CONTINUITY_BONUS  # 같은 방향 연속 이동 보상(값 완화)
+        
+        # [추가4.5] 커버리지 진행도 보상 (새로운 셀 방문 시)
+        if new_cov > self.prev_cov:
+            r += COVERAGE_PROGRESS_BONUS * (new_cov - self.prev_cov) * 100  # 진행도에 비례한 보상
+        
+        # [추가4.6] 가장자리 탐색 보상 (경계 근처 셀 방문 시)
+        edge_distance = min(self.gx, self.gy, self.N-1-self.gx, self.N-1-self.gy)
+        if edge_distance <= 1 and vcnt == 1:  # 가장자리에서 첫 방문
+            r += EDGE_EXPLORATION_BONUS
         
         # [추가5] 커버리지 100% 도달 시 초기화 및 재탐색
         done = False
