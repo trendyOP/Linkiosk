@@ -1,0 +1,50 @@
+:root {
+  --font-lg: 22px;   /* 기본(큰 글자) 본문 */
+  --font-xl: 28px;   /* 더 크게 본문 */
+  --btn-lg: 36px;    /* 큰 버튼 텍스트 */
+  --btn-xl: 46px;    /* 더 큰 버튼 텍스트 (≈12mm 권고 수준) */
+}
+
+html[data-font="lg"] { font-size: var(--font-lg); }
+html[data-font="xl"] { font-size: var(--font-xl); }
+
+html[data-mode="elder"] .category-btn,
+html[data-mode="elder"] .item-card .item-name {
+  font-size: var(--btn-lg);
+}
+
+html[data-mode="elder"][data-font="xl"] .category-btn,
+html[data-mode="elder"][data-font="xl"] .item-card .item-name {
+  font-size: var(--btn-xl);
+}
+
+.category-btn,
+.item-card {
+  min-height: 96px;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.item-card {
+  flex-direction: column;
+}
+
+.item-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+.grid.categories { grid-template-columns: repeat(2, 1fr); }
+.grid.items { grid-template-columns: repeat(2, 1fr); }

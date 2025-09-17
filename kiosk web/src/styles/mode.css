@@ -1,0 +1,24 @@
+/* Elder-mode specific overrides, applied via [data-mode="elder"] on <html> */
+html[data-mode="elder"] {
+  --font-size: 20px;
+  --button-height: 72px;
+}
+html[data-mode="elder"] body {
+  font-size: var(--font-size);
+  line-height: 1.45;
+}
+html[data-mode="elder"] .topbar .center h1 { font-size: 22px; }
+html[data-mode="elder"] .tab { font-size: 18px; padding: 14px 18px; }
+html[data-mode="elder"] .card { padding: 18px; }
+html[data-mode="elder"] .card .thumb { font-size: 56px; }
+html[data-mode="elder"] .card .title { font-size: 20px; }
+html[data-mode="elder"] .gate-card h2 { font-size: 34px; }
+html[data-mode="elder"] .choice { font-size: 22px; }
+html[data-mode="elder"] .mode-toggle { height: 44px; font-size: 16px; }
+html[data-mode="elder"] .badge { font-size: 15px; padding: 6px 10px; }
+
+/* Focus visibility */
+:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 3px;
+}

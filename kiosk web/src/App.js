@@ -8,6 +8,7 @@ import PaymentMethodScreen from "./components/PaymentMethodScreen";
 import PaymentOptionScreen from "./components/PaymentOptionScreen";
 import CardPaymentScreen   from "./components/CardPaymentScreen";
 import CompletionScreen    from "./components/CompletionScreen";
+import ElderWizard        from "./components/elder/ElderWizard";
 import { categories }      from "./data/menuData";      // ← 최초 카테고리 id
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [step, setStep]           = useState(2);
   const [selectedItem, setSel]    = useState(null);
   const [cart, setCart]           = useState([]);
+  const [elderMode, setElderMode] = useState(() => new URLSearchParams(window.location.search).has("elder"));
   const [menuCategory, setCat]    = useState(categories[0].id); // ★ 현재 카테고리
 
   /* 장바구니 담기 */
@@ -25,8 +27,18 @@ function App() {
   /* ─ 화면 결정 ─ */
   let screen;
   switch (step) {
+    case 10:
+      screen = (
+        <ElderWizard cart={cart}
+          onAddAndGoCart={(it) => { addToCart(it); }}
+          goCart={() => setStep(5)}
+          onCancel={() => setStep(3)}
+          onGoHome={() => setStep(2)}
+        />
+      );
+      break;
     case 2:
-      screen = <PackagingScreen onNext={() => setStep(3)} />;
+      screen = <PackagingScreen elderMode={elderMode} setElderMode={setElderMode} onNext={() => setStep(elderMode ? 10 : 3)} />;
       break;
 
     case 3: /* 메뉴 */
@@ -34,11 +46,12 @@ function App() {
         <MenuScreen
           currentCategory={menuCategory}
           onCategoryChange={setCat}             /* ★ 부모에 알려주기 */
-          onGoHome={() => setStep(2)}
           onSelectItem={(it) => { setSel(it); setStep(4); }}
           cart={cart}
           onViewCart={() => setStep(5)}
           onCheckout={() => setStep(6)}
+          onSwitchToElder={() => setStep(10)}
+          onGoHome={() => setStep(2)}
         />
       );
       break;
@@ -48,7 +61,7 @@ function App() {
         <ItemDetailScreen
           item={selectedItem}
           onAdd={addToCart}
-          onBack={() => setStep(3)}
+          onBack={() => setStep(elderMode ? 10 : 3)}
         />
       );
       break;
@@ -57,7 +70,7 @@ function App() {
       screen = (
         <CartScreen
           cart={cart}
-          onBack={() => setStep(3)}
+          onBack={() => setStep(elderMode ? 10 : 3)}
           onClear={() => setCart([])}
           onNext={() => setStep(6)}
         />
