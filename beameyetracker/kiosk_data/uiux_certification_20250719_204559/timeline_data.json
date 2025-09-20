@@ -1,0 +1,6721 @@
+{
+  "gaze_points": [
+    {
+      "timestamp": 1752925562.225665,
+      "session_time": 0.06295585632324219,
+      "x": 1132,
+      "y": 235,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.2558527,
+      "session_time": 0.09314346313476562,
+      "x": 1133,
+      "y": 236,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 46.84748848104286,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.2860136,
+      "session_time": 0.12330436706542969,
+      "x": 1144,
+      "y": 238,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 370.6898146421962,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.3189812,
+      "session_time": 0.15627193450927734,
+      "x": 1149,
+      "y": 237,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 154.6677510337316,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.3522778,
+      "session_time": 0.18956851959228516,
+      "x": 1166,
+      "y": 238,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 511.4454327214769,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.3870337,
+      "session_time": 0.22432446479797363,
+      "x": 1175,
+      "y": 240,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 265.2652489446304,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.420253,
+      "session_time": 0.25754380226135254,
+      "x": 1178,
+      "y": 247,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 229.25722447834966,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.4540677,
+      "session_time": 0.29135847091674805,
+      "x": 608,
+      "y": 277,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 16879.92076841296,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.4870017,
+      "session_time": 0.3242924213409424,
+      "x": 0,
+      "y": 322,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 18511.68820697718,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.5244071,
+      "session_time": 0.3616979122161865,
+      "x": 0,
+      "y": 301,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 561.4149021607495,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.5523653,
+      "session_time": 0.38965606689453125,
+      "x": 0,
+      "y": 290,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 393.445137082676,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.5871282,
+      "session_time": 0.42441892623901367,
+      "x": 0,
+      "y": 263,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 776.6910003703551,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.6194866,
+      "session_time": 0.45677733421325684,
+      "x": 0,
+      "y": 252,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 339.9425586313098,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.6540155,
+      "session_time": 0.4913063049316406,
+      "x": -190,
+      "y": 300,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 5675.506141276483,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.6891644,
+      "session_time": 0.5264551639556885,
+      "x": -195,
+      "y": 300,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 142.25212820078005,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.7202747,
+      "session_time": 0.557565450668335,
+      "x": -202,
+      "y": 303,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 244.79919379103825,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.7529316,
+      "session_time": 0.5902223587036133,
+      "x": -1920,
+      "y": 0,
+      "confidence": 0,
+      "step": 0,
+      "velocity": 53419.4822423235,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.7873418,
+      "session_time": 0.6246325969696045,
+      "x": -1920,
+      "y": 0,
+      "confidence": 0,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.8204842,
+      "session_time": 0.6577749252319336,
+      "x": -1920,
+      "y": 0,
+      "confidence": 0,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.8592355,
+      "session_time": 0.696526288986206,
+      "x": 705,
+      "y": 15,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 67740.65742405232,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.8919368,
+      "session_time": 0.7292275428771973,
+      "x": 710,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 483.5101538781587,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.9250245,
+      "session_time": 0.7623152732849121,
+      "x": 716,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 181.33610030263728,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.9570825,
+      "session_time": 0.7943732738494873,
+      "x": 724,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 249.5476904083712,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925562.9922159,
+      "session_time": 0.8295066356658936,
+      "x": 725,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 28.46297502714441,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.0237722,
+      "session_time": 0.8610630035400391,
+      "x": 728,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 95.06797524875904,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.0518816,
+      "session_time": 0.8891723155975342,
+      "x": 727,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 35.57539928243666,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.0862746,
+      "session_time": 0.9235653877258301,
+      "x": 727,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.1231499,
+      "session_time": 0.9604406356811523,
+      "x": 729,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 54.23692343501481,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.1552324,
+      "session_time": 0.992523193359375,
+      "x": 734,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 155.84792366457597,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.193632,
+      "session_time": 1.0309226512908936,
+      "x": 731,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 78.1261028567171,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.224329,
+      "session_time": 1.061619758605957,
+      "x": 724,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 228.03451570060503,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.257251,
+      "session_time": 1.0945417881011963,
+      "x": 698,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 789.744751421226,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.2872267,
+      "session_time": 1.1245174407958984,
+      "x": 657,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1367.7767225814662,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.3199775,
+      "session_time": 1.1572682857513428,
+      "x": 614,
+      "y": 173,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 5443.030542704084,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.3521216,
+      "session_time": 1.1894123554229736,
+      "x": 603,
+      "y": 161,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 506.4330920881116,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.389049,
+      "session_time": 1.2263398170471191,
+      "x": 612,
+      "y": 125,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1004.887663502314,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.4214265,
+      "session_time": 1.2587172985076904,
+      "x": 610,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 3861.2020866531348,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.4552352,
+      "session_time": 1.2925260066986084,
+      "x": 610,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.4880123,
+      "session_time": 1.325303077697754,
+      "x": 603,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 213.56392705688953,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.5242379,
+      "session_time": 1.3615286350250244,
+      "x": 602,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 27.60482029208706,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.5523553,
+      "session_time": 1.389646053314209,
+      "x": 597,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 177.82571460066308,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.5870457,
+      "session_time": 1.4243364334106445,
+      "x": 546,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1470.1482041483966,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.6194277,
+      "session_time": 1.4567184448242188,
+      "x": 476,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 2161.694006773671,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.654918,
+      "session_time": 1.49220871925354,
+      "x": 409,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1887.841136123931,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.6869683,
+      "session_time": 1.524259090423584,
+      "x": 365,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1372.8390153910243,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.7213266,
+      "session_time": 1.558617353439331,
+      "x": 329,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1047.7828865650306,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.752987,
+      "session_time": 1.5902776718139648,
+      "x": 299,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 947.5583803363129,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.7870424,
+      "session_time": 1.624333143234253,
+      "x": 267,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 939.6434307157009,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.8200405,
+      "session_time": 1.6573312282562256,
+      "x": 272,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 151.52394439467068,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.8595178,
+      "session_time": 1.6968085765838623,
+      "x": 276,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 101.3239280106293,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.886176,
+      "session_time": 1.7234668731689453,
+      "x": 274,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 75.02354824573172,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.9215813,
+      "session_time": 1.7588720321655273,
+      "x": 274,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.9529498,
+      "session_time": 1.7902405261993408,
+      "x": 275,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 31.87912046150689,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925563.988972,
+      "session_time": 1.8262627124786377,
+      "x": 278,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 83.28200783649264,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.0209904,
+      "session_time": 1.858281135559082,
+      "x": 278,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.0562038,
+      "session_time": 1.8934946060180664,
+      "x": 278,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.085868,
+      "session_time": 1.9231586456298828,
+      "x": 278,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.1218724,
+      "session_time": 1.9591631889343262,
+      "x": 275,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 83.32281775199651,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.1531916,
+      "session_time": 1.9904823303222656,
+      "x": 273,
+      "y": 14,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 451.54927616173035,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.1912231,
+      "session_time": 2.0285139083862305,
+      "x": 276,
+      "y": 32,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 479.8193637982386,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.219573,
+      "session_time": 2.056863784790039,
+      "x": 281,
+      "y": 27,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 249.42146876222466,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.2539623,
+      "session_time": 2.0912530422210693,
+      "x": 293,
+      "y": 20,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 403.9762712908802,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.286171,
+      "session_time": 2.1234617233276367,
+      "x": 308,
+      "y": 12,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 527.8080137386837,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.319938,
+      "session_time": 2.157228708267212,
+      "x": 325,
+      "y": 10,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 506.92245100515726,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.3546,
+      "session_time": 2.1918907165527344,
+      "x": 346,
+      "y": 6,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 616.743212059091,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.3869717,
+      "session_time": 2.2242624759674072,
+      "x": 365,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 615.5012642328028,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.4208589,
+      "session_time": 2.2581496238708496,
+      "x": 388,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 678.7233928785012,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.4558876,
+      "session_time": 2.2931783199310303,
+      "x": 403,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 428.220336098992,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.4875205,
+      "session_time": 2.3248112201690674,
+      "x": 406,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 94.83796861574639,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.5253224,
+      "session_time": 2.3626132011413574,
+      "x": 393,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 343.897321400415,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.555011,
+      "session_time": 2.3923017978668213,
+      "x": 367,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 875.7571211744015,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.5883803,
+      "session_time": 2.425671100616455,
+      "x": 322,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1348.544808911054,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.624619,
+      "session_time": 2.461909770965576,
+      "x": 266,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1545.3105608042317,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.654293,
+      "session_time": 2.491583824157715,
+      "x": 216,
+      "y": 9,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1712.052709974287,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.6869173,
+      "session_time": 2.5242080688476562,
+      "x": 218,
+      "y": 29,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 616.0985927266192,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.721822,
+      "session_time": 2.559112787246704,
+      "x": 225,
+      "y": 45,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 500.34064154058257,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.7542887,
+      "session_time": 2.5915794372558594,
+      "x": 261,
+      "y": 40,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1119.4737886576966,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.7871737,
+      "session_time": 2.624464511871338,
+      "x": 297,
+      "y": 34,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1109.8218753808428,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.8202186,
+      "session_time": 2.6575093269348145,
+      "x": 364,
+      "y": 21,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 2065.363113453777,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.860842,
+      "session_time": 2.6981327533721924,
+      "x": 451,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 2203.127879402842,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.8881083,
+      "session_time": 2.7253990173339844,
+      "x": 504,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1943.7939893147259,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.9231646,
+      "session_time": 2.760455369949341,
+      "x": 543,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1112.494514986024,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.9561043,
+      "session_time": 2.7933950424194336,
+      "x": 585,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1275.0582155342756,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925564.9913256,
+      "session_time": 2.8286163806915283,
+      "x": 606,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 596.2294742399935,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.0222542,
+      "session_time": 2.8595449924468994,
+      "x": 631,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 808.3130338256607,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.0526006,
+      "session_time": 2.8898913860321045,
+      "x": 646,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 494.29267296239846,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.0875213,
+      "session_time": 2.924812078475952,
+      "x": 663,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 486.81737990550835,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.1213925,
+      "session_time": 2.9586832523345947,
+      "x": 675,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 354.2835583461208,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.1521611,
+      "session_time": 2.9894518852233887,
+      "x": 681,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 195.0037891408956,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.1889079,
+      "session_time": 3.026198625564575,
+      "x": 678,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 81.63989437282241,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.219399,
+      "session_time": 3.056689739227295,
+      "x": 681,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 98.38932199016334,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.2539587,
+      "session_time": 3.091249465942383,
+      "x": 680,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 28.935413993404804,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.2863913,
+      "session_time": 3.1236820220947266,
+      "x": 682,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 61.66643142789932,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.3204727,
+      "session_time": 3.1577634811401367,
+      "x": 682,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.3534648,
+      "session_time": 3.190755605697632,
+      "x": 716,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1030.5489705807963,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.3861668,
+      "session_time": 3.2234575748443604,
+      "x": 1286,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 17430.143042533648,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.420073,
+      "session_time": 3.257363796234131,
+      "x": 1294,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 235.94489955208033,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.4522972,
+      "session_time": 3.28958797454834,
+      "x": 1287,
+      "y": 0,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 217.22819218988147,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.4862523,
+      "session_time": 3.323543071746826,
+      "x": 1285,
+      "y": 23,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 679.9212685587473,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.5246403,
+      "session_time": 3.361931085586548,
+      "x": 1284,
+      "y": 66,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1120.444170797584,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.5519347,
+      "session_time": 3.389225482940674,
+      "x": 1281,
+      "y": 79,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 488.80595863786425,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.5862694,
+      "session_time": 3.42356014251709,
+      "x": 1280,
+      "y": 87,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 234.8139707153642,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.6184177,
+      "session_time": 3.4557085037231445,
+      "x": 1283,
+      "y": 107,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 629.0755627178853,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.6545181,
+      "session_time": 3.4918088912963867,
+      "x": 1287,
+      "y": 122,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 430.0279232394344,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.6848464,
+      "session_time": 3.52213716506958,
+      "x": 1289,
+      "y": 129,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 240.04366169087018,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.7198508,
+      "session_time": 3.5571415424346924,
+      "x": 1287,
+      "y": 132,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 103.00286840861,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.7512217,
+      "session_time": 3.588512420654297,
+      "x": 1284,
+      "y": 129,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 135.2413744180087,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.7860308,
+      "session_time": 3.623321533203125,
+      "x": 1286,
+      "y": 122,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 209.14379471951256,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.8184276,
+      "session_time": 3.6557183265686035,
+      "x": 1286,
+      "y": 119,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 92.6017574071621,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.8591301,
+      "session_time": 3.696420907974243,
+      "x": 744,
+      "y": 138,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 13324.288161878949,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.8850207,
+      "session_time": 3.722311496734619,
+      "x": 175,
+      "y": 157,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 21989.346788884548,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.9204898,
+      "session_time": 3.7577805519104004,
+      "x": 85,
+      "y": 148,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 2550.0786570668993,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.952046,
+      "session_time": 3.789336681365967,
+      "x": 36,
+      "y": 138,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 1584.7950893539744,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925565.9884849,
+      "session_time": 3.825775623321533,
+      "x": 4,
+      "y": 133,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 888.8367154265209,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.0193,
+      "session_time": 3.856590747833252,
+      "x": 0,
+      "y": 128,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 207.79160684545639,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.0534308,
+      "session_time": 3.890721559524536,
+      "x": 0,
+      "y": 130,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 58.598079005274,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.0871441,
+      "session_time": 3.9244349002838135,
+      "x": 0,
+      "y": 128,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 59.32369664224492,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.122217,
+      "session_time": 3.959507703781128,
+      "x": 0,
+      "y": 131,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 85.5363615352195,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.1529198,
+      "session_time": 3.99021053314209,
+      "x": 0,
+      "y": 147,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 521.1246107612384,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.1939611,
+      "session_time": 4.031251907348633,
+      "x": 0,
+      "y": 153,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 146.19393516904844,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.223364,
+      "session_time": 4.060654878616333,
+      "x": 0,
+      "y": 158,
+      "confidence": 2,
+      "step": 0,
+      "velocity": 170.05084127305898,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.2554939,
+      "session_time": 4.092784643173218,
+      "x": -443,
+      "y": 35,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 14309.43048194108,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.2869852,
+      "session_time": 4.1242759227752686,
+      "x": -481,
+      "y": 37,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1208.3534128096474,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.3232322,
+      "session_time": 4.160522937774658,
+      "x": -521,
+      "y": 47,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1137.5021158810148,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.354011,
+      "session_time": 4.1913018226623535,
+      "x": -573,
+      "y": 57,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1720.4264992934886,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.387034,
+      "session_time": 4.224324703216553,
+      "x": -628,
+      "y": 59,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1666.6126848909787,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.4188597,
+      "session_time": 4.256150484085083,
+      "x": -699,
+      "y": 64,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2236.420809001313,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.453324,
+      "session_time": 4.29061484336853,
+      "x": -806,
+      "y": 67,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3105.876622647909,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.4871871,
+      "session_time": 4.324477910995483,
+      "x": -876,
+      "y": 69,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2067.99237362381,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.5303388,
+      "session_time": 4.367629528045654,
+      "x": -937,
+      "y": 73,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1416.6562238267175,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.5559068,
+      "session_time": 4.393197536468506,
+      "x": -966,
+      "y": 76,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1140.2827702516422,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.590046,
+      "session_time": 4.427336692810059,
+      "x": -994,
+      "y": 77,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 820.6954844441091,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.6220238,
+      "session_time": 4.459314584732056,
+      "x": -1013,
+      "y": 80,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 601.521329441971,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.6561234,
+      "session_time": 4.4934141635894775,
+      "x": -1054,
+      "y": 79,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1202.7184699348077,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.6862388,
+      "session_time": 4.523529529571533,
+      "x": -1074,
+      "y": 80,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 664.9424219660069,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.7209663,
+      "session_time": 4.558257102966309,
+      "x": -1082,
+      "y": 79,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 232.1572445229208,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.7560813,
+      "session_time": 4.593372106552124,
+      "x": -1101,
+      "y": 80,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 541.8281545648495,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.7903585,
+      "session_time": 4.627649307250977,
+      "x": -1110,
+      "y": 79,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 264.1809994256781,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.8199914,
+      "session_time": 4.657282114028931,
+      "x": -1137,
+      "y": 78,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 911.777017096927,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.861144,
+      "session_time": 4.698434829711914,
+      "x": -1153,
+      "y": 77,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 389.5543532382309,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.886211,
+      "session_time": 4.723501682281494,
+      "x": -1162,
+      "y": 77,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 359.0398904297209,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.9240181,
+      "session_time": 4.761308908462524,
+      "x": -1185,
+      "y": 76,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 608.9240389180891,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.9521885,
+      "session_time": 4.7894792556762695,
+      "x": -1195,
+      "y": 75,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 356.7537007927708,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925566.9889395,
+      "session_time": 4.82623028755188,
+      "x": -1202,
+      "y": 76,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 192.40460610190803,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.0213478,
+      "session_time": 4.858638525009155,
+      "x": -1213,
+      "y": 75,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 340.8195534159685,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.055296,
+      "session_time": 4.892586708068848,
+      "x": -1220,
+      "y": 75,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 206.19660226562445,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.0869486,
+      "session_time": 4.92423939704895,
+      "x": -1226,
+      "y": 73,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 199.8109962888932,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.1218805,
+      "session_time": 4.959171295166016,
+      "x": -1232,
+      "y": 69,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 206.4331725336479,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.156214,
+      "session_time": 4.993504762649536,
+      "x": -1232,
+      "y": 67,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 58.2521995764036,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.1942623,
+      "session_time": 5.031553030014038,
+      "x": -1232,
+      "y": 66,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.282405724812953,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.2226973,
+      "session_time": 5.059988021850586,
+      "x": -1233,
+      "y": 67,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 49.73497339131952,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.2539556,
+      "session_time": 5.0912463665008545,
+      "x": -1236,
+      "y": 67,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 95.97437207776854,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.2879384,
+      "session_time": 5.125229120254517,
+      "x": -1236,
+      "y": 65,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 58.85338235087769,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.3242238,
+      "session_time": 5.161514520645142,
+      "x": -1237,
+      "y": 64,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 38.97472667101899,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.356024,
+      "session_time": 5.193314790725708,
+      "x": -1236,
+      "y": 65,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 44.47174689995293,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.3868892,
+      "session_time": 5.224179983139038,
+      "x": -1236,
+      "y": 65,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.423937,
+      "session_time": 5.26122784614563,
+      "x": -1237,
+      "y": 66,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 38.172608285705145,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.457219,
+      "session_time": 5.294509649276733,
+      "x": -1240,
+      "y": 63,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 127.47628697900457,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.4878953,
+      "session_time": 5.325186014175415,
+      "x": -1240,
+      "y": 64,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 32.59838652013741,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.5275712,
+      "session_time": 5.364861965179443,
+      "x": -1242,
+      "y": 63,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 56.35827046143798,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.5575173,
+      "session_time": 5.394808053970337,
+      "x": -1242,
+      "y": 61,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 66.78668503140848,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.5913153,
+      "session_time": 5.428606033325195,
+      "x": -1244,
+      "y": 58,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 106.67949221484146,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.6219504,
+      "session_time": 5.459241151809692,
+      "x": -1246,
+      "y": 50,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 269.1751055380551,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.6559324,
+      "session_time": 5.493223190307617,
+      "x": -1206,
+      "y": 45,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1186.252812466046,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.687617,
+      "session_time": 5.524907827377319,
+      "x": -1205,
+      "y": 44,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 44.63404643903625,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.7255445,
+      "session_time": 5.562835216522217,
+      "x": -1205,
+      "y": 44,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.754128,
+      "session_time": 5.591418743133545,
+      "x": -1205,
+      "y": 44,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.7988377,
+      "session_time": 5.6361284255981445,
+      "x": -1204,
+      "y": 44,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 22.36651984258183,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.826086,
+      "session_time": 5.663376808166504,
+      "x": -649,
+      "y": 35,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 20370.85932655701,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.8616078,
+      "session_time": 5.698898553848267,
+      "x": -684,
+      "y": 51,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1083.3860237208373,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.886202,
+      "session_time": 5.723492860794067,
+      "x": -683,
+      "y": 51,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 40.65981620070573,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.9270587,
+      "session_time": 5.764349460601807,
+      "x": -683,
+      "y": 50,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 24.475849794298718,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.95326,
+      "session_time": 5.790550708770752,
+      "x": -683,
+      "y": 50,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925567.9871304,
+      "session_time": 5.824421167373657,
+      "x": -683,
+      "y": 81,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 915.2518530511111,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.019997,
+      "session_time": 5.857287645339966,
+      "x": -241,
+      "y": 117,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 13492.885987122909,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.0560493,
+      "session_time": 5.893340110778809,
+      "x": -222,
+      "y": 186,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1985.111100424892,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.085464,
+      "session_time": 5.922754764556885,
+      "x": -227,
+      "y": 228,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1437.942199973756,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.1209915,
+      "session_time": 5.958282232284546,
+      "x": -247,
+      "y": 237,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 617.3170676722793,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.153052,
+      "session_time": 5.990342855453491,
+      "x": -270,
+      "y": 236,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 718.0686646397464,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.1914856,
+      "session_time": 6.028776407241821,
+      "x": -643,
+      "y": 230,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 9706.317446430985,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.2229974,
+      "session_time": 6.060288190841675,
+      "x": -695,
+      "y": 225,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1657.7872014416457,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.2548754,
+      "session_time": 6.092166185379028,
+      "x": -766,
+      "y": 225,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2227.2417393385485,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.2868812,
+      "session_time": 6.12417197227478,
+      "x": -806,
+      "y": 223,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1251.3352325768722,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.320905,
+      "session_time": 6.158195734024048,
+      "x": -840,
+      "y": 220,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1003.1840859715278,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.3530385,
+      "session_time": 6.190329313278198,
+      "x": -829,
+      "y": 233,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 529.9561007890796,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.3895688,
+      "session_time": 6.2268595695495605,
+      "x": -754,
+      "y": 303,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2808.395919298325,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.4222927,
+      "session_time": 6.259583473205566,
+      "x": -673,
+      "y": 378,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3373.3816759231454,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.4553585,
+      "session_time": 6.292649269104004,
+      "x": -589,
+      "y": 445,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3249.5108240461814,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.4891975,
+      "session_time": 6.326488256454468,
+      "x": -515,
+      "y": 491,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2574.902219760824,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.5253034,
+      "session_time": 6.362594127655029,
+      "x": -445,
+      "y": 529,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2205.991113315687,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.5531123,
+      "session_time": 6.3904030323028564,
+      "x": -386,
+      "y": 541,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2165.0609276574232,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.5875287,
+      "session_time": 6.424819469451904,
+      "x": -356,
+      "y": 558,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1001.9014795111437,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.6198442,
+      "session_time": 6.457134962081909,
+      "x": -321,
+      "y": 561,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1087.0431883153158,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.653956,
+      "session_time": 6.491246700286865,
+      "x": -278,
+      "y": 582,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1402.8585752064944,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.6871145,
+      "session_time": 6.524405241012573,
+      "x": -240,
+      "y": 601,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1281.2774821407297,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.7261708,
+      "session_time": 6.563461542129517,
+      "x": -233,
+      "y": 601,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 179.22844201350313,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.7540417,
+      "session_time": 6.59133243560791,
+      "x": -219,
+      "y": 606,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 533.3904619470911,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.7913902,
+      "session_time": 6.628680944442749,
+      "x": -215,
+      "y": 618,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 338.67779558776834,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.8202693,
+      "session_time": 6.657560110092163,
+      "x": -210,
+      "y": 633,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 547.5015619491312,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.861273,
+      "session_time": 6.698563814163208,
+      "x": -210,
+      "y": 640,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 170.71628426230652,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.8861299,
+      "session_time": 6.7234206199646,
+      "x": -208,
+      "y": 654,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 568.9442053306466,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.923258,
+      "session_time": 6.760548830032349,
+      "x": -204,
+      "y": 669,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 418.1234341201089,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.9533408,
+      "session_time": 6.790631532669067,
+      "x": -208,
+      "y": 679,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 358.02400284084894,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925568.9903893,
+      "session_time": 6.8276801109313965,
+      "x": -210,
+      "y": 694,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 408.45686015996176,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.0209866,
+      "session_time": 6.858277320861816,
+      "x": -213,
+      "y": 704,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 341.21759901156014,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.0552895,
+      "session_time": 6.892580270767212,
+      "x": -219,
+      "y": 700,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 210.21814656802283,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.0863106,
+      "session_time": 6.923601388931274,
+      "x": -219,
+      "y": 703,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 96.70831283817019,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.1212668,
+      "session_time": 6.958557605743408,
+      "x": -218,
+      "y": 707,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 117.95056792834839,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.1558812,
+      "session_time": 6.99317193031311,
+      "x": -218,
+      "y": 709,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 57.77954719216437,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.1920648,
+      "session_time": 7.029355525970459,
+      "x": -219,
+      "y": 711,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 61.79783785654978,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.2200346,
+      "session_time": 7.05732536315918,
+      "x": -218,
+      "y": 716,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 182.30422576964617,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.25818,
+      "session_time": 7.095470666885376,
+      "x": -216,
+      "y": 733,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 448.7378811161077,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.2868679,
+      "session_time": 7.124158620834351,
+      "x": -214,
+      "y": 745,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 424.063879990691,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.3212419,
+      "session_time": 7.158532619476318,
+      "x": -213,
+      "y": 764,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 553.5084174702599,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.3559551,
+      "session_time": 7.193245887756348,
+      "x": -208,
+      "y": 774,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 322.0768438542864,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.3875294,
+      "session_time": 7.224820137023926,
+      "x": -203,
+      "y": 784,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 354.0967765456717,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.420222,
+      "session_time": 7.257512807846069,
+      "x": -274,
+      "y": 771,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2207.844385769328,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.45549,
+      "session_time": 7.292780876159668,
+      "x": -1122,
+      "y": 704,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 24119.344746517803,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.4872975,
+      "session_time": 7.324588298797607,
+      "x": -1132,
+      "y": 615,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2815.696095520912,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.525241,
+      "session_time": 7.362531661987305,
+      "x": -1148,
+      "y": 511,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2773.1746123205685,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.5539198,
+      "session_time": 7.391210556030273,
+      "x": -1168,
+      "y": 459,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1942.667420342726,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.5913475,
+      "session_time": 7.428638219833374,
+      "x": -1162,
+      "y": 404,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1478.219561486733,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.6204379,
+      "session_time": 7.457728624343872,
+      "x": -1168,
+      "y": 370,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1186.8295949891224,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.6574557,
+      "session_time": 7.494746446609497,
+      "x": -1168,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 567.2943116240725,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.687177,
+      "session_time": 7.524467706680298,
+      "x": -1166,
+      "y": 337,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 409.3206355186899,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.724997,
+      "session_time": 7.5622878074646,
+      "x": -1170,
+      "y": 324,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 359.63601964754935,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.7530699,
+      "session_time": 7.590360641479492,
+      "x": -1173,
+      "y": 317,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 271.2862228951932,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.791596,
+      "session_time": 7.628886699676514,
+      "x": -1178,
+      "y": 307,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 290.20201937927095,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.8202167,
+      "session_time": 7.657507419586182,
+      "x": -1171,
+      "y": 311,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 281.6930452394089,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.8612328,
+      "session_time": 7.69852352142334,
+      "x": -749,
+      "y": 318,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 10290.057659663426,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.886847,
+      "session_time": 7.724137783050537,
+      "x": -692,
+      "y": 320,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2226.692213756295,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.9210117,
+      "session_time": 7.758302450180054,
+      "x": -616,
+      "y": 334,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2261.948464256559,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.9542034,
+      "session_time": 7.791494131088257,
+      "x": -575,
+      "y": 354,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1374.3798947089167,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925569.9888482,
+      "session_time": 7.826138973236084,
+      "x": -555,
+      "y": 383,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1016.8275484501373,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.0212402,
+      "session_time": 7.8585309982299805,
+      "x": -531,
+      "y": 400,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 907.9667709952457,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.0571876,
+      "session_time": 7.8944783210754395,
+      "x": -514,
+      "y": 429,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 935.1314636825498,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.0876431,
+      "session_time": 7.924933910369873,
+      "x": -479,
+      "y": 465,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1648.6156402072847,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.1220126,
+      "session_time": 7.959303379058838,
+      "x": -391,
+      "y": 547,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3499.7049479749144,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.1542935,
+      "session_time": 7.991584300994873,
+      "x": -344,
+      "y": 606,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2336.738981992323,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.1943321,
+      "session_time": 8.031622886657715,
+      "x": -306,
+      "y": 644,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1342.2081344909157,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.223995,
+      "session_time": 8.061285734176636,
+      "x": -279,
+      "y": 669,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1240.4992124399666,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.258412,
+      "session_time": 8.095702648162842,
+      "x": -253,
+      "y": 692,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1008.6061152761175,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.2909372,
+      "session_time": 8.128227949142456,
+      "x": -232,
+      "y": 709,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 830.6921491409678,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.3229995,
+      "session_time": 8.160290241241455,
+      "x": -204,
+      "y": 724,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 990.7201971230519,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.3539672,
+      "session_time": 8.191257953643799,
+      "x": -195,
+      "y": 732,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 388.843529103588,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.3890855,
+      "session_time": 8.226376295089722,
+      "x": -176,
+      "y": 758,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 916.9705359177166,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.4232135,
+      "session_time": 8.260504245758057,
+      "x": -170,
+      "y": 770,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 393.12081746083055,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.455686,
+      "session_time": 8.29297685623169,
+      "x": -158,
+      "y": 779,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 461.9277533039648,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.490163,
+      "session_time": 8.327453851699829,
+      "x": -155,
+      "y": 784,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 169.1258711981939,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.5261025,
+      "session_time": 8.363393306732178,
+      "x": -175,
+      "y": 765,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 767.575034831147,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.5526097,
+      "session_time": 8.38990044593811,
+      "x": -239,
+      "y": 735,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2666.541554679337,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.591073,
+      "session_time": 8.428363800048828,
+      "x": -374,
+      "y": 664,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3965.6438547779517,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.621482,
+      "session_time": 8.458772659301758,
+      "x": -482,
+      "y": 613,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3927.676945423707,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.6561024,
+      "session_time": 8.493393182754517,
+      "x": -588,
+      "y": 571,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3293.351201506115,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.6871786,
+      "session_time": 8.524469375610352,
+      "x": -648,
+      "y": 521,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2513.2582077022917,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.7249994,
+      "session_time": 8.56229019165039,
+      "x": -777,
+      "y": 439,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 4041.5876102971497,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.754015,
+      "session_time": 8.59130573272705,
+      "x": -859,
+      "y": 387,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3346.4097221199686,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.7883546,
+      "session_time": 8.625645399093628,
+      "x": -905,
+      "y": 343,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1853.6965726992041,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.8238616,
+      "session_time": 8.661152362823486,
+      "x": -940,
+      "y": 318,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1211.3574864483257,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.861884,
+      "session_time": 8.699174880981445,
+      "x": -959,
+      "y": 293,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 825.8431702436387,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.8874712,
+      "session_time": 8.724761962890625,
+      "x": -959,
+      "y": 302,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 351.73999254565786,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.9219694,
+      "session_time": 8.759260177612305,
+      "x": -959,
+      "y": 295,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 202.90905069939737,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.953327,
+      "session_time": 8.79061770439148,
+      "x": -961,
+      "y": 295,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 63.780540285729494,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925570.9894814,
+      "session_time": 8.826772212982178,
+      "x": -962,
+      "y": 295,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27.65906767869272,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.0208483,
+      "session_time": 8.858139038085938,
+      "x": -963,
+      "y": 295,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 31.880816649184414,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.056046,
+      "session_time": 8.893336772918701,
+      "x": -957,
+      "y": 289,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 241.07464342677184,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.0870957,
+      "session_time": 8.924386501312256,
+      "x": -942,
+      "y": 285,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 499.9777936699291,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.1248581,
+      "session_time": 8.962148904800415,
+      "x": -923,
+      "y": 283,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 505.9257729856463,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.1532934,
+      "session_time": 8.990584135055542,
+      "x": -870,
+      "y": 287,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1869.1858158627015,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.1920202,
+      "session_time": 9.029310941696167,
+      "x": -402,
+      "y": 301,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 12090.058424592371,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.2240543,
+      "session_time": 9.061345100402832,
+      "x": -339,
+      "y": 341,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2329.5674317707576,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.2554398,
+      "session_time": 9.092730522155762,
+      "x": -281,
+      "y": 413,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2945.8069857538067,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.291449,
+      "session_time": 9.128739833831787,
+      "x": -239,
+      "y": 478,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2149.1282686002555,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.3229334,
+      "session_time": 9.160224199295044,
+      "x": -219,
+      "y": 512,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1252.881081331204,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.3582132,
+      "session_time": 9.195503950119019,
+      "x": -220,
+      "y": 519,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 200.42850776202988,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.3876073,
+      "session_time": 9.224898099899292,
+      "x": -204,
+      "y": 531,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 680.4075011355525,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.420986,
+      "session_time": 9.25827670097351,
+      "x": -187,
+      "y": 545,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 659.7854564538756,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.4574585,
+      "session_time": 9.29474925994873,
+      "x": -165,
+      "y": 563,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 779.3623920497765,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.487357,
+      "session_time": 9.324647665023804,
+      "x": -152,
+      "y": 575,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 591.7307618426797,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.5259373,
+      "session_time": 9.36322808265686,
+      "x": -147,
+      "y": 582,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 222.97128426292474,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.554185,
+      "session_time": 9.391475677490234,
+      "x": -145,
+      "y": 585,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 127.64100082616929,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.5881708,
+      "session_time": 9.425461530685425,
+      "x": -146,
+      "y": 590,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 150.03358851424633,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.6211812,
+      "session_time": 9.45847201347351,
+      "x": -143,
+      "y": 600,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 316.27245732615097,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.6552432,
+      "session_time": 9.492533922195435,
+      "x": -138,
+      "y": 604,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 187.98489214761767,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.6871717,
+      "session_time": 9.524462461471558,
+      "x": -135,
+      "y": 609,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 182.62507546675744,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.7269008,
+      "session_time": 9.564191579818726,
+      "x": -141,
+      "y": 612,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 168.84854765415537,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.7542524,
+      "session_time": 9.591543197631836,
+      "x": -143,
+      "y": 616,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 163.50535407291216,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.7922895,
+      "session_time": 9.62958025932312,
+      "x": -146,
+      "y": 624,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 224.62312716640005,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.8210106,
+      "session_time": 9.65830135345459,
+      "x": -149,
+      "y": 627,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 147.71863034530497,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.861975,
+      "session_time": 9.699265718460083,
+      "x": -158,
+      "y": 630,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 231.58745361323165,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.8902323,
+      "session_time": 9.7275230884552,
+      "x": -160,
+      "y": 632,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 100.09520083556737,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.925931,
+      "session_time": 9.763221740722656,
+      "x": -161,
+      "y": 634,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 62.637322012804816,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.95405,
+      "session_time": 9.791340827941895,
+      "x": -162,
+      "y": 641,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 251.46861122247424,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925571.992126,
+      "session_time": 9.829416751861572,
+      "x": -160,
+      "y": 649,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 216.5728471522042,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.020514,
+      "session_time": 9.857804775238037,
+      "x": -159,
+      "y": 649,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 35.22612288776161,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.0591342,
+      "session_time": 9.896425008773804,
+      "x": -158,
+      "y": 652,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 81.8813707389874,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.0863442,
+      "session_time": 9.923635005950928,
+      "x": -159,
+      "y": 653,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 51.97404296543081,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.1221254,
+      "session_time": 9.959416151046753,
+      "x": -161,
+      "y": 655,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 79.04797672549054,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.1544244,
+      "session_time": 9.9917151927948,
+      "x": -160,
+      "y": 654,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 43.78500060171639,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.1928623,
+      "session_time": 10.030153036117554,
+      "x": -160,
+      "y": 656,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 52.03205557623124,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.2241666,
+      "session_time": 10.061457395553589,
+      "x": -160,
+      "y": 659,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 95.83329779131759,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.2547343,
+      "session_time": 10.0920250415802,
+      "x": -159,
+      "y": 667,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 263.75134484610874,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.290774,
+      "session_time": 10.12806487083435,
+      "x": -157,
+      "y": 676,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 255.81543109644875,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.3263264,
+      "session_time": 10.163617134094238,
+      "x": -155,
+      "y": 682,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 177.89459067919654,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.3571024,
+      "session_time": 10.194393157958984,
+      "x": -148,
+      "y": 683,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 229.75897870827222,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.3888779,
+      "session_time": 10.226168632507324,
+      "x": -144,
+      "y": 691,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 281.48350377560183,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.4246762,
+      "session_time": 10.261966943740845,
+      "x": -142,
+      "y": 696,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 150.43069411866531,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.4573321,
+      "session_time": 10.294622898101807,
+      "x": -139,
+      "y": 708,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 378.7767688590262,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.488677,
+      "session_time": 10.325967788696289,
+      "x": -137,
+      "y": 713,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 171.80359238779553,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.525491,
+      "session_time": 10.362781763076782,
+      "x": -140,
+      "y": 717,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 135.81798988400936,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.5551085,
+      "session_time": 10.392399311065674,
+      "x": -139,
+      "y": 721,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 139.21157913423752,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.5893364,
+      "session_time": 10.426627159118652,
+      "x": -138,
+      "y": 720,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 41.31763002407129,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.621968,
+      "session_time": 10.459258794784546,
+      "x": -138,
+      "y": 724,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 122.58043209831442,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.657962,
+      "session_time": 10.495252847671509,
+      "x": -142,
+      "y": 722,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 124.24652397561474,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.6873035,
+      "session_time": 10.5245943069458,
+      "x": -139,
+      "y": 723,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 107.77506430769317,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.7249265,
+      "session_time": 10.562217235565186,
+      "x": -139,
+      "y": 724,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.579536381034462,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.757123,
+      "session_time": 10.594413757324219,
+      "x": -141,
+      "y": 724,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 62.11851127797278,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.7918882,
+      "session_time": 10.629179000854492,
+      "x": -147,
+      "y": 723,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 174.9667746466776,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.8218818,
+      "session_time": 10.659172534942627,
+      "x": -148,
+      "y": 722,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 47.15061446968826,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.863274,
+      "session_time": 10.700564861297607,
+      "x": -149,
+      "y": 721,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 34.16608069439741,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.88706,
+      "session_time": 10.724350690841675,
+      "x": -148,
+      "y": 721,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 42.04183832005212,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.9249482,
+      "session_time": 10.7622389793396,
+      "x": -148,
+      "y": 722,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.39338010886323,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.9551203,
+      "session_time": 10.792411088943481,
+      "x": -148,
+      "y": 722,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925572.990079,
+      "session_time": 10.827369689941406,
+      "x": -147,
+      "y": 723,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 40.45395187459146,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.0215323,
+      "session_time": 10.85882306098938,
+      "x": -552,
+      "y": 711,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 12881.854163055024,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.0553238,
+      "session_time": 10.892614603042603,
+      "x": -937,
+      "y": 642,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 11574.915623470823,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.0881991,
+      "session_time": 10.925489902496338,
+      "x": -946,
+      "y": 554,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2690.7444657426468,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.1229134,
+      "session_time": 10.960204124450684,
+      "x": -966,
+      "y": 482,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2152.6095808038995,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.1542456,
+      "session_time": 10.991536378860474,
+      "x": -972,
+      "y": 436,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1480.5718545575817,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.1945248,
+      "session_time": 11.031815528869629,
+      "x": -1008,
+      "y": 384,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1570.1809295626185,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.2215118,
+      "session_time": 11.058802604675293,
+      "x": -1017,
+      "y": 356,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1089.8136037967001,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.2560928,
+      "session_time": 11.093383550643921,
+      "x": -1026,
+      "y": 324,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 961.2675230847148,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.2881541,
+      "session_time": 11.125444889068604,
+      "x": -1028,
+      "y": 321,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 112.45791512834141,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.3232512,
+      "session_time": 11.160542011260986,
+      "x": -1038,
+      "y": 309,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 445.0649619131295,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.358868,
+      "session_time": 11.196158647537231,
+      "x": -1049,
+      "y": 288,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 665.6029782933408,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.3899407,
+      "session_time": 11.227231502532959,
+      "x": -1055,
+      "y": 279,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 348.1062112856781,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.4249504,
+      "session_time": 11.262241125106812,
+      "x": -1066,
+      "y": 264,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 531.3132182016371,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.4572148,
+      "session_time": 11.294505596160889,
+      "x": -1069,
+      "y": 259,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 180.72361654627107,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.4915347,
+      "session_time": 11.3288254737854,
+      "x": -1070,
+      "y": 254,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 148.57335942104282,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.5289125,
+      "session_time": 11.366203308105469,
+      "x": -1074,
+      "y": 249,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 171.3080587441894,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.5543268,
+      "session_time": 11.3916175365448,
+      "x": -1080,
+      "y": 246,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 263.9546562868599,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.5893233,
+      "session_time": 11.426614046096802,
+      "x": -1081,
+      "y": 244,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 63.894028465243814,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.6220462,
+      "session_time": 11.459336996078491,
+      "x": -1080,
+      "y": 240,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 126.00042563169877,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.6553924,
+      "session_time": 11.492683172225952,
+      "x": -1083,
+      "y": 231,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 284.4953777774454,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.6877258,
+      "session_time": 11.52501654624939,
+      "x": -1079,
+      "y": 225,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 223.0235095694271,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.7230198,
+      "session_time": 11.56031060218811,
+      "x": -1080,
+      "y": 224,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 40.069454324788374,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.758156,
+      "session_time": 11.595446825027466,
+      "x": -1079,
+      "y": 226,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 63.63996459503351,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.792893,
+      "session_time": 11.630183696746826,
+      "x": -1079,
+      "y": 228,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 57.575708490909214,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.8218899,
+      "session_time": 11.659180641174316,
+      "x": -1077,
+      "y": 226,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 97.54224731571134,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.8643677,
+      "session_time": 11.701658487319946,
+      "x": -1077,
+      "y": 223,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 70.62504981337524,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.8878438,
+      "session_time": 11.72513461112976,
+      "x": -1075,
+      "y": 222,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 95.24860218044074,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.9235492,
+      "session_time": 11.760839939117432,
+      "x": -1073,
+      "y": 221,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 62.62561089683611,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.9554055,
+      "session_time": 11.792696237564087,
+      "x": -1074,
+      "y": 218,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 99.2669523568078,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925573.9920676,
+      "session_time": 11.829358339309692,
+      "x": -1074,
+      "y": 217,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27.27612309133002,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.021249,
+      "session_time": 11.858539819717407,
+      "x": -1074,
+      "y": 218,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 34.26830942187653,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.056908,
+      "session_time": 11.894198656082153,
+      "x": -1071,
+      "y": 218,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 84.13061966783451,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.088902,
+      "session_time": 11.92619276046753,
+      "x": -1076,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 159.37372248880544,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.1230717,
+      "session_time": 11.960362434387207,
+      "x": -1076,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.1559849,
+      "session_time": 11.99327564239502,
+      "x": -1078,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 60.765878535002315,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.1936522,
+      "session_time": 12.030942916870117,
+      "x": -1078,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.2245069,
+      "session_time": 12.061797618865967,
+      "x": -1079,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 32.40997110049917,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.2572594,
+      "session_time": 12.094550132751465,
+      "x": -1077,
+      "y": 221,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 86.3575582208529,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.291935,
+      "session_time": 12.129225730895996,
+      "x": -1076,
+      "y": 222,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 40.784114421862775,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.323902,
+      "session_time": 12.161192655563354,
+      "x": -1077,
+      "y": 220,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 69.94942431178096,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.358175,
+      "session_time": 12.195465803146362,
+      "x": -1078,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 41.26301965548808,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.3888822,
+      "session_time": 12.226172924041748,
+      "x": -1075,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 97.69720874257541,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.4240441,
+      "session_time": 12.261334896087646,
+      "x": -1074,
+      "y": 219,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 28.439815568212637,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.4558506,
+      "session_time": 12.29314136505127,
+      "x": -1077,
+      "y": 218,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 99.42246854830273,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.488402,
+      "session_time": 12.325692653656006,
+      "x": -1077,
+      "y": 216,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 61.44150003662199,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.5259316,
+      "session_time": 12.363222360610962,
+      "x": -1075,
+      "y": 216,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 53.291116885096976,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.555178,
+      "session_time": 12.392468690872192,
+      "x": -1075,
+      "y": 214,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 68.3846479929566,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.5894775,
+      "session_time": 12.42676830291748,
+      "x": -1075,
+      "y": 215,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 29.154848710231263,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.6222749,
+      "session_time": 12.45956563949585,
+      "x": -1072,
+      "y": 216,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 96.41873365576885,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.6592658,
+      "session_time": 12.496556520462036,
+      "x": -1072,
+      "y": 217,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27.03368976029803,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.690016,
+      "session_time": 12.52730679512024,
+      "x": -1072,
+      "y": 217,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 0.0,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.7282796,
+      "session_time": 12.56557035446167,
+      "x": -1071,
+      "y": 217,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.134526353831102,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.755903,
+      "session_time": 12.593193769454956,
+      "x": -1057,
+      "y": 220,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 518.3219043248743,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.7900727,
+      "session_time": 12.627363443374634,
+      "x": -1041,
+      "y": 223,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 476.41135336456955,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.8228528,
+      "session_time": 12.660143613815308,
+      "x": -1029,
+      "y": 226,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 377.3414448603678,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.86239,
+      "session_time": 12.699680805206299,
+      "x": -1021,
+      "y": 235,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 304.56373240351223,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.8909748,
+      "session_time": 12.728265523910522,
+      "x": -1014,
+      "y": 239,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 282.04782533358576,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.9229853,
+      "session_time": 12.760276079177856,
+      "x": -1008,
+      "y": 258,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 622.4465236160437,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.9561126,
+      "session_time": 12.793403387069702,
+      "x": -1003,
+      "y": 289,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 947.8777158328776,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925574.9922912,
+      "session_time": 12.82958197593689,
+      "x": -1000,
+      "y": 323,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 943.4335998303251,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.021872,
+      "session_time": 12.8591628074646,
+      "x": -994,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 902.0479394995017,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.0589378,
+      "session_time": 12.896228551864624,
+      "x": -988,
+      "y": 384,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 958.0425911830876,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.0882065,
+      "session_time": 12.92549729347229,
+      "x": -975,
+      "y": 401,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 731.1873822900333,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.1233525,
+      "session_time": 12.960643291473389,
+      "x": -964,
+      "y": 416,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 529.251587539407,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.1574543,
+      "session_time": 12.994745016098022,
+      "x": -963,
+      "y": 436,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 587.2132455153163,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.1930716,
+      "session_time": 13.030362367630005,
+      "x": -958,
+      "y": 446,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 313.9014948222531,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.222208,
+      "session_time": 13.05949878692627,
+      "x": -964,
+      "y": 450,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 247.49446655074934,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.2568655,
+      "session_time": 13.094156265258789,
+      "x": -967,
+      "y": 460,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 301.24253151777305,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.291126,
+      "session_time": 13.128416776657104,
+      "x": -968,
+      "y": 473,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 380.5665554381185,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.3239398,
+      "session_time": 13.161230564117432,
+      "x": -970,
+      "y": 476,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 109.87915612677166,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.356128,
+      "session_time": 13.193418741226196,
+      "x": -972,
+      "y": 483,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 226.17341344559048,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.3933883,
+      "session_time": 13.230679035186768,
+      "x": -977,
+      "y": 483,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 134.1911044848702,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.4221807,
+      "session_time": 13.259471416473389,
+      "x": -982,
+      "y": 483,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 173.65705011427247,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.4571178,
+      "session_time": 13.294408559799194,
+      "x": -983,
+      "y": 487,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 118.01496153156306,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.4888675,
+      "session_time": 13.326158285140991,
+      "x": -983,
+      "y": 491,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 125.98534182386159,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.5268912,
+      "session_time": 13.364181995391846,
+      "x": -992,
+      "y": 493,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 242.46830192184362,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.557203,
+      "session_time": 13.394493818283081,
+      "x": -999,
+      "y": 494,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 233.27755104791376,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.5909436,
+      "session_time": 13.428234338760376,
+      "x": -994,
+      "y": 505,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 358.11676295051944,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.6249728,
+      "session_time": 13.462263584136963,
+      "x": -994,
+      "y": 504,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 29.386487679448464,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.6572866,
+      "session_time": 13.494577407836914,
+      "x": -994,
+      "y": 505,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 30.946507887319786,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.6889472,
+      "session_time": 13.526237964630127,
+      "x": -993,
+      "y": 504,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 44.667994047289206,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.7251313,
+      "session_time": 13.562422037124634,
+      "x": -994,
+      "y": 504,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27.636469061126597,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.755943,
+      "session_time": 13.593233823776245,
+      "x": -995,
+      "y": 504,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 32.45511243171302,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.790886,
+      "session_time": 13.62817668914795,
+      "x": -996,
+      "y": 505,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 40.47216927774594,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.8312478,
+      "session_time": 13.668538570404053,
+      "x": -997,
+      "y": 506,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 35.03834604238716,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.8595428,
+      "session_time": 13.696833610534668,
+      "x": -997,
+      "y": 504,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 70.68376615716477,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.8901675,
+      "session_time": 13.727458238601685,
+      "x": -998,
+      "y": 500,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 134.63365552048404,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.9280448,
+      "session_time": 13.76533555984497,
+      "x": -999,
+      "y": 476,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 634.1743161994696,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.9586303,
+      "session_time": 13.795921087265015,
+      "x": -999,
+      "y": 455,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 686.5992438710683,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925575.9942148,
+      "session_time": 13.831505537033081,
+      "x": -996,
+      "y": 438,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 485.11854515518314,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.0219278,
+      "session_time": 13.85921859741211,
+      "x": -991,
+      "y": 420,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 674.1060509652893,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.0578651,
+      "session_time": 13.895155906677246,
+      "x": -991,
+      "y": 403,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 473.0459889074649,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.1073606,
+      "session_time": 13.944651365280151,
+      "x": -987,
+      "y": 385,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 372.5410256831814,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.1248913,
+      "session_time": 13.96218204498291,
+      "x": -986,
+      "y": 374,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 630.0589141132424,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.1576607,
+      "session_time": 13.994951486587524,
+      "x": -983,
+      "y": 366,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 260.73083113245514,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.1940577,
+      "session_time": 14.031348466873169,
+      "x": -982,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 467.8790996472591,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.2258906,
+      "session_time": 14.063181400299072,
+      "x": -977,
+      "y": 345,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 201.14779092970593,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.260111,
+      "session_time": 14.097401857376099,
+      "x": -973,
+      "y": 337,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 261.3720760615972,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.2894535,
+      "session_time": 14.126744270324707,
+      "x": -972,
+      "y": 336,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 48.19690748848813,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.3229005,
+      "session_time": 14.160191297531128,
+      "x": -972,
+      "y": 334,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 59.7960466757433,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.358502,
+      "session_time": 14.19579267501831,
+      "x": -970,
+      "y": 334,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 56.177601575108994,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.3905106,
+      "session_time": 14.227801322937012,
+      "x": -967,
+      "y": 336,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 112.64303586398701,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.4222002,
+      "session_time": 14.259490966796875,
+      "x": -960,
+      "y": 337,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 223.1349725208298,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.4581213,
+      "session_time": 14.295412063598633,
+      "x": -955,
+      "y": 339,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 149.916491605317,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.4924078,
+      "session_time": 14.32969856262207,
+      "x": -954,
+      "y": 343,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 120.25449500688875,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.5301366,
+      "session_time": 14.367427349090576,
+      "x": -950,
+      "y": 342,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 109.28275228410611,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.5599287,
+      "session_time": 14.39721941947937,
+      "x": -950,
+      "y": 340,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 67.13195739334331,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.5912066,
+      "session_time": 14.428497314453125,
+      "x": -951,
+      "y": 338,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 71.49036018491854,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.6260812,
+      "session_time": 14.463371992111206,
+      "x": -954,
+      "y": 337,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 90.67546634185524,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.657356,
+      "session_time": 14.494646787643433,
+      "x": -955,
+      "y": 339,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 71.49744512943892,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.6911628,
+      "session_time": 14.528453588485718,
+      "x": -953,
+      "y": 341,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 83.66444189562078,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.724324,
+      "session_time": 14.561614751815796,
+      "x": -951,
+      "y": 345,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 134.86064739300699,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.7578127,
+      "session_time": 14.59510350227356,
+      "x": -946,
+      "y": 348,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 174.11673517646926,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.793102,
+      "session_time": 14.630392789840698,
+      "x": -937,
+      "y": 354,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 306.5138055227961,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.823641,
+      "session_time": 14.660931825637817,
+      "x": -937,
+      "y": 353,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 32.74497618861738,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.861315,
+      "session_time": 14.69860577583313,
+      "x": -937,
+      "y": 352,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.54353989469421,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.887775,
+      "session_time": 14.7250657081604,
+      "x": -938,
+      "y": 350,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 84.50769827537397,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.9242954,
+      "session_time": 14.76158618927002,
+      "x": -938,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27.381895572471244,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.9571388,
+      "session_time": 14.794429540634155,
+      "x": -939,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 30.4475627018983,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925576.993205,
+      "session_time": 14.830495834350586,
+      "x": -941,
+      "y": 349,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 55.453438485387345,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.0259387,
+      "session_time": 14.863229513168335,
+      "x": -941,
+      "y": 351,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 61.099151462179975,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.0625389,
+      "session_time": 14.899829626083374,
+      "x": -938,
+      "y": 355,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 136.61160039606025,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.0902135,
+      "session_time": 14.927504301071167,
+      "x": -936,
+      "y": 356,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 80.7983464480106,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.127591,
+      "session_time": 14.964881658554077,
+      "x": -930,
+      "y": 358,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 169.20819839199442,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.1562097,
+      "session_time": 14.993500471115112,
+      "x": -930,
+      "y": 363,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 174.7102535905895,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.1953285,
+      "session_time": 15.03261923789978,
+      "x": -930,
+      "y": 369,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 153.3790682366708,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.2231739,
+      "session_time": 15.06046462059021,
+      "x": -931,
+      "y": 371,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 80.30300758869852,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.258212,
+      "session_time": 15.095502853393555,
+      "x": -930,
+      "y": 374,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 90.2522018709377,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.288993,
+      "session_time": 15.126283645629883,
+      "x": -929,
+      "y": 376,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 72.64491311112963,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.324903,
+      "session_time": 15.162193775177002,
+      "x": -930,
+      "y": 384,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 224.51207639670955,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.360386,
+      "session_time": 15.197676658630371,
+      "x": -930,
+      "y": 390,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 169.0956150135057,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.391389,
+      "session_time": 15.228679656982422,
+      "x": -930,
+      "y": 402,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 387.0593374142545,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.4272728,
+      "session_time": 15.26456356048584,
+      "x": -927,
+      "y": 416,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 399.0040008304161,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.4616148,
+      "session_time": 15.298905611038208,
+      "x": -927,
+      "y": 422,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 174.71292201525955,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.490038,
+      "session_time": 15.3273286819458,
+      "x": -926,
+      "y": 430,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 283.65188879519854,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.5280669,
+      "session_time": 15.365357637405396,
+      "x": -925,
+      "y": 441,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 290.4460794071195,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.556216,
+      "session_time": 15.3935067653656,
+      "x": -925,
+      "y": 445,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 142.100316771975,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.5900466,
+      "session_time": 15.427337408065796,
+      "x": -923,
+      "y": 453,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 243.74976627883316,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.6232517,
+      "session_time": 15.460542440414429,
+      "x": -921,
+      "y": 455,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 85.18067668326329,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.658273,
+      "session_time": 15.495563745498657,
+      "x": -910,
+      "y": 491,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1074.861726566255,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.6919792,
+      "session_time": 15.529269933700562,
+      "x": -899,
+      "y": 530,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1202.2005851263916,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.724478,
+      "session_time": 15.561768770217896,
+      "x": -883,
+      "y": 571,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1354.2442402778427,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.7569828,
+      "session_time": 15.594273567199707,
+      "x": -873,
+      "y": 604,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1060.8243244351936,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.7920084,
+      "session_time": 15.62929916381836,
+      "x": -862,
+      "y": 633,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 885.5273809104649,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.823905,
+      "session_time": 15.661195755004883,
+      "x": -849,
+      "y": 650,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 670.9473885119975,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.8610058,
+      "session_time": 15.698296546936035,
+      "x": -841,
+      "y": 667,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 506.4122152141989,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.8921998,
+      "session_time": 15.729490518569946,
+      "x": -830,
+      "y": 673,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 401.6790241778728,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.9258115,
+      "session_time": 15.763102293014526,
+      "x": -812,
+      "y": 680,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 574.5964988451312,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.957065,
+      "session_time": 15.794355869293213,
+      "x": -801,
+      "y": 693,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 544.8780073703005,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925577.9918559,
+      "session_time": 15.82914662361145,
+      "x": -761,
+      "y": 702,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1178.4740171186174,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.0229855,
+      "session_time": 15.860276222229004,
+      "x": -709,
+      "y": 703,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1670.744783276955,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.059497,
+      "session_time": 15.896787881851196,
+      "x": -641,
+      "y": 703,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1862.4187644066578,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.0936074,
+      "session_time": 15.930898189544678,
+      "x": -607,
+      "y": 704,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 997.1971818328154,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.1250634,
+      "session_time": 15.962354183197021,
+      "x": -587,
+      "y": 702,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 638.980013296899,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.157164,
+      "session_time": 15.994454860687256,
+      "x": -571,
+      "y": 704,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 502.3107534569162,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.1944594,
+      "session_time": 16.031750202178955,
+      "x": -550,
+      "y": 708,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 573.1964763264046,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.2252235,
+      "session_time": 16.062514305114746,
+      "x": -538,
+      "y": 709,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 391.41705525835704,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.2583113,
+      "session_time": 16.09560203552246,
+      "x": -529,
+      "y": 708,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 273.67803794804956,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.2899964,
+      "session_time": 16.12728714942932,
+      "x": -530,
+      "y": 710,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 70.57156190357404,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.3252761,
+      "session_time": 16.162566900253296,
+      "x": -527,
+      "y": 710,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 85.03461418897915,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.3562944,
+      "session_time": 16.19358515739441,
+      "x": -524,
+      "y": 714,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 161.1953881629516,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.391549,
+      "session_time": 16.228839874267578,
+      "x": -520,
+      "y": 719,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 181.62461098378662,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.426905,
+      "session_time": 16.264195680618286,
+      "x": -521,
+      "y": 722,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 89.44153695154104,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.615474,
+      "session_time": 16.452764749526978,
+      "x": -648,
+      "y": 640,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 801.680192014164,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.6270037,
+      "session_time": 16.46429443359375,
+      "x": -722,
+      "y": 581,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 8208.501465655512,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.658866,
+      "session_time": 16.496156692504883,
+      "x": -783,
+      "y": 533,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2436.1384325509657,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.696171,
+      "session_time": 16.533461809158325,
+      "x": -809,
+      "y": 490,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1346.983540419183,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.7253535,
+      "session_time": 16.562644243240356,
+      "x": -844,
+      "y": 453,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1745.2734124172239,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.7570388,
+      "session_time": 16.594329595565796,
+      "x": -860,
+      "y": 438,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 692.1719529642987,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.791063,
+      "session_time": 16.62835383415222,
+      "x": -873,
+      "y": 419,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 676.6273052066877,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.823058,
+      "session_time": 16.660348653793335,
+      "x": -883,
+      "y": 406,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 512.6210946281188,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.8650336,
+      "session_time": 16.702324390411377,
+      "x": -911,
+      "y": 409,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 670.8698393288855,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.8922038,
+      "session_time": 16.72949457168579,
+      "x": -915,
+      "y": 407,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 164.59720713055947,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.9246635,
+      "session_time": 16.761954307556152,
+      "x": -922,
+      "y": 395,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 427.99005034834124,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.9631095,
+      "session_time": 16.800400257110596,
+      "x": -916,
+      "y": 394,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 158.21595254616904,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925578.9914176,
+      "session_time": 16.82870841026306,
+      "x": -919,
+      "y": 393,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 111.70907699759017,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.0231018,
+      "session_time": 16.860392570495605,
+      "x": -923,
+      "y": 390,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 157.8075594651336,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.0613601,
+      "session_time": 16.898650884628296,
+      "x": -925,
+      "y": 383,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 190.28830868059373,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.089691,
+      "session_time": 16.926981687545776,
+      "x": -928,
+      "y": 381,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 127.26611688224754,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.1289272,
+      "session_time": 16.96621799468994,
+      "x": -926,
+      "y": 385,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 113.97953274674184,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.159041,
+      "session_time": 16.996331691741943,
+      "x": -926,
+      "y": 384,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 33.207480246385764,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.1973405,
+      "session_time": 17.03463125228882,
+      "x": -925,
+      "y": 386,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 58.38364580614591,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.2239518,
+      "session_time": 17.06124258041382,
+      "x": -922,
+      "y": 388,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 135.48933967248163,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.2616663,
+      "session_time": 17.098957061767578,
+      "x": -898,
+      "y": 411,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 881.3999048637445,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.2899249,
+      "session_time": 17.12721562385559,
+      "x": -871,
+      "y": 430,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1168.3237078946563,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.3278193,
+      "session_time": 17.165110111236572,
+      "x": -837,
+      "y": 459,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1179.2693088503595,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.362098,
+      "session_time": 17.1993887424469,
+      "x": -806,
+      "y": 477,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1045.7505271409502,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.3932211,
+      "session_time": 17.230511903762817,
+      "x": -781,
+      "y": 487,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 865.1378233194223,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.4237447,
+      "session_time": 17.261035442352295,
+      "x": -781,
+      "y": 473,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 458.6624174965827,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.459369,
+      "session_time": 17.29665970802307,
+      "x": -777,
+      "y": 464,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 276.4648650673917,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.490043,
+      "session_time": 17.327333688735962,
+      "x": -775,
+      "y": 438,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 850.1279916972732,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.5302892,
+      "session_time": 17.3675799369812,
+      "x": -770,
+      "y": 401,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 927.696643366142,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.5571213,
+      "session_time": 17.39441204071045,
+      "x": -771,
+      "y": 375,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 969.7049446836105,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.5919058,
+      "session_time": 17.42919659614563,
+      "x": -773,
+      "y": 355,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 577.8355074767793,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.6254764,
+      "session_time": 17.462767124176025,
+      "x": -773,
+      "y": 337,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 536.1845957174817,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.658991,
+      "session_time": 17.49628186225891,
+      "x": -787,
+      "y": 312,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 854.9402204166552,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.6910956,
+      "session_time": 17.52838635444641,
+      "x": -821,
+      "y": 296,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1170.446435864899,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.7259805,
+      "session_time": 17.563271284103394,
+      "x": -874,
+      "y": 294,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1520.362028710259,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.7584457,
+      "session_time": 17.595736503601074,
+      "x": -913,
+      "y": 292,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1202.8641414952735,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.7931628,
+      "session_time": 17.63045358657837,
+      "x": -917,
+      "y": 309,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 503.04483265470924,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.8239412,
+      "session_time": 17.661231994628906,
+      "x": -909,
+      "y": 383,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2418.291944843284,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.864168,
+      "session_time": 17.70145869255066,
+      "x": -888,
+      "y": 561,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 4455.610143243367,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.8900635,
+      "session_time": 17.727354288101196,
+      "x": -872,
+      "y": 648,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 3415.987475249856,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.9260008,
+      "session_time": 17.763291597366333,
+      "x": -845,
+      "y": 747,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2855.411002027117,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.9569912,
+      "session_time": 17.79428195953369,
+      "x": -819,
+      "y": 805,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2050.9923048021196,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925579.995105,
+      "session_time": 17.832395792007446,
+      "x": -795,
+      "y": 851,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1361.303330490812,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.0231476,
+      "session_time": 17.860438346862793,
+      "x": -776,
+      "y": 873,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1036.5989781403568,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.059989,
+      "session_time": 17.897279739379883,
+      "x": -770,
+      "y": 876,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 182.08334360292145,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.091279,
+      "session_time": 17.928569793701172,
+      "x": -784,
+      "y": 881,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 475.105239341306,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.1254766,
+      "session_time": 17.962767362594604,
+      "x": -795,
+      "y": 881,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 321.66029211838116,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.158885,
+      "session_time": 17.99617576599121,
+      "x": -822,
+      "y": 875,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 827.894498385043,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.1960325,
+      "session_time": 18.033323287963867,
+      "x": -859,
+      "y": 877,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 997.4828106858038,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.2250538,
+      "session_time": 18.062344551086426,
+      "x": -879,
+      "y": 878,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 690.0107796801965,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.2593117,
+      "session_time": 18.09660243988037,
+      "x": -907,
+      "y": 882,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 825.627971927471,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.2910178,
+      "session_time": 18.128308534622192,
+      "x": -918,
+      "y": 881,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 348.36712332844,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.3263116,
+      "session_time": 18.163602352142334,
+      "x": -936,
+      "y": 875,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 537.5917736918744,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.3572874,
+      "session_time": 18.194578170776367,
+      "x": -952,
+      "y": 873,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 520.5517144551284,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.3977058,
+      "session_time": 18.234996557235718,
+      "x": -965,
+      "y": 872,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 322.58598010878615,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.4243236,
+      "session_time": 18.261614322662354,
+      "x": -972,
+      "y": 872,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 262.98225594081134,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.4593194,
+      "session_time": 18.296610116958618,
+      "x": -977,
+      "y": 871,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 145.70378001498995,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.494956,
+      "session_time": 18.332246780395508,
+      "x": -990,
+      "y": 873,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 369.0846776735698,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.5300174,
+      "session_time": 18.367308139801025,
+      "x": -996,
+      "y": 875,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 180.3853423704236,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.5591106,
+      "session_time": 18.396401405334473,
+      "x": -1003,
+      "y": 875,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 240.60551030108337,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.5931077,
+      "session_time": 18.43039846420288,
+      "x": -1014,
+      "y": 875,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 323.5574007321486,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.6271625,
+      "session_time": 18.46445322036743,
+      "x": -1015,
+      "y": 876,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 41.52763730093059,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.6592846,
+      "session_time": 18.496575355529785,
+      "x": -1019,
+      "y": 879,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 155.6559044013954,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.6909564,
+      "session_time": 18.528247117996216,
+      "x": -1024,
+      "y": 879,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 157.86933251029427,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.7253494,
+      "session_time": 18.56264019012451,
+      "x": -1020,
+      "y": 881,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 130.03013916050438,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.7569325,
+      "session_time": 18.594223260879517,
+      "x": -1014,
+      "y": 878,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 212.3987241309124,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.7923782,
+      "session_time": 18.629668951034546,
+      "x": -1008,
+      "y": 867,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 353.49753471689206,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.8249574,
+      "session_time": 18.662248134613037,
+      "x": -1003,
+      "y": 855,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 399.02780156168814,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.8651042,
+      "session_time": 18.70239496231079,
+      "x": -990,
+      "y": 849,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 356.6364239552953,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.8906689,
+      "session_time": 18.727959632873535,
+      "x": -980,
+      "y": 841,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 500.93540002539584,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.9281898,
+      "session_time": 18.765480518341064,
+      "x": -932,
+      "y": 764,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2418.2766295004003,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.9604793,
+      "session_time": 18.797770023345947,
+      "x": -900,
+      "y": 679,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2812.802662151121,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925580.9945211,
+      "session_time": 18.831811904907227,
+      "x": -852,
+      "y": 610,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2469.121872873723,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.0241835,
+      "session_time": 18.86147427558899,
+      "x": -828,
+      "y": 561,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1839.431246011676,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.0631065,
+      "session_time": 18.900397300720215,
+      "x": -796,
+      "y": 518,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1377.0865176157454,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.090958,
+      "session_time": 18.9282488822937,
+      "x": -781,
+      "y": 489,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1172.27294071193,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.125067,
+      "session_time": 18.962357759475708,
+      "x": -781,
+      "y": 486,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 87.95364280072415,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.1591783,
+      "session_time": 18.996469020843506,
+      "x": -782,
+      "y": 484,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 65.5521926729661,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.1972578,
+      "session_time": 19.03454852104187,
+      "x": -783,
+      "y": 484,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 26.260848876450222,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.2261662,
+      "session_time": 19.063457012176514,
+      "x": -783,
+      "y": 488,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 138.36765057607772,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.2591588,
+      "session_time": 19.096449613571167,
+      "x": -781,
+      "y": 492,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 135.5496616197206,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.2909174,
+      "session_time": 19.12820816040039,
+      "x": -806,
+      "y": 499,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 817.4652987461326,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.3262718,
+      "session_time": 19.163562536239624,
+      "x": -855,
+      "y": 502,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1388.562226576103,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.359364,
+      "session_time": 19.196654796600342,
+      "x": -920,
+      "y": 506,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1967.9211970048461,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.3949165,
+      "session_time": 19.23220729827881,
+      "x": -980,
+      "y": 513,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1699.0914954022126,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.4250839,
+      "session_time": 19.26237463951111,
+      "x": -1018,
+      "y": 522,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1294.4875744542437,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.4599237,
+      "session_time": 19.29721450805664,
+      "x": -1035,
+      "y": 529,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 527.6936187868554,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.491467,
+      "session_time": 19.328757762908936,
+      "x": -1058,
+      "y": 538,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 782.9939613432133,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.5306506,
+      "session_time": 19.36794137954712,
+      "x": -1018,
+      "y": 587,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1614.283310995717,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.560892,
+      "session_time": 19.39818286895752,
+      "x": -180,
+      "y": 618,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 27729.22925881899,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.5916376,
+      "session_time": 19.42892837524414,
+      "x": -162,
+      "y": 675,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1944.172783439404,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.6269927,
+      "session_time": 19.46428346633911,
+      "x": -158,
+      "y": 711,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1024.507063360451,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.6598406,
+      "session_time": 19.49713134765625,
+      "x": -151,
+      "y": 740,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 908.2128461291973,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.6924055,
+      "session_time": 19.529696226119995,
+      "x": -147,
+      "y": 769,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 898.9612035309951,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.725525,
+      "session_time": 19.56281566619873,
+      "x": -139,
+      "y": 812,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1320.609749237288,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.757994,
+      "session_time": 19.595284700393677,
+      "x": -132,
+      "y": 852,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1250.6648878029887,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.7934806,
+      "session_time": 19.63077139854431,
+      "x": -124,
+      "y": 884,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 929.4988467207189,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.8279767,
+      "session_time": 19.66526746749878,
+      "x": -120,
+      "y": 904,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 591.2580381634914,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.864974,
+      "session_time": 19.7022647857666,
+      "x": -118,
+      "y": 918,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 382.2475867401128,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.8914793,
+      "session_time": 19.7287700176239,
+      "x": -118,
+      "y": 924,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 226.37040235313165,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.925477,
+      "session_time": 19.762767791748047,
+      "x": -118,
+      "y": 936,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 352.96428396109314,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.9584787,
+      "session_time": 19.795769453048706,
+      "x": -121,
+      "y": 938,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 109.25362946476793,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925581.9929206,
+      "session_time": 19.830211400985718,
+      "x": -117,
+      "y": 944,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 209.36976515137354,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.0253367,
+      "session_time": 19.862627506256104,
+      "x": -117,
+      "y": 942,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 61.69772658738039,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.062973,
+      "session_time": 19.900263786315918,
+      "x": -112,
+      "y": 950,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 250.66189105467913,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.0940888,
+      "session_time": 19.931379556655884,
+      "x": -103,
+      "y": 955,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 330.8814157097391,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.1274161,
+      "session_time": 19.964706897735596,
+      "x": -80,
+      "y": 964,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 741.0785640349809,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.163122,
+      "session_time": 20.000412702560425,
+      "x": -62,
+      "y": 967,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 511.0734145447735,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.1972084,
+      "session_time": 20.034499168395996,
+      "x": -42,
+      "y": 973,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 612.5778224866867,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.2241988,
+      "session_time": 20.061489582061768,
+      "x": -31,
+      "y": 984,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 576.3657192787745,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.260415,
+      "session_time": 20.097705841064453,
+      "x": -35,
+      "y": 984,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 110.44763070927308,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.295012,
+      "session_time": 20.13230276107788,
+      "x": -44,
+      "y": 995,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 410.80738973399025,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.3269873,
+      "session_time": 20.164278030395508,
+      "x": -48,
+      "y": 1009,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 455.3587847510153,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.3609254,
+      "session_time": 20.198216199874878,
+      "x": -54,
+      "y": 1017,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 294.6534876042347,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.3942518,
+      "session_time": 20.231542587280273,
+      "x": -62,
+      "y": 1018,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 241.91814282856467,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.4290683,
+      "session_time": 20.266359090805054,
+      "x": -68,
+      "y": 1021,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 192.67310767506785,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.4614902,
+      "session_time": 20.298780918121338,
+      "x": -69,
+      "y": 1021,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 30.843418856214196,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.496274,
+      "session_time": 20.33356475830078,
+      "x": -69,
+      "y": 1025,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 114.9959285508657,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.5332751,
+      "session_time": 20.37056589126587,
+      "x": -76,
+      "y": 1023,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 196.7537020055468,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.561242,
+      "session_time": 20.39853286743164,
+      "x": -80,
+      "y": 1026,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 178.7822884520298,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.5949206,
+      "session_time": 20.43221139907837,
+      "x": -92,
+      "y": 1033,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 412.50147527733134,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.624916,
+      "session_time": 20.462206840515137,
+      "x": -146,
+      "y": 1032,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1800.5822177819348,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.6592598,
+      "session_time": 20.49655055999756,
+      "x": -233,
+      "y": 1027,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2537.394348353562,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.6921215,
+      "session_time": 20.529412269592285,
+      "x": -270,
+      "y": 1029,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1127.574161060811,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.7270691,
+      "session_time": 20.56435990333557,
+      "x": -303,
+      "y": 1030,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 944.703389103732,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.759136,
+      "session_time": 20.596426725387573,
+      "x": -316,
+      "y": 1029,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 406.6010903500586,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.7932389,
+      "session_time": 20.630529642105103,
+      "x": -355,
+      "y": 1029,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1143.5971979473986,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.8252904,
+      "session_time": 20.662581205368042,
+      "x": -391,
+      "y": 1029,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1123.1901453501346,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.8641748,
+      "session_time": 20.701465606689453,
+      "x": -406,
+      "y": 1040,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 478.3685644015782,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.8919926,
+      "session_time": 20.729283332824707,
+      "x": -407,
+      "y": 1057,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 612.1775116746423,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.9260125,
+      "session_time": 20.76330327987671,
+      "x": -420,
+      "y": 1083,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 854.4658715389348,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.958334,
+      "session_time": 20.79562473297119,
+      "x": -418,
+      "y": 1122,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1208.2145027755478,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925582.9961734,
+      "session_time": 20.8334641456604,
+      "x": -414,
+      "y": 1153,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 826.0434556133958,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.025762,
+      "session_time": 20.86305284500122,
+      "x": -407,
+      "y": 1175,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 780.2571007026339,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.0638738,
+      "session_time": 20.901164531707764,
+      "x": -396,
+      "y": 1196,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 622.0280767103777,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.092937,
+      "session_time": 20.930227756500244,
+      "x": -388,
+      "y": 1199,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 293.9798940525045,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.1284864,
+      "session_time": 20.965777158737183,
+      "x": -370,
+      "y": 1198,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 507.1184110822478,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.159961,
+      "session_time": 20.997251749038696,
+      "x": -310,
+      "y": 1130,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2881.253465773494,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.1976616,
+      "session_time": 21.034952402114868,
+      "x": -235,
+      "y": 395,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 19596.918384112632,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.2262268,
+      "session_time": 21.063517570495605,
+      "x": -194,
+      "y": 396,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1435.741346320087,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.2609942,
+      "session_time": 21.09828495979309,
+      "x": -140,
+      "y": 391,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1559.823401975926,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.2922602,
+      "session_time": 21.12955093383789,
+      "x": -113,
+      "y": 386,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 878.2410039791799,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.3278837,
+      "session_time": 21.16517448425293,
+      "x": -55,
+      "y": 359,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1795.906288439024,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.3589995,
+      "session_time": 21.196290254592896,
+      "x": -16,
+      "y": 340,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1394.2133989608108,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.3942983,
+      "session_time": 21.2315890789032,
+      "x": -1,
+      "y": 320,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 708.2388858119335,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.4263048,
+      "session_time": 21.263595581054688,
+      "x": -1,
+      "y": 302,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 562.3857275876196,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.4602807,
+      "session_time": 21.297571420669556,
+      "x": -1,
+      "y": 285,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 500.3555524367566,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.4939911,
+      "session_time": 21.331281900405884,
+      "x": -1,
+      "y": 270,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 444.965486024669,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.5294836,
+      "session_time": 21.366774320602417,
+      "x": -1,
+      "y": 252,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 507.1505380677925,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.5592332,
+      "session_time": 21.39652395248413,
+      "x": -1,
+      "y": 239,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 436.9801969882753,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.5954847,
+      "session_time": 21.432775497436523,
+      "x": -1,
+      "y": 217,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 606.8706872739231,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.6259983,
+      "session_time": 21.46328902244568,
+      "x": -1,
+      "y": 210,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 229.40646804653744,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.6610582,
+      "session_time": 21.49834895133972,
+      "x": -1,
+      "y": 204,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 171.13554388923646,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.6954749,
+      "session_time": 21.53276562690735,
+      "x": -1,
+      "y": 195,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 261.5011430234008,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.7272391,
+      "session_time": 21.56452989578247,
+      "x": -1,
+      "y": 181,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 440.746804374423,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.7592216,
+      "session_time": 21.59651231765747,
+      "x": -1,
+      "y": 163,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 562.8091603053435,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.7943122,
+      "session_time": 21.631603002548218,
+      "x": -1,
+      "y": 135,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 797.9325592297919,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.8257258,
+      "session_time": 21.66301655769348,
+      "x": -1,
+      "y": 123,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 382.00069824982165,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.8679395,
+      "session_time": 21.705230236053467,
+      "x": -1,
+      "y": 138,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 355.33506159033533,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.8932393,
+      "session_time": 21.73053002357483,
+      "x": -1,
+      "y": 140,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 79.05204730716676,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.9274244,
+      "session_time": 21.76471519470215,
+      "x": -1,
+      "y": 184,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 1287.1077882315199,
+      "acceleration": 0.0
+    },
+    {
+      "timestamp": 1752925583.9592907,
+      "session_time": 21.796581506729126,
+      "x": -1,
+      "y": 254,
+      "confidence": 3,
+      "step": 0,
+      "velocity": 2196.6771661791004,
+      "acceleration": 0.0
+    }
+  ],
+  "click_events": [
+    {
+      "timestamp": 1752925576.0624819,
+      "session_time": 13.899772644042969,
+      "x": -1174,
+      "y": 614,
+      "step": 0,
+      "element_info": {
+        "tagName": "BUTTON",
+        "className": "packaging-option",
+        "textContent": "매장식사",
+        "id": "",
+        "dataName": ""
+      },
+      "reaction_time": 0.004616737365722656,
+      "gaze_to_click_distance": 279.3027031734566,
+      "last_gaze_time": 1752925576.0578651,
+      "gaze_count_since_last_click": 416
+    },
+    {
+      "timestamp": 1752925578.4289188,
+      "session_time": 16.266209602355957,
+      "x": -796,
+      "y": 768,
+      "step": 0,
+      "element_info": {
+        "tagName": "IMG",
+        "className": "thumb-img",
+        "textContent": "",
+        "id": "cof_bs",
+        "dataName": "흑당 콜드브루"
+      },
+      "reaction_time": 0.0020139217376708984,
+      "gaze_to_click_distance": 278.8207309365643,
+      "last_gaze_time": 1752925578.426905,
+      "gaze_count_since_last_click": 54
+    },
+    {
+      "timestamp": 1752925580.4613233,
+      "session_time": 18.298614025115967,
+      "x": -1209,
+      "y": 1060,
+      "step": 0,
+      "element_info": {
+        "tagName": "DIV",
+        "className": "",
+        "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+        "id": "root",
+        "dataName": ""
+      },
+      "reaction_time": 0.002003908157348633,
+      "gaze_to_click_distance": 299.2407057871639,
+      "last_gaze_time": 1752925580.4593194,
+      "gaze_count_since_last_click": 35
+    },
+    {
+      "timestamp": 1752925581.3613677,
+      "session_time": 19.19865846633911,
+      "x": -1193,
+      "y": 1032,
+      "step": 0,
+      "element_info": {
+        "tagName": "DIV",
+        "className": "",
+        "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+        "id": "root",
+        "dataName": ""
+      },
+      "reaction_time": 0.0020036697387695312,
+      "gaze_to_click_distance": 592.6255141318167,
+      "last_gaze_time": 1752925581.359364,
+      "gaze_count_since_last_click": 18
+    }
+  ],
+  "page_transitions": [],
+  "scenario_actions": [
+    {
+      "timestamp": 1752925575.8302517,
+      "session_time": 13.667542457580566,
+      "type": "click",
+      "details": {
+        "tagName": "BUTTON",
+        "className": "packaging-option",
+        "textContent": "매장식사",
+        "id": "",
+        "dataName": ""
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "gaze_points_count": 408,
+      "clicks_count": 0
+    },
+    {
+      "timestamp": 1752925576.6669264,
+      "session_time": 14.504217147827148,
+      "type": "cart_change",
+      "details": {
+        "previous": {
+          "itemCount": 0,
+          "totalItems": 0,
+          "totalPrice": 0,
+          "items": [],
+          "step": 0
+        },
+        "current": {
+          "itemCount": 0,
+          "totalItems": 0,
+          "totalPrice": 0,
+          "items": [],
+          "step": 3
+        }
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "gaze_points_count": 434,
+      "clicks_count": 1
+    },
+    {
+      "timestamp": 1752925578.427412,
+      "session_time": 16.264702796936035,
+      "type": "click",
+      "details": {
+        "tagName": "IMG",
+        "className": "thumb-img",
+        "textContent": "",
+        "id": "cof_bs",
+        "dataName": "흑당 콜드브루"
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "gaze_points_count": 487,
+      "clicks_count": 1
+    },
+    {
+      "timestamp": 1752925579.3333514,
+      "session_time": 17.170642137527466,
+      "type": "cart_change",
+      "details": {
+        "previous": {
+          "itemCount": 0,
+          "totalItems": 0,
+          "totalPrice": 0,
+          "items": [],
+          "step": 3
+        },
+        "current": {
+          "itemCount": 0,
+          "totalItems": 0,
+          "totalPrice": 0,
+          "items": [],
+          "step": 4
+        }
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "gaze_points_count": 510,
+      "clicks_count": 2
+    },
+    {
+      "timestamp": 1752925580.4603188,
+      "session_time": 18.297609567642212,
+      "type": "click",
+      "details": {
+        "tagName": "DIV",
+        "className": "",
+        "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+        "id": "root",
+        "dataName": ""
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "gaze_points_count": 544,
+      "clicks_count": 2
+    },
+    {
+      "timestamp": 1752925581.3603635,
+      "session_time": 19.197654247283936,
+      "type": "click",
+      "details": {
+        "tagName": "DIV",
+        "className": "",
+        "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+        "id": "root",
+        "dataName": ""
+      },
+      "step": 0,
+      "cart_state": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "gaze_points_count": 571,
+      "clicks_count": 3
+    }
+  ]
+}

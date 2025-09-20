@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": 1752925785.6735601,
+    "x": -1163,
+    "y": 601,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204926\\screenshot_initial.png",
+    "gaze_count": 415
+  },
+  {
+    "timestamp": 1752925787.2371643,
+    "x": -1052,
+    "y": 138,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204926\\screenshot_click_1.png",
+    "gaze_count": 31
+  }
+]

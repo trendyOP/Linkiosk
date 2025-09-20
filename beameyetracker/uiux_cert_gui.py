@@ -3,7 +3,7 @@ import time
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton,
     QListWidget, QFileDialog, QLineEdit, QTextEdit, QMessageBox, QScrollArea,
-    QCheckBox
+    QCheckBox, QSlider
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QTextCursor
@@ -329,6 +329,25 @@ class MainWindow(QMainWindow):
         self.save_data_btn.clicked.connect(self.manual_save_data)
         self.save_data_btn.setToolTip("현재까지 수집된 데이터를 수동으로 저장합니다")
         
+        # 글자 크기 조절 슬라이더 추가
+        self.font_size_label = QLabel("글자 크기:")
+        self.font_size_slider = QSlider(Qt.Horizontal)
+        self.font_size_slider.setMinimum(50)  # 50% (0.5)
+        self.font_size_slider.setMaximum(200)  # 200% (2.0)
+        self.font_size_slider.setValue(100)  # 100% (1.0)
+        self.font_size_slider.setTickPosition(QSlider.TicksBelow)
+        self.font_size_slider.setTickInterval(25)
+        self.font_size_slider.valueChanged.connect(self.change_font_size)
+        self.font_size_value_label = QLabel("100%")
+        self.font_size_value_label.setAlignment(Qt.AlignCenter)
+        self.font_size_value_label.setStyleSheet("font-weight: bold; color: #2c3e50;")
+        
+        # 글자 크기 레이아웃
+        font_size_layout = QHBoxLayout()
+        font_size_layout.addWidget(self.font_size_label)
+        font_size_layout.addWidget(self.font_size_slider)
+        font_size_layout.addWidget(self.font_size_value_label)
+        
         self.control_layout.addWidget(self.ui_label)
         self.control_layout.addWidget(self.ui_path_edit)
         self.control_layout.addWidget(self.ui_browse_btn)
@@ -338,6 +357,7 @@ class MainWindow(QMainWindow):
         port_hbox.addStretch(1)
         self.control_layout.addLayout(port_hbox)
         self.control_layout.addWidget(self.static_build_checkbox)
+        self.control_layout.addLayout(font_size_layout)
         self.control_layout.addWidget(self.scenario_file_btn)
         self.control_layout.addWidget(self.scenario_save_btn)
         self.control_layout.addWidget(self.run_btn)
@@ -419,6 +439,29 @@ class MainWindow(QMainWindow):
             self.steps_area.removeWidget(w)
             w.setParent(None)
         self.scenario_step_widgets = []
+
+    def change_font_size(self, value):
+        """
+        글자 크기 슬라이더 값이 변경될 때 호출되는 메서드
+        웹뷰의 줌 팩터를 조절하여 글자 크기를 변경합니다.
+        """
+        try:
+            # 슬라이더 값을 퍼센트로 변환 (50-200% 범위)
+            zoom_factor = value / 100.0
+            
+            # 웹뷰 줌 팩터 설정
+            if hasattr(self, 'webview') and self.webview:
+                self.webview.setZoomFactor(zoom_factor)
+                
+            # 값 표시 업데이트
+            if hasattr(self, 'font_size_value_label') and self.font_size_value_label:
+                self.font_size_value_label.setText(f"{value}%")
+                
+            # 로그 출력
+            self.log(f"📏 글자 크기 변경: {value}% (줌 팩터: {zoom_factor:.2f})")
+            
+        except Exception as e:
+            self.log(f"❌ 글자 크기 변경 실패: {e}")
 
     def run_certification(self):
         # 시나리오 시작 시 시선추적 및 초기 스크린샷 시작

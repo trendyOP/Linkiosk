@@ -1,0 +1,2379 @@
+{
+  "timestamp": "20250719_203021",
+  "session_start_time": 1752924626.9499934,
+  "session_duration": 921.0022399425507,
+  "scenario_steps": [
+    "아메리카노",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [
+      0,
+      1
+    ],
+    "failed_steps": [
+      0
+    ],
+    "skipped_steps": [],
+    "retry_count": {
+      "0": 2
+    }
+  },
+  "cart_history": [
+    {
+      "timestamp": 1752924641.7190075,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752924689.940383,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752924697.4852984,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925072.3453496,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925078.5814118,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925078.6125314,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925083.9802577,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925095.9562058,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925097.8934278,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925134.5028853,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925137.1350763,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925139.7979174,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925140.7082694,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925143.0870733,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925143.909929,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925146.5042763,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925147.9109788,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925149.4720745,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925150.247331,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925182.0181575,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925184.150937,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925185.650191,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925251.4150696,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925251.442713,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925254.2769957,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      }
+    },
+    {
+      "timestamp": 1752925255.7112558,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      }
+    },
+    {
+      "timestamp": 1752925256.7132711,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      }
+    },
+    {
+      "timestamp": 1752925262.3808603,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 9
+      }
+    },
+    {
+      "timestamp": 1752925266.3828037,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 6800,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 9
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 9
+      }
+    },
+    {
+      "timestamp": 1752925266.4139912,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 9
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 2
+      }
+    },
+    {
+      "timestamp": 1752925382.495606,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 2
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925384.0610707,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925386.5941072,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925391.147248,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925392.401243,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925393.2385209,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925394.4947684,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1752925394.5288942,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925402.4149811,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925404.4574366,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925413.2230418,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 4800,
+        "items": [
+          {
+            "name": "콜드브루 라떼",
+            "qty": 1,
+            "price": 4800,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925413.228317,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925414.381441,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1752925416.55406,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 0,
+    "totalItems": 0,
+    "totalPrice": 0,
+    "items": [],
+    "step": 3
+  },
+  "total_gaze_points": 25512,
+  "total_clicks": 16,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 1250.9764493333182,
+      "maximum": 124876.03495618106,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.007154986262321472,
+      "minimum": 0.0020754337310791016,
+      "maximum": 0.017769813537597656,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 323.48842693100784,
+      "maximum": 1899.2656475596034,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.7348807136356208,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 25511,
+    "total_clicks": 16,
+    "session_duration": 921.0012385845184
+  }
+}

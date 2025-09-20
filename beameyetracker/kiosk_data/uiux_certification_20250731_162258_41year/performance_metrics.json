@@ -1,0 +1,30 @@
+{
+  "gaze_velocity": {
+    "average": 419.8167343782105,
+    "maximum": 61129.37432122194,
+    "unit": "pixels/second"
+  },
+  "gaze_acceleration": {
+    "average": 0.0,
+    "maximum": 0.0,
+    "unit": "pixels/second²"
+  },
+  "reaction_time": {
+    "average": 0.003998713059858842,
+    "minimum": 0.001993894577026367,
+    "maximum": 0.009997129440307617,
+    "unit": "seconds"
+  },
+  "gaze_click_distance": {
+    "average": 784.4311323925572,
+    "maximum": 1444.0893324168003,
+    "unit": "pixels"
+  },
+  "fixation_duration": {
+    "average": 2.4974880983800065,
+    "unit": "seconds"
+  },
+  "total_gaze_points": 6227,
+  "total_clicks": 11,
+  "session_duration": 208.57610487937927
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": 1752925576.0624819,
+    "x": -1174,
+    "y": 614,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204559\\screenshot_initial.png",
+    "gaze_count": 416
+  },
+  {
+    "timestamp": 1752925578.4289188,
+    "x": -796,
+    "y": 768,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_bs",
+      "dataName": "흑당 콜드브루"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204559\\screenshot_click_1.png",
+    "gaze_count": 54
+  },
+  {
+    "timestamp": 1752925580.4613233,
+    "x": -1209,
+    "y": 1060,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "",
+      "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+      "id": "root",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204559\\screenshot_click_2.png",
+    "gaze_count": 35
+  },
+  {
+    "timestamp": 1752925581.3613677,
+    "x": -1193,
+    "y": 1032,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "",
+      "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(1리터) - ICE 전용+1400원온도 (필수)ICE0원HOT0원커피 옵션 (최대 8개) 1샷 추가+500원2샷 추가+1000원연하게(1샷)0원디카페인으로 변경+500원물 양 적게0원얼음 많이0원덜 달게0원설탕 시럽 추가0원텀블러 사용 (최대 1개) 텀블러 사용0원-1+취소주문담기 4,200원",
+      "id": "root",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_204559\\screenshot_click_3.png",
+    "gaze_count": 18
+  }
+]

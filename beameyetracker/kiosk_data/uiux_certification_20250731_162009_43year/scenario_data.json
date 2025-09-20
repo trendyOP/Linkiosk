@@ -1,0 +1,2197 @@
+{
+  "timestamp": "20250731_162009",
+  "session_start_time": 1753946419.2175698,
+  "session_duration": 126.52908945083618,
+  "scenario_steps": [
+    "아메리카노",
+    "수박주스",
+    "햄&치즈 샌드위치",
+    "카푸치노(Hot, 설탕 시럽 추가)",
+    "장바구니에서 수박주스 취소",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "failed_steps": [
+      5
+    ],
+    "skipped_steps": [],
+    "retry_count": {
+      "5": 1
+    }
+  },
+  "cart_history": [
+    {
+      "timestamp": 1753946436.0314424,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1753946439.2315996,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946447.2404974,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946447.2752545,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1753946450.5571206,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1753946468.6406078,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946471.4222598,
+      "previous": {
+        "itemCount": 1,
+        "totalItems": 1,
+        "totalPrice": 3300,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946471.4402642,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1753946473.0834754,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1753946484.9904463,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946487.5904346,
+      "previous": {
+        "itemCount": 2,
+        "totalItems": 2,
+        "totalPrice": 7500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946487.6264944,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1753946489.5563855,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1753946504.1857767,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946522.4397218,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 12200,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 4,
+        "totalItems": 4,
+        "totalPrice": 15700,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      }
+    },
+    {
+      "timestamp": 1753946522.4619675,
+      "previous": {
+        "itemCount": 4,
+        "totalItems": 4,
+        "totalPrice": 15700,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 4
+      },
+      "current": {
+        "itemCount": 4,
+        "totalItems": 4,
+        "totalPrice": 15700,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1753946528.4639695,
+      "previous": {
+        "itemCount": 4,
+        "totalItems": 4,
+        "totalPrice": 15700,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "수박 주스",
+            "qty": 1,
+            "price": 4200,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      }
+    },
+    {
+      "timestamp": 1753946528.4729688,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 5
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1753946533.974236,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      }
+    },
+    {
+      "timestamp": 1753946536.1813815,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 6
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      }
+    },
+    {
+      "timestamp": 1753946538.1744962,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 7
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      }
+    },
+    {
+      "timestamp": 1753946542.0011034,
+      "previous": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 8
+      },
+      "current": {
+        "itemCount": 3,
+        "totalItems": 3,
+        "totalPrice": 11500,
+        "items": [
+          {
+            "name": "아메리카노",
+            "qty": 1,
+            "price": 3300,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "ice",
+                  "name": "ICE",
+                  "price": 0
+                }
+              ]
+            }
+          },
+          {
+            "name": "햄&치즈 샌드위치",
+            "qty": 1,
+            "price": 4700,
+            "options": {}
+          },
+          {
+            "name": "카푸치노",
+            "qty": 1,
+            "price": 3500,
+            "options": {
+              "size": [
+                {
+                  "id": "regular",
+                  "name": "기본사이즈",
+                  "price": 0
+                }
+              ],
+              "temp": [
+                {
+                  "id": "hot",
+                  "name": "HOT",
+                  "price": 0
+                }
+              ],
+              "coffee_opts": [
+                {
+                  "id": "syrup",
+                  "name": "설탕 시럽 추가",
+                  "price": 0
+                }
+              ]
+            }
+          }
+        ],
+        "step": 9
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 3,
+    "totalItems": 3,
+    "totalPrice": 11500,
+    "items": [
+      {
+        "name": "아메리카노",
+        "qty": 1,
+        "price": 3300,
+        "options": {
+          "size": [
+            {
+              "id": "regular",
+              "name": "기본사이즈",
+              "price": 0
+            }
+          ],
+          "temp": [
+            {
+              "id": "ice",
+              "name": "ICE",
+              "price": 0
+            }
+          ]
+        }
+      },
+      {
+        "name": "햄&치즈 샌드위치",
+        "qty": 1,
+        "price": 4700,
+        "options": {}
+      },
+      {
+        "name": "카푸치노",
+        "qty": 1,
+        "price": 3500,
+        "options": {
+          "size": [
+            {
+              "id": "regular",
+              "name": "기본사이즈",
+              "price": 0
+            }
+          ],
+          "temp": [
+            {
+              "id": "hot",
+              "name": "HOT",
+              "price": 0
+            }
+          ],
+          "coffee_opts": [
+            {
+              "id": "syrup",
+              "name": "설탕 시럽 추가",
+              "price": 0
+            }
+          ]
+        }
+      }
+    ],
+    "step": 9
+  },
+  "total_gaze_points": 3751,
+  "total_clicks": 8,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 804.5026372579401,
+      "maximum": 63202.469248984264,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.02858179807662964,
+      "minimum": 0.0020024776458740234,
+      "maximum": 0.14327526092529297,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 544.6143398337254,
+      "maximum": 1450.9941419592292,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.7562396757064327,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 3751,
+    "total_clicks": 8,
+    "session_duration": 126.52808880805969
+  }
+}

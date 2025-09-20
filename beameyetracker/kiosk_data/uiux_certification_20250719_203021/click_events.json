@@ -1,0 +1,242 @@
+[
+  {
+    "timestamp": 1752924641.1194952,
+    "x": -1181,
+    "y": 629,
+    "step": 0,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_initial.png",
+    "gaze_count": 423
+  },
+  {
+    "timestamp": 1752924688.9392776,
+    "x": -955,
+    "y": 507,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_goodhazel",
+      "dataName": "헤이즐넛 (ICE)"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_1.png",
+    "gaze_count": 1294
+  },
+  {
+    "timestamp": 1752924697.0901732,
+    "x": -1179,
+    "y": 1055,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_2.png",
+    "gaze_count": 215
+  },
+  {
+    "timestamp": 1752924772.0707426,
+    "x": -1312,
+    "y": 131,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_3.png",
+    "gaze_count": 1457
+  },
+  {
+    "timestamp": 1752924784.5153923,
+    "x": -1069,
+    "y": 136,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_4.png",
+    "gaze_count": 101
+  },
+  {
+    "timestamp": 1752924840.3246782,
+    "x": -1178,
+    "y": 132,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "디저트",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_5.png",
+    "gaze_count": 1160
+  },
+  {
+    "timestamp": 1752924850.2635345,
+    "x": -1236,
+    "y": 117,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_6.png",
+    "gaze_count": 279
+  },
+  {
+    "timestamp": 1752924871.035209,
+    "x": -1337,
+    "y": 121,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_7.png",
+    "gaze_count": 606
+  },
+  {
+    "timestamp": 1752924877.3078144,
+    "x": -662,
+    "y": 124,
+    "step": 0,
+    "element_info": {
+      "tagName": "svg",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_8.png",
+    "gaze_count": 165
+  },
+  {
+    "timestamp": 1752924883.440531,
+    "x": -760,
+    "y": 123,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_9.png",
+    "gaze_count": 170
+  },
+  {
+    "timestamp": 1752924907.2933886,
+    "x": -919,
+    "y": 119,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "프라푸치노 · 블렌디드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_10.png",
+    "gaze_count": 698
+  },
+  {
+    "timestamp": 1752924930.1631734,
+    "x": -1055,
+    "y": 135,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_11.png",
+    "gaze_count": 661
+  },
+  {
+    "timestamp": 1752924978.813074,
+    "x": -1308,
+    "y": 136,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_12.png",
+    "gaze_count": 1416
+  },
+  {
+    "timestamp": 1752925045.0449815,
+    "x": -1406,
+    "y": 137,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_13.png",
+    "gaze_count": 1937
+  },
+  {
+    "timestamp": 1752925071.3573637,
+    "x": -1347,
+    "y": 305,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_14.png",
+    "gaze_count": 770
+  },
+  {
+    "timestamp": 1752925078.150147,
+    "x": -951,
+    "y": 1051,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_203021\\screenshot_click_15.png",
+    "gaze_count": 175
+  }
+]

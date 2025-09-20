@@ -1,0 +1,77 @@
+{
+  "timestamp": "20250731_150700",
+  "session_start_time": 1753942038.6980402,
+  "session_duration": 67.36094784736633,
+  "scenario_steps": [
+    "아메리카노",
+    "수박주스",
+    "햄&치즈 샌드위치",
+    "카푸치노(Hot, 설탕 시럽 추가)",
+    "장바구니에서 수박주스 취소",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [],
+    "failed_steps": [],
+    "skipped_steps": [],
+    "retry_count": {}
+  },
+  "cart_history": [
+    {
+      "timestamp": 1753942075.4349322,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 0,
+    "totalItems": 0,
+    "totalPrice": 0,
+    "items": [],
+    "step": 3
+  },
+  "total_gaze_points": 1860,
+  "total_clicks": 1,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 746.8126329952918,
+      "maximum": 27415.984972397855,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.006033658981323242,
+      "minimum": 0.006033658981323242,
+      "maximum": 0.006033658981323242,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 404.7838929601819,
+      "maximum": 404.7838929601819,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.7772899817114007,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 1860,
+    "total_clicks": 1,
+    "session_duration": 67.35893654823303
+  }
+}

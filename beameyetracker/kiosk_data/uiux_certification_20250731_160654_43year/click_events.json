@@ -1,0 +1,332 @@
+[
+  {
+    "timestamp": 1753945839.7765927,
+    "x": 746,
+    "y": 619,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_initial.png",
+    "gaze_count": 1527
+  },
+  {
+    "timestamp": 1753945840.712508,
+    "x": 680,
+    "y": 618,
+    "step": 0,
+    "element_info": {
+      "tagName": "ARTICLE",
+      "className": "menu-item",
+      "textContent": "콜드브루 라떼4,800원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_1.png",
+    "gaze_count": 8
+  },
+  {
+    "timestamp": 1753945843.3774343,
+    "x": 653,
+    "y": 1026,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_2.png",
+    "gaze_count": 55
+  },
+  {
+    "timestamp": 1753945867.764767,
+    "x": 889,
+    "y": 145,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_3.png",
+    "gaze_count": 681
+  },
+  {
+    "timestamp": 1753945870.9277124,
+    "x": 515,
+    "y": 155,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_4.png",
+    "gaze_count": 64
+  },
+  {
+    "timestamp": 1753945892.2148983,
+    "x": 1111,
+    "y": 158,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_5.png",
+    "gaze_count": 619
+  },
+  {
+    "timestamp": 1753945901.38753,
+    "x": 478,
+    "y": 84,
+    "step": 0,
+    "element_info": {
+      "tagName": "svg",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_6.png",
+    "gaze_count": 84
+  },
+  {
+    "timestamp": 1753945903.5519462,
+    "x": 472,
+    "y": 76,
+    "step": 0,
+    "element_info": {
+      "tagName": "H1",
+      "className": "packaging-header",
+      "textContent": "포장 선택",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_7.png",
+    "gaze_count": 4
+  },
+  {
+    "timestamp": 1753945927.733843,
+    "x": 684,
+    "y": 639,
+    "step": 0,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_8.png",
+    "gaze_count": 259
+  },
+  {
+    "timestamp": 1753945932.9516618,
+    "x": 499,
+    "y": 129,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_9.png",
+    "gaze_count": 47
+  },
+  {
+    "timestamp": 1753945935.4307725,
+    "x": 525,
+    "y": 148,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item active",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_10.png",
+    "gaze_count": 1
+  },
+  {
+    "timestamp": 1753945938.1611981,
+    "x": 513,
+    "y": 151,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item active",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_11.png",
+    "gaze_count": 2
+  },
+  {
+    "timestamp": 1753945940.8968623,
+    "x": 481,
+    "y": 84,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item active",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_12.png",
+    "gaze_count": 2
+  },
+  {
+    "timestamp": 1753945943.5371733,
+    "x": 481,
+    "y": 84,
+    "step": 0,
+    "element_info": {
+      "tagName": "path",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_13.png",
+    "gaze_count": 1
+  },
+  {
+    "timestamp": 1753945946.496306,
+    "x": 470,
+    "y": 75,
+    "step": 0,
+    "element_info": {
+      "tagName": "H1",
+      "className": "packaging-header",
+      "textContent": "포장 선택",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_14.png",
+    "gaze_count": 2
+  },
+  {
+    "timestamp": 1753945952.8921006,
+    "x": 716,
+    "y": 640,
+    "step": 0,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_15.png",
+    "gaze_count": 44
+  },
+  {
+    "timestamp": 1753945957.2395658,
+    "x": 586,
+    "y": 393,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_16.png",
+    "gaze_count": 38
+  },
+  {
+    "timestamp": 1753945966.432988,
+    "x": 1032,
+    "y": 1016,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_17.png",
+    "gaze_count": 138
+  },
+  {
+    "timestamp": 1753945973.234107,
+    "x": 713,
+    "y": 693,
+    "step": 2,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_18.png",
+    "gaze_count": 190
+  },
+  {
+    "timestamp": 1753945982.7998266,
+    "x": 1168,
+    "y": 164,
+    "step": 3,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_19.png",
+    "gaze_count": 279
+  },
+  {
+    "timestamp": 1753945989.9360306,
+    "x": 869,
+    "y": 625,
+    "step": 4,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "sm_water",
+      "dataName": "수박 주스"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_20.png",
+    "gaze_count": 185
+  },
+  {
+    "timestamp": 1753945993.1387277,
+    "x": 1024,
+    "y": 779,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_160654\\screenshot_click_21.png",
+    "gaze_count": 72
+  }
+]

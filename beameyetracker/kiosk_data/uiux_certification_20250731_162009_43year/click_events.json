@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": 1753946435.4316242,
+    "x": 702,
+    "y": 635,
+    "step": 0,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_initial.png",
+    "gaze_count": 484
+  },
+  {
+    "timestamp": 1753946438.356949,
+    "x": 538,
+    "y": 266,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_1.png",
+    "gaze_count": 70
+  },
+  {
+    "timestamp": 1753946446.9514375,
+    "x": 1022,
+    "y": 1030,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_2.png",
+    "gaze_count": 219
+  },
+  {
+    "timestamp": 1753946450.303563,
+    "x": 679,
+    "y": 666,
+    "step": 2,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_3.png",
+    "gaze_count": 93
+  },
+  {
+    "timestamp": 1753946458.8378081,
+    "x": 1144,
+    "y": 138,
+    "step": 3,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_4.png",
+    "gaze_count": 248
+  },
+  {
+    "timestamp": 1753946468.0191617,
+    "x": 539,
+    "y": 645,
+    "step": 4,
+    "element_info": {
+      "tagName": "P",
+      "className": "price",
+      "textContent": "4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_5.png",
+    "gaze_count": 251
+  },
+  {
+    "timestamp": 1753946469.0220215,
+    "x": 638,
+    "y": 1094,
+    "step": 5,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "",
+      "textContent": "사이즈 선택 (필수)기본사이즈0원사이즈업(+600원)+600원-1+취소주문담기 4,200원",
+      "id": "root",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_6.png",
+    "gaze_count": 12
+  },
+  {
+    "timestamp": 1753946471.158298,
+    "x": 1002,
+    "y": 742,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_162009\\screenshot_click_7.png",
+    "gaze_count": 56
+  }
+]

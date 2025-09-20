@@ -1,0 +1,107 @@
+[
+  {
+    "timestamp": 1752928160.2693584,
+    "x": -1152,
+    "y": 635,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_initial.png",
+    "gaze_count": 447
+  },
+  {
+    "timestamp": 1752928164.0357027,
+    "x": -1228,
+    "y": 123,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_1.png",
+    "gaze_count": 96
+  },
+  {
+    "timestamp": 1752928165.975499,
+    "x": -1362,
+    "y": 420,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "ade_mus",
+      "dataName": "샤인머스캣 에이드"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_2.png",
+    "gaze_count": 30
+  },
+  {
+    "timestamp": 1752928167.656876,
+    "x": -1212,
+    "y": 852,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_3.png",
+    "gaze_count": 30
+  },
+  {
+    "timestamp": 1752928169.1021316,
+    "x": -1320,
+    "y": 116,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_4.png",
+    "gaze_count": 35
+  },
+  {
+    "timestamp": 1752928173.3457015,
+    "x": -1067,
+    "y": 188,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_5.png",
+    "gaze_count": 106
+  },
+  {
+    "timestamp": 1752928174.5419667,
+    "x": -846,
+    "y": 199,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212859\\screenshot_click_6.png",
+    "gaze_count": 17
+  }
+]

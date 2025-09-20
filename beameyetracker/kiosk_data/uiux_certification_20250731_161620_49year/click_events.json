@@ -1,0 +1,167 @@
+[
+  {
+    "timestamp": 1753946225.562022,
+    "x": 699,
+    "y": 621,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_initial.png",
+    "gaze_count": 1157
+  },
+  {
+    "timestamp": 1753946235.792515,
+    "x": 590,
+    "y": 502,
+    "step": 0,
+    "element_info": {
+      "tagName": "P",
+      "className": "price",
+      "textContent": "3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_1.png",
+    "gaze_count": 291
+  },
+  {
+    "timestamp": 1753946242.6005404,
+    "x": 1077,
+    "y": 1027,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_2.png",
+    "gaze_count": 179
+  },
+  {
+    "timestamp": 1753946246.295588,
+    "x": 723,
+    "y": 686,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_3.png",
+    "gaze_count": 99
+  },
+  {
+    "timestamp": 1753946257.4050937,
+    "x": 1170,
+    "y": 169,
+    "step": 2,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_4.png",
+    "gaze_count": 324
+  },
+  {
+    "timestamp": 1753946265.238385,
+    "x": 852,
+    "y": 664,
+    "step": 3,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "sm_water",
+      "dataName": "수박 주스"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_5.png",
+    "gaze_count": 207
+  },
+  {
+    "timestamp": 1753946270.0157635,
+    "x": 1040,
+    "y": 777,
+    "step": 4,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_6.png",
+    "gaze_count": 118
+  },
+  {
+    "timestamp": 1753946272.9422886,
+    "x": 697,
+    "y": 739,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_7.png",
+    "gaze_count": 79
+  },
+  {
+    "timestamp": 1753946278.1497104,
+    "x": 983,
+    "y": 164,
+    "step": 5,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_8.png",
+    "gaze_count": 147
+  },
+  {
+    "timestamp": 1753946285.8120875,
+    "x": 1173,
+    "y": 402,
+    "step": 5,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "bak_sand",
+      "dataName": "햄&치즈 샌드위치"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_9.png",
+    "gaze_count": 205
+  },
+  {
+    "timestamp": 1753946288.9187963,
+    "x": 1069,
+    "y": 657,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,700원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_161620\\screenshot_click_10.png",
+    "gaze_count": 79
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": 1752927324.2658813,
+    "x": -1124,
+    "y": 625,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211506\\screenshot_initial.png",
+    "gaze_count": 403
+  },
+  {
+    "timestamp": 1752927327.5643692,
+    "x": -1050,
+    "y": 128,
+    "step": 0,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "베이커리 · 샌드위치",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211506\\screenshot_click_1.png",
+    "gaze_count": 80
+  },
+  {
+    "timestamp": 1752927346.4449239,
+    "x": -829,
+    "y": 672,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "bak_egg",
+      "dataName": "콘치즈 에그타르트"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211506\\screenshot_click_2.png",
+    "gaze_count": 538
+  },
+  {
+    "timestamp": 1752927348.0408773,
+    "x": -1173,
+    "y": 642,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211506\\screenshot_click_3.png",
+    "gaze_count": 32
+  }
+]

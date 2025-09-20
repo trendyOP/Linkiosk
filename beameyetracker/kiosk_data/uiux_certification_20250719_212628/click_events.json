@@ -1,0 +1,197 @@
+[
+  {
+    "timestamp": 1752928007.0152714,
+    "x": -1132,
+    "y": 695,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_initial.png",
+    "gaze_count": 398
+  },
+  {
+    "timestamp": 1752928081.17472,
+    "x": -1360,
+    "y": 459,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_1.png",
+    "gaze_count": 2205
+  },
+  {
+    "timestamp": 1752928089.347706,
+    "x": -1201,
+    "y": 822,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_2.png",
+    "gaze_count": 224
+  },
+  {
+    "timestamp": 1752928106.8918226,
+    "x": -1111,
+    "y": 142,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "디저트",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_3.png",
+    "gaze_count": 516
+  },
+  {
+    "timestamp": 1752928117.5229259,
+    "x": -1437,
+    "y": 82,
+    "step": 1,
+    "element_info": {
+      "tagName": "path",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_4.png",
+    "gaze_count": 296
+  },
+  {
+    "timestamp": 1752928118.920878,
+    "x": -1142,
+    "y": 643,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_5.png",
+    "gaze_count": 34
+  },
+  {
+    "timestamp": 1752928121.389838,
+    "x": -1181,
+    "y": 147,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_6.png",
+    "gaze_count": 64
+  },
+  {
+    "timestamp": 1752928122.6374323,
+    "x": -1275,
+    "y": 146,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_7.png",
+    "gaze_count": 28
+  },
+  {
+    "timestamp": 1752928123.8222408,
+    "x": -1372,
+    "y": 149,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "커피",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_8.png",
+    "gaze_count": 30
+  },
+  {
+    "timestamp": 1752928125.2546856,
+    "x": -1309,
+    "y": 139,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "논-커피 음료",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_9.png",
+    "gaze_count": 35
+  },
+  {
+    "timestamp": 1752928126.4928548,
+    "x": -1214,
+    "y": 140,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_10.png",
+    "gaze_count": 15
+  },
+  {
+    "timestamp": 1752928127.9581788,
+    "x": -1089,
+    "y": 150,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "디저트",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_11.png",
+    "gaze_count": 36
+  },
+  {
+    "timestamp": 1752928133.1103194,
+    "x": -1258,
+    "y": 126,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "티 · 에이드",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_212628\\screenshot_click_12.png",
+    "gaze_count": 145
+  }
+]

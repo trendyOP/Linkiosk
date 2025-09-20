@@ -1,0 +1,94 @@
+{
+  "timestamp": "20250719_204559",
+  "session_start_time": 1752925562.1627092,
+  "session_duration": 21.809210538864136,
+  "scenario_steps": [
+    "아메리카노",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [],
+    "failed_steps": [
+      0
+    ],
+    "skipped_steps": [],
+    "retry_count": {
+      "0": 2
+    }
+  },
+  "cart_history": [
+    {
+      "timestamp": 1752925576.6669264,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    },
+    {
+      "timestamp": 1752925579.3333514,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 4
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 0,
+    "totalItems": 0,
+    "totalPrice": 0,
+    "items": [],
+    "step": 4
+  },
+  "total_gaze_points": 649,
+  "total_clicks": 4,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 1239.9367335516365,
+      "maximum": 67740.65742405232,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.0026595592498779297,
+      "minimum": 0.0020036697387695312,
+      "maximum": 0.004616737365722656,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 362.49741350725037,
+      "maximum": 592.6255141318167,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.6357289473215739,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 649,
+    "total_clicks": 4,
+    "session_duration": 21.807706832885742
+  }
+}

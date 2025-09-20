@@ -1,0 +1,107 @@
+[
+  {
+    "timestamp": 1753947048.424954,
+    "x": 671,
+    "y": 622,
+    "step": 0,
+    "element_info": {
+      "tagName": "svg",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_initial.png",
+    "gaze_count": 620
+  },
+  {
+    "timestamp": 1753947057.9668987,
+    "x": 576,
+    "y": 345,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_1.png",
+    "gaze_count": 272
+  },
+  {
+    "timestamp": 1753947069.2615097,
+    "x": 1000,
+    "y": 1045,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_2.png",
+    "gaze_count": 312
+  },
+  {
+    "timestamp": 1753947076.5312643,
+    "x": 703,
+    "y": 692,
+    "step": 2,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_3.png",
+    "gaze_count": 207
+  },
+  {
+    "timestamp": 1753947091.3777416,
+    "x": 1192,
+    "y": 159,
+    "step": 3,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_4.png",
+    "gaze_count": 437
+  },
+  {
+    "timestamp": 1753947097.3416984,
+    "x": 848,
+    "y": 807,
+    "step": 4,
+    "element_info": {
+      "tagName": "P",
+      "className": "price",
+      "textContent": "4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_5.png",
+    "gaze_count": 150
+  },
+  {
+    "timestamp": 1753947100.6464303,
+    "x": 1002,
+    "y": 780,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_163022\\screenshot_click_6.png",
+    "gaze_count": 80
+  }
+]

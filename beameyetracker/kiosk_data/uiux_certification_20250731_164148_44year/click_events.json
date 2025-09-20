@@ -1,0 +1,107 @@
+[
+  {
+    "timestamp": 1753947733.238079,
+    "x": 669,
+    "y": 655,
+    "step": 0,
+    "element_info": {
+      "tagName": "SPAN",
+      "className": "",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_initial.png",
+    "gaze_count": 596
+  },
+  {
+    "timestamp": 1753947740.5831351,
+    "x": 596,
+    "y": 340,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_1.png",
+    "gaze_count": 203
+  },
+  {
+    "timestamp": 1753947744.975414,
+    "x": 1010,
+    "y": 1034,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_2.png",
+    "gaze_count": 104
+  },
+  {
+    "timestamp": 1753947747.9496906,
+    "x": 700,
+    "y": 709,
+    "step": 2,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-outline",
+      "textContent": "더 담기",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_3.png",
+    "gaze_count": 80
+  },
+  {
+    "timestamp": 1753947757.623981,
+    "x": 1149,
+    "y": 180,
+    "step": 3,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "category-item ",
+      "textContent": "스무디 · 주스",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_4.png",
+    "gaze_count": 281
+  },
+  {
+    "timestamp": 1753947760.7564874,
+    "x": 859,
+    "y": 646,
+    "step": 4,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "sm_water",
+      "dataName": "수박 주스"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_5.png",
+    "gaze_count": 66
+  },
+  {
+    "timestamp": 1753947763.1941967,
+    "x": 1033,
+    "y": 788,
+    "step": 5,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 4,200원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250731_164148\\screenshot_click_6.png",
+    "gaze_count": 55
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "timestamp": 1752927558.4492931,
+    "x": -1172,
+    "y": 610,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "packaging-option",
+      "textContent": "매장식사",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211900\\screenshot_initial.png",
+    "gaze_count": 405
+  },
+  {
+    "timestamp": 1752927712.8750682,
+    "x": -1191,
+    "y": 491,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_cb",
+      "dataName": "콜드브루 라떼"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211900\\screenshot_click_1.png",
+    "gaze_count": 4511
+  },
+  {
+    "timestamp": 1752927714.6394637,
+    "x": -1165,
+    "y": 876,
+    "step": 0,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-cancel",
+      "textContent": "취소",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_211900\\screenshot_click_2.png",
+    "gaze_count": 32
+  }
+]

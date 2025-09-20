@@ -1,0 +1,73 @@
+{
+  "timestamp": "20250719_205105",
+  "session_start_time": 1752925870.6084678,
+  "session_duration": 37.5757212638855,
+  "scenario_steps": [
+    "아메리카노",
+    "결제"
+  ],
+  "scenario_states": {
+    "completed_steps": [],
+    "failed_steps": [],
+    "skipped_steps": [],
+    "retry_count": {}
+  },
+  "cart_history": [
+    {
+      "timestamp": 1752925885.4470265,
+      "previous": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 0
+      },
+      "current": {
+        "itemCount": 0,
+        "totalItems": 0,
+        "totalPrice": 0,
+        "items": [],
+        "step": 3
+      }
+    }
+  ],
+  "final_cart_state": {
+    "itemCount": 0,
+    "totalItems": 0,
+    "totalPrice": 0,
+    "items": [],
+    "step": 3
+  },
+  "total_gaze_points": 1122,
+  "total_clicks": 2,
+  "performance_metrics": {
+    "gaze_velocity": {
+      "average": 1074.075821129644,
+      "maximum": 64538.11798132389,
+      "unit": "pixels/second"
+    },
+    "gaze_acceleration": {
+      "average": 0.0,
+      "maximum": 0.0,
+      "unit": "pixels/second²"
+    },
+    "reaction_time": {
+      "average": 0.0027707815170288086,
+      "minimum": 0.0025250911712646484,
+      "maximum": 0.0030164718627929688,
+      "unit": "seconds"
+    },
+    "gaze_click_distance": {
+      "average": 112.09235205283875,
+      "maximum": 150.63200191194434,
+      "unit": "pixels"
+    },
+    "fixation_duration": {
+      "average": 0.6179596814242276,
+      "unit": "seconds"
+    },
+    "total_gaze_points": 1122,
+    "total_clicks": 2,
+    "session_duration": 37.57472062110901
+  }
+}

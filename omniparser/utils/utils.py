@@ -161,7 +161,7 @@ def check_ocr_box(
                 if goal_filtering is None or goal_filtering in text:
                     texts.append(text)
                     boxes.append(box)
-    else:
+                        else:
         # EasyOCR 사용
         reader = easyocr.Reader(['ko', 'en'], gpu=False)
         result = reader.readtext(img_np, **easyocr_args)

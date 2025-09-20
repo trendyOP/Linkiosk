@@ -1,0 +1,92 @@
+[
+  {
+    "timestamp": 1752924143.539251,
+    "x": -1224,
+    "y": 620,
+    "step": 0,
+    "element_info": {
+      "tagName": "path",
+      "className": {},
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_initial.png",
+    "gaze_count": 758
+  },
+  {
+    "timestamp": 1752924145.1478012,
+    "x": -1316,
+    "y": 298,
+    "step": 0,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "thumb-img",
+      "textContent": "",
+      "id": "cof_ame",
+      "dataName": "아메리카노"
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_click_1.png",
+    "gaze_count": 36
+  },
+  {
+    "timestamp": 1752924148.1493692,
+    "x": -962,
+    "y": 394,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "option-items",
+      "textContent": "ICE0원HOT0원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_click_2.png",
+    "gaze_count": 70
+  },
+  {
+    "timestamp": 1752924154.152209,
+    "x": -1152,
+    "y": 871,
+    "step": 1,
+    "element_info": {
+      "tagName": "DIV",
+      "className": "option-items",
+      "textContent": "텀블러 사용0원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_click_3.png",
+    "gaze_count": 169
+  },
+  {
+    "timestamp": 1752924155.5742314,
+    "x": -1340,
+    "y": 877,
+    "step": 1,
+    "element_info": {
+      "tagName": "IMG",
+      "className": "option-thumb-img",
+      "textContent": "",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_click_4.png",
+    "gaze_count": 30
+  },
+  {
+    "timestamp": 1752924156.640407,
+    "x": -899,
+    "y": 1044,
+    "step": 1,
+    "element_info": {
+      "tagName": "BUTTON",
+      "className": "btn-primary",
+      "textContent": "주문담기 3,300원",
+      "id": "",
+      "dataName": ""
+    },
+    "screenshot_path": "kiosk_data/uiux_certification_20250719_202151\\screenshot_click_5.png",
+    "gaze_count": 22
+  }
+]
