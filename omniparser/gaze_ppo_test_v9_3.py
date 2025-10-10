@@ -1857,7 +1857,7 @@ class ElderProfile:
     micro_saccade_px: float = 1.0   # 2.0 -> 1.0으로 감소
     
     # 마우스 움직임 (운동)
-    mouse_speed_px_s: float = 8000   # 고령자: 느린 속도 (800 px/s)
+    mouse_speed_px_s: float = 800   # 고령자: 느린 속도 (800 px/s)
     path_curvature: float = 0.08   # 0.18 -> 0.08로 감소
     tremor_std_px: float = 2.0     # 1.2 -> 2.0으로 증가 (떨림 증가)
     overshoot_prob: float = 0.15   # 0.35 -> 0.15로 감소

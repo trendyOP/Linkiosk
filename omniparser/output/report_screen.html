@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SI-PPO 시뮬레이션 리포트 - screen.png</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif; margin: 32px; color: #1a1a1a; }
+    h1, h2 { margin: 0 0 8px 0; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 18px; margin-top: 16px; }
+    .meta { color:#666; font-size: 12px; margin-bottom: 16px; }
+    .card { border: 1px solid #e5e5e5; border-radius: 10px; padding: 16px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #eee; padding: 6px 8px; text-align: left; font-size: 12px; }
+    th { background: #fafafa; font-weight: 600; }
+    .small { font-size: 12px; color:#555 }
+    .pill { display:inline-block; padding: 2px 8px; border-radius: 999px; background:#f1f5f9; margin-left: 8px; font-size: 12px; }
+    .kpi { display:flex; gap:12px; flex-wrap:wrap }
+    .kpi .item { background:#0f172a; color:#fff; padding:10px 12px; border-radius:8px; font-size:13px }
+    .footer { margin-top:32px; color:#666; font-size:12px }
+    .hero-img { width:100%; border-radius:8px; border:1px solid #eee; max-height: 420px; object-fit: contain; }
+    .tight { margin-top: 8px; }
+    @media print { .pagebreak { page-break-before: always; } }
+  </style>
+</head>
+<body>
+  <h1>SI-PPO 시뮬레이션 리포트 <span class="pill">screen.png</span></h1>
+  <div class="meta">생성: 자동 리포트 | 데이터 소스: output/screen_result.json, output/screen_heatmap.png</div>
+
+  <div class="kpi">
+    <div class="item">성공률: <b>100%</b></div>
+    <div class="item">평균 스텝: <b>57.2</b></div>
+    <div class="item">평균 클릭: <b>1.0</b></div>
+    <div class="item">평균 시간: <b>18.11s</b></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>히트맵 및 결과 요약</h2>
+    <img alt="screen heatmap" class="hero-img" src="screen_heatmap.png"/>
+    <div class="small tight">Red=강, Blue=약 | 집중 클러스터와 냉점 분석</div>
+    <table class="tight">
+      <thead><tr><th>Task</th><th>Target</th><th>Steps</th><th>Clicks</th><th>Time(s)</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>부대찌개</td><td>26</td><td>1</td><td>10.77</td><td>Success</td></tr>
+        <tr><td>2</td><td>결제금</td><td>72</td><td>1</td><td>21.52</td><td>Success</td></tr>
+        <tr><td>3</td><td>포장치</td><td>37</td><td>1</td><td>12.68</td><td>Success</td></tr>
+        <tr><td>4</td><td>결제하</td><td>16</td><td>1</td><td>7.07</td><td>Success</td></tr>
+        <tr><td>5</td><td>사이드</td><td>135</td><td>1</td><td>38.51</td><td>Success</td></tr>
+      </tbody>
+    </table>
+    <div class="small">장시간/장거리 Task: <b>#5</b> (비효율 구간)</div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>진단 및 개선안</h2>
+    <ul>
+      <li>중앙/세로축 집중 편향 → 주변부 커버리지 유도 필요(가장자리 보상 상향)</li>
+      <li>장기 루프 억제 미흡 → 중복 방문 패널티 상향, 장기 연속방향 점감 보상</li>
+      <li>장거리 타겟 시 비효율 → 거리 패널티 완만화, 힌트/살리언시 혼합 비율 재조정</li>
+    </ul>
+    <table>
+      <thead><tr><th>항목</th><th>현재</th><th>제안</th><th>의도</th></tr></thead>
+      <tbody>
+        <tr><td>중복 방문 패널티</td><td>-0.08</td><td>-0.12</td><td>루프 감소</td></tr>
+        <tr><td>점프 패널티</td><td>-0.03×(d-1)</td><td>-0.025×(d-1)</td><td>필요시 장거리 허용</td></tr>
+        <tr><td>행/열 완주 보상</td><td>+0.4</td><td>+0.3</td><td>완주 집착 완화</td></tr>
+        <tr><td>가장자리 보상</td><td>+0.1</td><td>+0.15</td><td>주변부 탐색 유도</td></tr>
+        <tr><td>엔트로피 보너스</td><td>0.10</td><td>0.12→0.08 decay</td><td>초기 다양성↑</td></tr>
+        <tr><td>Hint/Saliency</td><td>0.6/0.4</td><td>0.45/0.35</td><td>편향 완화</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>추가 실험 설계</h2>
+    <ul>
+      <li>Grid 9↔11 비교, Coverage@T / Text-Recall@T 영향</li>
+      <li>Penalty/Entropy 스윕(0.08/0.12/0.16, 0.08/0.10/0.12)</li>
+      <li>대시보드: per-task boxplot, 중심-주변 intensity ratio, 중복 방문률</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    원본: output/screen_result.json · 이미지: output/screen_heatmap.png · 생성시각: <span id="ts"></span>
+  </div>
+
+  <script>
+    document.getElementById('ts').textContent = new Date().toLocaleString();
+  </script>
+</body>
+</html>
